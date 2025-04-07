@@ -1,160 +1,235 @@
 "use client";
-
-import Image from "next/image";
+import { useState, useEffect } from "react";
+import {
+  FiMenu,
+  FiX,
+  FiChevronDown,
+  FiChevronUp,
+  FiPhone,
+  FiMapPin,
+  FiClock,
+  FiFacebook,
+  FiInstagram,
+  FiTwitter,
+  FiLinkedin,
+} from "react-icons/fi";
+import { FaLinkedinIn } from "react-icons/fa";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { TfiPinterest } from "react-icons/tfi";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const dropdownRefs = useRef({});
-  const timeoutRefs = useRef({});
+  const [showStudioInfo, setShowStudioInfo] = useState(false);
 
-  const toggleDropdown = (menu) => {
-    clearTimeout(timeoutRefs.current[menu]);
-    setOpenDropdown(openDropdown === menu ? null : menu);
+  const toggleDropdown = (name) => {
+    setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  const handleMouseEnter = (menu) => {
-    clearTimeout(timeoutRefs.current[menu]);
-    setOpenDropdown(menu);
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setOpenDropdown(null);
   };
 
-  const handleMouseLeave = (menu) => {
-    timeoutRefs.current[menu] = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 300); // 300ms delay before closing
-  };
-
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      Object.values(dropdownRefs.current).forEach((ref) => {
-        if (ref && !ref.contains(event.target)) {
-          setOpenDropdown(null);
-        }
-      });
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+  }, [isOpen]);
+
+  const navItems = [
     {
       title: "Dienstleistungen",
       slug: "dienstleistungen",
+      link: "/dienstleistungen",
       items: [
-        { name: "Photovoltaik", slug: "photovoltaik" },
-        { name: "Smarthome", slug: "smarthome" },
-        { name: "Service", slug: "service" },
+        { name: "Photovoltaik", slug: "photovoltaik", link: "/dienstleistungen/photovoltaik" },
+        { name: "Smarthome", slug: "smarthome", link: "/dienstleistungen/smarthome" },
+        { name: "Service", slug: "service", link: "/dienstleistungen/service" },
       ],
     },
     {
       title: "Referenzen",
       slug: "referenzen",
       items: [
-        { name: "Projekte", slug: "projekte" },
-        { name: "Referenzkarte", slug: "referenzkarte" },
+        { name: "Projekte", slug: "projekte", link: "/referenzen/projekte" },
+        { name: "Referenzkarte", slug: "referenzkarte", link: "/referenzen/referenzkarte" },
       ],
     },
     {
       title: "Über Uns",
       slug: "uber-uns",
+      link: "/uber-uns",
       items: [
-        { name: "Team", slug: "team" },
-        { name: "Jobs", slug: "jobs" },
+        { name: "Team", slug: "team", link: "/uber-uns/team" },
+        { name: "Jobs", slug: "jobs", link: "/uber-uns/jobs" },
       ],
     },
     {
       title: "Faqs",
       slug: "faqs",
-      items: [],
+      link: "/faqs",
     },
     {
       title: "Kontakt",
       slug: "kontakt",
-      items: [],
+      link: "/kontakt",
     },
   ];
 
   return (
-    <nav className="bg-white shadow-md py-4 z-9999 sticky top-0 left-0">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        {/* Left side - Logo/Company Name */}
-        <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
-          <div className="relative w-40 h-16">
+    <header className="sticky top-0  w-full z-50 bg-[var(--secondary)] shadow-lg transition-all duration-300 ease-in-out bg-white">
+      {/* Main Navigation */}
+      <nav className={`w-full max-w-7xl mx-auto py-4`}>
+        <div className="px-4 flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="flex items-center h-16 w-40 relative">
             <Image
-              src="/Images/Navbar/logo.png"
-              alt="Solartechnik Deutschland Logo"
+              src="/Images/Navbar/Logo.png"
+              alt="Logo"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               fill
               className="object-contain object-left"
-              priority
             />
-          </div>
-        </Link>
+          </Link>
 
-        {/* Right side - Navigation with dropdowns */}
-        <div className="hidden lg:flex space-x-8">
-          {menuItems.map((menu, index) => (
-            <div
-              key={index}
-              className="relative"
-              onMouseEnter={() => handleMouseEnter(menu.title)}
-              onMouseLeave={() => handleMouseLeave(menu.title)}
-              ref={(el) => (dropdownRefs.current[menu.title] = el)}
-            >
-              <div className="flex items-center">
-                <Link href={`/${menu.slug}`} className="text-gray-800 hover:text-blue-600 flex items-center">
-                  {menu.title}
-                </Link>
-                {menu.items.length > 0 && (
-                  <button
-                    onClick={() => toggleDropdown(menu.title)}
-                    className="ml-1 focus:outline-none"
-                    aria-expanded={openDropdown === menu.title}
-                    aria-label={`Toggle ${menu.title} dropdown`}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-
-              {menu.items.length > 0 && (
-                <div
-                  className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 transition-all duration-200 ease-in-out ${
-                    openDropdown === menu.title
-                      ? "opacity-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 -translate-y-1 pointer-events-none"
-                  }`}
-                >
-                  {menu.items.map((item, itemIndex) => (
+          {/* Desktop Navigation */}
+          <div>
+            <div className="hidden lg:flex items-center space-x-8 relative">
+              {navItems.map((item, index) => (
+                <div key={index} className="relative group">
+                  {item.items ? (
+                    <>
+                      <Link
+                        href={item.link || "#"}
+                        onMouseEnter={() => toggleDropdown(item.title)}
+                        onClick={() => toggleDropdown(item.title)}
+                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-sm"
+                      >
+                        {item.title}
+                        {openDropdown === item.title ? (
+                          <FiChevronUp className="ml-1" />
+                        ) : (
+                          <FiChevronDown className="ml-1" />
+                        )}
+                      </Link>
+                      {openDropdown === item.title && (
+                        <div
+                          className="absolute left-0 mt-6 w-48 bg-[var(--ternary)] rounded-md shadow-lg py-1 z-50 bg-white"
+                          onMouseLeave={() => setOpenDropdown(null)}
+                        >
+                          {item.items.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.link}
+                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933] uppercase text-sm"
+                              onClick={() => {
+                                setOpenDropdown(null);
+                                closeMobileMenu();
+                              }}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
                     <Link
-                      key={itemIndex}
-                      href={`/${menu.slug}/${item.slug}`}
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      onClick={() => setOpenDropdown(null)}
+                      href={item.link}
+                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-sm"
                     >
-                      {item.name}
+                      {item.title}
                     </Link>
-                  ))}
+                  )}
                 </div>
-              )}
+              ))}
             </div>
-          ))}
+          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden text-white rounded p-2 focus:outline-none transition cursor:pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
 
-        {/* Mobile menu button */}
-        <button className="lg:hidden text-gray-800 focus:outline-none">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </nav>
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="lg:hidden fixed inset-0 bg-black/20 z-40 " onClick={closeMobileMenu}>
+            <div
+              className="absolute right-0 top-0 h-full w-full sm:w-100 bg-[var(--ternary)] shadow-lg transform transition-transform duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-end p-4">
+                <button
+                  className="text-[var(--secondary)] rounded p-1 focus:outline-none"
+                  onClick={closeMobileMenu}
+                  aria-label="Close menu"
+                >
+                  <FiX size={24} />
+                </button>
+              </div>
+
+              <div className="px-4 py-2">
+                {navItems.map((item) => (
+                  <div key={item.title} className="mb-2">
+                    {item.items ? (
+                      <>
+                        <button
+                          onClick={() => toggleDropdown(item.title)}
+                          className="flex items-center justify-between w-full text-[var(--secondary)]/90 hover:text-[var(--primary)] py-2 uppercase text-sm"
+                        >
+                          {item.title}
+                          {openDropdown === item.title ? (
+                            <FiChevronUp className="ml-1" />
+                          ) : (
+                            <FiChevronDown className="ml-1" />
+                          )}
+                        </button>
+                        {openDropdown === item.title && (
+                          <div className="ml-4 space-y-2">
+                            {item.items.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.link}
+                                className="block py-2 text-[var(--secondary)]/90 hover:text-[var(--primary)] uppercase text-sm hover:cursor-pointer"
+                                onClick={closeMobileMenu}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        href={item.link}
+                        className="block py-2 text-[var(--secondary)] hover:text-[var(--primary)] uppercase text-sm hover:cursor-pointer"
+                        onClick={closeMobileMenu}
+                      >
+                        {item.title}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 
