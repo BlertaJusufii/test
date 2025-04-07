@@ -31,9 +31,9 @@ const ProjectCard = ({ project }) => {
       {/* Content */}
       <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
         <div className="text-white">
-          <h3 className="text-2xl">{project.location}</h3>
+          <h3 className="text-[20px]">{project.location}</h3>
           <p
-            className={`text-xl font-light mt-2 transition-all duration-300 transform ${
+            className={`text-xl font-light mt-2 transition-all duration-300 transform text-[16px] ${
               isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
           >
@@ -76,15 +76,15 @@ const ProjectsSection = () => {
       {/* Hero Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <span className="block text-sm font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
+          <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
             PROJEKTE
           </span>
 
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-6 leading-tight text-center">
+          <h1 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 leading-tight text-center">
             Nachhaltige Energielösungen für eine grüne Zukunft
           </h1>
 
-          <div className="prose prose-lg text-gray-600 space-y-4 text-center">
+          <div className="prose prose-lg text-gray-600 space-y-4 text-center text-[18px]">
             <p>
               In einer Zeit, in der nachhaltige Energiequellen immer wichtiger werden, ist es essenziell, innovative
               Photovoltaik Projekte zu entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.

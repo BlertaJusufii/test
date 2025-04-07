@@ -1,22 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  FiMenu,
-  FiX,
-  FiChevronDown,
-  FiChevronUp,
-  FiPhone,
-  FiMapPin,
-  FiClock,
-  FiFacebook,
-  FiInstagram,
-  FiTwitter,
-  FiLinkedin,
-} from "react-icons/fi";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
-import { TfiPinterest } from "react-icons/tfi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,18 +73,18 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0  w-full z-50 bg-[var(--secondary)] shadow-lg transition-all duration-300 ease-in-out bg-white">
+    <header className="sticky top-0 w-full z-50 bg-white shadow-lg">
       {/* Main Navigation */}
       <nav className={`w-full max-w-7xl mx-auto py-4`}>
         <div className="px-4 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center h-16 w-40 relative">
+          <Link href="/" className="flex items-center h-16 w-40 lg:w-80 relative">
             <Image
               src="/Images/Navbar/Logo.png"
               alt="Logo"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               fill
-              className="object-contain object-left"
+              className="object-contain object-left "
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Link>
 
@@ -113,7 +99,7 @@ const Navbar = () => {
                         href={item.link || "#"}
                         onMouseEnter={() => toggleDropdown(item.title)}
                         onClick={() => toggleDropdown(item.title)}
-                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-sm"
+                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-md"
                       >
                         {item.title}
                         {openDropdown === item.title ? (
@@ -131,7 +117,7 @@ const Navbar = () => {
                             <Link
                               key={subItem.name}
                               href={subItem.link}
-                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933] uppercase text-sm"
+                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933]  text-md"
                               onClick={() => {
                                 setOpenDropdown(null);
                                 closeMobileMenu();
@@ -146,7 +132,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.link}
-                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-sm"
+                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-md"
                     >
                       {item.title}
                     </Link>
@@ -157,24 +143,37 @@ const Navbar = () => {
           </div>
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white rounded p-2 focus:outline-none transition cursor:pointer"
+            className="lg:hidden p-2 rounded-md focus:outline-none transition bg-white "
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            {isOpen ? <FiX size={24} className="text-gray-800" /> : <FiMenu size={24} className="text-gray-800" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden fixed inset-0 bg-black/20 z-40 " onClick={closeMobileMenu}>
+          <div className="lg:hidden fixed inset-0 bg-black/30 z-40" onClick={closeMobileMenu}>
             <div
-              className="absolute right-0 top-0 h-full w-full sm:w-100 bg-[var(--ternary)] shadow-lg transform transition-transform duration-300"
+              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-end p-4">
+              {/* Header with Logo and Close Button */}
+              <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-10 border-b">
+                {/* Company Logo */}
+                <Link href="/" className="flex items-center h-20 w-40 relative" onClick={closeMobileMenu}>
+                  <Image
+                    src="/Images/Navbar/Logo.png"
+                    alt="Company Logo"
+                    fill
+                    className="object-contain object-left"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </Link>
+
+                {/* Close Button */}
                 <button
-                  className="text-[var(--secondary)] rounded p-1 focus:outline-none"
+                  className="text-gray-800 rounded p-1 focus:outline-none"
                   onClick={closeMobileMenu}
                   aria-label="Close menu"
                 >
@@ -182,14 +181,15 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <div className="px-4 py-2">
+              {/* Menu Items */}
+              <div className="px-6 py-4 bg-white">
                 {navItems.map((item) => (
-                  <div key={item.title} className="mb-2">
+                  <div key={item.title} className="mb-4">
                     {item.items ? (
                       <>
                         <button
                           onClick={() => toggleDropdown(item.title)}
-                          className="flex items-center justify-between w-full text-[var(--secondary)]/90 hover:text-[var(--primary)] py-2 uppercase text-sm"
+                          className="flex items-center justify-between w-full text-gray-800 hover:text-[#669933] py-3 uppercase text-md font-medium"
                         >
                           {item.title}
                           {openDropdown === item.title ? (
@@ -199,12 +199,12 @@ const Navbar = () => {
                           )}
                         </button>
                         {openDropdown === item.title && (
-                          <div className="ml-4 space-y-2">
+                          <div className="ml-4 space-y-3 mt-2">
                             {item.items.map((subItem) => (
                               <Link
                                 key={subItem.name}
                                 href={subItem.link}
-                                className="block py-2 text-[var(--secondary)]/90 hover:text-[var(--primary)] uppercase text-sm hover:cursor-pointer"
+                                className="block py-2 text-gray-700 hover:text-[#669933] uppercase text-sm"
                                 onClick={closeMobileMenu}
                               >
                                 {subItem.name}
@@ -216,7 +216,7 @@ const Navbar = () => {
                     ) : (
                       <Link
                         href={item.link}
-                        className="block py-2 text-[var(--secondary)] hover:text-[var(--primary)] uppercase text-sm hover:cursor-pointer"
+                        className="block py-3 text-gray-800 hover:text-[#669933] uppercase text-md font-medium"
                         onClick={closeMobileMenu}
                       >
                         {item.title}

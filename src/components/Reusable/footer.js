@@ -6,31 +6,36 @@ const Footer = () => {
 
   return (
     <div className="relative">
-      {/* Wave Divider - Placed above the footer */}
-      <div className="w-full h-12 md:h-16 lg:h-20 -mb-1">
-        {/* Negative margin to overlap */}
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ transform: "scaleY(-1)" }} // Add this style to flip vertically
-        >
-          <path
-            fill="#669933" // Lighter color for the wave divider
-            d="M0 0v46.29c47.79 22.2 103.59 32.17 165.75 24.91 122.68-14.17 283.18-46.67 459.93-46.67 143.44 0 286.78 16.66 440.83 38.95 113.35 16.36 226.73 32.81 385.83 31.13V0z"
-            opacity=".25"
-          />
-          <path
-            fill="#669933"
-            d="M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 217.14-88.14 477.23-91.13 622.03-34.69 106.49 41.58 214.49 78.49 322.48 115.4 17.91 6.69 35.8 13.38 53.7 20.08V0z"
-            opacity=".5"
-          />
-          <path
-            fill="#669933"
-            d="M0 0v5.63C149.93 59 314.09 71.58 475.83 45.86c41.23-7.98 79.88-24.78 122.58-40.34 60.81-21.11 127.05-36.95 183.3-41.34 54.23-3.99 106.21-2.13 158.04 10.98 62.08 16.36 120.53 45.69 182.63 75.46 38.07 18.23 76.93 34.41 115.69 48.62 14.65 4.22 29.28 8.45 43.83 12.68V0z"
-          />
-        </svg>
+      <div className="w-full flex flex-wrap bg-pattern bg-mask">
+        <div className="w-full  flex justify-end ">
+          <div className="w-full h-[100px] relative overflow-hidden">
+            <svg
+              className="absolute top-0 left-0 w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              viewBox="0 -0.5 1024 178"
+              preserveAspectRatio="none"
+              fill="rgba(#669933)"
+            >
+              <path
+                d="M1024 177.371H0V.219l507.699 133.939L1024 .219v177.152z"
+                fill="#e0f0d1" // Dark green
+              />
+
+              {/* Slightly lighter */}
+              <path d="M1024 177.781H0V39.438l507.699 94.925L1024 39.438v138.343z" fill="#c2e0a3" />
+
+              {/* Medium shade */}
+              <path d="M1024 177.781H0v-67.892l507.699 24.474L1024 109.889v67.892z" fill="#94c95e" />
+
+              {/* Lightest path on top */}
+              <path
+                d="M1024 177.781H0v-3.891l507.699-39.526L1024 173.889v3.892z"
+                fill="#669933" // Light green
+              />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {/* Footer Content */}
@@ -40,8 +45,8 @@ const Footer = () => {
             {/* Company Info */}
             <div className="space-y-4">
               <img src="/Images/Navbar/logo.png" alt="ÖKOVOLT Solartechnik Logo" className="h-10 w-auto mb-4" />
-              <p className="font-bold">ÖKOVOLT GmbH Solartechnik</p>
-              <address className="not-italic">
+              <p className="font-bold text-[18px]">ÖKOVOLT GmbH Solartechnik</p>
+              <address className="not-italic text-[16px]">
                 Schlingener Straße 1a
                 <br />
                 86842 Türkheim
@@ -52,20 +57,20 @@ const Footer = () => {
 
             {/* Contact */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold uppercase tracking-wider">Kontakt</h3>
-              <hr className="border-t border-[#003473]/30 mb-3 w-24" />
+              <h3 className="text-[18px] font-bold uppercase tracking-wider">Kontakt</h3>
+              <hr className="border-t border-[#fffff]/30 my-3 " />
               <div className="space-y-2">
                 <p>
-                  <span className="font-medium opacity-80">Telefon:</span>
+                  <span className="font-medium opacity-80 text-[16px]">Telefon:</span>
                   <br />
-                  <a href="tel:+498245967880" className="hover:text-[#003473] transition-colors">
+                  <a href="tel:+498245967880" className="hover:text-[#669933] transition-colors text-[16px]">
                     +49 8245 96 788 0
                   </a>
                 </p>
                 <p>
                   <span className="font-medium opacity-80">E-Mail:</span>
                   <br />
-                  <a href="mailto:office@oekovolt.de" className="hover:text-[#003473] transition-colors">
+                  <a href="mailto:office@oekovolt.de" className="hover:text-[#669933] transition-colors text-[16px]">
                     office@oekovolt.de
                   </a>
                 </p>
@@ -74,9 +79,9 @@ const Footer = () => {
 
             {/* Hours */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold uppercase tracking-wider">Öffnungszeiten</h3>
-              <hr className="border-t border-[#003473]/30 mb-3 w-24" />
-              <div className="space-y-2">
+              <h3 className="text-[18px] font-bold uppercase tracking-wider">Öffnungszeiten</h3>
+              <hr className="border-t border-[#fffff]/30 my-3 " />
+              <div className="space-y-2 text-[16px]">
                 <p>
                   Montag - Donnerstag
                   <br />
@@ -92,46 +97,46 @@ const Footer = () => {
 
             {/* Social & Links */}
             <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-bold uppercase tracking-wider">Folgen Sie Uns</h3>
-                <hr className="border-t border-[#003473]/30 mb-3 w-24" />
-                <div className="flex space-x-5 mb-6">
-                  <a href="#" aria-label="Facebook" className="text-xl hover:text-[#003473] transition-colors">
+              <div className="space-y-4">
+                <h3 className="text-[18px] font-bold uppercase tracking-wider ">Folgen Sie Uns</h3>
+                <hr className="border-t border-[#fffff]/30 my-3 " />
+                <div className="flex space-y-2 space-x-5 my-6">
+                  <a href="#" aria-label="Facebook" className="text-xl hover:text-[#669933] transition-colors">
                     <FaFacebookF />
                   </a>
-                  <a href="#" aria-label="Twitter" className="text-xl hover:text-[#003473] transition-colors">
+                  <a href="#" aria-label="Twitter" className="text-xl hover:text-[#669933] transition-colors">
                     <FaTwitter />
                   </a>
-                  <a href="#" aria-label="Instagram" className="text-xl hover:text-[#003473] transition-colors">
+                  <a href="#" aria-label="Instagram" className="text-xl hover:text-[#669933] transition-colors">
                     <FaInstagram />
                   </a>
-                  <a href="#" aria-label="LinkedIn" className="text-xl hover:text-[#003473] transition-colors">
+                  <a href="#" aria-label="LinkedIn" className="text-xl hover:text-[#669933] transition-colors">
                     <FaLinkedinIn />
                   </a>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold uppercase tracking-wider">Weiterführende Links</h3>
-                <hr className="border-t border-[#003473]/30 mb-3 w-24" />
-                <ul className="space-y-2">
+                <h3 className="text-[18px] font-bold uppercase tracking-wider">Weiterführende Links</h3>
+                <hr className="border-t border-[#fffff]/30 my-3 " />
+                <ul className="space-y-2 text-[16px]">
                   <li>
-                    <a href="#" className="hover:text-[#003473] transition-colors">
+                    <a href="#" className="hover:text-[#669933] transition-colors">
                       Privatsphäre
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#003473] transition-colors">
+                    <a href="#" className="hover:text-[#669933] transition-colors">
                       AGB
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#003473] transition-colors">
+                    <a href="#" className="hover:text-[#669933] transition-colors">
                       Datenschutz
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#003473] transition-colors">
+                    <a href="#" className="hover:text-[#669933] transition-colors">
                       Impressum
                     </a>
                   </li>

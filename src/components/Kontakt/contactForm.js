@@ -19,13 +19,11 @@ export default function ContactForm() {
       {/* Form Container */}
       <div className="relative z-10 max-w-4xl mx-auto p-8 py-30">
         <div className=" rounded-lg shadow-xl p-8">
-          <h2 className="text-2xl font-bold mb-6 text-white">Contact Us</h2>
-
           <form className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* First Name */}
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-white">
+                <label htmlFor="firstName" className="block text-[16px] font-medium text-white">
                   Vorname *
                 </label>
                 <input
@@ -39,7 +37,7 @@ export default function ContactForm() {
 
               {/* Last Name */}
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-white">
+                <label htmlFor="lastName" className="block text-[16px] font-medium text-white">
                   Nachname *
                 </label>
                 <input
@@ -53,7 +51,7 @@ export default function ContactForm() {
 
               {/* Street and House Number */}
               <div>
-                <label htmlFor="street" className="block text-sm font-medium text-white">
+                <label htmlFor="street" className="block text-[16px] font-medium text-white">
                   Strasse und Hausnummer *
                 </label>
                 <input
@@ -67,7 +65,7 @@ export default function ContactForm() {
 
               {/* ZIP and City */}
               <div>
-                <label htmlFor="zipCity" className="block text-sm font-medium text-white">
+                <label htmlFor="zipCity" className="block text-[16px] font-medium text-white">
                   PLZ und Ort *
                 </label>
                 <input
@@ -81,7 +79,7 @@ export default function ContactForm() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white">
+                <label htmlFor="email" className="block text-[16px] font-medium text-white">
                   E-Mail-Adresse *
                 </label>
                 <input
@@ -95,7 +93,7 @@ export default function ContactForm() {
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-white">
+                <label htmlFor="phone" className="block text-[16px] font-medium text-white">
                   Telefonnummer *
                 </label>
                 <input
@@ -109,7 +107,7 @@ export default function ContactForm() {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-white">
+              <label htmlFor="message" className="block text-[16px] font-medium text-white">
                 Ihre Nachricht
               </label>
               <textarea
@@ -124,7 +122,7 @@ export default function ContactForm() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#669933]/90 hover:bg-[#669933] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-[16px] font-medium text-white bg-[#669933]/90 hover:bg-[#669933] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 ANFRAGE SENDEN
               </button>

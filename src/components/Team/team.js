@@ -22,8 +22,8 @@ const TeamMember = ({ member }) => {
         <div className="flex justify-between items-start">
           {/* Name and Position */}
           <div>
-            <h3 className="text-xl font-bold text-white">{member.name}</h3>
-            <p className="text-white mt-1">{member.position}</p>
+            <h3 className="text-[20px] font-bold text-white">{member.name}</h3>
+            <p className="text-white mt-1 text-[16px]">{member.position}</p>
           </div>
 
           {/* Contact Icons */}

@@ -8,10 +8,10 @@ const Map = () => {
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col  gap-8 items-center">
         <div className="flex flex-col gap-4">
-          <h2 className="text-xl font-semibold text-[#669933] uppercase tracking-wider mb-2 text-center">
+          <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2 text-center">
             Unsere Standorte
           </h2>
-          <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+          <h3 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-4 text-center">
             Regional präsent, überregional aktiv – Finden Sie uns in Ihrer Nähe.
           </h3>
         </div>

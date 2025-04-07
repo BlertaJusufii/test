@@ -23,11 +23,11 @@ const TechnologySection = ({ backgroundImage }) => {
       <div className="relative z-10 h-full flex items-center py-20">
         <div className="max-w-5xl mx-auto px-4 ">
           <div className="p-8 text-white">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 text-center">{backgroundImage?.title}</h3>
+            <h3 className="text-[25px] font-bold mb-6 text-center">{backgroundImage?.title}</h3>
 
             <div className="prose prose-lg space-y-4 text-white text-center">
               {backgroundImage?.description.map((desc, index) => (
-                <p key={index} className="text-md">
+                <p key={index} className="text-[16px]">
                   {desc}
                 </p>
               ))}

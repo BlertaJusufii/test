@@ -16,10 +16,10 @@ const Vorteil = () => {
             <div className="bg-[#669933] rounded-full p-6 mb-6">
               <FaSolarPanel className="text-white w-18 h-18  " />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-[20px] font-bold text-gray-900 mb-6 text-center">
               Zukunftsperspektiven und nachhaltige Entwicklung
             </h2>
-            <div className="space-y-4 text-gray-700 text-center">
+            <div className="space-y-4 text-gray-700 text-center text-[16px]">
               <p>
                 Die Energiewende erfordert laufende Innovation und Anpassung. Förderprogramme und gesetzliche
                 Rahmenbedingungen machen nachhaltige Energielösungen zunehmend attraktiv – sowohl für Privatpersonen als
@@ -43,10 +43,10 @@ const Vorteil = () => {
             <div className="bg-[#669933] rounded-full p-6 mb-6">
               <FaFlag className="text-white w-18 h-18  " />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-[20px] font-bold text-gray-900 mb-6 text-center">
               Die Zukunft der Energie: Nachhaltig und Unabhängig
             </h2>
-            <div className="space-y-4 text-gray-700 text-center">
+            <div className="space-y-4 text-gray-700 text-center text-[16px]">
               <p>
                 Die Nutzung von Solarenergie ist ein entscheidender Baustein für die Energiezukunft in Deutschland.
                 Moderne Technologien machen es möglich, erneuerbare Energien effizient zu nutzen – sowohl wirtschaftlich

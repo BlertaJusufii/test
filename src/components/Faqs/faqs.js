@@ -114,7 +114,7 @@ const SolarInfoAccordion = () => {
       <div className="max-w-7xl mx-auto px-4 space-y-16">
         {sections.map((section) => (
           <div key={section.key}>
-            <h2 className="text-xl font-bold text-[#669933] mb-6 text-left">{section.title}</h2>
+            <h2 className="text-[28px] font-bold text-[#669933] mb-6 text-left">{section.title}</h2>
 
             <div className="divide-y divide-gray-200 border-t border-b border-gray-200">
               {section.faqs.map((item, index) => {
@@ -132,7 +132,7 @@ const SolarInfoAccordion = () => {
                       <span className="text-2xl text-white mt-0.5 bg-[#669933] px-2 rounded min-w-[28px] flex items-center justify-center">
                         {isActive ? "−" : "+"}
                       </span>
-                      <h3 className="text-lg font-medium text-gray-900 flex-1">{item.question}</h3>
+                      <h3 className="text-[18px] font-medium text-gray-900 flex-1">{item.question}</h3>
                     </button>
 
                     <div
@@ -144,7 +144,7 @@ const SolarInfoAccordion = () => {
                         transitionProperty: "max-height, opacity",
                       }}
                     >
-                      <div className="pl-9 pb-5 pr-4 text-gray-600">
+                      <div className="pl-9 pb-5 pr-4 text-gray-600 text-[16px]">
                         <p>{item.answer}</p>
                       </div>
                     </div>

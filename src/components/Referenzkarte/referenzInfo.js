@@ -32,9 +32,9 @@ const ProjectCard = ({ project }) => {
 
       <div className="absolute inset-0 flex flex-col justify-end p-6">
         <div className="text-white">
-          <h3 className="text-2xl font-bold">{project.location}</h3>
+          <h3 className="text-[20px] font-bold ">{project.location}</h3>
           <p
-            className={`text-xl font-light mt-2 transition-all duration-300 ${
+            className={`text-[16px] font-light mt-2 transition-all duration-300 ${
               isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
             }`}
           >
@@ -111,13 +111,13 @@ const ProjectsSection = () => {
     <div className="max-w-7xl mx-auto px-4">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <span className="block text-sm font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
+          <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
             UNSERE PROJEKTE
           </span>
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 text-center">
             Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
           </h2>
-          <div className="text-gray-600 space-y-4 text-center">
+          <div className="text-gray-600 space-y-4 text-center text-[16px]">
             <p>
               Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
               Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
@@ -160,7 +160,7 @@ const ProjectsSection = () => {
 
         {/* WEITERE PROJEKTE Button */}
         <div className="flex justify-center mt-12">
-          <button className="bg-[#669933] hover:bg-[#558822] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2">
+          <button className="bg-[#669933]/90 hover:bg-[#669933] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2 text-[16px]">
             WEITERE PROJEKTE
             <FaAngleRight />
           </button>
@@ -168,8 +168,10 @@ const ProjectsSection = () => {
       </section>
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">Warum eine Referenzkarte?</h2>
-          <div className="text-gray-600 space-y-4 text-center">
+          <h2 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 text-center">
+            Warum eine Referenzkarte?
+          </h2>
+          <div className="text-gray-600 space-y-4 text-center text-[16px]">
             <p>
               Unsere Referenzkarte für Photovoltaikprojekte gibt Ihnen einen klaren Überblick über bereits realisierte
               Anlagen in Ihrer Umgebung.

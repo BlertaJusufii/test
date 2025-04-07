@@ -67,9 +67,9 @@ const ServicesBanner = () => {
                   style={{ transitionDuration: card.pulseDuration }}
                 ></span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">{card.title}</h3>
+              <h3 className="text-[20px] lg:text-[24px] font-bold text-gray-900 ">{card.title}</h3>
             </div>
-            <p className="text-gray-600 mb-6 relative z-20">{card.description}</p>
+            <p className="text-gray-600 mb-6 relative z-20 text-[16px] lg:text-[20px]">{card.description}</p>
           </div>
         ))}
       </div>

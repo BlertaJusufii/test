@@ -43,7 +43,7 @@ export default function PVInquiryForm() {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white ">
       <h2
-        className={`text-xl md:text-2xl font-bold mb-6 text-[#669933] transition-all duration-700 ${
+        className={`text-[18px] font-bold mb-6 text-[#669933] transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
         }`}
       >
@@ -67,8 +67,8 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step1"
           >
-            <h2 className="text-lg font-semibold mb-4">Welche Dachform hat dein Haus?</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Welche Dachform hat dein Haus?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
               Bitte wähle die Form des Daches auf welchem die Anlage installiert werden soll
             </p>
 
@@ -111,10 +111,10 @@ export default function PVInquiryForm() {
               <button
                 onClick={nextStep}
                 disabled={!formData.roofType}
-                className={`px-6 py-2 rounded-md ${
+                className={`px-6 py-2 rounded-md text-[16px] ${
                   formData.roofType
-                    ? "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-[#669933]/90 hover:bg-[#669933] text-white "
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed "
                 }`}
               >
                 NÄCHSTE &gt;
@@ -131,8 +131,10 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step2"
           >
-            <h2 className="text-lg font-semibold mb-4">Bist du Eigentümer der Immobilie?</h2>
-            <p className="text-gray-600 mb-6">Bitte bestätige ob du der Eigentümer der Immobilie bist</p>
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Bist du Eigentümer der Immobilie?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+              Bitte bestätige ob du der Eigentümer der Immobilie bist
+            </p>
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
               {[
@@ -174,13 +176,16 @@ export default function PVInquiryForm() {
             </div>
 
             <div className="flex justify-between">
-              <button onClick={prevStep} className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50">
+              <button
+                onClick={prevStep}
+                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
+              >
                 ZURÜCK
               </button>
               <button
                 onClick={nextStep}
                 disabled={!formData.isOwner}
-                className={`px-6 py-2 rounded-md ${
+                className={`px-6 py-2 rounded-md text-[16px] ${
                   formData.isOwner
                     ? "bg-[#669933]/90 hover:bg-[#669933] text-white"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -200,8 +205,10 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step3"
           >
-            <h2 className="text-lg font-semibold mb-4">Wieviel Stromverbrauch hast du im Jahr?</h2>
-            <p className="text-gray-600 mb-6">Benutze den Schieberegler um den ungefähren Jahresbedarf anzugeben</p>
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Wieviel Stromverbrauch hast du im Jahr?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+              Benutze den Schieberegler um den ungefähren Jahresbedarf anzugeben
+            </p>
 
             <div className="mb-8">
               <input
@@ -214,14 +221,22 @@ export default function PVInquiryForm() {
                 onChange={handleChange}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
-              <div className="text-center mt-4 text-xl font-semibold">{formData.powerConsumption} kW pro Jahr</div>
+              <div className="text-center mt-4 text-[20px] lg:text-[24px] font-semibold">
+                {formData.powerConsumption} kW pro Jahr
+              </div>
             </div>
 
             <div className="flex justify-between">
-              <button onClick={prevStep} className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50">
+              <button
+                onClick={prevStep}
+                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
+              >
                 ZURÜCK
               </button>
-              <button onClick={nextStep} className="px-6 py-2 bg-[#669933]/90 hover:bg-[#669933] text-white rounded-md">
+              <button
+                onClick={nextStep}
+                className="px-6 py-2 bg-[#669933]/90 hover:bg-[#669933] text-white rounded-md text-[16px]"
+              >
                 NÄCHSTE ►
               </button>
             </div>
@@ -236,8 +251,8 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step4"
           >
-            <h2 className="text-xl font-bold mb-2">Noch ein Schritt bis zu deinem Angebot</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-[20px] lg:text-[24px] font-bold mb-2">Noch ein Schritt bis zu deinem Angebot</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
               Klasse, das Angebot ist in deiner Region verfügbar. Wir melden uns schnellstmöglich bei dir!
             </p>
 
@@ -330,13 +345,16 @@ export default function PVInquiryForm() {
             </div>
 
             <div className="flex justify-between">
-              <button onClick={prevStep} className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50">
+              <button
+                onClick={prevStep}
+                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
+              >
                 ZURÜCK
               </button>
               <button
                 type="submit"
                 disabled={!formData.acceptTerms || !formData.firstName || !formData.email}
-                className={`px-6 py-2 rounded-md ${
+                className={`px-6 py-2 rounded-md text-[16px] ${
                   formData.acceptTerms && formData.firstName && formData.email
                     ? "bg-green-600 hover:bg-green-700 text-white"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"

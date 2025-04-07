@@ -10,9 +10,11 @@ const ContactSection = () => {
         {/* Left Side - Contact Information */}
         <div className="space-y-6 w-3/5">
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl font-semibold text-[#669933] uppercase tracking-wider mb-2">WIR SIND FÜR SIE DA</h2>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Kontaktieren Sie Uns</h3>
-            <p className="text-lg text-gray-700">
+            <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2">
+              WIR SIND FÜR SIE DA
+            </h2>
+            <h3 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-4">Kontaktieren Sie Uns</h3>
+            <p className="text-lg text-gray-700 text-[16px]">
               Sie schätzen den persönlichen Kontakt? Wir auch. Rufen Sie uns doch einfach an oder nutzen Sie unser
               Kontaktformular.
             </p>
@@ -25,8 +27,8 @@ const ContactSection = () => {
                 <FaPhone className="h-5 w-5" />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-gray-800  text-md">+49 8245 96 788 0</p>
-                <p className="text-gray-600  text-md">office@oekovolt.de</p>
+                <p className="text-gray-800  text-[16px]">+49 8245 96 788 0</p>
+                <p className="text-gray-600  text-[16px]">office@oekovolt.de</p>
               </div>
             </div>
 
@@ -36,9 +38,9 @@ const ContactSection = () => {
                 <FaMapMarkerAlt className="h-5 w-5" />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-gray-800 f text-md">Schlingener Straße 1a</p>
-                <p className="text-gray-600  text-md">86842 Türkheim, </p>
-                <p className="text-gray-600  text-md">Deutschland</p>
+                <p className="text-gray-800 text-[16px]">Schlingener Straße 1a</p>
+                <p className="text-gray-600 text-[16px]">86842 Türkheim, </p>
+                <p className="text-gray-600 text-[16px]">Deutschland</p>
               </div>
             </div>
 
@@ -48,10 +50,10 @@ const ContactSection = () => {
                 <FaClock className="h-5 w-5" />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-gray-800  text-md">Montag - Donnerstag</p>
-                <p className="text-gray-600  text-md">08:00 - 16:00</p>
-                <p className="text-gray-800  mt-2 text-md">Freitag</p>
-                <p className="text-gray-600  text-md">08:00 - 13:00</p>
+                <p className="text-gray-800 text-[16px]">Montag - Donnerstag</p>
+                <p className="text-gray-600 text-[16px]">08:00 - 16:00</p>
+                <p className="text-gray-800 mt-2 text-[16px]">Freitag</p>
+                <p className="text-gray-600 text-[16px]">08:00 - 13:00</p>
               </div>
             </div>
           </div>
@@ -68,7 +70,7 @@ const ContactSection = () => {
               className="rounded-lg"
             />
           </div>
-          <p className="text-center text-gray-600 text-sm mt-2">
+          <p className="text-center text-gray-600 text-[16px] mt-2">
             Zentrale von Ökovolt Deutschland in Türkheim (Bayern)
           </p>
         </div>

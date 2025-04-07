@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FaChevronRight } from "react-icons/fa";
 
 export default function GreenFeatureSection() {
   return (
@@ -14,11 +15,11 @@ export default function GreenFeatureSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl font-bold" style={{ color: "#669933" }}>
+          <h2 className="text-[18px] font-bold" style={{ color: "#669933" }}>
             Nachhaltige Energie für Ihr Zuhause
           </h2>
 
-          <p className="text-lg text-gray-600">
+          <p className="text-[16px] text-gray-600">
             Entdecken Sie unsere maßgeschneiderten Photovoltaik-Lösungen, die Ihnen helfen, Energie zu sparen und
             gleichzeitig die Umwelt zu schonen. Unsere Experten beraten Sie gerne zu den besten Optionen für Ihr
             Zuhause.
@@ -26,10 +27,11 @@ export default function GreenFeatureSection() {
 
           <Link
             href="/kontakt"
-            className="inline-block px-6 py-3 rounded-md text-white font-medium transition-colors hover:bg-[#558822]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[16px] uppercase"
             style={{ backgroundColor: "#669933" }}
           >
-            Kostenlose Beratung anfordern
+            Jetzt Kontaktieren
+            <FaChevronRight />
           </Link>
         </motion.div>
 
