@@ -1,11 +1,10 @@
-import ProjectsHero from "@/components/Project/info";
-import BenefitsSection from "@/components/Project/vorteile";
 import TechnologySection from "@/components/Reusable/backgroundImage";
 import BannerSection from "@/components/Reusable/banner";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import ProjectsSection from "@/components/Referenzkarte/referenzInfo";
-import Map from "@/components/Referenzkarte/map";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
+
+const Map = dynamic(() => import("@/components/Referenzkarte/map"), { ssr: false });
 
 export default function Home() {
   const data = {
