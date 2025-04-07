@@ -58,7 +58,7 @@ export default function Home() {
     <div>
       <BannerSection data={data} />
       <ProjectsSection />
-      {/* <Map /> */}
+      <Map />
       <BenefitsLayout data={benefits} />
       <TechnologySection backgroundImage={secondBackgroundImage} />
       <GreenFeatureSection />

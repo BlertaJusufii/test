@@ -4,16 +4,20 @@ import Image from "next/image";
 
 const BannerSection = ({ data }) => {
   return (
-    <section className="relative h-[300px] w-full overflow-hidden lg-h-[400px]">
+    <section className="relative h-[300px] w-full overflow-hidden lg:h-[400px]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src={`${data.img}`} // Replace with your image path
           alt="Banner Background"
           fill
-          className="object-cover w-full h-full object-bottom"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          quality={100}
+          className="object-cover w-full h-full "
+          sizes=" 100vw"
           priority
+          style={{
+            objectPosition: "center bottom", // More precise positioning
+          }}
         />
       </div>
 

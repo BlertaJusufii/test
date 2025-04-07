@@ -1,27 +1,53 @@
-import React from "react";
-import { MdLocationOn, MdPhone, MdEmail, MdAccessTime, MdHome, MdCalendarToday } from "react-icons/md";
+"use client";
 
-const Map = () => {
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+// 🛠️ Fix Leaflet's default icon path
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+});
+
+const points = [
+  { lat: 47.7811014, lng: 9.612468, label: "Ravensburg" },
+  { lat: 47.7981346, lng: 13.0464806, label: "Salzburg" },
+  { lat: 48.2678312, lng: 10.9868769, label: "Mering" },
+  { lat: 48.0059852, lng: 10.5921263, label: "Bad Wörishofen" },
+  { lat: 48.18524105, lng: 11.745541131739072, label: "Kirchheim" },
+  { lat: 48.05630415, lng: 10.486669997131546, label: "Mindelheim" },
+  { lat: 47.9875742, lng: 10.788535174270507, label: "Waal" },
+
+  { lat: 48.3930137, lng: 10.856960528294799, label: "Augsburg" },
+  { lat: 47.7828004, lng: 10.30596510988958, label: "Kempten" },
+  { lat: 47.84388455, lng: 12.972250979244642, label: "Freilassing" },
+  { lat: 47.57286685, lng: 9.686940863251925, label: "Lindau" },
+  { lat: 47.927908200000005, lng: 12.898727934563036, label: "Laufen" },
+  { lat: 50.18291155, lng: 9.048353069014173, label: "Langenselbold" },
+  { lat: 47.54312925, lng: 11.273540406576913, label: "Wallgau" },
+  { lat: 47.8979258, lng: 10.25525499438394, label: "Wolfertschwenden" },
+  { lat: 48.0152801, lng: 11.083114541380102, label: "Utting" },
+  { lat: 48.0301967, lng: 10.75377698202896, label: "Buchloe" },
+  { lat: 48.1095402, lng: 11.093368268721145, label: "Türkenfeld" },
+  { lat: 47.49489385, lng: 9.6919699, label: "Türkenfeld" },
+  { lat: 47.520760499999994, lng: 9.768744127661652, label: "Lochau" },
+  { lat: 47.426632749999996, lng: 9.671584195801643, label: "Lustenau" },
+  { lat: 47.10218295, lng: 9.486962484194526, label: "Innsbruck" },
+];
+
+export default function MapComponent() {
   return (
-    <div>
-      <div className="">
-        {/* Google Maps Section */}
-        <div className="w-full h-[400px]">
-          <iframe
-            title="Projekt Standort"
-            className="w-full h-full"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.9094444536347!2d9.741196115613785!3d47.48721237917747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479c3a06d30d1993%3A0x9b1b64c7aa92d0e5!2sLandstra%C3%9Fe%2011%2C%206911%20Lochau%2C%20Austria!5e0!3m2!1sen!2sat!4v1678817752460!5m2!1sen!2sat"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-    </div>
+    <MapContainer center={[47.9875742, 10.788535174270507]} zoom={8} style={{ height: "500px", width: "100%" }}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {points.map((point, idx) => (
+        <Marker key={idx} position={[point.lat, point.lng]}>
+          <Popup>{point.label}</Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
-};
-
-export default Map;
+}
