@@ -11,31 +11,24 @@ const ProjectCard = ({ project }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image with Next.js Image component */}
       <div className="relative w-full h-full">
         <Image
-          src="/Images/Referenzen/projekteBanner.jpg" // Replace with dynamic image if necessary
+          src="/Images/Referenzen/projekteBanner.jpg"
           alt={`Project background - ${project.location}`}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
-          className={`transition-all duration-300 ${
-            isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
-          }`}
+          className={`transition-all duration-300 ${isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
+            }`}
         />
-
-        {/* Dark overlay (Vein Effect) */}
         <div className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}></div>
       </div>
-
-      {/* Content */}
       <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
         <div className="text-white">
           <h3 className="text-[20px]">{project.location}</h3>
           <p
-            className={`text-xl font-light mt-2 transition-all duration-300 transform text-[16px] ${
-              isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
-            }`}
+            className={`text-xl font-light mt-2 transition-all duration-300 transform text-[16px] ${isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              }`}
           >
             {project.capacity}
           </p>
@@ -73,7 +66,6 @@ const ProjectsSection = () => {
 
   return (
     <div className=" max-w-7xl mx-auto px-4">
-      {/* Hero Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
@@ -99,8 +91,6 @@ const ProjectsSection = () => {
           </div>
         </div>
       </section>
-
-      {/* Project Cards Grid */}
       <section className="container mx-auto px-4 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (

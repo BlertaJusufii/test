@@ -8,17 +8,18 @@ const BannerSection = ({ data }) => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={`${data.img}`} // Replace with your image path
+          src={`${data.img}`}
           alt="Banner Background"
           fill
           quality={100}
-          className="object-cover w-full h-full "
-          sizes=" 100vw"
+          className="object-cover object-center w-full h-full"
+          sizes="100vw"
           priority
           style={{
-            objectPosition: "center bottom", // More precise positioning
+            objectPosition: "center center",
           }}
         />
+
       </div>
 
       {/* Gradient Overlay - Left to Middle */}

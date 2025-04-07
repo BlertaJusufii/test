@@ -11,15 +11,6 @@ export default function Home() {
     title: "REFERENZSTANDORTE",
     img: "/Images/Referenzen/projekteBanner.jpg",
   };
-  const backgroundImage = {
-    src: "/Images/Referenzen/projekteBanner.jpg",
-    title: "Technologische Entwicklungen und Effizienzsteigerung",
-    description: [
-      "Die fortschreitende Digitalisierung und innovative Technologien haben die Möglichkeiten in der Photovoltaik erheblich erweitert. Moderne Systeme ermöglichen eine intelligente Steuerung der Energieflüsse, eine optimierte Eigenverbrauchsquote sowie die Integration von Speicherlösungen.",
-      "Insbesondere smarte Steuerungssysteme und leistungsstarke Speicher sorgen dafür, dass überschüssiger Solarstrom gespeichert und genau dann genutzt wird, wenn er gebraucht wird.",
-      "So wird nicht nur der Eigenverbrauch gesteigert, sondern auch die Abhängigkeit vom öffentlichen Netz verringert.Diese technologische Kombination bildet die Basis für viele erfolgreiche Photovoltaik Referenzen von Oekovolt in ganz Deutschland.",
-    ],
-  };
   const secondBackgroundImage = {
     src: "/Images/Referenzen/projekteBanner.jpg",
     title: "Solarlösungen für Privathaushalte",
