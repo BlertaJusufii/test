@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaAngleRight } from "react-icons/fa";
+import Link from "next/link";
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +32,18 @@ const ProjectCard = ({ project }) => {
       </div>
 
       <div className="absolute inset-0 flex flex-col justify-end p-6">
-        <div className="text-white">
+        <Link
+          href={`/referenzen/projekte/${project.location
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/\//g, "-")
+            .replace(/[ä]/g, "ae")
+            .replace(/[ö]/g, "oe")
+            .replace(/[ü]/g, "ue")
+            .replace(/[ß]/g, "ss")
+            .replace(/[^a-z0-9-]/g, "")}`}
+          className="text-white"
+        >
           <h3 className="text-[20px] font-bold ">{project.location}</h3>
           <p
             className={`text-[16px] font-light mt-2 transition-all duration-300 ${
@@ -40,7 +52,7 @@ const ProjectCard = ({ project }) => {
           >
             {project.capacity}
           </p>
-        </div>
+        </Link>
       </div>
     </div>
   );
