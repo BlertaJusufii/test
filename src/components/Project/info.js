@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -23,7 +24,7 @@ const ProjectCard = ({ project }) => {
     >
       <div className="relative w-full h-full">
         <Image
-          src={`http://192.168.68.197:8000${project?.image}`} // Replace with dynamic image if necessary
+          src={`http://192.168.68.197:8000${project?.image}`}
           alt={`Project background - ${project?.location}`}
           layout="fill"
           objectFit="cover"
@@ -51,33 +52,29 @@ const ProjectCard = ({ project }) => {
 };
 
 const ProjectsSection = () => {
-  const projects = [
-    {
-      id: 1,
-      location: "VORARLBERG",
-      capacity: "69,44 KWP",
-      description:
-        "Eine Kombination aus hochwertiger Planung, professioneller Umsetzung und fortlaufender Optimierung sorgt dafür, dass Solarenergie effizient und nachhaltig genutzt wird.",
-      image: "/images/project1.jpg",
-    },
-    {
-      id: 2,
-      location: "BAD WÖRISHOFEN",
-      capacity: "54,20 KWP",
-      description: "Modernste Solartechnik für gewerbliche Nutzung mit optimaler Flächenausnutzung.",
-      image: "/images/project2.jpg",
-    },
-    {
-      id: 3,
-      location: "FREILASSING",
-      capacity: "32,15 KWP",
-      description: "Individuelle Lösungen für Privathaushalte mit ästhetischer Integration.",
-      image: "/images/project3.jpg",
-    },
-  ];
-  const [marken, setMarken] = useState([]); // Ruaj ngjarjet nga API
+  const [marken, setMarken] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 9;
 
-  // Merr të dhënat nga API
+  // Calculate total pages
+  const totalPages = Math.ceil(marken.length / projectsPerPage);
+
+  // Get current projects
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = marken.slice(indexOfFirstProject, indexOfLastProject);
+
+  // Change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top of the projects section when changing pages
+    const element = document.getElementById("projects-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  // Fetch data
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -85,18 +82,15 @@ const ProjectsSection = () => {
           "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
         );
 
-        // Kontrollo nëse përgjigja është e suksesshme
         if (!response.ok) {
           throw new Error("Gabim gjatë marrjes së të dhënave");
         }
 
-        // Kthe përgjigjen në JSON
         const data = await response.json();
 
-        // Formato ngjarjet për FullCalendar
         const formattedEvents = data.message
-          .slice() // copy to avoid mutating original
-          .reverse() // reverse if the API sends it in the wrong order
+          .slice()
+          .reverse()
           .map((marke) => ({
             location: marke.title,
             image: marke.bild_anhagen[0].bild_anhagen,
@@ -104,7 +98,6 @@ const ProjectsSection = () => {
             capacity: marke.leistung,
           }));
 
-        // Vendos ngjarjet në state
         setMarken(formattedEvents);
       } catch (error) {
         console.error("Gabim gjatë marrjes së ngjarjeve:", error);
@@ -115,7 +108,7 @@ const ProjectsSection = () => {
   }, []);
 
   return (
-    <div className=" max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4" id="projects-section">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
@@ -143,10 +136,45 @@ const ProjectsSection = () => {
       </section>
       <section className="container mx-auto px-4 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {marken.map((project, index) => (
+          {currentProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-12">
+            <nav className="flex items-center space-x-2">
+              <button
+                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Previous
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`px-4 py-2 rounded-md ${
+                    currentPage === number ? "bg-[#669933] text-white" : "border border-gray-300"
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+
+              <button
+                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            </nav>
+          </div>
+        )}
       </section>
     </div>
   );

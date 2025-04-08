@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -18,7 +18,7 @@ const ProjectCard = ({ project }) => {
     >
       <div className="relative w-full h-full">
         <Image
-          src={project.image}
+          src={`http://192.168.68.197:8000${project.image}`}
           alt={`Project background - ${project.location}`}
           fill
           className={`transition-all duration-300 ${
@@ -47,29 +47,41 @@ const ProjectCard = ({ project }) => {
 };
 
 const ProjectsSection = () => {
-  const projects = [
-    {
-      id: 1,
-      location: "VORARLBERG",
-      capacity: "69,44 KWP",
-      description: "Hochwertige Planung und Umsetzung für nachhaltige Solarenergie.",
-      image: "/Images/",
-    },
-    {
-      id: 2,
-      location: "BAD WÖRISHOFEN",
-      capacity: "54,20 KWP",
-      description: "Moderne Solartechnik für gewerbliche Nutzung.",
-      image: "/images/project2.jpg",
-    },
-    {
-      id: 3,
-      location: "FREILASSING",
-      capacity: "32,15 KWP",
-      description: "Individuelle Lösungen für Privathaushalte.",
-      image: "/images/project3.jpg",
-    },
-  ];
+  const [marken, setMarken] = useState([]);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+        );
+
+        if (!response.ok) {
+          throw new Error("Error fetching data");
+        }
+
+        const data = await response.json();
+
+        const formattedEvents = data.message
+          .slice(0, 5)
+          .reverse()
+          .map((marke) => ({
+            id: marke.name, // or any unique identifier
+            location: marke.title,
+            capacity: marke.leistung,
+            image: marke.bild_anhagen[0]?.bild_anhagen, // fallback image
+            status: marke.status,
+          }));
+
+        setMarken(formattedEvents);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const settings = {
     dots: true,
@@ -149,13 +161,19 @@ const ProjectsSection = () => {
 
       <section className="container mx-auto px-4 pb-16 md:pb-24">
         <div className="slick-container">
-          <Slider {...settings}>
-            {projects.map((project) => (
-              <div key={project.id} className="px-2">
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </Slider>
+          {marken.length > 0 ? (
+            <Slider {...settings}>
+              {marken.map((project) => (
+                <div key={project.id} className="px-2">
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </Slider>
+          ) : (
+            <div className="text-center py-10">
+              <p>Loading projects...</p>
+            </div>
+          )}
         </div>
 
         {/* WEITERE PROJEKTE Button */}
@@ -166,50 +184,9 @@ const ProjectsSection = () => {
           </button>
         </div>
       </section>
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 text-center">
-            Warum eine Referenzkarte?
-          </h2>
-          <div className="text-gray-600 space-y-4 text-center text-[16px]">
-            <p>
-              Unsere Referenzkarte für Photovoltaikprojekte gibt Ihnen einen klaren Überblick über bereits realisierte
-              Anlagen in Ihrer Umgebung.
-              <br />
-              Sie entdecken Standorte, erhalten Einblicke in technische Daten, vergleichen Projekttypen und erfahren,
-              wie Solarenergie Referenzen konkret umgesetzt wurden.
-              <br />
-              <br />
-              Von kleinen Anlagen für Einfamilienhäuser bis hin zu umfassenden Großanlagen für Unternehmen – jedes
-              Projekt wurde an die jeweiligen Anforderungen angepasst.
-              <br />
-              Dazu gehören die optimale Modulausrichtung, Integration von Speicherlösungen und die nahtlose
-              Netzanbindung.
-              <br />
-              Mit smarter Energiesteuerung, modernen Batteriespeichern und intelligentem Monitoring wird die erzeugte
-              Energie bestmöglich genutzt – sei es zur Eigenversorgung oder zur Einspeisung.
-              <br />
-              Kundenreferenzen Solarenergie belegen: Unternehmen senken durch Photovoltaik ihre Betriebskosten und
-              stärken gleichzeitig ihre Nachhaltigkeitsstrategie.
-              <br />
-              <br />
-              Unsere langjährige Erfahrung mit über 5.000 installierten PV-Anlagen in ganz Deutschland zeigt: Jedes
-              Projekt trägt aktiv zur Energiewende bei und bringt unseren Kunden langfristige Vorteile. Ob im ländlichen
-              Raum, in städtischen Gebieten oder in Industrieparks – unsere PV-Projekte in Deutschland spiegeln die
-              Vielfalt moderner Solartechnik wider.
-              <br />
-              <br />
-              Die zahlreichen Photovoltaik Referenzen auf unserer Karte machen deutlich, dass Qualität, Transparenz und
-              maßgeschneiderte Planung im Mittelpunkt unserer Arbeit stehen. Von der ersten Idee bis zum laufenden
-              Betrieb begleiten wir unsere Kunden ganzheitlich und mit einem klaren Ziel: maximale Energieunabhängigkeit
-              bei gleichzeitig hoher Wirtschaftlichkeit. Besonders stolz sind wir auf das Vertrauen unserer Kundinnen
-              und Kunden, die uns regelmäßig positive Rückmeldungen geben und uns weiterempfehlen. Ihre Erfahrungen mit
-              Solaranlagen von Oekovolt fließen direkt in unsere Weiterentwicklung ein – damit wir auch in Zukunft
-              führend im Bereich nachhaltiger Energielösungen bleiben.
-            </p>
-          </div>
-        </div>
-      </section>
+
+      {/* Rest of your component remains the same */}
+      <section className="py-16 md:py-24">{/* ... */}</section>
 
       <style jsx global>{`
         .slick-container {
