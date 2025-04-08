@@ -1,5 +1,11 @@
 "use client";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,10 +29,16 @@ const Footer = () => {
               />
 
               {/* Slightly lighter */}
-              <path d="M1024 177.781H0V39.438l507.699 94.925L1024 39.438v138.343z" fill="#c2e0a3" />
+              <path
+                d="M1024 177.781H0V39.438l507.699 94.925L1024 39.438v138.343z"
+                fill="#c2e0a3"
+              />
 
               {/* Medium shade */}
-              <path d="M1024 177.781H0v-67.892l507.699 24.474L1024 109.889v67.892z" fill="#94c95e" />
+              <path
+                d="M1024 177.781H0v-67.892l507.699 24.474L1024 109.889v67.892z"
+                fill="#94c95e"
+              />
 
               {/* Lightest path on top */}
               <path
@@ -40,11 +52,18 @@ const Footer = () => {
 
       {/* Footer Content */}
       <footer className="bg-[#003473] text-white pt-8 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Company Info */}
             <div className="space-y-4">
-              <img src="/Images/Navbar/logo.png" alt="ÖKOVOLT Solartechnik Logo" className="h-10 w-auto mb-4" />
+              <Image
+                src="/Logo-Oekovolt-Gruen-mit-Weiss.webp"
+                alt="ÖKOVOLT Deutschland Footer Logo"
+                width={200}
+                height={100}
+                className="object-cover"
+                quality={100}
+              />
               <p className="font-bold text-[18px]">ÖKOVOLT GmbH Solartechnik</p>
               <address className="not-italic text-[16px]">
                 Schlingener Straße 1a
@@ -53,33 +72,44 @@ const Footer = () => {
                 <br />
                 Deutschland
               </address>
+              <div className="border-t border-[#003473]/20 text-center">
+                <p>&copy; {currentYear} ÖKOVOLT GmbH Solartechnik</p>
+              </div>
             </div>
-
-            {/* Contact */}
             <div className="space-y-4">
-              <h3 className="text-[18px] font-bold uppercase tracking-wider">Kontakt</h3>
+              <h3 className="text-[18px] font-bold uppercase tracking-wider">
+                Kontakt
+              </h3>
               <hr className="border-t border-[#fffff]/30 my-3 " />
               <div className="space-y-2">
                 <p>
-                  <span className="font-medium opacity-80 text-[16px]">Telefon:</span>
+                  <span className="font-medium opacity-80 text-[16px]">
+                    Telefon:
+                  </span>
                   <br />
-                  <a href="tel:+498245967880" className="hover:text-[#669933] transition-colors text-[16px]">
+                  <a
+                    href="tel:+498245967880"
+                    className="hover:text-[#669933] transition-colors text-[16px]"
+                  >
                     +49 8245 96 788 0
                   </a>
                 </p>
                 <p>
                   <span className="font-medium opacity-80">E-Mail:</span>
                   <br />
-                  <a href="mailto:office@oekovolt.de" className="hover:text-[#669933] transition-colors text-[16px]">
+                  <a
+                    href="mailto:office@oekovolt.de"
+                    className="hover:text-[#669933] transition-colors text-[16px]"
+                  >
                     office@oekovolt.de
                   </a>
                 </p>
               </div>
             </div>
-
-            {/* Hours */}
             <div className="space-y-4">
-              <h3 className="text-[18px] font-bold uppercase tracking-wider">Öffnungszeiten</h3>
+              <h3 className="text-[18px] font-bold uppercase tracking-wider">
+                Öffnungszeiten
+              </h3>
               <hr className="border-t border-[#fffff]/30 my-3 " />
               <div className="space-y-2 text-[16px]">
                 <p>
@@ -95,59 +125,85 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Social & Links */}
             <div className="space-y-4">
               <div className="space-y-4">
-                <h3 className="text-[18px] font-bold uppercase tracking-wider ">Folgen Sie Uns</h3>
+                <h3 className="text-[18px] font-bold uppercase tracking-wider ">
+                  Folgen Sie Uns
+                </h3>
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <div className="flex space-y-2 space-x-5 my-6">
-                  <a href="#" aria-label="Facebook" className="text-xl hover:text-[#669933] transition-colors">
+                  <a
+                    href="#"
+                    aria-label="Facebook"
+                    className="text-xl hover:text-[#669933] transition-colors"
+                  >
                     <FaFacebookF />
                   </a>
-                  <a href="#" aria-label="Twitter" className="text-xl hover:text-[#669933] transition-colors">
+                  <a
+                    href="#"
+                    aria-label="Twitter"
+                    className="text-xl hover:text-[#669933] transition-colors"
+                  >
                     <FaTwitter />
                   </a>
-                  <a href="#" aria-label="Instagram" className="text-xl hover:text-[#669933] transition-colors">
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    className="text-xl hover:text-[#669933] transition-colors"
+                  >
                     <FaInstagram />
                   </a>
-                  <a href="#" aria-label="LinkedIn" className="text-xl hover:text-[#669933] transition-colors">
+                  <a
+                    href="#"
+                    aria-label="LinkedIn"
+                    className="text-xl hover:text-[#669933] transition-colors"
+                  >
                     <FaLinkedinIn />
                   </a>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-[18px] font-bold uppercase tracking-wider">Weiterführende Links</h3>
+                <h3 className="text-[18px] font-bold uppercase tracking-wider">
+                  Weiterführende Links
+                </h3>
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <ul className="space-y-2 text-[16px]">
                   <li>
-                    <a href="#" className="hover:text-[#669933] transition-colors">
+                    <a
+                      href="#"
+                      className="hover:text-[#669933] transition-colors"
+                    >
                       Privatsphäre
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#669933] transition-colors">
+                    <a
+                      href="#"
+                      className="hover:text-[#669933] transition-colors"
+                    >
                       AGB
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#669933] transition-colors">
+                    <a
+                      href="#"
+                      className="hover:text-[#669933] transition-colors"
+                    >
                       Datenschutz
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-[#669933] transition-colors">
+                    <a
+                      href="#"
+                      className="hover:text-[#669933] transition-colors"
+                    >
                       Impressum
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="mt-12 pt-6 border-t border-[#003473]/20 text-center">
-            <p>&copy; {currentYear} ÖKOVOLT GmbH Solartechnik</p>
           </div>
         </div>
       </footer>
