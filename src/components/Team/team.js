@@ -2,6 +2,7 @@
 
 import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const TeamMember = ({ member }) => {
   return (
@@ -9,7 +10,7 @@ const TeamMember = ({ member }) => {
       {/* Member Photo */}
       <div className="relative h-72 w-full ">
         <Image
-          src={member.image}
+          src={`http://192.168.68.197:8000${member.image}`}
           alt={member.name}
           fill
           className="object-contain"
@@ -53,41 +54,53 @@ const TeamMember = ({ member }) => {
 };
 
 const TeamSection = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Max Mustermann",
-      position: "Geschäftsführer",
-      email: "max@oekovolt.com",
-      phone: "+43123456789",
+  const [teams, setTeams] = useState([]); // Ruaj ngjarjet nga API
 
-      image: "/Images/Team/sylvie.jpg",
-    },
-    {
-      id: 2,
-      name: "Erika Musterfrau",
-      position: "Projektleiterin",
-      email: "erika@oekovolt.com",
-      phone: "+43123456788",
+  // Merr të dhënat nga API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data"
+        );
 
-      image: "/Images/Team/sylvie.jpg",
-    },
-    {
-      id: 3,
-      name: "Thomas Technik",
-      position: "Technischer Leiter",
-      email: "thomas@oekovolt.com",
-      phone: "+43123456787",
-      image: "/Images/Team/sylvie.jpg",
-    },
-  ];
+        // Kontrollo nëse përgjigja është e suksesshme
+        if (!response.ok) {
+          throw new Error("Gabim gjatë marrjes së të dhënave");
+        }
+
+        // Kthe përgjigjen në JSON
+        const data = await response.json();
+
+        // Formato ngjarjet për FullCalendar
+        const formattedEvents = data.message
+          .slice() // copy to avoid mutating original
+          .map((marke) => ({
+            name: marke.name1,
+            surname: marke.vorname,
+            email: marke.e_mail,
+            phone: marke.telefon,
+            image: marke.bild_anhagen,
+            status: marke.status,
+            position: marke.rolle,
+          }));
+
+        // Vendos ngjarjet në state
+        setTeams(formattedEvents);
+      } catch (error) {
+        console.error("Gabim gjatë marrjes së ngjarjeve:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member) => (
-            <TeamMember key={member.id} member={member} />
+          {teams.map((member, index) => (
+            <TeamMember key={index} member={member} />
           ))}
         </div>
       </div>

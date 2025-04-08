@@ -13,7 +13,7 @@ import TeamSection from "@/components/Team/team";
 export default function Home() {
   const data = {
     title: "Faqs",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    img: "/Images/Kontakt/faqs.jpg",
     description: "Hier finden Sie Antworten auf die wichtigsten Fragen rund um unsere Photovoltaik-Lösungen.",
   };
 

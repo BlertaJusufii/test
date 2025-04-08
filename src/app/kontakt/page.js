@@ -16,7 +16,7 @@ import TeamSection from "@/components/Team/team";
 export default function Home() {
   const data = {
     title: "Kontaktieren Sie uns",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    img: "/Images/Kontakt/download.jpg",
     description: "Wir freuen uns darauf, von Ihnen zu hören – Ihr direkter Draht zu unseren Experten.",
   };
 

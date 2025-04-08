@@ -8,7 +8,7 @@ export default function RotatingImageSection() {
   const [radius, setRadius] = useState(200); // Default radius for larger screens
   const iconSize = 64; // Tailwind w-16 h-16 = 64px
 
-  const images = ["/Images/Navbar/logo.png", "/solar2.jpg", "/Images/Navbar/logo.png"];
+  const images = ["/Images/Home/download-1.jpg", "/Images/Home/download-2.jpg", "/Images/Home/download.jpg"];
   const icons = [
     { icon: FaSolarPanel, color: "text-yellow-500" },
     { icon: FaPlug, color: "text-blue-500" },

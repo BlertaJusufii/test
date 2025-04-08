@@ -11,12 +11,12 @@ import TeamSection from "@/components/Team/team";
 export default function Home() {
   const data = {
     title: "Der Photovoltaik-Komplettanbieter",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    img: "/Images/Team/solar-power-6860359_1280.jpg",
     description:
       "Ein starkes Team sorgt für die erfolgreiche Umsetzung Ihres Projekts – mit Erfahrung, Leidenschaft und Know-how.",
   };
   const backgroundImage = {
-    src: "/Images/Referenzen/projekteBanner.jpg",
+    src: "/Images/Team/download.jpg",
     title: "Unsere Philosophie – Innovation trifft Nachhaltigkeit",
     description: [
       "Bei ÖKOVOLT Deutschland stehen Innovation, Umweltbewusstsein und Kundennähe im Mittelpunkt unseres Handelns. Unser Anspruch geht über die reine Installation hinaus: Wir schaffen langfristige, stabile und wirtschaftliche Lösungen für eine nachhaltige Energieversorgung, die ökologisch wie ökonomisch überzeugt.",
@@ -25,7 +25,7 @@ export default function Home() {
     ],
   };
   const secondBackgroundImage = {
-    src: "/Images/Referenzen/projekteBanner.jpg",
+    src: "/Images/Team/download-1.jpg",
     title: "Gemeinsam die Zukunft gestalten",
     description: [
       "Die Energiewende ist ein Generationenprojekt. Bei ÖKOVOLT Deutschland tragen wir täglich dazu bei, durch intelligente, nachhaltige Technologien eine bessere Zukunft zu gestalten. Unser Photovoltaik Team steht für Expertise, Qualität und Engagement – für eine klimafreundliche Energieversorgung von morgen, die sowohl ökologisch als auch wirtschaftlich überzeugt. Jedes Teammitglied – ob Projektmanager, Techniker oder Kundenberater – spielt eine zentrale Rolle bei der Realisierung individueller Lösungen für unsere Kunden. Gemeinsam schaffen wir Vertrauen, Effizienz und einen echten Beitrag zur CO₂-Reduktion in Deutschland.",
@@ -36,7 +36,7 @@ export default function Home() {
 
   const benefits = {
     title: "Ein starkes Team mit einer gemeinsamen Vision",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    img: "/Images/Team/in-diverse-workspace-project-manager-presents-eco-2025-01-08-23-29-22-utc-1.jpg",
     description:
       "Unser Team wächst stetig, um die steigende Nachfrage nach erneuerbaren Energielösungen zu bedienen. Wir investieren in Weiterbildung, Schulungen, moderne Arbeitsmethoden und innovative Technologien, um unseren Mitarbeitenden die besten Voraussetzungen für ihre tägliche Arbeit, Entwicklung und langfristige Motivation zu bieten.",
     benefits: [

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaSolarPanel, FaIndustry, FaChartLine } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function SolutionsPage() {
   const projects = [
@@ -30,19 +31,37 @@ export default function SolutionsPage() {
   ];
 
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true, // Enable autoplay
+    autoplaySpeed: 3000, // Set interval between slides in milliseconds (3 seconds)
+    pauseOnHover: true, // Pause autoplay on hover
+    cssEase: "linear", // Smooth transition
+
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 3 },
+        settings: {
+          slidesToShow: 3,
+          autoplay: true,
+        },
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 2 },
+        settings: {
+          slidesToShow: 2,
+          autoplay: true,
+        },
+      },
+      {
+        breakpoint: 468,
+        settings: {
+          slidesToShow: 1,
+          autoplay: true,
+        },
       },
     ],
   };
@@ -51,6 +70,54 @@ export default function SolutionsPage() {
 
   useEffect(() => {
     setHasMounted(true);
+  }, []);
+  const [partnersFrappe, setPartnersFrappe] = useState([]); // Ruaj ngjarjet nga API
+
+  const [projectFrappe, setProjectFrappe] = useState([]); // Ruaj ngjarjet nga API
+
+  // Merr të dhënat nga API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [partnersRes, projectsRes] = await Promise.all([
+          fetch(
+            "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data"
+          ),
+          fetch(
+            "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+          ),
+        ]);
+
+        if (!partnersRes.ok || !projectsRes.ok) {
+          throw new Error("Gabim gjatë marrjes së të dhënave");
+        }
+
+        const partnersData = await partnersRes.json();
+        const projectsData = await projectsRes.json();
+
+        const formattedPartners = partnersData.message.map((marke) => ({
+          name: marke.name1,
+          image: marke.bild_anhagen,
+          status: marke.status,
+        }));
+
+        const formattedProjects = projectsData.message.slice(0, 3).map((projekt) => ({
+          title: projekt.title,
+          image: projekt.bild_anhagen[0]?.bild_anhagen,
+          leistung: projekt.leistung,
+          status: projekt.status,
+        }));
+
+        // Set state këtu
+        setPartnersFrappe(formattedPartners);
+        setProjectFrappe(formattedProjects);
+        // setProjectsFrappe(formattedProjects); // nëse ke një state për projekte
+      } catch (error) {
+        console.error("Gabim gjatë marrjes së të dhënave:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -101,35 +168,47 @@ export default function SolutionsPage() {
           Entdecken Sie unsere neuesten Photovoltaik Projekte – echte Referenzen aus ganz Deutschland.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          {projects.map((project, i) => (
-            <div
-              key={project.id}
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {projectFrappe.map((project, i) => (
+            <Link
+              href={`/referenzen/projekte/${project.title
+                .toLowerCase()
+                .replace(/\s+/g, "-")
+                .replace(/\//g, "-")
+                .replace(/[ä]/g, "ae")
+                .replace(/[ö]/g, "oe")
+                .replace(/[ü]/g, "ue")
+                .replace(/[ß]/g, "ss")
+                .replace(/[^a-z0-9-]/g, "")}`}
+              key={i}
               className={`relative group overflow-hidden rounded-lg h-64 transform transition-all duration-700 delay-${
                 i * 100
               } ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               <img
-                src={project.image}
-                alt={project.name}
+                src={`http://192.168.68.197:8000${project.image}`}
+                alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div>
-                  <h3 className="text-white text-[24px] font-bold">{project.name}</h3>
+                  <h3 className="text-white text-[24px] font-bold">{project.title}</h3>
                   <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
-                    {project.description}
+                    {project.leistung}
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="text-center mt-8">
-          <button className="bg-[#669933]/90 hover:bg-[#669933] text-white px-6 py-3 rounded-lg transition-colors duration-300 text-[18px]">
+          <Link
+            href={"/referenzen/projekte"}
+            className="bg-[#669933]/90 hover:bg-[#669933] text-white px-6 py-3 rounded-lg transition-colors duration-300 text-[18px]"
+          >
             Mehr Projekte anzeigen
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -144,14 +223,14 @@ export default function SolutionsPage() {
           Wir sind Partner von
         </p>
 
-        <Slider {...sliderSettings} className="py-8">
-          {partners.map((partner, index) => (
-            <div key={index} className="px-4">
-              <div className="flex items-center justify-center h-24 transition-transform duration-500 hover:scale-105">
+        <Slider {...sliderSettings} className="py-4">
+          {partnersFrappe.map((partner, index) => (
+            <div key={index} className="px-2">
+              <div className="flex items-center justify-center h-40 transition-transform duration-500 hover:scale-105">
                 <img
-                  src={"/Images/Navbar/Logo.png"}
-                  alt={`Partner ${index + 1}`}
-                  className="max-h-16 max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  src={`http://192.168.68.197:8000${partner.image}`}
+                  alt={partner.name}
+                  className="max-h-32 w-auto object-contain transition-all duration-300"
                 />
               </div>
             </div>

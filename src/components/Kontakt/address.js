@@ -6,9 +6,9 @@ import Image from "next/image";
 const ContactSection = () => {
   return (
     <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex  gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 flex-col lg:flex-row sm:px-6 lg:px-8 flex  gap-8 items-center">
         {/* Left Side - Contact Information */}
-        <div className="space-y-6 w-3/5">
+        <div className="space-y-6 w-full lg:w-3/5">
           <div className="flex flex-col gap-4">
             <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2">
               WIR SIND FÜR SIE DA
@@ -60,10 +60,10 @@ const ContactSection = () => {
         </div>
 
         {/* Right Side - Image */}
-        <div className="w-2/5">
+        <div className=" w-full lg:w-2/5">
           <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-md">
             <Image
-              src="/Images/Referenzen/projekteBanner.jpg" // Replace with the actual image path
+              src="/Images/Kontakt/download-1.jpg" // Replace with the actual image path
               alt="Zentrale von Ökovolt Deutschland in Türkheim (Bayern)"
               layout="fill"
               objectFit="cover"

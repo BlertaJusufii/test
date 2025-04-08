@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
+    <Link
+      href={`/referenzen/projekte/${project.location
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/\//g, "-")
+        .replace(/[ä]/g, "ae")
+        .replace(/[ö]/g, "oe")
+        .replace(/[ü]/g, "ue")
+        .replace(/[ß]/g, "ss")
+        .replace(/[^a-z0-9-]/g, "")}`}
       className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg groupe"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -14,8 +24,8 @@ const ProjectCard = ({ project }) => {
       {/* Background Image with Next.js Image component */}
       <div className="relative w-full h-full">
         <Image
-          src="/Images/Referenzen/projekteBanner.jpg" // Replace with dynamic image if necessary
-          alt={`Project background - ${project.location}`}
+          src={`http://192.168.68.197:8000${project?.image}`} // Replace with dynamic image if necessary
+          alt={`Project background - ${project?.location}`}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
@@ -31,17 +41,17 @@ const ProjectCard = ({ project }) => {
       {/* Content */}
       <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
         <div className="text-white">
-          <h3 className="text-[20px]">{project.location}</h3>
+          <h3 className="text-[20px]">{project?.location}</h3>
           <p
             className={`text-xl font-light mt-2 transition-all duration-300 transform text-[16px] ${
               isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
           >
-            {project.capacity}
+            {project?.capacity}
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -70,6 +80,44 @@ const ProjectsSection = () => {
       image: "/images/project3.jpg",
     },
   ];
+  const [marken, setMarken] = useState([]); // Ruaj ngjarjet nga API
+
+  // Merr të dhënat nga API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+        );
+
+        // Kontrollo nëse përgjigja është e suksesshme
+        if (!response.ok) {
+          throw new Error("Gabim gjatë marrjes së të dhënave");
+        }
+
+        // Kthe përgjigjen në JSON
+        const data = await response.json();
+
+        // Formato ngjarjet për FullCalendar
+        const formattedEvents = data.message
+          .slice() // copy to avoid mutating original
+          .reverse() // reverse if the API sends it in the wrong order
+          .map((marke) => ({
+            location: marke.title,
+            image: marke.bild_anhagen[0].bild_anhagen,
+            status: marke.status,
+            capacity: marke.leistung,
+          }));
+
+        // Vendos ngjarjet në state
+        setMarken(formattedEvents);
+      } catch (error) {
+        console.error("Gabim gjatë marrjes së ngjarjeve:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <div className=" max-w-7xl mx-auto px-4">
@@ -103,8 +151,8 @@ const ProjectsSection = () => {
       {/* Project Cards Grid */}
       <section className="container mx-auto px-4 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {marken.map((project, index) => (
+            <ProjectCard key={index} project={project} />
           ))}
         </div>
       </section>

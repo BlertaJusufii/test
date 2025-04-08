@@ -11,7 +11,7 @@ export default function Home() {
     img: "/Images/Referenzen/projekteBanner.jpg",
   };
   const backgroundImage = {
-    src: "/Images/Referenzen/projekteBanner.jpg",
+    src: "/Images/Referenzen/Projekte-3.jpg",
     title: "Technologische Entwicklungen und Effizienzsteigerung",
     description: [
       "Die fortschreitende Digitalisierung und innovative Technologien haben die Möglichkeiten in der Photovoltaik erheblich erweitert. Moderne Systeme ermöglichen eine intelligente Steuerung der Energieflüsse, eine optimierte Eigenverbrauchsquote sowie die Integration von Speicherlösungen.",
@@ -20,7 +20,7 @@ export default function Home() {
     ],
   };
   const secondBackgroundImage = {
-    src: "/Images/Referenzen/projekteBanner.jpg",
+    src: "/Images/Referenzen/Projekte-2.jpg",
     title: "Ganzheitliche Planung und Umsetzung für nachhaltige Energielösungen",
     description: [
       "Ein erfolgreicher Einstieg in die Photovoltaik beginnt mit einer fundierten Analyse Ihrer individuellen Anforderungen, gefolgt von einer präzisen Projektierung, detaillierten Planung und professionellen Umsetzung durch unsere erfahrenen Experten. Dabei berücksichtigen wir nicht nur technische Gegebenheiten, sondern auch wirtschaftliche Rahmenbedingungen, Fördermöglichkeiten sowie zukünftige Ausbaupotenziale Ihrer Anlage.",
@@ -31,7 +31,7 @@ export default function Home() {
 
   const benefits = {
     title: "Vorteile einer nachhaltigen Energieversorgung",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    img: "/Images/Referenzen/Projekte-1.jpg",
     description:
       "Durch die Kombination verschiedener technischer Ansätze lassen sich optimale Ergebnisse erzielen – ökologisch wie ökonomisch sinnvoll. Diese Herangehensweise spiegelt sich in all unseren Kundenprojekten wider.",
     benefits: [
