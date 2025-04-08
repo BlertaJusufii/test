@@ -17,6 +17,8 @@ export default function PVInquiryForm() {
     phone: "",
     acceptTerms: false,
   });
+
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [hasMounted, setHasMounted] = useState(false);
@@ -24,6 +26,21 @@ export default function PVInquiryForm() {
   useEffect(() => {
     setHasMounted(true);
   }, []);
+  const validateFields = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
+
+    if (!formData.firstName.trim()) newErrors.firstName = "Vorname ist erforderlich";
+    if (!emailRegex.test(formData.email)) newErrors.email = "Ungültige E-Mail-Adresse";
+    if (!formData.zipCode.trim()) newErrors.zipCode = "Postleitzahl ist erforderlich";
+    if (!formData.city.trim()) newErrors.city = "Ort ist erforderlich";
+    if (!phoneRegex.test(formData.phone)) newErrors.phone = "Ungültige Telefonnummer";
+    if (!formData.acceptTerms) newErrors.acceptTerms = "Sie müssen die Bedingungen akzeptieren";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,6 +48,7 @@ export default function PVInquiryForm() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+    setErrors((prev) => ({ ...prev, [name]: null })); // clear error on change
   };
 
   const nextStep = () => setStep((prev) => prev + 1);
@@ -44,6 +62,8 @@ export default function PVInquiryForm() {
   ];
 
   const handleSubmit = async () => {
+    if (!validateFields()) return;
+
     setLoading(true);
     try {
       const payload = {
@@ -322,9 +342,9 @@ export default function PVInquiryForm() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
+                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
               </div>
 
               <div>
@@ -345,9 +365,9 @@ export default function PVInquiryForm() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -358,9 +378,9 @@ export default function PVInquiryForm() {
                     name="zipCode"
                     value={formData.zipCode}
                     onChange={handleChange}
-                    required
                     className="w-full p-3 border border-gray-300 rounded-md"
                   />
+                  {errors.zipCode && <p className="text-red-500 text-sm mt-1">{errors.zipCode}</p>}
                 </div>
 
                 <div>
@@ -370,9 +390,9 @@ export default function PVInquiryForm() {
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    required
                     className="w-full p-3 border border-gray-300 rounded-md"
                   />
+                  {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
                 </div>
               </div>
 
@@ -383,9 +403,9 @@ export default function PVInquiryForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
+                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
               </div>
 
               <div className="flex items-start mt-4">
@@ -394,10 +414,11 @@ export default function PVInquiryForm() {
                   name="acceptTerms"
                   checked={formData.acceptTerms}
                   onChange={handleChange}
-                  className="mr-2"
+                  className="mr-2 mt-1"
                 />
                 <label className="text-sm text-gray-600">Ich akzeptiere die Datenschutzbestimmungen und AGB</label>
               </div>
+              {errors.acceptTerms && <p className="text-red-500 text-sm mt-1">{errors.acceptTerms}</p>}
             </div>
 
             <div className="flex justify-between">
@@ -409,25 +430,9 @@ export default function PVInquiryForm() {
               </button>
               <button
                 onClick={handleSubmit}
-                disabled={
-                  !formData.firstName ||
-                  !formData.email ||
-                  !formData.zipCode ||
-                  !formData.city ||
-                  !formData.phone ||
-                  !formData.acceptTerms
-                }
+                disabled={loading}
                 className={`px-6 py-2 rounded-md text-[16px] ${
-                  loading
-                    ? "bg-gray-400 text-white cursor-wait"
-                    : formData.firstName &&
-                      formData.email &&
-                      formData.zipCode &&
-                      formData.city &&
-                      formData.phone &&
-                      formData.acceptTerms
-                    ? "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
                 }`}
               >
                 {loading ? "Wird gesendet..." : "JETZT ANGEBOT ANFORDERN"}

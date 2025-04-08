@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ContactForm() {
@@ -15,6 +15,20 @@ export default function ContactForm() {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (message) {
+      setShowMessage(true);
+      timer = setTimeout(() => {
+        setShowMessage(false);
+        // Wait for the fade-out animation to complete before removing the message
+        setTimeout(() => setMessage(null), 300);
+      }, 10000); // 10 seconds
+    }
+    return () => clearTimeout(timer);
+  }, [message]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -106,16 +120,6 @@ export default function ContactForm() {
       {/* Form Container */}
       <div className="relative z-10 max-w-4xl mx-auto p-8 py-30">
         <div className="rounded-lg shadow-xl p-8 bg-opacity-50">
-          {message && (
-            <div
-              className={`mb-6 p-4 rounded-md ${
-                message.type === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"
-              }`}
-            >
-              {message.text}
-            </div>
-          )}
-
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* First Name */}
@@ -274,6 +278,30 @@ export default function ContactForm() {
                   "ANFRAGE SENDEN"
                 )}
               </button>
+              {message && (
+                <div
+                  className={`mt-6 p-4 rounded-md transition-all duration-300 transform ${
+                    message.type === "error"
+                      ? "flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                      : "flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                  } ${showMessage ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"}`}
+                  role="alert"
+                >
+                  <svg
+                    className="shrink-0 inline w-4 h-4 me-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                  </svg>
+                  <span class="sr-only">Info</span>
+                  <div>
+                    <span class="font-medium"> {message.text}</span>
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </div>
