@@ -21,7 +21,6 @@ const ProjectCard = ({ project }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image with Next.js Image component */}
       <div className="relative w-full h-full">
         <Image
           src={`http://192.168.68.197:8000${project?.image}`} // Replace with dynamic image if necessary
@@ -33,12 +32,8 @@ const ProjectCard = ({ project }) => {
             isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
           }`}
         />
-
-        {/* Dark overlay (Vein Effect) */}
         <div className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}></div>
       </div>
-
-      {/* Content */}
       <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
         <div className="text-white">
           <h3 className="text-[20px]">{project?.location}</h3>
@@ -121,7 +116,6 @@ const ProjectsSection = () => {
 
   return (
     <div className=" max-w-7xl mx-auto px-4">
-      {/* Hero Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
@@ -147,8 +141,6 @@ const ProjectsSection = () => {
           </div>
         </div>
       </section>
-
-      {/* Project Cards Grid */}
       <section className="container mx-auto px-4 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {marken.map((project, index) => (

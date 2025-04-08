@@ -8,7 +8,6 @@ export default function GreenFeatureSection() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16 lg:py-20">
       <div className="flex flex-col md:flex-row items-center gap-8">
-        {/* Left Column - Text Content (75% width) */}
         <motion.div
           className="w-full md:w-3/4 space-y-6"
           initial={{ opacity: 0, x: -50 }}
@@ -34,8 +33,6 @@ export default function GreenFeatureSection() {
             <FaChevronRight />
           </Link>
         </motion.div>
-
-        {/* Right Column - Rounded Image (25% width) */}
         <motion.div
           className="w-full md:w-1/4 flex justify-center"
           initial={{ opacity: 0, x: 50 }}

@@ -3,15 +3,16 @@ import TechnologySection from "@/components/Reusable/backgroundImage";
 import BannerSection from "@/components/Reusable/banner";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import ProjectsSection from "@/components/Referenzkarte/referenzInfo";
-
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import dynamic from "next/dynamic";
 const MapComponent = dynamic(() => import("@/components/Referenzkarte/map"), { ssr: false });
 
+const Map = dynamic(() => import("@/components/Referenzkarte/map"), { ssr: false });
+
 export default function Home() {
   const data = {
     title: "REFERENZSTANDORTE",
-    img: "/Images/Referenzen/Referenzkarte.jpg",
+    img: "/Images/Referenzen/projekteBanner.jpg",
   };
   const secondBackgroundImage = {
     src: "/Images/Referenzen/Referenzkarte-1.jpg",
