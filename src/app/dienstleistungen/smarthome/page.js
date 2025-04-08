@@ -1,5 +1,7 @@
+import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import TeamBanner from "@/components/Reusable/teamBanner";
-
+import VorteileSection from "@/components/Smarthome/Smarthomeloesung";
+import Tabs from "@/components/Smarthome/Tabs";
 
 export default function Home() {
   const data = {
@@ -11,6 +13,9 @@ export default function Home() {
   return (
     <div>
       <TeamBanner data={data} />
+      <Tabs />
+      <VorteileSection />
+      <GreenFeatureSection />
     </div>
   );
 }
