@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import Image from "next/image";
 
 const Footer = () => {
@@ -92,16 +93,19 @@ const Footer = () => {
                 <h3 className="text-[18px] font-bold uppercase tracking-wider ">Folgen Sie Uns</h3>
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <div className="flex space-y-2 space-x-5 my-6">
-                  <a href="#" aria-label="Facebook" className="text-xl hover:text-[#669933] transition-colors">
+                  <a href="https://www.facebook.com/oekovoltdeutschland" target="_blank" aria-label="Facebook" className="text-xl hover:text-[#669933] transition-colors">
                     <FaFacebookF />
                   </a>
-                  <a href="#" aria-label="Twitter" className="text-xl hover:text-[#669933] transition-colors">
-                    <FaTwitter />
+                  <a href="https://x.com/Oekovolt_De" target="_blank" aria-label="X" className="text-xl hover:text-[#669933] transition-colors">
+                    <FaXTwitter />
                   </a>
-                  <a href="#" aria-label="Instagram" className="text-xl hover:text-[#669933] transition-colors">
+                  <a href="https://www.instagram.com/oekovoltdeutschland/" target="_blank" aria-label="Instagram" className="text-xl hover:text-[#669933] transition-colors">
                     <FaInstagram />
                   </a>
-                  <a href="#" aria-label="LinkedIn" className="text-xl hover:text-[#669933] transition-colors">
+                  <a href="https://de.pinterest.com/oekovoltdeutschland/" target="_blank" aria-label="Pinterest" className="text-xl hover:text-[#669933] transition-colors">
+                    <FaPinterestP />
+                  </a>
+                  <a href="https://www.linkedin.com/company/%C3%B6kovoltdeutchland" target="_blank" aria-label="LinkedIn" className="text-xl hover:text-[#669933] transition-colors">
                     <FaLinkedinIn />
                   </a>
                 </div>
