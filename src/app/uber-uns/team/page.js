@@ -1,7 +1,4 @@
-import ProjectsHero from "@/components/Project/info";
-import Vorteil from "@/components/Project/vorteile";
 import TechnologySection from "@/components/Reusable/backgroundImage";
-import BannerSection from "@/components/Reusable/banner";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import InfoSection from "@/components/Reusable/info";
@@ -78,7 +75,6 @@ export default function Home() {
       <TeamSection />
       <TechnologySection backgroundImage={backgroundImage} />
       <BenefitsLayout data={benefits} />
-
       <TechnologySection backgroundImage={secondBackgroundImage} />
       <GreenFeatureSection />
     </div>

@@ -66,7 +66,7 @@ const Footer = () => {
                 <br />
                 Deutschland
               </address>
-              <div className="border-t border-[#003473]/20 text-center">
+              <div className="border-t border-[#003473]/20">
                 <p>&copy; {currentYear} ÖKOVOLT GmbH Solartechnik</p>
               </div>
             </div>

@@ -33,9 +33,13 @@ const ProjectCard = ({ project }) => {
             isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
           }`}
         />
-        <div className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}></div>
+        <div
+          className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}
+        ></div>
       </div>
-      <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
+      <div
+        className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}
+      >
         <div className="text-white">
           <h3 className="text-[20px]">{project?.location}</h3>
           <p
@@ -111,24 +115,28 @@ const ProjectsSection = () => {
     <div className="max-w-7xl mx-auto px-4" id="projects-section">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
-            PROJEKTE
-          </span>
-
-          <h1 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 leading-tight text-center">
-            Nachhaltige Energielösungen für eine grüne Zukunft
-          </h1>
-
+          <div className="text-center mb-10">
+            <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+              PROJEKTE
+              <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+            </h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mt-6">
+              Nachhaltige Energielösungen für eine grüne Zukunft
+            </h2>
+          </div>
           <div className="prose prose-lg text-gray-600 space-y-4 text-center text-[18px]">
             <p>
-              In einer Zeit, in der nachhaltige Energiequellen immer wichtiger werden, ist es essenziell, innovative
-              Photovoltaik Projekte zu entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.
+              In einer Zeit, in der nachhaltige Energiequellen immer wichtiger
+              werden, ist es essenziell, innovative Photovoltaik Projekte zu
+              entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.
             </p>
 
             <p>
-              Die Nutzung von Solarenergie trägt nicht nur zur Reduzierung von CO<sub>2</sub>-Emissionen bei, sondern
-              ermöglicht langfristige Einsparungen und größere Unabhängigkeit von steigenden Energiepreisen. Durch den
-              Einsatz moderner Technologien entstehen individuelle Lösungen, die exakt auf die Anforderungen von
+              Die Nutzung von Solarenergie trägt nicht nur zur Reduzierung von
+              CO<sub>2</sub>-Emissionen bei, sondern ermöglicht langfristige
+              Einsparungen und größere Unabhängigkeit von steigenden
+              Energiepreisen. Durch den Einsatz moderner Technologien entstehen
+              individuelle Lösungen, die exakt auf die Anforderungen von
               Gewerbe, Industrie und Privathaushalten abgestimmt sind.
             </p>
           </div>
@@ -140,35 +148,37 @@ const ProjectsSection = () => {
             <ProjectCard key={index} project={project} />
           ))}
         </div>
-
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-12">
             <nav className="flex items-center space-x-2">
               <button
                 onClick={() => paginate(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 Previous
               </button>
 
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                <button
-                  key={number}
-                  onClick={() => paginate(number)}
-                  className={`px-4 py-2 rounded-md ${
-                    currentPage === number ? "bg-[#669933] text-white" : "border border-gray-300"
-                  }`}
-                >
-                  {number}
-                </button>
-              ))}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (number) => (
+                  <button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`px-4 py-2 rounded-md cursor-pointer ${
+                      currentPage === number
+                        ? "bg-[#669933] text-white"
+                        : "border border-gray-300"
+                    }`}
+                  >
+                    {number}
+                  </button>
+                )
+              )}
 
               <button
                 onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 Next
               </button>

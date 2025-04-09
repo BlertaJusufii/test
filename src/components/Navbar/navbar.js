@@ -8,7 +8,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [showStudioInfo, setShowStudioInfo] = useState(false);
 
   const toggleDropdown = (name) => {
     setOpenDropdown((prev) => (prev === name ? null : name));

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -47,7 +46,9 @@ const ProjectCard = ({ project }) => {
           <h3 className="text-[20px] font-bold ">{project.location}</h3>
           <p
             className={`text-[16px] font-light mt-2 transition-all duration-300 ${
-              isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+              isHovered
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-2"
             }`}
           >
             {project.capacity}
@@ -135,37 +136,46 @@ const ProjectsSection = () => {
     <div className="max-w-7xl mx-auto px-4">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
-          <span className="block text-[18px] font-semibold text-[#669933] mb-2 uppercase tracking-wider text-center">
-            UNSERE PROJEKTE
-          </span>
-          <h2 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6 text-center">
-            Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
-          </h2>
+          <div className="text-center mb-10">
+            <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+              UNSERE PROJEKTE
+              <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+            </h2>
+            <h2 className="text-3xl font-semibold text-gray-900 mt-6">
+              Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
+            </h2>
+          </div>
           <div className="text-gray-600 space-y-4 text-center text-[16px]">
             <p>
-              Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
-              Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
-              Projekte erfolgreich realisiert.
+              Nachhaltige Energielösungen sind der Schlüssel zu einer
+              umweltfreundlichen Zukunft. Mit der steigenden Nachfrage nach
+              Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte
+              haben wir zahlreiche Projekte erfolgreich realisiert.
               <br />
-              Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche Darstellung unserer bisherigen Einsätze
-              – eine Solaranlagen Karte, die zeigt, wo unsere Systeme zur Energiewende beitragen.
-              <br />
-              <br />
-              Jedes Projekt ist individuell geplant und auf die spezifischen Anforderungen unserer Kunden abgestimmt.
-              Von kleinen privaten Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen in Deutschland
-              stehen für Effizienz, Qualität und Nachhaltigkeit.
-              <br />
-              Besonderen Wert legen wir auf professionelle Planung, moderne Technik und intelligente Steuerungssysteme.
-              In Kombination mit leistungsstarken Speichern erhöhen wir die Eigenverbrauchsquote und reduzieren die
-              Abhängigkeit vom öffentlichen Stromnetz.
+              Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche
+              Darstellung unserer bisherigen Einsätze – eine Solaranlagen Karte,
+              die zeigt, wo unsere Systeme zur Energiewende beitragen.
               <br />
               <br />
-              Unsere Referenzen zeigen: Photovoltaik ist nicht nur ökologisch sinnvoll, sondern auch wirtschaftlich
-              attraktiv. Mit staatlicher Förderung, Einspeisevergütung und steuerlichen Vorteilen lohnt sich die
-              Investition mehrfach.
+              Jedes Projekt ist individuell geplant und auf die spezifischen
+              Anforderungen unserer Kunden abgestimmt. Von kleinen privaten
+              Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen
+              in Deutschland stehen für Effizienz, Qualität und Nachhaltigkeit.
               <br />
-              Oekovolt begleitet Sie von der Beratung über die Installation bis zur langfristigen Wartung – mit
-              Lösungen, die echten Mehrwert bieten.
+              Besonderen Wert legen wir auf professionelle Planung, moderne
+              Technik und intelligente Steuerungssysteme. In Kombination mit
+              leistungsstarken Speichern erhöhen wir die Eigenverbrauchsquote
+              und reduzieren die Abhängigkeit vom öffentlichen Stromnetz.
+              <br />
+              <br />
+              Unsere Referenzen zeigen: Photovoltaik ist nicht nur ökologisch
+              sinnvoll, sondern auch wirtschaftlich attraktiv. Mit staatlicher
+              Förderung, Einspeisevergütung und steuerlichen Vorteilen lohnt
+              sich die Investition mehrfach.
+              <br />
+              Oekovolt begleitet Sie von der Beratung über die Installation bis
+              zur langfristigen Wartung – mit Lösungen, die echten Mehrwert
+              bieten.
             </p>
           </div>
         </div>
@@ -196,9 +206,6 @@ const ProjectsSection = () => {
           </button>
         </div>
       </section>
-
-      {/* Rest of your component remains the same */}
-      <section className="py-16 md:py-24">{/* ... */}</section>
 
       <style jsx global>{`
         .slick-container {

@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoBanner = ({ videoSrc, title, mobileVideoSrc }) => {
   return (
-    <div className="relative w-full h-screen max-h-[70vh] overflow-hidden z-0">
+    <div className="relative w-full h-screen max-h-[55vh] overflow-hidden z-0">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         {/* Desktop Video */}
@@ -28,7 +28,7 @@ const VideoBanner = ({ videoSrc, title, mobileVideoSrc }) => {
         className="relative z-10 flex items-center justify-center h-full text-center px-4 max-w-5xl
       mx-auto"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">{title}</h1>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">{title}</h1>
       </div>
     </div>
   );

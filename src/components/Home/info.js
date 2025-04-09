@@ -7,28 +7,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function SolutionsPage() {
-  const projects = [
-    {
-      id: 1,
-      name: "Industrieanlage München",
-      image: "/projects/industry.jpg",
-      description: "1.2 MWp Anlage für Automobilzulieferer",
-    },
-    {
-      id: 2,
-      name: "Gewerbezentrum Hamburg",
-      image: "/projects/commercial.jpg",
-      description: "850 kWp Dachanlage für Logistikzentrum",
-    },
-  ];
-
-  const partners = [
-    "/partners/partner1.png",
-    "/partners/partner2.png",
-    "/partners/partner3.png",
-    "/partners/partner4.png",
-    "/partners/partner5.png",
-  ];
 
   const sliderSettings = {
     dots: false,
@@ -36,10 +14,10 @@ export default function SolutionsPage() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Set interval between slides in milliseconds (3 seconds)
-    pauseOnHover: true, // Pause autoplay on hover
-    cssEase: "linear", // Smooth transition
+    autoplay: true, 
+    autoplaySpeed: 3000, 
+    pauseOnHover: true, 
+    cssEase: "linear", 
 
     responsive: [
       {
@@ -101,12 +79,14 @@ export default function SolutionsPage() {
           status: marke.status,
         }));
 
-        const formattedProjects = projectsData.message.slice(0, 3).map((projekt) => ({
-          title: projekt.title,
-          image: projekt.bild_anhagen[0]?.bild_anhagen,
-          leistung: projekt.leistung,
-          status: projekt.status,
-        }));
+        const formattedProjects = projectsData.message
+          .slice(0, 3)
+          .map((projekt) => ({
+            title: projekt.title,
+            image: projekt.bild_anhagen[0]?.bild_anhagen,
+            leistung: projekt.leistung,
+            status: projekt.status,
+          }));
 
         // Set state këtu
         setPartnersFrappe(formattedPartners);
@@ -128,16 +108,22 @@ export default function SolutionsPage() {
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <h2 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-6">
+        <h2 className="text-[28px] md:text-[30px] font-bold text-gray-900 mb-6">
           Photovoltaiklösungen für Industrie, Gewerbe und Privatkunden
         </h2>
       </div>
-
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 relative pb-4">
         {[
-          { icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />, value: "5000", label: "PV-Kraftwerke" },
-          { icon: <FaIndustry className="text-[35px] text-[#669933]/90" />, value: "340.000kWp", label: "Leistung" },
+          {
+            icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
+            value: "5000",
+            label: "PV-Kraftwerke",
+          },
+          {
+            icon: <FaIndustry className="text-[35px] text-[#669933]/90" />,
+            value: "340.000kWp",
+            label: "Leistung",
+          },
           {
             icon: <FaChartLine className="text-[35px] text-[#669933]/90" />,
             value: "112.000t",
@@ -146,28 +132,38 @@ export default function SolutionsPage() {
         ].map((item, i) => (
           <div
             key={i}
-            className={`text-center transition-all duration-700 delay-${i * 100} ${
-              hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            className={`text-center transition-all duration-700 delay-${
+              i * 100
+            } ${
+              hasMounted
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="flex justify-center mb-4 ">{item.icon}</div>
-            <div className="text-[35px] font-bold text-[#669933]">{item.value}</div>
+            <div className="flex justify-center mb-4">{item.icon}</div>
+            <div className="text-[35px] font-bold text-[#669933]">
+              {item.value}
+            </div>
             <p className="text-gray-600 text-[18px]">{item.label}</p>
           </div>
         ))}
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-b from-transparent to-[#669933] w-full"></div>
       </div>
-
-      {/* Projects Section */}
       <div
         className={`mb-24 transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <h2 className="text-center text-[#669933] text-[18px] font-bold mb-4">Projekte</h2>
-        <p className="text-center text-black-600 mx-auto mb-12 font-bold text-[28px] md:text-[35px]">
-          Entdecken Sie unsere neuesten Photovoltaik Projekte – echte Referenzen aus ganz Deutschland.
-        </p>
-
+        <div className="text-center mb-6">
+          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+            Projekte
+            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+          </h2>
+          <p className="text-center text-black-500 mx-auto mb-12 font-semibold text-[28px] md:text-[35px] mt-5">
+            Entdecken Sie unsere neuesten Photovoltaik Projekte – echte
+            Referenzen aus ganz Deutschland.
+          </p>
+        </div>
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {projectFrappe.map((project, i) => (
             <Link
@@ -183,7 +179,11 @@ export default function SolutionsPage() {
               key={i}
               className={`relative group overflow-hidden rounded-lg h-64 transform transition-all duration-700 delay-${
                 i * 100
-              } ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              } ${
+                hasMounted
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
             >
               <img
                 src={`http://192.168.68.197:8000${project.image}`}
@@ -192,7 +192,9 @@ export default function SolutionsPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div>
-                  <h3 className="text-white text-[24px] font-bold">{project.title}</h3>
+                  <h3 className="text-white text-[24px] font-bold">
+                    {project.title}
+                  </h3>
                   <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
                     {project.leistung}
                   </p>
@@ -212,16 +214,20 @@ export default function SolutionsPage() {
         </div>
       </div>
 
-      {/* Partners Section */}
       <div
-        className={`mb-16 transition-all duration-700 ${
+        className={`mb-5 transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <h2 className="text-center text-[#669933] text-[18px] font-bold mb-4">PARTNERS</h2>
-        <p className="text-center text-black-600 mx-auto mb-12 font-bold text-[28px] md:text-[35px]">
-          Wir sind Partner von
-        </p>
+        <div className="text-center mb-6">
+          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+            PARTNERS
+            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+          </h2>
+          <p className="text-center text-black-500 mx-auto mb-12 font-semibold text-[28px] md:text-[35px] mt-5">
+            Wir sind Partner von
+          </p>
+        </div>
 
         <Slider {...sliderSettings} className="py-4">
           {partnersFrappe.map((partner, index) => (

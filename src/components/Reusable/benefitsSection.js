@@ -1,8 +1,5 @@
 "use client";
-
 import Image from "next/image";
-import { FaSolarPanel } from "react-icons/fa";
-import { FaFlag } from "react-icons/fa";
 
 const BenefitsLayout = ({ data }) => {
   return (
@@ -30,13 +27,13 @@ const BenefitsLayout = ({ data }) => {
               {/* Benefit 1 */}
               {data.benefits.map((benefit, index) => (
                 <div key={index} className="bg-white  ">
-                  <h2 className="text-[24px] font-bold text-[#669933] mb-3">{benefit.title}</h2>
+                  <h2 className="text-[18px] font-bold text-[#669933] mb-3">{benefit.title}</h2>
                   <p className="text-gray-700 text-[16px]">{benefit.description}</p>
                 </div>
               ))}
             </div>
             {/* Summary Paragraph */}
-            <p className="text-gray-700 mb-12 text-center  mx-auto pt-8 text-[16px]">{data.description}</p>
+            <p className="text-gray-700 mb-12 text-left  mx-auto pt-8 text-[16px]">{data.description}</p>
           </div>
         </div>
       </div>

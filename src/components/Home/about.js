@@ -56,7 +56,7 @@ const ServicesBanner = () => {
         {cards.map((card, i) => (
           <div
             key={i}
-            className="fade-up-card group bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden opacity-0 translate-y-10"
+            className="fade-up-card group bg-gray-50 p-5 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden opacity-0 translate-y-10"
             style={{ transitionDelay: `${i * 300}ms` }}
           >
             <div className="relative z-20 flex items-center mb-6">

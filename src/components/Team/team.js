@@ -1,50 +1,38 @@
 "use client";
-
-import { FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa";
+import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const TeamMember = ({ member }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg flex flex-col h-full">
       {/* Member Photo */}
-      <div className="relative h-72 w-full ">
+      <div className="relative aspect-square w-full">
         <Image
           src={`http://192.168.68.197:8000${member.image}`}
           alt={member.name}
           fill
+          quality={100}
           className="object-contain"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-
-      {/* Member Info */}
-      <div className="p-6 bg-[#669933] text-white">
-        <div className="flex justify-between items-start">
-          {/* Name and Position */}
-          <div>
-            <h3 className="text-[20px] font-bold text-white">{member.name}</h3>
-            <p className="text-white mt-1 text-[16px]">{member.position}</p>
+      <div className="p-4 md:p-6 bg-[#669933] text-white flex-grow flex flex-col">
+        <div className="flex justify-between items-start flex-grow">
+          <div className="flex-1 min-w-0 pr-2">
+          <h3 className="text-lg md:text-xl font-bold text-white line-clamp-1">
+              {member.name}
+            </h3>
+            <p className="text-white mt-1 text-sm md:text-base line-clamp-2">
+              {member.position}
+            </p>
           </div>
-
-          {/* Contact Icons */}
-          <div className="flex flex-col items-end space-y-3">
-            {/* Email */}
-            <a
-              href={`mailto:${member.email}`}
-              className="text-white hover:text-white transition-colors"
-              aria-label={`Email ${member.name}`}
-            >
-              <FaEnvelope className="text-xl" />
+          <div className="flex flex-col items-end space-y-2 md:space-y-3 flex-shrink-0">
+            <a href={`mailto:${member.email}`} className="text-white hover:text-white/80 transition-colors">
+              <FaEnvelope className="text-lg md:text-xl" />
             </a>
-
-            {/* Phone */}
-            <a
-              href={`tel:${member.phone}`}
-              className="text-white hover:text-white transition-colors"
-              aria-label={`Call ${member.name}`}
-            >
-              <FaPhone className="text-xl" />
+            <a href={`tel:${member.phone}`} className="text-white hover:text-white/80 transition-colors">
+              <FaPhone className="text-lg md:text-xl" />
             </a>
           </div>
         </div>
