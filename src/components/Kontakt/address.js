@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import { FaPhone, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import Image from "next/image";
 

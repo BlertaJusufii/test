@@ -1,7 +1,4 @@
-"use client";
-
-import { FaPhone, FaMapMarkerAlt, FaClock } from "react-icons/fa";
-import Image from "next/image";
+import React from "react";
 
 const Map = () => {
   return (

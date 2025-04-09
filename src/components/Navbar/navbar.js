@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useState, useEffect } from "react";
 import { FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Link from "next/link";
@@ -35,7 +36,6 @@ const Navbar = () => {
     {
       title: "Dienstleistungen",
       slug: "dienstleistungen",
-      link: "/dienstleistungen",
       items: [
         { name: "Photovoltaik", slug: "photovoltaik", link: "/dienstleistungen/photovoltaik" },
         { name: "Smarthome", slug: "smarthome", link: "/dienstleistungen/smarthome" },
@@ -53,7 +53,6 @@ const Navbar = () => {
     {
       title: "Über Uns",
       slug: "uber-uns",
-      link: "/uber-uns",
       items: [
         { name: "Team", slug: "team", link: "/uber-uns/team" },
         { name: "Jobs", slug: "jobs", link: "/uber-uns/jobs" },
@@ -73,10 +72,8 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-white shadow-lg">
-      {/* Main Navigation */}
       <nav className={`w-full max-w-7xl mx-auto py-4`}>
         <div className="px-4 flex justify-between items-center">
-          {/* Logo */}
           <Link href="/" className="flex items-center h-16 w-40 lg:w-80 relative">
             <Image
               src="/Images/Navbar/Logo.png"
@@ -86,8 +83,6 @@ const Navbar = () => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Link>
-
-          {/* Desktop Navigation */}
           <div>
             <div className="hidden lg:flex items-center space-x-8 relative">
               {navItems.map((item, index) => (
@@ -157,7 +152,6 @@ const Navbar = () => {
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header with Logo and Close Button */}
               <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-10 border-b">
                 {/* Company Logo */}
                 <Link href="/" className="flex items-center h-20 w-40 relative" onClick={closeMobileMenu}>

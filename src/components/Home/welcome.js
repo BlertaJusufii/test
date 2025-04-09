@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaCheck, FaSolarPanel, FaPlug, FaLeaf } from "react-icons/fa";
 

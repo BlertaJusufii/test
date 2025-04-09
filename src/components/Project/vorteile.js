@@ -1,6 +1,5 @@
 "use client";
-
-import Image from "next/image";
+import React from "react";
 import { FaSolarPanel } from "react-icons/fa";
 import { FaFlag } from "react-icons/fa";
 

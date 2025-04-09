@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHome, FaBuilding, FaWarehouse, FaHouseUser, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
@@ -119,7 +119,7 @@ export default function PVInquiryForm() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md;">
       <h2
         className={`text-[18px] font-bold mb-6 text-[#669933] transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
