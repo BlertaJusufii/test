@@ -84,7 +84,7 @@ const Navbar = () => {
             />
           </Link>
           <div>
-            <div className="hidden lg:flex items-center space-x-8 relative">
+            <div className="hidden xl:flex items-center space-x-8 relative">
               {navItems.map((item, index) => (
                 <div key={index} className="relative group">
                   {item.items ? (
@@ -93,7 +93,7 @@ const Navbar = () => {
                         href={item.link || "#"}
                         onMouseEnter={() => toggleDropdown(item.title)}
                         onClick={() => toggleDropdown(item.title)}
-                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-md"
+                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-lg"
                       >
                         {item.title}
                         {openDropdown === item.title ? (
@@ -126,7 +126,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.link}
-                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-md"
+                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-lg"
                     >
                       {item.title}
                     </Link>
@@ -137,7 +137,7 @@ const Navbar = () => {
           </div>
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-md focus:outline-none transition bg-white "
+            className="xl:hidden p-2 rounded-md focus:outline-none transition bg-white "
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -147,7 +147,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden fixed inset-0 bg-black/30 z-40" onClick={closeMobileMenu}>
+          <div className="xl:hidden fixed inset-0 bg-black/30 z-40" onClick={closeMobileMenu}>
             <div
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto"
               onClick={(e) => e.stopPropagation()}

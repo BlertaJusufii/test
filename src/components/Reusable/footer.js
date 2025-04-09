@@ -1,10 +1,10 @@
 "use client";
+import React from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
   return (
     <div className="relative">
       <div className="w-full flex flex-wrap bg-pattern bg-mask">
@@ -26,12 +26,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer Content */}
       <footer className="bg-[#003473] text-white pt-8 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Company Info */}
             <div className="space-y-4">
               <Image
                 src="/Logo-Oekovolt-Gruen-mit-Weiss.webp"
