@@ -80,7 +80,7 @@ function Privathaushalte() {
             <h1 className="text-2xl font-medium text-green-800 mb-6">
                 Warum eine Photovoltaikanlage für Ihr Zuhause?
             </h1>
-            <div className="mb-6 flex justify-center">
+            <div className="mb-6 flex justify-start">
                 <Image
                     src="/Images/Dienstleistungen/Photovoltaik/Bild1.png"
                     alt="Privathaushalte"
@@ -110,7 +110,7 @@ function Mehrfamilienhaeuser() {
             <h1 className="text-2xl font-medium text-green-800 mb-6">
                 Setzen Sie auf unsere Lösungen – Maßgeschneiderte Photovoltaik für Ihr Gebäude
             </h1>
-            <div className="mb-6 flex justify-center">
+            <div className="mb-6 flex justify-start">
                 <Image
                     src="/Images/Dienstleistungen/Photovoltaik/download-2.jpg"
                     alt="Mehrfamilienhäuser"
@@ -141,7 +141,7 @@ function Gwerbeundindustrie() {
             <h1 className="text-2xl font-medium text-green-800 mb-6">
                 Nachhaltig von Solarenergie profitieren
             </h1>
-            <div className="mb-6 flex justify-center">
+            <div className="mb-6 flex justify-start">
                 <Image
                     src="/Images/Dienstleistungen/Photovoltaik/314505-BAD.jpg"
                     alt="Gwerbeundindustrie"

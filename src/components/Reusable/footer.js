@@ -25,25 +25,19 @@ const Footer = () => {
             >
               <path
                 d="M1024 177.371H0V.219l507.699 133.939L1024 .219v177.152z"
-                fill="#e0f0d1" // Dark green
+                fill="#e0f0d1" 
               />
-
-              {/* Slightly lighter */}
               <path
                 d="M1024 177.781H0V39.438l507.699 94.925L1024 39.438v138.343z"
                 fill="#c2e0a3"
               />
-
-              {/* Medium shade */}
               <path
                 d="M1024 177.781H0v-67.892l507.699 24.474L1024 109.889v67.892z"
                 fill="#94c95e"
               />
-
-              {/* Lightest path on top */}
               <path
                 d="M1024 177.781H0v-3.891l507.699-39.526L1024 173.889v3.892z"
-                fill="#669933" // Light green
+                fill="#669933" 
               />
             </svg>
           </div>
