@@ -55,14 +55,14 @@ const Footer = () => {
               <hr className="border-t border-[#fffff]/30 my-3 " />
               <div className="space-y-2">
                 <p>
-                  <span className="font-medium opacity-80 text-[16px]">Telefon:</span>
+                  <span className="font-medium text-[16px] ">Telefon:</span>
                   <br />
                   <a href="tel:+498245967880" className="hover:text-[#669933] transition-colors text-[16px]">
                     +49 8245 96 788 0
                   </a>
                 </p>
                 <p>
-                  <span className="font-medium opacity-80">E-Mail:</span>
+                  <span className="font-medium">E-Mail:</span>
                   <br />
                   <a href="mailto:office@oekovolt.de" className="hover:text-[#669933] transition-colors text-[16px]">
                     office@oekovolt.de
