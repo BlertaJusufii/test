@@ -1,18 +1,16 @@
 "use client";
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 
+// Dynamically import the map components with no SSR
+const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then((mod) => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), { ssr: false });
 
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-});
-
+// Define the points for the markers
 const points = [
   { lat: 47.7811014, lng: 9.612468, label: "Ravensburg" },
   { lat: 47.7981346, lng: 13.0464806, label: "Salzburg" },
@@ -21,7 +19,6 @@ const points = [
   { lat: 48.18524105, lng: 11.745541131739072, label: "Kirchheim" },
   { lat: 48.05630415, lng: 10.486669997131546, label: "Mindelheim" },
   { lat: 47.9875742, lng: 10.788535174270507, label: "Waal" },
-
   { lat: 48.3930137, lng: 10.856960528294799, label: "Augsburg" },
   { lat: 47.7828004, lng: 10.30596510988958, label: "Kempten" },
   { lat: 47.84388455, lng: 12.972250979244642, label: "Freilassing" },
@@ -39,15 +36,122 @@ const points = [
   { lat: 47.10218295, lng: 9.486962484194526, label: "Innsbruck" },
 ];
 
-export default function MapComponent() {
+const Map = () => {
+  const [cookieAccepted, setCookieAccepted] = useState(false);
+  const [customIcon, setCustomIcon] = useState(null);
+
+  // Load Leaflet and create icon only on client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const L = require("leaflet");
+      setCustomIcon(
+        new L.Icon({
+          iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+          iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+          shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41],
+        })
+      );
+    }
+  }, []);
+
+  // Function to check the cookie consent value from document cookies
+  const checkCookieConsent = () => {
+    const cookies = document.cookie.split("; ");
+    const cookieConsentCookie = cookies.find((cookie) => cookie.startsWith("cookieConsent="));
+
+    if (cookieConsentCookie) {
+      const cookieValue = cookieConsentCookie.split("=")[1];
+      const decodedValue = decodeURIComponent(cookieValue);
+      const consentData = JSON.parse(decodedValue);
+
+      return consentData.openStreetMap === true;
+    }
+    return false;
+  };
+
+  // Check cookie consent on component mount and set an interval to periodically check for updates
+  useEffect(() => {
+    const consentStatus = checkCookieConsent();
+    setCookieAccepted(consentStatus); // Initialize with existing consent status
+
+    // Set up an interval to periodically check for cookie changes (e.g., every 1 second)
+    const intervalId = setInterval(() => {
+      const updatedConsentStatus = checkCookieConsent();
+      if (updatedConsentStatus !== cookieAccepted) {
+        setCookieAccepted(updatedConsentStatus);
+      }
+    }, 1000); // Check every 1 second
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [cookieAccepted]); // Dependency array to re-run the effect when `cookieAccepted` changes
+
+  // Handle when the user accepts the OpenStreetMap cookie
+  const handleAcceptCookie = () => {
+    const cookies = document.cookie.split("; ");
+    const cookieConsentCookie = cookies.find((cookie) => cookie.startsWith("cookieConsent="));
+
+    let consentData = {};
+
+    if (cookieConsentCookie) {
+      const cookieValue = cookieConsentCookie.split("=")[1];
+      const decodedValue = decodeURIComponent(cookieValue);
+
+      consentData = JSON.parse(decodedValue);
+    }
+
+    consentData.openStreetMap = true; // Update the openStreetMap consent to true
+
+    // Save the updated consent data back to the cookie with 1 year expiry
+    document.cookie = `cookieConsent=${encodeURIComponent(JSON.stringify(consentData))}; path=/; max-age=31536000`;
+
+    // Immediately reflect the change in the state
+    setCookieAccepted(true);
+  };
+
   return (
-    <MapContainer center={[47.9875742, 10.788535174270507]} zoom={8} style={{ height: "500px", width: "100%" }}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {points.map((point, idx) => (
-        <Marker key={idx} position={[point.lat, point.lng]}>
-          <Popup>{point.label}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <section className="">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8 items-center">
+        <div className="flex flex-col gap-4">
+          <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2 text-center">
+            Unsere Standorte
+          </h2>
+          <h3 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-4 text-center">
+            Regional präsent, überregional aktiv – Finden Sie uns in Ihrer Nähe.
+          </h3>
+        </div>
+
+        <div className="w-full h-[300px] md:h-[500px]">
+          {cookieAccepted ? (
+            <MapContainer center={[47.9875742, 10.788535174270507]} zoom={8} style={{ height: "500px", width: "100%" }}>
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {points.map((point, idx) => (
+                <Marker key={idx} position={[point.lat, point.lng]} icon={customIcon}>
+                  <Popup>{point.label}</Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          ) : (
+            <div className="w-full h-full bg-gray-100 flex flex-col items-center justify-center">
+              <p className="mb-4 text-gray-700 text-center">
+                Um die Karte anzuzeigen, müssen Sie den OpenStreetMap Cookie akzeptieren.
+              </p>
+              <button
+                onClick={handleAcceptCookie}
+                className="px-4 py-2 bg-[#669933] text-white rounded-lg hover:bg-[#5a8a2d] transition-colors"
+              >
+                OpenStreetMap Cookie akzeptieren
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default Map;

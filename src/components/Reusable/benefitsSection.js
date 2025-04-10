@@ -14,6 +14,7 @@ const BenefitsLayout = ({ data }) => {
                 src={`${data.img}`} // Replace with your image path
                 alt="Solar panel installation"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                 className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -27,7 +28,13 @@ const BenefitsLayout = ({ data }) => {
               {/* Benefit 1 */}
               {data.benefits.map((benefit, index) => (
                 <div key={index} className="bg-white  ">
+<<<<<<< HEAD
                   <h2 className="text-[18px] font-bold text-[#669933] mb-3">{benefit.title}</h2>
+=======
+                  <h2 className="text-[24px] font-bold text-[#669933] mb-3 break-all md:break-normal">
+                    {benefit.title}
+                  </h2>
+>>>>>>> CookieDeveloped
                   <p className="text-gray-700 text-[16px]">{benefit.description}</p>
                 </div>
               ))}

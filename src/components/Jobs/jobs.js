@@ -21,12 +21,14 @@ const JobsInfo = ({ data }) => {
           </div>
           {/* Right Column - Benefits Grid */}
           <div className="lg:w-1/2">
-            <div className="relative h-full w-full rounded-lg overflow-hidden shadow-lg ">
+            <div className="relative h-full w-full rounded-lg overflow-hidden shadow-lg min-h-[400px] ">
               <Image
-                src={`${data.img}`} // Replace with your image path
-                alt="Solar panel installation"
+                src="/Images/Jobs/renewable-energy-eco-technology-electric-power-fl-2025-02-11-14-15-57-utc.jpg"
+                alt="Renewable energy technology installation"
                 fill
-                className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                priority
+                className="object-cover rounded-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
               />
             </div>
           </div>

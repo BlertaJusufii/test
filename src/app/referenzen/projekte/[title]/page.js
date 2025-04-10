@@ -54,6 +54,7 @@ export async function generateMetadata({ params }) {
     return {
       title: project.name,
       description: `Learn more about ${project.name} project`,
+      keywords: [`${project.keywords.map((keyword) => keyword.keyword)}`],
     };
   } catch (error) {
     console.error("Error fetching metadata:", error);

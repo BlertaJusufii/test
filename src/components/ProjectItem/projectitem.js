@@ -27,10 +27,9 @@ const ProjectCard = ({ project }) => {
         <Image
           src={`http://192.168.68.197:8000${project?.bild_anhagen[0].bild_anhagen}`} // Replace with dynamic image if necessary
           alt={`Project background - ${project?.location}`}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          className={`transition-all duration-300 ${
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+          className={`transition-all duration-300 obeject-cover object-center ${
             isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
           }`}
         />
@@ -69,13 +68,13 @@ const ProjectDetailComponent = ({ project, related }) => {
           {project?.bild_anhagen && project?.bild_anhagen.length > 0 && (
             <div className="grid grid-cols-1 gap-4">
               {project.bild_anhagen.map((image, index) => (
-                <div key={index} className="rounded-lg overflow-hidden">
+                <div key={index} className="rounded-lg overflow-hidden relative h-[500px]  ">
                   <Image
                     src={`http://192.168.68.197:8000${image.bild_anhagen}`}
                     alt={`${project.title} - ${index + 1}`}
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                    className="w-full h-100 object-cover"
                   />
                 </div>
               ))}

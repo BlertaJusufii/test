@@ -2,17 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaCheck, FaSolarPanel, FaPlug, FaLeaf } from "react-icons/fa";
+import Image from "next/image";
 
 export default function RotatingImageSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [radius, setRadius] = useState(200); // Default radius for larger screens
   const iconSize = 64; // Tailwind w-16 h-16 = 64px
 
-  const images = [
-    "/Images/Home/download-1.jpg",
-    "/Images/Home/download-2.jpg",
-    "/Images/Home/download.jpg",
-  ];
+  const images = ["/Images/Home/download-1.jpg", "/Images/Home/download-2.jpg", "/Images/Home/download.jpg"];
   const icons = [
     { icon: FaSolarPanel, color: "text-yellow-500" },
     { icon: FaPlug, color: "text-blue-500" },
@@ -79,9 +76,11 @@ export default function RotatingImageSection() {
             transition={{ duration: 0.5 }}
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-gray-200 shadow-lg z-0"
           >
-            <img
+            <Image
+              fill
               src={images[activeIndex % images.length]}
               alt="Solar Image"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -137,19 +136,16 @@ export default function RotatingImageSection() {
         </div>
         <div className="space-y-4 w-full lg:w-1/2 lg:pl-10">
           <div className="relative">
-            <h2 className="text-[#669933] text-[18px] font-bold uppercase">
-              WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK
-            </h2>
+            <h2 className="text-[#669933] text-[18px] font-bold uppercase">WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK</h2>
             <div className="h-0.5 w-20 bg-[#669933] mt-1"></div>
           </div>
           <p className="text-[28px] md:text-[30px] font-bold text-gray-900 mb-6">
             Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.
           </p>
           <p className="text-gray-700 text-[18px]">
-            Wir sind spezialisiert auf die Planung und Umsetzung
-            leistungsstarker Photovoltaikanlagen für Gewerbe, Industrie,
-            Kommunen und Privathaushalte. Unsere Lösungen bieten maximale
-            Effizienz, höchste Qualität und Energieunabhängigkeit.
+            Wir sind spezialisiert auf die Planung und Umsetzung leistungsstarker Photovoltaikanlagen für Gewerbe,
+            Industrie, Kommunen und Privathaushalte. Unsere Lösungen bieten maximale Effizienz, höchste Qualität und
+            Energieunabhängigkeit.
           </p>
           <div className="grid grid-cols-1 gap-y-6 gap-x-8 md:grid-cols-2">
             {items.map((item, i) => (

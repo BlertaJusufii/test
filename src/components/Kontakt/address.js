@@ -65,9 +65,9 @@ const ContactSection = () => {
             <Image
               src="/Images/Kontakt/download-1.jpg" // Replace with the actual image path
               alt="Zentrale von Ökovolt Deutschland in Türkheim (Bayern)"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+              className="rounded-lg object-cover"
             />
           </div>
           <p className="text-center text-gray-600 text-[16px] mt-2">

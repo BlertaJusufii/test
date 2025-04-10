@@ -1,13 +1,22 @@
-"use client";
 import TechnologySection from "@/components/Reusable/backgroundImage";
 import BannerSection from "@/components/Reusable/banner";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import ProjectsSection from "@/components/Referenzkarte/referenzInfo";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
-import dynamic from "next/dynamic";
-const MapComponent = dynamic(() => import("@/components/Referenzkarte/map"), { ssr: false });
+import MapContainer from "@/components/Referenzkarte/map";
 
-const Map = dynamic(() => import("@/components/Referenzkarte/map"), { ssr: false });
+export const metadata = {
+  title: "Referenzen",
+  description:
+    "Entdecken Sie die erfolgreichen Photovoltaik-Projekte von ÖKOVOLT Deutschland. Wir bieten maßgeschneiderte, effiziente und umweltfreundliche Lösungen für Gewerbe, Industrie und Privathaushalte. Erfahren Sie mehr über unsere innovativen Projekte und technologischen Entwicklungen, die den Weg zu einer nachhaltigen Energiezukunft ebnen.",
+  keywords: [
+    "Photovoltaik Referenzen",
+    "Nachhaltige Energielösungen",
+    "Solarenergie Projekte",
+    "Photovoltaik Technologien",
+    "ÖKOVOLT Deutschland",
+  ],
+};
 
 export default function Home() {
   const data = {
@@ -51,7 +60,7 @@ export default function Home() {
     <div>
       <BannerSection data={data} />
       <ProjectsSection />
-      <MapComponent />
+      <MapContainer />
       <BenefitsLayout data={benefits} />
       <TechnologySection backgroundImage={secondBackgroundImage} />
       <GreenFeatureSection />

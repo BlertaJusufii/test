@@ -26,12 +26,11 @@ const ProjectCard = ({ project }) => {
         <Image
           src={`http://192.168.68.197:8000${project?.image}`}
           alt={`Project background - ${project?.location}`}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          className={`transition-all duration-300 ${
+          fill
+          className={`transition-all duration-300 object-cover object-center ${
             isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
           }`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div
           className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}

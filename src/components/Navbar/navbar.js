@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (name) => {
@@ -18,15 +18,6 @@ const Navbar = () => {
     setIsOpen(false);
     setOpenDropdown(null);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
@@ -72,13 +63,15 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-white shadow-lg">
-      <nav className={`w-full max-w-7xl mx-auto py-4`}>
+      {/* Main Navigation */}
+      <nav className={`w-full max-w-7xl mx-auto py-4 `}>
         <div className="px-4 flex justify-between items-center">
           <Link href="/" className="flex items-center h-16 w-40 lg:w-80 relative">
             <Image
               src="/Images/Navbar/Logo.png"
               alt="Logo"
               fill
+              priority
               className="object-contain object-left "
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

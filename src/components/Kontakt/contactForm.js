@@ -106,14 +106,7 @@ export default function ContactForm() {
     <div className="relative">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/Images/Kontakt/download-2.jpg"
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          priority
-        />
+        <Image src="/Images/Kontakt/download-2.jpg" alt="Background" fill quality={100} className="object-cover" />
         <div className="absolute inset-0 bg-black/70 bg-opacity-50"></div>
       </div>
 
@@ -134,6 +127,7 @@ export default function ContactForm() {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
+                  autoComplete="firstName"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
                   placeholder="Ihr Vorname"
                 />
@@ -151,6 +145,7 @@ export default function ContactForm() {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
+                  autoComplete="lastName"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
                   placeholder="Ihr Nachname"
                 />
@@ -168,6 +163,7 @@ export default function ContactForm() {
                   value={formData.street}
                   onChange={handleChange}
                   required
+                  autoComplete="street-address"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
                   placeholder="Musterstraße 123"
                 />
@@ -185,6 +181,7 @@ export default function ContactForm() {
                   value={formData.zipCity}
                   onChange={handleChange}
                   required
+                  autoComplete="zipCity"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
                   placeholder="12345 Musterstadt"
                 />
@@ -202,6 +199,7 @@ export default function ContactForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
                   placeholder="ihre@email.de"
                 />
@@ -216,6 +214,7 @@ export default function ContactForm() {
                   type="tel"
                   id="phone"
                   name="phone"
+                  autoComplete="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"

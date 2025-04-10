@@ -31,14 +31,15 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
-              <Image
-                src="/Logo-Oekovolt-Gruen-mit-Weiss.webp"
-                alt="ÖKOVOLT Deutschland Footer Logo"
-                width={200}
-                height={100}
-                className="object-cover"
-                quality={100}
-              />
+              <div className="relative w-[200px] h-[100px]">
+                <Image
+                  src="/Logo-Oekovolt-Gruen-mit-Weiss.webp"
+                  alt="Ökovolt Logo"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-contain" // Maintains aspect ratio
+                />
+              </div>
               <p className="font-bold text-[18px]">ÖKOVOLT GmbH Solartechnik</p>
               <address className="not-italic text-[16px]">
                 Schlingener Straße 1a

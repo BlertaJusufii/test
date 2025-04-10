@@ -4,7 +4,6 @@ import PVInquiryForm from "@/components/Home/form";
 import SolutionsPage from "@/components/Home/info";
 import RotatingCircleSection from "@/components/Home/welcome";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
-import Image from "next/image";
 
 export default function Home() {
   return (

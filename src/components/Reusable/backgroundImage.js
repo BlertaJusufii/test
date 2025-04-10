@@ -4,17 +4,16 @@ import Image from "next/image";
 
 const TechnologySection = ({ backgroundImage }) => {
   return (
-    <section className="relative  w-full">
+    <section className="relative w-full h-100">
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 bg-black/40">
         <div className="absolute inset-0">
           <Image
             src={`${backgroundImage?.src}`} // Replace with dynamic path if needed
             alt="Technological Developments"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="bottom"
-            className="mix-blend-multiply"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="mix-blend-multiply object-cover object-bottom"
           />
         </div>
       </div>

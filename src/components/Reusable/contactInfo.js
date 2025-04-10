@@ -44,6 +44,7 @@ export default function GreenFeatureSection() {
               src="/Images/Home/contactImage.jpg"
               alt="Solaranlage auf einem Hausdach"
               fill
+              priority
               className="object-cover"
               sizes="(max-width: 768px) 100px, 200px"
             />

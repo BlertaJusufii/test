@@ -13,6 +13,19 @@ import InfoSection from "@/components/Reusable/info";
 import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
 
+export const metadata = {
+  title: "Kontaktieren Sie uns",
+  description:
+    "Kontaktieren Sie ÖKOVOLT Deutschland für professionelle Beratung und Unterstützung rund um Photovoltaik-Lösungen. Erreichen Sie uns per Telefon, E-Mail oder über unser Kontaktformular. Wir sind Montag bis Freitag für Sie da, um Ihre Fragen zu beantworten.",
+  keywords: [
+    "Kontakt ÖKOVOLT",
+    "ÖKOVOLT Anfrage",
+    "Photovoltaik Beratung",
+    "Solaranlagen Kontakt",
+    "ÖKOVOLT Deutschland",
+  ],
+};
+
 export default function Home() {
   const data = {
     title: "Kontaktieren Sie uns",

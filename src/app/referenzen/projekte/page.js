@@ -5,6 +5,19 @@ import BannerSection from "@/components/Reusable/banner";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 
+export const metadata = {
+  title: "Referenzen",
+  description:
+    "Entdecken Sie die erfolgreichen Photovoltaik-Projekte von ÖKOVOLT Deutschland. Wir bieten maßgeschneiderte, effiziente und umweltfreundliche Lösungen für Gewerbe, Industrie und Privathaushalte. Erfahren Sie mehr über unsere innovativen Projekte und technologischen Entwicklungen, die den Weg zu einer nachhaltigen Energiezukunft ebnen.",
+  keywords: [
+    "Photovoltaik Referenzen",
+    "Nachhaltige Energielösungen",
+    "Solarenergie Projekte",
+    "Photovoltaik Technologien",
+    "ÖKOVOLT Deutschland",
+  ],
+};
+
 export default function Home() {
   const data = {
     title: "Referenzen",

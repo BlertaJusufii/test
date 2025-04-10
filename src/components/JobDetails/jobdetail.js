@@ -10,9 +10,9 @@ const JobDetails = ({ jobData }) => {
           <Image
             src={`http://192.168.68.197:8000${jobData.bild_anhagen}`}
             alt="Job Image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-t-lg"
+            fill
+            className="rounded-t-lg object-contain"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       ) : (

@@ -1,15 +1,36 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar/navbar";
 import Footer from "@/components/Reusable/footer";
+import CookieComponent from "@/components/Cookies/cookiecomponent";
 
 export const metadata = {
-  title: "ÖKOVOLT Deutschland",
+  title: {
+    default: "ÖKOVOLT Deutschland",
+    template: "%s - ÖKOVOLT Deutschland",
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
-  description: "Ihr Partner für Photovoltaik & Smarthome Lösungen",
+  description: {
+    default: "Ihr Partner für Photovoltaik & Smarthome Lösungen",
+    template: "%s",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  referrer: "origin-when-cross-origin",
+  keywords: {
+    default: [
+      "Photovoltaik-Lösungen",
+      "Erneuerbare Energie",
+      "olaranlagen Deutschland",
+      "Energieeinsparung",
+      "Nachhaltige Energie",
+    ],
+    template: ["%s"],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -18,6 +39,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <CookieComponent />
         <Footer />
       </body>
     </html>

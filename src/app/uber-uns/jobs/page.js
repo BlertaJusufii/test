@@ -10,6 +10,19 @@ import InfoSection from "@/components/Reusable/info";
 import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
 
+export const metadata = {
+  title: "Jobs",
+  description:
+    "Werden Sie Teil des ÖKOVOLT-Teams und gestalten Sie mit uns die Energiewende! Wir bieten spannende Karrieremöglichkeiten in der Photovoltaikbranche – von der Planung über die Installation bis hin zur Wartung. Nutzen Sie Ihre Chance, in einem dynamischen Umfeld mit modernster Technologie und langfristigen Perspektiven zu arbeiten.",
+  keywords: [
+    "Solarbranche Karriere",
+    "Erneuerbare Energien Jobs",
+    "Photovoltaik Stellenangebote",
+    "Karriere in der Energiebranche",
+    "Nachhaltige Energieversorgung Jobs",
+  ],
+};
+
 export default function Home() {
   const data = {
     title: "Jobs",

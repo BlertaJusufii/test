@@ -58,16 +58,11 @@ export default function KomponentenSlider() {
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="text-center mb-10">
-          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
-            KOMPONENTEN
-            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
-          </h2>
-          <h2 className="text-3xl font-semibold text-gray-900 mt-6">
-            Eine hochwertige Photovoltaikanlage besteht aus mehreren
-            Schlüsselfaktoren
-          </h2>
-        </div>
+        <h2 className="text-center text-[#669933] text-[18px] font-bold mb-4">KOMPONENTEN</h2>
+        <p className="text-center text-black-600 mx-auto mb-12 font-bold text-[4px] md:text-[35px]">
+          Eine hochwertige Photovoltaikanlage besteht aus mehreren Schlüsselfaktoren
+        </p>
+
         <Slider {...sliderSettings} className="py-8">
           {komponenten.map((komponent, index) => (
             <div key={index} className="px-4">
@@ -79,12 +74,10 @@ export default function KomponentenSlider() {
                     quality={100}
                     src={komponent.image}
                     alt={komponent.name}
-                    className="max-h-full max-w-full object-contain"
+                    className="h-auto w-auto object-contain"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">
-                  {komponent.name}
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-800">{komponent.name}</h3>
               </div>
             </div>
           ))}

@@ -1,9 +1,23 @@
+<<<<<<< HEAD
+=======
+import { Metadata } from "next";
+
+import ProjectsHero from "@/components/Project/info";
+import Vorteil from "@/components/Project/vorteile";
+>>>>>>> CookieDeveloped
 import TechnologySection from "@/components/Reusable/backgroundImage";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import InfoSection from "@/components/Reusable/info";
 import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
+
+export const metadata = {
+  title: "Team",
+  description:
+    "ÖKOVOLT Deutschland ist ein führender Anbieter von Photovoltaiklösungen, spezialisiert auf Solaranlagen für Unternehmen, Kommunen und Privathaushalte. Mit Fokus auf Innovation und Nachhaltigkeit sorgt ihr Expertenteam für qualitativ hochwertige Installationen, die den wachsenden Energiebedarf der Kunden decken. Vom Beratungsgespräch über die Planung bis hin zur Installation und langfristigen Wartung bietet ÖKOVOLT umfassende, langlebige Energielösungen. Ihr Engagement für erneuerbare Energien, Kundenzufriedenheit und Umweltverantwortung macht sie zu einem zuverlässigen Partner für eine nachhaltige Zukunft.",
+  keywords: ["Photovoltaik", "Nachhaltige Energie", "Erneuerbare Energien", "Solartechnik", "Energieversorgung"],
+};
 
 export default function Home() {
   const data = {

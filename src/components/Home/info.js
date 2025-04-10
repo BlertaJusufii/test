@@ -3,10 +3,70 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaSolarPanel, FaIndustry, FaChartLine } from "react-icons/fa";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SolutionsPage() {
+  const stats = [
+    { icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />, value: 5000, label: "PV-Kraftwerke" },
+    { icon: <FaIndustry className="text-[35px] text-[#669933]/90" />, value: 340000, suffix: "kWp", label: "Leistung" },
+    {
+      icon: <FaChartLine className="text-[35px] text-[#669933]/90" />,
+      value: 112000,
+      suffix: "t",
+      label: "Co2-Einsparung",
+    },
+  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          startCounters();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (countersRef.current) {
+      observer.observe(countersRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  const [counters, setCounters] = useState(stats.map(() => 0));
+  const countersRef = useRef(null);
+  const animationRef = useRef(null);
+
+  const startCounters = () => {
+    const duration = 3000; // Animation duration in ms
+    const startTime = performance.now();
+
+    const animateCounters = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+
+      const newCounters = stats.map((stat, i) => {
+        const value = stats[i].value;
+        return Math.floor(progress * value);
+      });
+
+      setCounters(newCounters);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animateCounters);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(animateCounters);
+  };
 
   const sliderSettings = {
     dots: false,
@@ -14,10 +74,10 @@ export default function SolutionsPage() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true, 
-    autoplaySpeed: 3000, 
-    pauseOnHover: true, 
-    cssEase: "linear", 
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    cssEase: "linear",
 
     responsive: [
       {
@@ -79,14 +139,12 @@ export default function SolutionsPage() {
           status: marke.status,
         }));
 
-        const formattedProjects = projectsData.message
-          .slice(0, 3)
-          .map((projekt) => ({
-            title: projekt.title,
-            image: projekt.bild_anhagen[0]?.bild_anhagen,
-            leistung: projekt.leistung,
-            status: projekt.status,
-          }));
+        const formattedProjects = projectsData.message.slice(0, 3).map((projekt) => ({
+          title: projekt.title,
+          image: projekt.bild_anhagen[0]?.bild_anhagen,
+          leistung: projekt.leistung,
+          status: projekt.status,
+        }));
 
         // Set state këtu
         setPartnersFrappe(formattedPartners);
@@ -112,37 +170,20 @@ export default function SolutionsPage() {
           Photovoltaiklösungen für Industrie, Gewerbe und Privatkunden
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 relative pb-4">
-        {[
-          {
-            icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
-            value: "5000",
-            label: "PV-Kraftwerke",
-          },
-          {
-            icon: <FaIndustry className="text-[35px] text-[#669933]/90" />,
-            value: "340.000kWp",
-            label: "Leistung",
-          },
-          {
-            icon: <FaChartLine className="text-[35px] text-[#669933]/90" />,
-            value: "112.000t",
-            label: "Co2-Einsparung",
-          },
-        ].map((item, i) => (
+
+      {/* Stats Section */}
+      <div ref={countersRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        {stats.map((item, i) => (
           <div
             key={i}
-            className={`text-center transition-all duration-700 delay-${
-              i * 100
-            } ${
-              hasMounted
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+            className={`text-center transition-all duration-700 delay-${i * 100} ${
+              hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
             <div className="flex justify-center mb-4">{item.icon}</div>
             <div className="text-[35px] font-bold text-[#669933]">
-              {item.value}
+              {counters[i].toLocaleString()}
+              {item.suffix && <span>{item.suffix}</span>}
             </div>
             <p className="text-gray-600 text-[18px]">{item.label}</p>
           </div>
@@ -160,8 +201,7 @@ export default function SolutionsPage() {
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>
           <p className="text-center text-black-500 mx-auto mb-12 font-semibold text-[28px] md:text-[35px] mt-5">
-            Entdecken Sie unsere neuesten Photovoltaik Projekte – echte
-            Referenzen aus ganz Deutschland.
+            Entdecken Sie unsere neuesten Photovoltaik Projekte – echte Referenzen aus ganz Deutschland.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -179,11 +219,7 @@ export default function SolutionsPage() {
               key={i}
               className={`relative group overflow-hidden rounded-lg h-64 transform transition-all duration-700 delay-${
                 i * 100
-              } ${
-                hasMounted
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4"
-              }`}
+              } ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
               <img
                 src={`http://192.168.68.197:8000${project.image}`}
@@ -192,9 +228,7 @@ export default function SolutionsPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <div>
-                  <h3 className="text-white text-[24px] font-bold">
-                    {project.title}
-                  </h3>
+                  <h3 className="text-white text-[24px] font-bold">{project.title}</h3>
                   <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
                     {project.leistung}
                   </p>
@@ -233,10 +267,13 @@ export default function SolutionsPage() {
           {partnersFrappe.map((partner, index) => (
             <div key={index} className="px-2">
               <div className="flex items-center justify-center h-40 transition-transform duration-500 hover:scale-105">
-                <img
+                <Image
                   src={`http://192.168.68.197:8000${partner.image}`}
                   alt={partner.name}
-                  className="max-h-32 w-auto object-contain transition-all duration-300"
+                  width={160}
+                  height={100}
+                  className="w-auto h-auto object-contain transition-all duration-300 "
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </div>

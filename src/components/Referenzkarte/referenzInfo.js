@@ -13,7 +13,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div
-      className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg group mx-2"
+      className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg group "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -27,6 +27,7 @@ const ProjectCard = ({ project }) => {
           }`}
           style={{ objectFit: "cover" }}
           priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-black/40 transition-opacity duration-300"></div>
       </div>
@@ -187,7 +188,7 @@ const ProjectsSection = () => {
           {marken.length > 0 ? (
             <Slider {...settings}>
               {marken.map((project) => (
-                <div key={project.id} className="px-2">
+                <div key={project.id} className="px-0 md:px-4">
                   <ProjectCard project={project} />
                 </div>
               ))}
