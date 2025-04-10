@@ -196,6 +196,7 @@ const ProjectsSection = () => {
         <div className="flex justify-center mt-12">
           <Link
             href={"/referenzen/projekte"}
+            onClick={() => sendGTMEvent({ event: "buttonClicked", value: "xyz" })}
             className="bg-[#669933]/90 hover:bg-[#669933] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2 text-[16px]"
           >
             WEITERE PROJEKTE

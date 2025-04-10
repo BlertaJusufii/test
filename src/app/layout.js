@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/navbar";
 import Footer from "@/components/Reusable/footer";
 import CookieComponent from "@/components/Cookies/cookiecomponent";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
   title: {
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
         {children}
         <CookieComponent />
         <Footer />
+        <GoogleTagManager gtmId="GTM-MTT7LVDC" />
       </body>
     </html>
   );
