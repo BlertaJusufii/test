@@ -1,9 +1,4 @@
 "use client";
-<<<<<<< HEAD
-import React from "react";
-=======
-
->>>>>>> CookieDeveloped
 import { FaSolarPanel } from "react-icons/fa";
 import { FaFlag } from "react-icons/fa";
 

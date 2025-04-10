@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-import { Metadata } from "next";
-
-import ProjectsHero from "@/components/Project/info";
-import Vorteil from "@/components/Project/vorteile";
->>>>>>> CookieDeveloped
 import TechnologySection from "@/components/Reusable/backgroundImage";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
