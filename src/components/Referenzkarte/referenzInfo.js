@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
