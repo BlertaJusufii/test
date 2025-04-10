@@ -48,9 +48,7 @@ const ProjectCard = ({ project }) => {
           <h3 className="text-[20px] font-bold ">{project.location}</h3>
           <p
             className={`text-[16px] font-light mt-2 transition-all duration-300 ${
-              isHovered
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-2"
+              isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
             }`}
           >
             {project.capacity}
@@ -149,35 +147,29 @@ const ProjectsSection = () => {
           </div>
           <div className="text-gray-600 space-y-4 text-center text-[16px]">
             <p>
-              Nachhaltige Energielösungen sind der Schlüssel zu einer
-              umweltfreundlichen Zukunft. Mit der steigenden Nachfrage nach
-              Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte
-              haben wir zahlreiche Projekte erfolgreich realisiert.
+              Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
+              Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
+              Projekte erfolgreich realisiert.
               <br />
-              Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche
-              Darstellung unserer bisherigen Einsätze – eine Solaranlagen Karte,
-              die zeigt, wo unsere Systeme zur Energiewende beitragen.
+              Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche Darstellung unserer bisherigen Einsätze
+              – eine Solaranlagen Karte, die zeigt, wo unsere Systeme zur Energiewende beitragen.
               <br />
               <br />
-              Jedes Projekt ist individuell geplant und auf die spezifischen
-              Anforderungen unserer Kunden abgestimmt. Von kleinen privaten
-              Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen
-              in Deutschland stehen für Effizienz, Qualität und Nachhaltigkeit.
+              Jedes Projekt ist individuell geplant und auf die spezifischen Anforderungen unserer Kunden abgestimmt.
+              Von kleinen privaten Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen in Deutschland
+              stehen für Effizienz, Qualität und Nachhaltigkeit.
               <br />
-              Besonderen Wert legen wir auf professionelle Planung, moderne
-              Technik und intelligente Steuerungssysteme. In Kombination mit
-              leistungsstarken Speichern erhöhen wir die Eigenverbrauchsquote
-              und reduzieren die Abhängigkeit vom öffentlichen Stromnetz.
+              Besonderen Wert legen wir auf professionelle Planung, moderne Technik und intelligente Steuerungssysteme.
+              In Kombination mit leistungsstarken Speichern erhöhen wir die Eigenverbrauchsquote und reduzieren die
+              Abhängigkeit vom öffentlichen Stromnetz.
               <br />
               <br />
-              Unsere Referenzen zeigen: Photovoltaik ist nicht nur ökologisch
-              sinnvoll, sondern auch wirtschaftlich attraktiv. Mit staatlicher
-              Förderung, Einspeisevergütung und steuerlichen Vorteilen lohnt
-              sich die Investition mehrfach.
+              Unsere Referenzen zeigen: Photovoltaik ist nicht nur ökologisch sinnvoll, sondern auch wirtschaftlich
+              attraktiv. Mit staatlicher Förderung, Einspeisevergütung und steuerlichen Vorteilen lohnt sich die
+              Investition mehrfach.
               <br />
-              Oekovolt begleitet Sie von der Beratung über die Installation bis
-              zur langfristigen Wartung – mit Lösungen, die echten Mehrwert
-              bieten.
+              Oekovolt begleitet Sie von der Beratung über die Installation bis zur langfristigen Wartung – mit
+              Lösungen, die echten Mehrwert bieten.
             </p>
           </div>
         </div>
@@ -202,10 +194,13 @@ const ProjectsSection = () => {
 
         {/* WEITERE PROJEKTE Button */}
         <div className="flex justify-center mt-12">
-          <button className="bg-[#669933]/90 hover:bg-[#669933] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2 text-[16px]">
+          <Link
+            href={"/referenzen/projekte"}
+            className="bg-[#669933]/90 hover:bg-[#669933] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2 text-[16px]"
+          >
             WEITERE PROJEKTE
             <FaAngleRight />
-          </button>
+          </Link>
         </div>
       </section>
 

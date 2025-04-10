@@ -119,11 +119,11 @@ const Map = () => {
           </div>
         </div>
 
-        <div className="w-full h-[300px] md:h-[500px]">
+        <div className="w-full h-[500px] ">
           {cookieAccepted ? (
             <GoogleMapsEmbed
               apiKey="AIzaSyDZRlUwuUyVmqLfnwgSFoy9Lsf5b1R_n5M"
-              height={500}
+              height="500"
               width="100%"
               mode="place"
               q="Landstraße+11,+6911+Lochau,+Austria"

@@ -172,7 +172,7 @@ export default function SolutionsPage() {
       </div>
 
       {/* Stats Section */}
-      <div ref={countersRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+      <div ref={countersRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 relative pb-10">
         {stats.map((item, i) => (
           <div
             key={i}
@@ -270,8 +270,8 @@ export default function SolutionsPage() {
                 <Image
                   src={`http://192.168.68.197:8000${partner.image}`}
                   alt={partner.name}
-                  width={160}
-                  height={100}
+                  width={200}
+                  height={160}
                   className="w-auto h-auto object-contain transition-all duration-300 "
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
