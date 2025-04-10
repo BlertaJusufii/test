@@ -18,6 +18,19 @@ const Navbar = () => {
     setIsOpen(false);
     setOpenDropdown(null);
   };
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (openDropdown && !event.target.closest(".relative.group")) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
@@ -28,8 +41,16 @@ const Navbar = () => {
       title: "Dienstleistungen",
       slug: "dienstleistungen",
       items: [
-        { name: "Photovoltaik", slug: "photovoltaik", link: "/dienstleistungen/photovoltaik" },
-        { name: "Smarthome", slug: "smarthome", link: "/dienstleistungen/smarthome" },
+        {
+          name: "Photovoltaik",
+          slug: "photovoltaik",
+          link: "/dienstleistungen/photovoltaik",
+        },
+        {
+          name: "Smarthome",
+          slug: "smarthome",
+          link: "/dienstleistungen/smarthome",
+        },
         { name: "Service", slug: "service", link: "/dienstleistungen/service" },
       ],
     },
@@ -38,7 +59,11 @@ const Navbar = () => {
       slug: "referenzen",
       items: [
         { name: "Projekte", slug: "projekte", link: "/referenzen/projekte" },
-        { name: "Referenzkarte", slug: "referenzkarte", link: "/referenzen/referenzkarte" },
+        {
+          name: "Referenzkarte",
+          slug: "referenzkarte",
+          link: "/referenzen/referenzkarte",
+        },
       ],
     },
     {
@@ -66,7 +91,10 @@ const Navbar = () => {
       {/* Main Navigation */}
       <nav className={`w-full max-w-7xl mx-auto py-4 `}>
         <div className="px-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center h-16 w-40 lg:w-80 relative">
+          <Link
+            href="/"
+            className="flex items-center h-16 w-40 lg:w-80 relative"
+          >
             <Image
               src="/Images/Navbar/Logo.png"
               alt="Logo"
@@ -84,9 +112,11 @@ const Navbar = () => {
                     <>
                       <Link
                         href={item.link || "#"}
-                        onMouseEnter={() => toggleDropdown(item.title)}
-                        onClick={() => toggleDropdown(item.title)}
-                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-lg"
+                        onClick={(e) => {
+                          e.preventDefault(); // Prevent navigation when clicking
+                          toggleDropdown(item.title);
+                        }}
+                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-lg cursor-pointer"
                       >
                         {item.title}
                         {openDropdown === item.title ? (
@@ -96,15 +126,12 @@ const Navbar = () => {
                         )}
                       </Link>
                       {openDropdown === item.title && (
-                        <div
-                          className="absolute left-0 mt-6 w-48 bg-[var(--ternary)] rounded-md shadow-lg py-1 z-50 bg-white"
-                          onMouseLeave={() => setOpenDropdown(null)}
-                        >
+                        <div className="absolute left-0 mt-6 w-48 bg-[var(--ternary)] rounded-md shadow-lg py-1 z-50 bg-white">
                           {item.items.map((subItem) => (
                             <Link
                               key={subItem.name}
                               href={subItem.link}
-                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933]  text-md"
+                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933] text-md"
                               onClick={() => {
                                 setOpenDropdown(null);
                                 closeMobileMenu();
@@ -134,20 +161,31 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? <FiX size={24} className="text-gray-800" /> : <FiMenu size={24} className="text-gray-800" />}
+            {isOpen ? (
+              <FiX size={24} className="text-gray-800" />
+            ) : (
+              <FiMenu size={24} className="text-gray-800" />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="xl:hidden fixed inset-0 bg-black/30 z-40" onClick={closeMobileMenu}>
+          <div
+            className="xl:hidden fixed inset-0 bg-black/30 z-40"
+            onClick={closeMobileMenu}
+          >
             <div
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-10 border-b">
                 {/* Company Logo */}
-                <Link href="/" className="flex items-center h-20 w-40 relative" onClick={closeMobileMenu}>
+                <Link
+                  href="/"
+                  className="flex items-center h-20 w-40 relative"
+                  onClick={closeMobileMenu}
+                >
                   <Image
                     src="/Images/Navbar/Logo.png"
                     alt="Company Logo"
