@@ -32,13 +32,9 @@ const ProjectCard = ({ project }) => {
           }`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div
-          className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}
-        ></div>
+        <div className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}></div>
       </div>
-      <div
-        className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}
-      >
+      <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
         <div className="text-white">
           <h3 className="text-[20px]">{project?.location}</h3>
           <p
@@ -91,15 +87,12 @@ const ProjectsSection = () => {
 
         const data = await response.json();
 
-        const formattedEvents = data.message
-          .slice()
-          .reverse()
-          .map((marke) => ({
-            location: marke.title,
-            image: marke.bild_anhagen[0].bild_anhagen,
-            status: marke.status,
-            capacity: marke.leistung,
-          }));
+        const formattedEvents = data.message.slice().map((marke) => ({
+          location: marke?.title,
+          image: marke?.bild_anhagen[0]?.bild_anhagen,
+          status: marke?.status,
+          capacity: marke?.leistung,
+        }));
 
         setMarken(formattedEvents);
       } catch (error) {
@@ -125,17 +118,14 @@ const ProjectsSection = () => {
           </div>
           <div className="prose prose-lg text-gray-600 space-y-4 text-center text-[18px]">
             <p>
-              In einer Zeit, in der nachhaltige Energiequellen immer wichtiger
-              werden, ist es essenziell, innovative Photovoltaik Projekte zu
-              entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.
+              In einer Zeit, in der nachhaltige Energiequellen immer wichtiger werden, ist es essenziell, innovative
+              Photovoltaik Projekte zu entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.
             </p>
 
             <p>
-              Die Nutzung von Solarenergie trägt nicht nur zur Reduzierung von
-              CO<sub>2</sub>-Emissionen bei, sondern ermöglicht langfristige
-              Einsparungen und größere Unabhängigkeit von steigenden
-              Energiepreisen. Durch den Einsatz moderner Technologien entstehen
-              individuelle Lösungen, die exakt auf die Anforderungen von
+              Die Nutzung von Solarenergie trägt nicht nur zur Reduzierung von CO<sub>2</sub>-Emissionen bei, sondern
+              ermöglicht langfristige Einsparungen und größere Unabhängigkeit von steigenden Energiepreisen. Durch den
+              Einsatz moderner Technologien entstehen individuelle Lösungen, die exakt auf die Anforderungen von
               Gewerbe, Industrie und Privathaushalten abgestimmt sind.
             </p>
           </div>
@@ -158,21 +148,17 @@ const ProjectsSection = () => {
                 Previous
               </button>
 
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (number) => (
-                  <button
-                    key={number}
-                    onClick={() => paginate(number)}
-                    className={`px-4 py-2 rounded-md cursor-pointer ${
-                      currentPage === number
-                        ? "bg-[#669933] text-white"
-                        : "border border-gray-300"
-                    }`}
-                  >
-                    {number}
-                  </button>
-                )
-              )}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`px-4 py-2 rounded-md cursor-pointer ${
+                    currentPage === number ? "bg-[#669933] text-white" : "border border-gray-300"
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
 
               <button
                 onClick={() => paginate(Math.min(totalPages, currentPage + 1))}

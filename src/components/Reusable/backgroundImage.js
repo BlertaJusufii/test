@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const TechnologySection = ({ backgroundImage }) => {
   return (
-    <section className="relative w-full h-100">
+    <section className="relative w-full ">
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 bg-black/40">
         <div className="absolute inset-0">

@@ -32,9 +32,9 @@ const JobListings = () => {
 
         const data = await response.json();
         const formattedJobs = data.message.map((job) => ({
-          name: job.title,
-          ort: job.ort,
-          name1: job.name,
+          name: job?.title,
+          ort: job?.ort,
+          name1: job?.name,
         }));
 
         setJobsPosition(formattedJobs);
@@ -48,33 +48,43 @@ const JobListings = () => {
     fetchJobs();
   }, []);
 
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div className="text-red-500 p-4">Error: {error}</div>;
 
   return (
     <div className="bg-gray-100 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-gray-800">Offene Stellen</h1>
         {loading ? (
-          <div className="flex items-center justify-center">Loading jobs...</div>
+          <div className="flex items-center justify-center p-8">Loading jobs...</div>
         ) : (
           <div className="space-y-6">
-            {jobsPosition?.map((job, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group w-full"
-              >
-                <Link href={`/uber-uns/jobs/${generateSlug(job.name1)}`} className="flex justify-between items-center">
-                  <div>
-                    <h2 className="text-xl font-semibold mb-2 text-gray-800">{job.name}</h2>
-                    <p className="text-gray-600">{job.ort}</p>
-                  </div>
-                  <FaChevronRight
-                    className="text-gray-400 group-hover:text-[#669933] mt-1 transition-colors duration-300"
-                    size={24}
-                  />
-                </Link>
+            {jobsPosition && jobsPosition.length > 0 ? (
+              jobsPosition?.map((job, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group w-full"
+                >
+                  <Link
+                    href={`/uber-uns/jobs/${generateSlug(job.name1)}`}
+                    className="flex justify-between items-center"
+                  >
+                    <div>
+                      <h2 className="text-xl font-semibold mb-2 text-gray-800">{job.name}</h2>
+                      <p className="text-gray-600">{job.ort}</p>
+                    </div>
+                    <FaChevronRight
+                      className="text-gray-400 group-hover:text-[#669933] mt-1 transition-colors duration-300"
+                      size={24}
+                    />
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                <p className="text-gray-600">Derzeit sind keine offenen Stellen verfügbar.</p>
+                <p className="text-gray-500 mt-2">Bitte schauen Sie später wieder vorbei.</p>
               </div>
-            ))}
+            )}
           </div>
         )}
       </div>
