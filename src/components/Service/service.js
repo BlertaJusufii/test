@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ServiceSection = () => {
   return (
@@ -14,19 +14,22 @@ const ServiceSection = () => {
       </h1>
       <div className="prose prose-lg text-gray-600 space-y-4 text-center text-[18px]">
         <p>
-          So zuverlässig, sauber und effizient Ihre Technik auch ist – regelmäßiger Service, Wartung und kontinuierliches Monitoring sind unerlässlich.
+          So zuverlässig, sauber und effizient Ihre Technik auch ist – regelmäßiger Service, Wartung und
+          kontinuierliches Monitoring sind unerlässlich.
         </p>
         <p>
-          Mit Oekovolt Photovoltaik Service Deutschland brauchen Sie sich um nichts zu kümmern: Als Generalunternehmer sind wir Ihr verlässlicher Full-Service-Partner für Solaranlagen.
+          Mit Oekovolt Photovoltaik Service Deutschland brauchen Sie sich um nichts zu kümmern: Als Generalunternehmer
+          sind wir Ihr verlässlicher Full-Service-Partner für Solaranlagen.
+        </p>
+        <p>&bdquo;Rundum sorglos&quot; ist bei uns gelebte Realität.</p>
+        <p>
+          Ob Solaranlagen Wartung, Optimierung, Reinigung, Reparatur oder Instandhaltung nach Sturmschäden,
+          Überspannung, Brand oder technischer Störung – Oekovolt bietet Ihnen alles aus einer Hand.
         </p>
         <p>
-          „Rundum sorglos" ist bei uns gelebte Realität.
-        </p>
-        <p>
-          Ob Solaranlagen Wartung, Optimierung, Reinigung, Reparatur oder Instandhaltung nach Sturmschäden, Überspannung, Brand oder technischer Störung – Oekovolt bietet Ihnen alles aus einer Hand.
-        </p>
-        <p>
-          Unsere erfahrenen Expert:innen übernehmen auch die professionelle Reinigung Ihrer PV-Anlage. Dabei verwenden wir Osmose-Wasser – komplett umweltfreundlich und frei von Chemikalien. Mit speziell entwickelten Reinigungsgeräten werden die PV-Module gründlich und schonend von Schmutz, Staub und Ablagerungen befreit.
+          Unsere erfahrenen Expert:innen übernehmen auch die professionelle Reinigung Ihrer PV-Anlage. Dabei verwenden
+          wir Osmose-Wasser – komplett umweltfreundlich und frei von Chemikalien. Mit speziell entwickelten
+          Reinigungsgeräten werden die PV-Module gründlich und schonend von Schmutz, Staub und Ablagerungen befreit.
         </p>
       </div>
     </section>

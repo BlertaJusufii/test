@@ -10,10 +10,10 @@ const AGComponent = () => {
         <h3 className="text-lg md:text-xl mt-4">1. Allgemeine Bestimmungen</h3>
         <p className="mt-8 text-semibold text-md md:text-lg">1.1</p>
         <p className="mt-4">
-          Die Regelungen dieser Allgemeinen Geschäftsbedingungen („AGB") gelten jeweils in ihrer im Zeitpunkt des
-          Vertragsschlusses gültigen Form für jeden Vertragstyp gemäß §2 und das vorvertragliche Schuldverhältnis
-          zwischen der Firma ÖKOVOLT GmbH Solartechnik („ÖKOVOLT") oder einem mit dieser verbundenen Unternehmen mit
-          ihren Kunden.
+          Die Regelungen dieser Allgemeinen Geschäftsbedingungen (&bdquo;AGB&quot;) gelten jeweils in ihrer im Zeitpunkt
+          des Vertragsschlusses gültigen Form für jeden Vertragstyp gemäß §2 und das vorvertragliche Schuldverhältnis
+          zwischen der Firma ÖKOVOLT GmbH Solartechnik (&bdquo;ÖKOVOLT&quot;) oder einem mit dieser verbundenen
+          Unternehmen mit ihren Kunden.
         </p>
         <p className="mt-8 text-semibold text-md md:text-lg">1.2</p>
         <p className="mt-4">

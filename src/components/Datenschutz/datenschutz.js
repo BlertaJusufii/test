@@ -111,9 +111,9 @@ const PrivacyPolicy = () => {
           speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.
         </p>
         <p className="mb-4">
-          Einige Cookies sind "Session-Cookies." Solche Cookies werden nach Ende Ihrer Browser-Sitzung von selbst
-          gelöscht. Hingegen bleiben andere Cookies auf Ihrem Endgerät bestehen, bis Sie diese selbst löschen. Solche
-          Cookies helfen uns, Sie bei Rückkehr auf unserer Website wiederzuerkennen.
+          Einige Cookies sind &quot;Session-Cookies.&quot; Solche Cookies werden nach Ende Ihrer Browser-Sitzung von
+          selbst gelöscht. Hingegen bleiben andere Cookies auf Ihrem Endgerät bestehen, bis Sie diese selbst löschen.
+          Solche Cookies helfen uns, Sie bei Rückkehr auf unserer Website wiederzuerkennen.
         </p>
         <p className="mb-4">
           Mit einem modernen Webbrowser können Sie das Setzen von Cookies überwachen, einschränken oder unterbinden.
@@ -138,10 +138,10 @@ const PrivacyPolicy = () => {
           ist die Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.
         </p>
         <p className="mb-4">
-          Google Analytics verwendet "Cookies." Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät
-          speichert und eine Analyse der Website-Benutzung ermöglichen. Mittels Cookie erzeugte Informationen über Ihre
-          Benutzung unserer Website werden an einen Server von Google übermitteln und dort gespeichert. Server-Standort
-          ist im Regelfall die USA.
+          Google Analytics verwendet &quot;Cookies.&quot; Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem
+          Endgerät speichert und eine Analyse der Website-Benutzung ermöglichen. Mittels Cookie erzeugte Informationen
+          über Ihre Benutzung unserer Website werden an einen Server von Google übermitteln und dort gespeichert.
+          Server-Standort ist im Regelfall die USA.
         </p>
         <p className="mb-4">
           Das Setzen von Google-Analytics-Cookies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Als Betreiber
@@ -206,12 +206,13 @@ const PrivacyPolicy = () => {
 
         <h2 className="text-2xl md:text-3xl text-gray-800 mt-6 mb-4">Demografische Merkmale bei Google Analytics</h2>
         <p>
-          Unsere Website verwendet die Funktion "demografische Merkmale" von Google Analytics. Mit ihr lassen sich
-          Berichte erstellen, die Aussagen zu Alter, Geschlecht und Interessen der Seitenbesucher enthalten. Diese Daten
-          stammen aus interessenbezogener Werbung von Google sowie aus Besucherdaten von Drittanbietern. Eine Zuordnung
-          der Daten zu einer bestimmten Person ist nicht möglich. Sie können diese Funktion jederzeit deaktivieren. Dies
-          ist über die Anzeigeneinstellungen in Ihrem Google-Konto möglich oder indem Sie die Erfassung Ihrer Daten
-          durch Google Analytics, wie im Punkt "Widerspruch gegen die Datenerfassung" erläutert, generell untersagen.
+          Unsere Website verwendet die Funktion &quot;demografische Merkmale&quot; von Google Analytics. Mit ihr lassen
+          sich Berichte erstellen, die Aussagen zu Alter, Geschlecht und Interessen der Seitenbesucher enthalten. Diese
+          Daten stammen aus interessenbezogener Werbung von Google sowie aus Besucherdaten von Drittanbietern. Eine
+          Zuordnung der Daten zu einer bestimmten Person ist nicht möglich. Sie können diese Funktion jederzeit
+          deaktivieren. Dies ist über die Anzeigeneinstellungen in Ihrem Google-Konto möglich oder indem Sie die
+          Erfassung Ihrer Daten durch Google Analytics, wie im Punkt &quot;Widerspruch gegen die Datenerfassung&quot;
+          erläutert, generell untersagen.
         </p>
       </section>
 
@@ -240,9 +241,9 @@ const PrivacyPolicy = () => {
           Statistiken statt.
         </p>
         <p className="mb-4">
-          Die Speicherung von "Conversion-Cookies" erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir als
-          Websitebetreiber haben ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um unser Webangebot und
-          unsere Werbung zu optimieren.
+          Die Speicherung von &quot;Conversion-Cookies&quot; erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir
+          als Websitebetreiber haben ein berechtigtes Interesse an der Analyse des Nutzerverhaltens, um unser Webangebot
+          und unsere Werbung zu optimieren.
         </p>
         <p className="mb-4">
           Einzelheiten zu Google AdWords und Google Conversion-Tracking finden Sie in den Datenschutzbestimmungen von
