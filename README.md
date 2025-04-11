@@ -135,6 +135,6 @@ This software is proprietary and was developed by IT Engineers for Oekovolt Sola
 
 📢 Contact
 
-IT Engineers LLC📧 Email: office@it-bedarf.at🌐 Website: https://www.it-engineers.at
+IT Engineers LLC 📧 Email: office@it-bedarf.at 🌐 Website: https://www.itengineers.at
 
 © 2025 IT Engineers – All Rights Reserved
