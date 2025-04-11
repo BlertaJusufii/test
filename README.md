@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p style="display:flex, justify-content:center, align-items:center">
+  <img src="./public/logo-01.png" alt="IT Engineers Logo" width="200" />
+</p>
 
-## Getting Started
+☀️ Oekovolt Solartechnik GmbH – Developer Branch
 
-First, run the development server:
+Welcome to the developer branch of the official website developed by IT Engineers for Oekovolt Solartechnik GmbH.
 
-```bash
+This branch serves as the main environment for developing, testing, and validating new features. Once functionality is approved, changes are merged into the main branch for production deployment.
+
+📌 Project Overview
+
+This project is a modern solar company platform with an optimized and scalable architecture, integrating a high-performance frontend with a robust PvOne backend system.
+
+Frontend: Next.js (App Router, JavaScript, Tailwind CSS)
+
+Backend: PvOne
+
+🛠️ Tech Stack
+
+Frontend
+
+Framework: Next.js – App Router
+
+Language: JavaScript
+
+Styling: Tailwind CSS
+
+Folder Structure:
+
+src/
+  ├── app/              → Application routing and pages
+  ├── components/       → Reusable UI and logic components
+public/                 → Static assets and SVGs
+
+Backend
+
+PvOne
+
+PvOne Framework
+
+🚀 Getting Started (Frontend)
+
+✅ Prerequisites
+
+Node.js v18+
+
+npm or Yarn
+
+📦 Installation
+
+Clone the repository:
+
+git clone http://46.99.162.142:3000/IT-Engineers-LLC/OekovoltDe-Web.git --branch develop
+cd OekovoltDe-Web
+
+Install dependencies:
+
+npm install
+# or
+yarn install
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Access the frontend:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Open your browser and visit: http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧱 Getting Started (Backend – PvOne)
 
-## Learn More
+The backend uses the PvOne Framework with customizations under the PvOne application.
 
-To learn more about Next.js, take a look at the following resources:
+📌 Backend Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Python 3.10+
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Node.js & Yarn
 
-## Deploy on Vercel
+Redis
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MariaDB 10.6+
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+wkhtmltopdf (with patched Qt)
+
+PvOne Framework Bench CLI
+
+📅 Backend Setup
+
+ℹ️ We have created a custom shell script that automatically installs and configures PvOne Framework for you.
+
+To start the backend server:
+
+Connect to the server using PuTTY or terminal.
+
+Navigate to the bench directory:
+
+cd /path/to/oekovolt-backend
+
+Start the server:
+
+bench start
+
+Access the PvOne backend:http://ip-address:8000
+
+💼 Directory Highlights
+
+src/app/ – All route-based pages (/agb, /kontakt, /referenzen, etc.)
+
+src/components/ – Modular components by feature (e.g., Navbar, Jobs, Project, etc.)
+
+public/ – Static assets such as logos and SVG icons
+
+globals.css – Global Tailwind and custom styles
+
+layout.js – Root layout wrapper
+
+page.js – Homepage route
+
+🔀 Development Workflow
+
+Work on a new branch from develop.
+
+Implement and test your features.
+
+Commit with meaningful messages.
+
+Push to the remote develop branch.
+
+📄 License
+
+This software is proprietary and was developed by IT Engineers for Oekovolt Solartechnik GmbH.
+
+📢 Contact
+
+IT Engineers LLC📧 Email: office@it-bedarf.at🌐 Website: https://www.it-engineers.at
+
+© 2025 IT Engineers – All Rights Reserved
