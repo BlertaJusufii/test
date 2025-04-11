@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/Logo-Oekovolt-Gruen-mit-Weiss.webp" alt="IT Engineers Logo" width="200" />
+  <img src="./public/Logo_ov_4cDeutschland-removebg-preview.png" alt="IT Engineers Logo" width="400" />
 </p>
 
 
