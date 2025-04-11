@@ -6,7 +6,7 @@ import CookieDetails from "./coookieItem";
 import Link from "next/link";
 import { GoDotFill } from "react-icons/go";
 
-// cookieData.js
+
 export const cookieServices = {
   functional: {
     googleMaps: {
@@ -14,7 +14,8 @@ export const cookieServices = {
       description: "Enables embedding of interactive maps on our website.",
       purpose:
         "Google Maps enables the embedding of maps directly into websites to enhance the website. This requires processing the user’s IP-address and metadata. Cookies or cookie-like technologies can be stored and read. These can contain personal data and technical data like user ID, consent, settings of the map viewer and security tokens. This data can be used to collect visited websites, detailed statistics about user behavior, and it can be used to improve the services of Google. This data may be linked by Google to the data of users logged in on the websites of Google (e.g. google.com and youtube.com). Google provides personal information to their affiliates and other trusted businesses or persons to process it for them, based on Google's instructions and in compliance with Google's privacy policy.",
-      provider: "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
+      provider:
+        "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
       contact: {
         phone: "+1 650 253 0000",
         email: "dpo-google@google.com",
@@ -25,9 +26,17 @@ export const cookieServices = {
         { name: "__Secure-3PSIDCC", type: "HTTP Cookie", duration: "1 year" },
         { name: "__Secure-1PSIDCC", type: "HTTP Cookie", duration: "1 year" },
         { name: "SIDCC", type: "HTTP Cookie", duration: "1 year" },
-        { name: "__Secure-3PAPISID", type: "HTTP Cookie", duration: "13 months" },
+        {
+          name: "__Secure-3PAPISID",
+          type: "HTTP Cookie",
+          duration: "13 months",
+        },
         { name: "SSID", type: "HTTP Cookie", duration: "13 months" },
-        { name: "__Secure-1PAPISID", type: "HTTP Cookie", duration: "13 months" },
+        {
+          name: "__Secure-1PAPISID",
+          type: "HTTP Cookie",
+          duration: "13 months",
+        },
         { name: "__Secure-3PSID", type: "HTTP Cookie", duration: "13 months" },
         { name: "__Secure-1PSID", type: "HTTP Cookie", duration: "13 months" },
         { name: "SID", type: "HTTP Cookie", duration: "13 months" },
@@ -37,7 +46,11 @@ export const cookieServices = {
         { name: "__Secure-ENID", type: "HTTP Cookie", duration: "13 months" },
         { name: "_c;;i", type: "Local Storage", duration: "No expiry" },
         { name: "LH;;s-*", type: "Local Storage", duration: "No expiry" },
-        { name: "sb_wiz.zpc.gws-wiz.", type: "Local Storage", duration: "No expiry" },
+        {
+          name: "sb_wiz.zpc.gws-wiz.",
+          type: "Local Storage",
+          duration: "No expiry",
+        },
         { name: "sb_wiz.ueh", type: "Local Storage", duration: "No expiry" },
       ],
       dataProcessing: {
@@ -79,7 +92,8 @@ export const cookieServices = {
           type: "HTTP Cookie",
           host: "www.openstreetmap.org",
           duration: "14 months",
-          purpose: "Latitude and longitude, as well as zoom level of the selected map location",
+          purpose:
+            "Latitude and longitude, as well as zoom level of the selected map location",
         },
         {
           name: "_osm_session",
@@ -127,7 +141,8 @@ export const cookieServices = {
       title: "Google Tag Manager",
       description: "Manages tags and scripts on our website.",
       purpose: "Service for managing tags triggered by specific events.",
-      provider: "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
+      provider:
+        "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
       contact: {
         phone: "+1 650 253 0000",
         email: "dpo-google@google.com",
@@ -162,10 +177,12 @@ export const cookieServices = {
   statistics: {
     googleAnalytics: {
       title: "Google Analytics",
-      description: "Provides detailed statistics about user behavior on the website.",
+      description:
+        "Provides detailed statistics about user behavior on the website.",
       purpose:
         "Google Analytics creates detailed statistics about user behavior on the website, including the processing of IP address and metadata, which can help determine a user's country, city, and language. It tracks page views, time spent on pages, device usage, and more.",
-      provider: "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
+      provider:
+        "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
       contact: {
         phone: "+353 1 543 1000",
         email: "dpo-google@google.com",
@@ -204,10 +221,12 @@ export const cookieServices = {
   marketing: {
     googleAds: {
       title: "Google Ads",
-      description: "Tracks conversions and enables remarketing for Google Ads campaigns.",
+      description:
+        "Tracks conversions and enables remarketing for Google Ads campaigns.",
       purpose:
         "Google Ads Conversion Tracking tracks the conversion rate and success of Google Ads campaigns, using cookies to differentiate users and track their behavior. It also enables remarketing, displaying targeted ads to users who have already interacted with a Google Ads ad.",
-      provider: "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
+      provider:
+        "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland",
       contact: {
         phone: "+1 650 253 0000",
         email: "dpo-google@google.com",
@@ -253,13 +272,12 @@ export default function CookieBanner({ forceShow = false, onClose }) {
 
   const togglePrivacy = () => {
     setIsShown(!isShown);
-    // You can add additional logic here if needed
   };
   useEffect(() => {
     const tagManagerArgs = {
       gtmId: "GTM-MTT7LVDC",
     };
-    TagManager.initialize(tagManagerArgs); // Make sure this is initialized here
+    TagManager.initialize(tagManagerArgs);
   }, []);
   const [showBanner, setShowBanner] = useState(forceShow);
   const [expandedSections, setExpandedSections] = useState({
@@ -273,7 +291,6 @@ export default function CookieBanner({ forceShow = false, onClose }) {
     functional: false,
     statistics: false,
     marketing: false,
-    // Individual services
     googleMaps: false,
     openStreetMap: false,
     googleTagManager: false,
@@ -288,14 +305,20 @@ export default function CookieBanner({ forceShow = false, onClose }) {
   }, []);
 
   useEffect(() => {
-    // Update category consent based on individual services
     setConsent((prev) => ({
       ...prev,
-      functional: prev.googleMaps && prev.openStreetMap && prev.googleTagManager,
+      functional:
+        prev.googleMaps && prev.openStreetMap && prev.googleTagManager,
       statistics: prev.googleAnalytics,
       marketing: prev.googleAds,
     }));
-  }, [consent.googleMaps, consent.openStreetMap, consent.googleTagManager, consent.googleAnalytics, consent.googleAds]);
+  }, [
+    consent.googleMaps,
+    consent.openStreetMap,
+    consent.googleTagManager,
+    consent.googleAnalytics,
+    consent.googleAds,
+  ]);
 
   const handleAcceptAll = () => {
     const newConsent = {
@@ -358,7 +381,7 @@ export default function CookieBanner({ forceShow = false, onClose }) {
   }, [consent.googleAnalytics]);
   const handleClose = () => {
     setShowBanner(false);
-    if (onClose) onClose(); // Notify parent to reset forceShow
+    if (onClose) onClose();
   };
   const saveConsent = (consentState) => {
     setCookie("cookieConsent", JSON.stringify(consentState), {
@@ -426,26 +449,34 @@ export default function CookieBanner({ forceShow = false, onClose }) {
   return (
     <>
       <div className="fixed inset-0 bg-black/50 z-60 backdrop-blur-sm" />
-      <div className={`fixed inset-0 flex items-center justify-center z-60 pointer-events-none `}>
+      <div
+        className={`fixed inset-0 flex items-center justify-center z-60 pointer-events-none `}
+      >
         <div className="max-h-[100dvh] h-full lg:max-w-[90vw] lg:max-h-[90vh] bg-white lg:rounded-xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto overflow-y-auto relative lg:h-auto ">
-          <h2 className="text-2xl font-bold text-gray-800 p-6 pb-0 sticky bg-white z-10 pb-4 top-0 md:relative">
+          <h2 className="text-2xl font-bold text-gray-800 p-6 sticky bg-white z-10 pb-4 top-0 md:relative">
             Individuelle Privatsphäre-Präferenzen
           </h2>
-          {/* Header - Updated layout */}
           <div className="p-6 border-b border-gray-200 flex justify-between flex-col-reverse items-start md:flex-row relative">
             <div className="w-[100%] flex-1 md:w-[60%]">
               <p className="text-gray-600 text-sm">
-                Wir verwenden Cookies und ähnliche Technologien auf unserer Website und verarbeiten personenbezogene
-                Daten über Sie, wie Ihre IP-Adresse. Wir teilen diese Daten auch mit Dritten. Die Datenverarbeitung kann
-                mit Ihrer Einwilligung oder auf der Grundlage eines berechtigten Interesses erfolgen, dem Sie
-                widersprechen können. Sie haben das Recht, nur in essenzielle Services einzuwilligen und Ihre
-                Einwilligung zu einem späteren Zeitpunkt in der Datenschutzerklärung zu ändern oder zu widerrufen.
-                Nachfolgend finden Sie eine Übersicht über alle Services, die von dieser Website genutzt werden. Sie
-                können detaillierte Informationen zu jedem Service einsehen und diesen einzeln zustimmen oder von Ihrem
-                Widerspruchsrecht Gebrauch machen.
+                Wir verwenden Cookies und ähnliche Technologien auf unserer
+                Website und verarbeiten personenbezogene Daten über Sie, wie
+                Ihre IP-Adresse. Wir teilen diese Daten auch mit Dritten. Die
+                Datenverarbeitung kann mit Ihrer Einwilligung oder auf der
+                Grundlage eines berechtigten Interesses erfolgen, dem Sie
+                widersprechen können. Sie haben das Recht, nur in essenzielle
+                Services einzuwilligen und Ihre Einwilligung zu einem späteren
+                Zeitpunkt in der Datenschutzerklärung zu ändern oder zu
+                widerrufen. Nachfolgend finden Sie eine Übersicht über alle
+                Services, die von dieser Website genutzt werden. Sie können
+                detaillierte Informationen zu jedem Service einsehen und diesen
+                einzeln zustimmen oder von Ihrem Widerspruchsrecht Gebrauch
+                machen.
               </p>
             </div>
-            <div className={`flex flex-col space-y-3 w-[100%] md:w-[40%] md:ml-4 transition-all duration-200 mb-4`}>
+            <div
+              className={`flex flex-col space-y-3 w-[100%] md:w-[40%] md:ml-4 transition-all duration-200 mb-4`}
+            >
               <button
                 onClick={handleAcceptAll}
                 className="px-4 py-2 text-white bg-[#669933]/90 rounded-lg hover:bg-[#669933] transition-colors text-sm whitespace-nowrap"
@@ -467,32 +498,41 @@ export default function CookieBanner({ forceShow = false, onClose }) {
             </div>
           </div>
           <p className="text-gray-600 mt-1 p-6 pb-2 text-xs">
-            Einige Dienste verarbeiten personenbezogene Daten in unsicheren Drittländern. Indem Sie in die Nutzung
-            dieser Services einwilligen, erklären Sie sich auch mit der Verarbeitung Ihrer Daten in diesen unsicheren
-            Drittländern gemäß Art. 49 Abs. 1 lit. a DSGVO einverstanden. Dies birgt das Risiko, dass Ihre Daten von
-            Behörden zu Kontroll- und Überwachungszwecken verarbeitet werden, möglicherweise ohne die Möglichkeit eines
-            Rechtsbehelfs.
+            Einige Dienste verarbeiten personenbezogene Daten in unsicheren
+            Drittländern. Indem Sie in die Nutzung dieser Services einwilligen,
+            erklären Sie sich auch mit der Verarbeitung Ihrer Daten in diesen
+            unsicheren Drittländern gemäß Art. 49 Abs. 1 lit. a DSGVO
+            einverstanden. Dies birgt das Risiko, dass Ihre Daten von Behörden
+            zu Kontroll- und Überwachungszwecken verarbeitet werden,
+            möglicherweise ohne die Möglichkeit eines Rechtsbehelfs.
             <br />
             <br />
-            Außerdem erlauben Sie die Datenverarbeitung gemäß dem Google Consent Mode von Teilnehmenden Partnern auf der
-            Grundlage Ihrer Einwilligung für die folgenden Zwecke:
+            Außerdem erlauben Sie die Datenverarbeitung gemäß dem Google Consent
+            Mode von Teilnehmenden Partnern auf der Grundlage Ihrer Einwilligung
+            für die folgenden Zwecke:
           </p>
           <div className="mt-3">
             <p
-              className={`text-center text-sm text-[var(--secondry)]/80  ${isShown && `hidden`} md:hidden pb-4 `}
+              className={`text-center text-sm text-[var(--secondry)]/80  ${
+                isShown && `hidden`
+              } md:hidden pb-4 `}
               onClick={() => setIsShown(!isShown)}
             >
               Individuelle Privatsphäre-Präferenzen
             </p>
           </div>
-
-          {/* Scrollable Content - Keep this part exactly the same */}
-          <div className={`flex-1 p-6 space-y-6 ${isShown ? "block" : "hidden"} md:block`}>
-            {/* Essential Cookies */}
+          <div
+            className={`flex-1 p-6 space-y-6 ${
+              isShown ? "block" : "hidden"
+            } md:block`}
+          >
             <div className="space-y-2 border border-[var(--secondary)]/20 p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <label htmlFor="essential-cookies" className="flex items-center space-x-3">
+                  <label
+                    htmlFor="essential-cookies"
+                    className="flex items-center space-x-3"
+                  >
                     <input
                       type="checkbox"
                       id="essential-cookies"
@@ -505,16 +545,18 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                 </div>
               </div>
               <p className="text-sm text-gray-500 ml-8">
-                Essential services are required for the basic functionality of the website. They only contain
-                technically necessary services. These services cannot be objected to.
+                Essential services are required for the basic functionality of
+                the website. They only contain technically necessary services.
+                These services cannot be objected to.
               </p>
             </div>
-
-            {/* Functional Cookies */}
             <div className="space-y-4 border border-[var(--secondary)]/20 p-6">
               <div className="flex items-center justify-start gap-2 ">
                 <div className="flex items-center space-x-3">
-                  <label htmlFor="functional-cookies" className="flex items-center space-x-3">
+                  <label
+                    htmlFor="functional-cookies"
+                    className="flex items-center space-x-3"
+                  >
                     <input
                       type="checkbox"
                       id="functional-cookies"
@@ -522,31 +564,40 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                       onChange={() => toggleConsent("functional")}
                       className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="font-medium text-gray-900">Functional (3)</span>
+                    <span className="font-medium text-gray-900">
+                      Functional (3)
+                    </span>
                   </label>
                 </div>
               </div>
               <div className="flex items-center justify-start gap-2">
                 <p className="text-sm text-gray-500 ml-8">
-                  Functional services are necessary to provide features beyond the essential functionality such as
-                  prettier fonts, video playback or interactive web 2.0 features. Content from e.g. video platforms and
-                  social media platforms are blocked by default, and can be consented to. If the service is agreed to,
-                  this content is loaded automatically without further manual consent.&nbsp;&nbsp;
+                  Functional services are necessary to provide features beyond
+                  the essential functionality such as prettier fonts, video
+                  playback or interactive web 2.0 features. Content from e.g.
+                  video platforms and social media platforms are blocked by
+                  default, and can be consented to. If the service is agreed to,
+                  this content is loaded automatically without further manual
+                  consent.&nbsp;&nbsp;
                   <span
                     onClick={() => toggleCategoryDetails("functional")}
                     className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
                   >
-                    {expandedSections.functional ? "Hide details" : "Show details"}
+                    {expandedSections.functional
+                      ? "Hide details"
+                      : "Show details"}
                   </span>
                 </p>
               </div>
               {expandedSections.functional && (
                 <>
-                  {/* Google Maps */}
                   <div className="ml-8 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <label htmlFor="google-maps" className="flex items-center space-x-3">
+                        <label
+                          htmlFor="google-maps"
+                          className="flex items-center space-x-3"
+                        >
                           <input
                             type="checkbox"
                             id="google-maps"
@@ -554,26 +605,37 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                             onChange={() => toggleConsent("googleMaps")}
                             className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="font-medium">{cookieServices.functional.googleMaps.title}</span>
+                          <span className="font-medium">
+                            {cookieServices.functional.googleMaps.title}
+                          </span>
                         </label>
                       </div>
                     </div>
                     <p className="text-sm text-gray-500 ml-8">
-                      {cookieServices.functional.googleMaps.description}&nbsp;&nbsp;
+                      {cookieServices.functional.googleMaps.description}
+                      &nbsp;&nbsp;
                       <span
                         onClick={() => toggleServiceDetails("googleMaps")}
                         className="text-sm font-medium text-blue-600 hover:text-blue-800"
                       >
-                        {expandedServices.googleMaps ? "Hide details" : "Show details"}
+                        {expandedServices.googleMaps
+                          ? "Hide details"
+                          : "Show details"}
                       </span>
                     </p>
-                    {expandedServices.googleMaps && <CookieDetails service={cookieServices.functional.googleMaps} />}
+                    {expandedServices.googleMaps && (
+                      <CookieDetails
+                        service={cookieServices.functional.googleMaps}
+                      />
+                    )}
                   </div>
-                  {/* OpenStreetMap */}
                   <div className="ml-8 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <label htmlFor="open-street-map" className="flex items-center space-x-3">
+                        <label
+                          htmlFor="open-street-map"
+                          className="flex items-center space-x-3"
+                        >
                           <input
                             type="checkbox"
                             id="open-street-map"
@@ -581,29 +643,37 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                             onChange={() => toggleConsent("openStreetMap")}
                             className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="font-medium">{cookieServices.functional.openStreetMap.title}</span>
+                          <span className="font-medium">
+                            {cookieServices.functional.openStreetMap.title}
+                          </span>
                         </label>
                       </div>
                     </div>
                     <p className="text-sm text-gray-500 ml-8">
-                      {cookieServices.functional.openStreetMap.description}&nbsp;&nbsp;
+                      {cookieServices.functional.openStreetMap.description}
+                      &nbsp;&nbsp;
                       <span
                         onClick={() => toggleServiceDetails("openStreetMap")}
                         className="text-sm font-medium text-blue-600 hover:text-blue-800"
                       >
-                        {expandedServices.openStreetMap ? "Hide details" : "Show details"}
+                        {expandedServices.openStreetMap
+                          ? "Hide details"
+                          : "Show details"}
                       </span>
                     </p>
                     {expandedServices.openStreetMap && (
-                      <CookieDetails service={cookieServices.functional.openStreetMap} />
+                      <CookieDetails
+                        service={cookieServices.functional.openStreetMap}
+                      />
                     )}
                   </div>
-
-                  {/* Google Tag Manager */}
                   <div className="ml-8 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <label htmlFor="google-tag-manager" className="flex items-center space-x-3">
+                        <label
+                          htmlFor="google-tag-manager"
+                          className="flex items-center space-x-3"
+                        >
                           <input
                             type="checkbox"
                             id="google-tag-manager"
@@ -611,32 +681,40 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                             onChange={() => toggleConsent("googleTagManager")}
                             className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
-                          <span className="font-medium">{cookieServices.functional.googleTagManager.title}</span>
+                          <span className="font-medium">
+                            {cookieServices.functional.googleTagManager.title}
+                          </span>
                         </label>
                       </div>
                     </div>
                     <p className="text-sm text-gray-500 ml-8">
-                      {cookieServices.functional.googleTagManager.description}&nbsp;&nbsp;
+                      {cookieServices.functional.googleTagManager.description}
+                      &nbsp;&nbsp;
                       <span
                         onClick={() => toggleServiceDetails("googleTagManager")}
                         className="text-sm font-medium text-blue-600 hover:text-blue-800"
                       >
-                        {expandedServices.googleTagManager ? "Hide details" : "Show details"}
+                        {expandedServices.googleTagManager
+                          ? "Hide details"
+                          : "Show details"}
                       </span>
                     </p>
                     {expandedServices.googleTagManager && (
-                      <CookieDetails service={cookieServices.functional.googleTagManager} />
+                      <CookieDetails
+                        service={cookieServices.functional.googleTagManager}
+                      />
                     )}
                   </div>
                 </>
               )}
             </div>
-
-            {/* Statistics Cookies */}
             <div className="space-y-4 border border-[var(--secondary)]/20 p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <label htmlFor="statistics-cookies" className="flex items-center space-x-3">
+                  <label
+                    htmlFor="statistics-cookies"
+                    className="flex items-center space-x-3"
+                  >
                     <input
                       type="checkbox"
                       id="statistics-cookies"
@@ -644,19 +722,25 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                       onChange={() => toggleConsent("statistics")}
                       className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="font-medium text-gray-900">Statistics (1)</span>
+                    <span className="font-medium text-gray-900">
+                      Statistics (1)
+                    </span>
                   </label>
                 </div>
               </div>
               <div className="flex items-center justify-start gap-2">
                 <p className="text-sm text-gray-500 ml-8">
-                  Statistics services are needed to collect pseudonymous data about the visitors of the website. The
-                  data enables us to understand visitors better and to optimize the website.&nbsp;&nbsp;
+                  Statistics services are needed to collect pseudonymous data
+                  about the visitors of the website. The data enables us to
+                  understand visitors better and to optimize the
+                  website.&nbsp;&nbsp;
                   <span
                     onClick={() => toggleCategoryDetails("statistics")}
                     className="text-sm font-medium text-blue-600 hover:text-blue-800"
                   >
-                    {expandedSections.statistics ? "Hide details" : "Show details"}
+                    {expandedSections.statistics
+                      ? "Hide details"
+                      : "Show details"}
                   </span>
                 </p>
               </div>
@@ -664,7 +748,10 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                 <div className="ml-8 space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <label htmlFor="google-analytics" className="flex items-center space-x-3">
+                      <label
+                        htmlFor="google-analytics"
+                        className="flex items-center space-x-3"
+                      >
                         <input
                           type="checkbox"
                           id="google-analytics"
@@ -672,31 +759,39 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                           onChange={() => toggleConsent("googleAnalytics")}
                           className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
-                        <span className="font-medium">{cookieServices.statistics.googleAnalytics.title}</span>
+                        <span className="font-medium">
+                          {cookieServices.statistics.googleAnalytics.title}
+                        </span>
                       </label>
                     </div>
                   </div>
                   <p className="text-sm text-gray-500 ml-8">
-                    {cookieServices.statistics.googleAnalytics.description}&nbsp;&nbsp;{" "}
+                    {cookieServices.statistics.googleAnalytics.description}
+                    &nbsp;&nbsp;{" "}
                     <span
                       onClick={() => toggleServiceDetails("googleAnalytics")}
                       className="text-sm font-medium text-blue-600 hover:text-blue-800"
                     >
-                      {expandedServices.googleAnalytics ? "Hide details" : "Show details"}
+                      {expandedServices.googleAnalytics
+                        ? "Hide details"
+                        : "Show details"}
                     </span>
                   </p>
                   {expandedServices.googleAnalytics && (
-                    <CookieDetails service={cookieServices.statistics.googleAnalytics} />
+                    <CookieDetails
+                      service={cookieServices.statistics.googleAnalytics}
+                    />
                   )}
                 </div>
               )}
             </div>
-
-            {/* Marketing Cookies */}
             <div className="space-y-4 border border-[var(--secondary)]/20 p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <label htmlFor="marketing-cookies" className="flex items-center space-x-3">
+                  <label
+                    htmlFor="marketing-cookies"
+                    className="flex items-center space-x-3"
+                  >
                     <input
                       type="checkbox"
                       id="marketing-cookies"
@@ -704,20 +799,26 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                       onChange={() => toggleConsent("marketing")}
                       className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="font-medium text-gray-900">Marketing (1)</span>
+                    <span className="font-medium text-gray-900">
+                      Marketing (1)
+                    </span>
                   </label>
                 </div>
               </div>
               <div className="flex items-center justify-start gap-2">
                 <p className="text-sm text-gray-500 ml-8">
-                  Marketing services are used by us and third parties to track the behaviour of individual visitors
-                  (across multiple pages), analyse the data collected and, for example, display personalized
-                  advertisements. These services enable us to track visitors across multiple websites.&nbsp;&nbsp;
+                  Marketing services are used by us and third parties to track
+                  the behaviour of individual visitors (across multiple pages),
+                  analyse the data collected and, for example, display
+                  personalized advertisements. These services enable us to track
+                  visitors across multiple websites.&nbsp;&nbsp;
                   <span
                     onClick={() => toggleCategoryDetails("marketing")}
                     className="text-sm font-medium text-blue-600 hover:text-blue-800"
                   >
-                    {expandedSections.marketing ? "Hide details" : "Show details"}
+                    {expandedSections.marketing
+                      ? "Hide details"
+                      : "Show details"}
                   </span>
                 </p>
               </div>
@@ -725,7 +826,10 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                 <div className="ml-8 space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <label htmlFor="google-ads" className="flex items-center space-x-3">
+                      <label
+                        htmlFor="google-ads"
+                        className="flex items-center space-x-3"
+                      >
                         <input
                           type="checkbox"
                           id="google-ads"
@@ -733,7 +837,9 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                           onChange={() => toggleConsent("googleAds")}
                           className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
-                        <span className="font-medium">{cookieServices.marketing.googleAds.title}</span>
+                        <span className="font-medium">
+                          {cookieServices.marketing.googleAds.title}
+                        </span>
                       </label>
                     </div>
                   </div>
@@ -743,10 +849,16 @@ export default function CookieBanner({ forceShow = false, onClose }) {
                       onClick={() => toggleServiceDetails("googleAds")}
                       className="text-sm font-medium text-blue-600 hover:text-blue-800"
                     >
-                      {expandedServices.googleAds ? "Hide details" : "Show details"}
+                      {expandedServices.googleAds
+                        ? "Hide details"
+                        : "Show details"}
                     </span>
                   </p>
-                  {expandedServices.googleAds && <CookieDetails service={cookieServices.marketing.googleAds} />}
+                  {expandedServices.googleAds && (
+                    <CookieDetails
+                      service={cookieServices.marketing.googleAds}
+                    />
+                  )}
                 </div>
               )}
             </div>
