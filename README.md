@@ -1,6 +1,7 @@
-<p style="display:flex, justify-content:center, align-items:center">
+<p align="center">
   <img src="./public/logo-01.png" alt="IT Engineers Logo" width="200" />
 </p>
+
 
 ☀️ Oekovolt Solartechnik GmbH – Developer Branch
 
