@@ -179,7 +179,7 @@ const Navbar = () => {
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-10 border-b">
+              <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-10">
                 {/* Company Logo */}
                 <Link
                   href="/"

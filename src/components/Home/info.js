@@ -241,7 +241,7 @@ export default function SolutionsPage() {
         <div className="text-center mt-8">
           <Link
             href={"/referenzen/projekte"}
-            className="bg-[#669933]/90 hover:bg-[#669933] text-white px-6 py-3 rounded-lg transition-colors duration-300 text-[18px]"
+            className="bg-[#669933]/90 hover:bg-[#669933] text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[16px]"
           >
             Mehr Projekte anzeigen
           </Link>

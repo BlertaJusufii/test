@@ -20,9 +20,9 @@ const ContactSection = () => {
             </p>
           </div>
 
-          <div className="space-y-4 grid grid-cols-3 gap-4">
+          <div className="space-y-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {/* Phone */}
-            <div className="flex flex-col items-start space-x-3 gap-4">
+            <div className="flex flex-col items-start space-x-3 gap-4 ">
               <div className="p-2 bg-[#669933] text-white rounded-md">
                 <FaPhone className="h-5 w-5" />
               </div>

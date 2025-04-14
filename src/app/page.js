@@ -11,13 +11,11 @@ export default function Home() {
       <VideoBanner
         videoSrc={"/Images/Navbar/intro.mp4"}
         title={"Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
-        mobileVideoSrc={"Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
-      />
+        mobileVideoSrc={"Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"} />
       <ServicesBanner />
       <RotatingCircleSection />
       <SolutionsPage />
       <PVInquiryForm />
       <GreenFeatureSection />
     </div>
-  );
-}
+  );}
