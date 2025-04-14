@@ -172,7 +172,7 @@ function Smartmeter() {
               width={300}
               height={300}
               quality={100}
-              className="rounded-lg shadow-md w-auto h-auto"
+              className="rounded-lg w-auto h-auto"
             />
           </div>
           <div className="">
@@ -182,7 +182,7 @@ function Smartmeter() {
               width={300}
               height={400}
               quality={100}
-              className="rounded-lg shadow-md w-auto h-auto"
+              className="rounded-lg w-auto h-auto"
             />
           </div>
         </div>

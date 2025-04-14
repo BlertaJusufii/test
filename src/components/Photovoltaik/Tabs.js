@@ -10,7 +10,7 @@ export default function Tabs() {
   return (
     <div className="flex justify-center algin-items-center">
       <main className="flex flex-col md:flex-row max-w-7xl w-full mt-6">
-        <div className="w-full md:w-64 border-r border-gray-200 bg-white">
+        <div className="w-full md:w-84 border-r border-gray-200 bg-white">
           <nav className="p-4">
             <ul className="space-y-4">
               <li>
@@ -90,7 +90,7 @@ function Privathaushalte() {
           width={600}
           height={350}
           quality={100}
-          className="rounded-lg shadow-md object-cover h-auto w-auto"
+          className="rounded-lg  object-cover h-auto w-auto"
         />
       </div>
       <div className="space-y-3">

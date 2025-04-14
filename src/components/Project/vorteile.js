@@ -4,7 +4,7 @@ import { FaFlag } from "react-icons/fa";
 
 const Vorteil = () => {
   return (
-    <section className=" pb-16 md:pb-24 pt-12">
+    <section className=" pb-16 md:pb-24 ">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Top Row: Image + Benefits Grid */}
         {/* Bottom Row: Split Text Sections */}

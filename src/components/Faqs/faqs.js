@@ -125,7 +125,7 @@ const SolarInfoAccordion = () => {
                   <div key={index} className="transition-all duration-200">
                     <button
                       onClick={() => toggleAccordion(section.key, index)}
-                      className="w-full flex items-start space-x-4 py-4 text-left focus:outline-none"
+                      className="w-full flex items-center space-x-4 py-4 text-left focus:outline-none"
                       aria-expanded={isActive}
                       aria-controls={panelId}
                     >
