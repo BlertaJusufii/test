@@ -87,7 +87,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 w-full z-50 bg-white shadow-lg">
+    <header className="sticky top-0 w-full z-500 bg-white shadow-lg">
       {/* Main Navigation */}
       <nav className={`w-full max-w-7xl mx-auto py-4 `}>
         <div className="px-4 flex justify-between items-center">

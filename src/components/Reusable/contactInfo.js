@@ -14,11 +14,11 @@ export default function GreenFeatureSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-[18px] font-bold" style={{ color: "#669933" }}>
+          <h2 className="lg:text-[30px] text-2xl md:text-3xl  font-[500]" style={{ color: "#2e8400" }}>
             Nachhaltige Energie für Ihr Zuhause
           </h2>
 
-          <p className="text-[16px] text-gray-600">
+          <p className="text-[18px] text-gray-800">
             Entdecken Sie unsere maßgeschneiderten Photovoltaik-Lösungen, die Ihnen helfen, Energie zu sparen und
             gleichzeitig die Umwelt zu schonen. Unsere Experten beraten Sie gerne zu den besten Optionen für Ihr
             Zuhause.
@@ -26,7 +26,7 @@ export default function GreenFeatureSection() {
 
           <Link
             href="/kontakt"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[16px] uppercase"
+            className="inline-flex items-center font-[550] gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[14px] uppercase"
             style={{ backgroundColor: "#669933" }}
           >
             Jetzt Kontaktieren
@@ -46,7 +46,7 @@ export default function GreenFeatureSection() {
               fill
               priority
               className="object-cover"
-              sizes="(max-width: 768px) 100px, 200px"
+              sizes="(max-width: 768px) 100px, 200px; (max-width: 1024px) 50vw, 33vw"
             />
           </div>
         </motion.div>

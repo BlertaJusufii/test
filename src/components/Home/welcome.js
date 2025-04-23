@@ -6,14 +6,14 @@ import Image from "next/image";
 
 export default function RotatingImageSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [radius, setRadius] = useState(200); // Default radius for larger screens
-  const iconSize = 64; // Tailwind w-16 h-16 = 64px
+  const [radius, setRadius] = useState(240);
+  const [iconSize, setIconSize] = useState(66);
 
   const images = ["/Images/Home/download-1.jpg", "/Images/Home/download-2.jpg", "/Images/Home/download.jpg"];
   const icons = [
-    { icon: FaSolarPanel, color: "text-yellow-500" },
-    { icon: FaPlug, color: "text-blue-500" },
-    { icon: FaLeaf, color: "text-green-500" },
+    { icon: FaSolarPanel, color: "text-white" },
+    { icon: FaPlug, color: "text-white" },
+    { icon: FaLeaf, color: "text-white" },
   ];
   const items = [
     {
@@ -27,20 +27,28 @@ export default function RotatingImageSection() {
   ];
 
   useEffect(() => {
-    // Adjust radius based on screen size
-    const handleResize = () => {
-      setRadius(window.innerWidth < 768 ? 120 : 200);
+    const updateLayout = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setRadius(100);
+        setIconSize(48);
+      } else if (width < 1024) {
+        setRadius(160);
+        setIconSize(56);
+      } else {
+        setRadius(240);
+        setIconSize(52);
+      }
     };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % icons.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [icons.length]);
 
@@ -59,22 +67,30 @@ export default function RotatingImageSection() {
   const containerSize = (radius + iconSize / 2) * 2 + 20;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pl-4">
-      <div className="flex flex-col lg:flex-row items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
+      <div className="flex flex-col lg:flex-row items-center gap-5">
         <div
-          className="relative flex items-center justify-center mx-auto mb-10 lg:mb-0 lg:w-1/2"
+          className="relative flex items-center justify-center mx-auto"
           style={{
             width: `${containerSize}px`,
             height: `${containerSize}px`,
             maxWidth: "100%",
           }}
         >
+          {/* Image in center */}
           <motion.div
             key={activeIndex}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-gray-200 shadow-lg z-0"
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+              rounded-full overflow-hidden border-[8px] border-gray-200 shadow-lg z-0`}
+            style={{
+              width: radius * 1.6,
+              height: radius * 1.6,
+              maxWidth: "90vw",
+              maxHeight: "90vw",
+            }}
           >
             <Image
               fill
@@ -84,6 +100,8 @@ export default function RotatingImageSection() {
               className="w-full h-full object-cover"
             />
           </motion.div>
+
+          {/* Dotted Circle */}
           <svg
             className="absolute top-0 left-0 w-full h-full z-[5]"
             viewBox={`0 0 ${containerSize} ${containerSize}`}
@@ -94,34 +112,34 @@ export default function RotatingImageSection() {
               cy={containerSize / 2}
               r={radius}
               fill="none"
-              stroke="currentColor"
-              className="text-gray-300 dark:text-gray-600"
+              stroke="#669933"
               strokeWidth="2"
               strokeDasharray="4 4"
             />
           </svg>
-          {icons.map(({ icon: Icon, color }, index) => {
-            const { x, y, zIndex } = getIconPosition(index);
 
+          {/* Rotating Icons */}
+          {icons.map(({ icon: Icon }, index) => {
+            const { x, y, zIndex } = getIconPosition(index);
+            const isActive = index === activeIndex;
             return (
               <motion.div
                 key={index}
-                className={`absolute top-1/2 left-1/2 flex items-center justify-center bg-white rounded-full shadow-lg cursor-pointer border-2 ${
-                  index === activeIndex ? "border-blue-500" : "border-gray-300"
-                }`}
+                className={`absolute top-1/2 z-[10] left-1/2 flex items-center justify-center rounded-full shadow-lg cursor-pointer border-2 
+                  ${isActive ? "bg-[#023a51] border-[#023a51]" : "bg-[#669933] border-[#669933]"}`}
                 style={{
                   width: `${iconSize}px`,
                   height: `${iconSize}px`,
                   marginLeft: `-${iconSize / 2}px`,
                   marginTop: `-${iconSize / 2}px`,
-                  zIndex,
+                  zIndex:"100",
                 }}
                 onClick={() => setActiveIndex(index)}
                 whileHover={{ scale: 1.15 }}
                 animate={{
-                  x: x,
-                  y: y,
-                  scale: index === activeIndex ? 1.1 : 1,
+                  x,
+                  y,
+                  scale: isActive ? 1.1 : 1,
                   transition: {
                     x: { type: "tween", duration: 0.8, ease: "linear" },
                     y: { type: "tween", duration: 0.8, ease: "linear" },
@@ -129,34 +147,36 @@ export default function RotatingImageSection() {
                   },
                 }}
               >
-                <Icon className={`text-2xl ${color}`} />
+                <Icon className="text-white text-2xl" />
               </motion.div>
             );
           })}
         </div>
-        <div className="space-y-4 w-full lg:w-1/2 lg:pl-10">
-          <div className="relative">
-            <h2 className="text-[#669933] text-[18px] font-bold uppercase">WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK</h2>
+
+        {/* Right Side Text */}
+        <div className="space-y-4 w-full lg:w-1/2">
+          <div>
+            <h2 className="text-[#669933] text-lg font-semibold uppercase">WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK</h2>
             <div className="h-0.5 w-20 bg-[#669933] mt-1"></div>
           </div>
-          <p className="text-[28px] md:text-[30px] font-bold text-gray-900 mb-6">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.5]">
             Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.
           </p>
-          <p className="text-gray-700 text-[18px]">
+          <p className="text-black text-[18px] leading-[1.7]">
             Wir sind spezialisiert auf die Planung und Umsetzung leistungsstarker Photovoltaikanlagen für Gewerbe,
             Industrie, Kommunen und Privathaushalte. Unsere Lösungen bieten maximale Effizienz, höchste Qualität und
             Energieunabhängigkeit.
           </p>
-          <div className="grid grid-cols-1 gap-y-6 gap-x-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-8">
             {items.map((item, i) => (
-              <div key={i} className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center bg-green-600">
-                    <FaCheck className="text-white text-xs" />
+              <div key={i} className="">
+                <div className="flex  gap-4">
+                  <div className="w-8 h-8 p-0 m-0 rounded-full bg-[#669933] flex items-center justify-center">
+                    <FaCheck className="text-white text-[12px]" />
                   </div>
-                  <span className="font-medium">{item.name}</span>
+                  <span className="font-semibold text-[18px] leading-[1.7]">{item.name}</span>
                 </div>
-                <p className="text-sm text-gray-600 pl-8">{item.description}</p>
+                <p className="text-sm text-gray-600 pl-11 text-[18px] leading-[1.7]">{item.description}</p>
               </div>
             ))}
           </div>

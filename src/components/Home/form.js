@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaHome, FaBuilding, FaWarehouse, FaHouseUser, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import Image from "next/image";
 
 export default function PVInquiryForm() {
   const [step, setStep] = useState(1);
@@ -26,40 +26,7 @@ export default function PVInquiryForm() {
   useEffect(() => {
     setHasMounted(true);
   }, []);
-  const validateFields = () => {
-    const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
 
-    if (!formData.firstName.trim()) newErrors.firstName = "Vorname ist erforderlich";
-    if (!emailRegex.test(formData.email)) newErrors.email = "Ungültige E-Mail-Adresse";
-    if (!formData.zipCode.trim()) newErrors.zipCode = "Postleitzahl ist erforderlich";
-    if (!formData.city.trim()) newErrors.city = "Ort ist erforderlich";
-    if (!phoneRegex.test(formData.phone)) newErrors.phone = "Ungültige Telefonnummer";
-    if (!formData.acceptTerms) newErrors.acceptTerms = "Sie müssen die Bedingungen akzeptieren";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-    setErrors((prev) => ({ ...prev, [name]: null })); // clear error on change
-  };
-
-  const nextStep = () => setStep((prev) => prev + 1);
-  const prevStep = () => setStep((prev) => prev - 1);
-
-  const roofTypes = [
-    { id: "pultdach", label: "Pultdach", icon: FaHome },
-    { id: "flachdach", label: "Flachdach", icon: FaWarehouse },
-    { id: "satteldach", label: "Satteldach", icon: FaBuilding },
-    { id: "other", label: "Sonstiges Installation", icon: FaHouseUser },
-  ];
 
   const handleSubmit = async () => {
     if (!validateFields()) return;
@@ -94,9 +61,28 @@ export default function PVInquiryForm() {
         throw new Error("Fehler beim Senden der Anfrage");
       }
 
-      const result = await response.json();
-      console.log("API Response:", result);
+      await response.json();
+      setStep(5); // Shfaq step 5 (suksesi)
       setSubmitStatus("success");
+
+      // Reset form pas 5 sekondave
+      setTimeout(() => {
+        setFormData({
+          roofType: "",
+          isOwner: "",
+          powerConsumption: 9000,
+          firstName: "",
+          lastName: "",
+          email: "",
+          zipCode: "",
+          city: "",
+          phone: "",
+          acceptTerms: false,
+        });
+        setErrors({});
+        setStep(1);
+        setSubmitStatus(null);
+      }, 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus("error");
@@ -105,26 +91,55 @@ export default function PVInquiryForm() {
     }
   };
 
-  if (submitStatus === "success") {
-    return (
-      <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-        <div className="text-center py-8">
-          <h2 className="text-2xl font-bold text-green-600 mb-4">Vielen Dank für Ihre Anfrage!</h2>
-          <p className="text-lg text-gray-700">
-            Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.
-          </p>
-        </div>
-      </div>
-    );
-  }
+
+
+
+
+
+  const validateFields = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
+
+    if (!formData.firstName.trim()) newErrors.firstName = "Vorname ist erforderlich";
+    if (!emailRegex.test(formData.email)) newErrors.email = "Ungültige E-Mail-Adresse";
+    if (!formData.zipCode.trim()) newErrors.zipCode = "Postleitzahl ist erforderlich";
+    if (!formData.city.trim()) newErrors.city = "Ort ist erforderlich";
+    if (!phoneRegex.test(formData.phone)) newErrors.phone = "Ungültige Telefonnummer";
+    if (!formData.acceptTerms) newErrors.acceptTerms = "Sie müssen die Bedingungen akzeptieren";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const nextStep = () => setStep((prev) => prev + 1);
+  const prevStep = () => setStep((prev) => prev - 1);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+    setErrors((prev) => ({ ...prev, [name]: null }));
+
+    // Auto next step logic
+    if (name === "roofType" && step === 1) nextStep();
+    if (name === "isOwner" && step === 2) nextStep();
+  };
+
+  const roofTypes = [
+    { id: "pultdach", label: "Pultdach", image: "/Images/Home/pultdach.png" },
+    { id: "flachdach", label: "Flachdach", image: "/Images/Home/flachdach.png" },
+    { id: "satteldach", label: "Satteldach", image: "/Images/Home/satteldach.png" },
+    { id: "other", label: "Sonstiges", image: "/Images/Home/sonstiges.png" },
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md;">
-      <h2
-        className={`text-[18px] font-bold mb-6 text-[#669933] transition-all duration-700 ${
-          hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-        }`}
-      >
+    <div className="max-w-4xl mx-auto p-6 bg-white mt-15">
+    
+
+      <h2 className={`text-[25px] mb-6 text-[#669933] text-center transition-all duration-700 ${hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
         Unverbindliche Anfrage Photovoltaik Anlage
       </h2>
 
@@ -138,139 +153,69 @@ export default function PVInquiryForm() {
 
       <AnimatePresence mode="wait">
         {step === 1 && (
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-            key="step1"
-          >
-            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Welche Dachform hat dein Haus?</h2>
-            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }} key="step1">
+            <h2 className="text-[20px] lg:text-[24px] mb-4 text-center">Welche Dachform hat dein Haus?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
               Bitte wähle die Form des Daches auf welchem die Anlage installiert werden soll
             </p>
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
-              {roofTypes.map((type) => {
-                const Icon = type.icon;
-                return (
-                  <div key={type.id} className="group">
-                    <label
-                      className={`flex flex-col items-center p-6 border-2 rounded-lg cursor-pointer transition-all h-full ${
-                        formData.roofType === type.id
-                          ? "border-[#669933] bg-[#669933]/10"
-                          : "border-gray-200 hover:border-[#669933]/50"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="roofType"
-                        value={type.id}
-                        checked={formData.roofType === type.id}
-                        onChange={handleChange}
-                        className="hidden"
-                      />
-                      <div
-                        className={`p-4 mb-3 rounded-full ${
-                          formData.roofType === type.id
-                            ? "bg-[#669933]/10 text-[#669933]"
-                            : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
-                        }`}
-                      >
-                        <Icon className="text-3xl" />
-                      </div>
-                      <span className="font-medium text-center">{type.label}</span>
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex justify-end">
-              <button
-                onClick={nextStep}
-                disabled={!formData.roofType}
-                className={`px-6 py-2 rounded-md text-[16px] ${
-                  formData.roofType
-                    ? "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
-              >
-                NÄCHSTE &gt;
-              </button>
+              {roofTypes.map((type) => (
+                <div key={type.id} className="group">
+                  <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${formData.roofType === type.id ? "border-[#669933] bg-[#669933]/10" : "border-gray-200 hover:border-[#669933]/50"}`}>
+                    <input
+                      type="radio"
+                      name="roofType"
+                      value={type.id}
+                      checked={formData.roofType === type.id}
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                    <Image
+                      src={type.image}
+                      alt={type.label}
+                      width={100}
+                      height={100}
+                      className="mb-3 rounded-full object-cover"
+                    />
+                    <span className="font-medium text-center">{type.label}</span>
+                  </label>
+                </div>
+              ))}
             </div>
           </motion.div>
         )}
 
+        {/* ...rest of the steps remain the same, you can repeat the structure of step 2–4 here */}
         {step === 2 && (
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-            key="step2"
-          >
-            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Bist du Eigentümer der Immobilie?</h2>
-            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }} key="step2">
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">Bist du Eigentümer der Immobilie?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
               Bitte bestätige ob du der Eigentümer der Immobilie bist
             </p>
-
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {[
-                { id: "yes", label: "Ja", icon: FaCheckCircle },
-                { id: "no", label: "Nein", icon: FaTimesCircle },
-              ].map((option) => {
-                const Icon = option.icon;
-                return (
-                  <div key={option.id} className="group">
-                    <label
-                      className={`flex flex-col items-center p-6 border-2 rounded-lg cursor-pointer transition-all h-full ${
-                        formData.isOwner === option.id
-                          ? "border-[#669933] bg-[#669933]/10"
-                          : "border-gray-200 hover:border-[#669933]/50"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="isOwner"
-                        value={option.id}
-                        checked={formData.isOwner === option.id}
-                        onChange={handleChange}
-                        className="hidden"
-                      />
-                      <div
-                        className={`p-4 mb-3 rounded-full ${
-                          formData.isOwner === option.id
-                            ? "bg-[#669933]/10 text-[#669933]"
-                            : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
-                        }`}
-                      >
-                        <Icon className="text-3xl" />
-                      </div>
-                      <span className="font-medium text-center">{option.label}</span>
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex justify-between">
-              <button
-                onClick={prevStep}
-                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
-              >
-                ZURÜCK
-              </button>
-              <button
-                onClick={nextStep}
-                disabled={!formData.isOwner}
-                className={`px-6 py-2 rounded-md text-[16px] ${
-                  formData.isOwner
-                    ? "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
-              >
-                NÄCHSTE &gt;
-              </button>
+              {[{ id: "yes", label: "Ja", image: "/Images/Home/ja.png" }, { id: "no", label: "Nein", image: "/Images/Home/nein.png" }].map((option) => (
+                <div key={option.id} className="group">
+                  <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${formData.isOwner === option.id ? "border-[#669933] bg-[#669933]/10" : "border-gray-200 hover:border-[#669933]/50"}`}>
+                    <input
+                      type="radio"
+                      name="isOwner"
+                      value={option.id}
+                      checked={formData.isOwner === option.id}
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                    <Image
+                      src={option.image}
+                      alt={option.label}
+                      width={100}
+                      height={100}
+                      className="mb-3 rounded-full object-cover"
+                    />
+                    <span className="font-medium text-center">{option.label}</span>
+                  </label>
+                </div>
+              ))}
             </div>
           </motion.div>
         )}
@@ -283,8 +228,8 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step3"
           >
-            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4">Wieviel Stromverbrauch hast du im Jahr?</h2>
-            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">Wieviel Stromverbrauch hast du im Jahr?</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
               Benutze den Schieberegler um den ungefähren Jahresbedarf anzugeben
             </p>
 
@@ -329,8 +274,8 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step4"
           >
-            <h2 className="text-[20px] lg:text-[24px] font-bold mb-2">Noch ein Schritt bis zu deinem Angebot</h2>
-            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px]">
+            <h2 className="text-[20px] lg:text-[24px] font-bold mb-2 text-center">Noch ein Schritt bis zu deinem Angebot</h2>
+            <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
               Klasse, das Angebot ist in deiner Region verfügbar. Wir melden uns schnellstmöglich bei dir!
             </p>
 
@@ -421,7 +366,7 @@ export default function PVInquiryForm() {
               {errors.acceptTerms && <p className="text-red-500 text-sm mt-1">{errors.acceptTerms}</p>}
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between flex-col gap-2 lg:flex-row lg:gap-0 md:flex-row md:gap-0">
               <button
                 onClick={prevStep}
                 className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
@@ -431,15 +376,31 @@ export default function PVInquiryForm() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className={`px-6 py-2 rounded-md text-[16px] ${
-                  loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                }`}
+                className={`px-6 py-2 rounded-md text-[16px] ${loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
+                  }`}
               >
                 {loading ? "Wird gesendet..." : "JETZT ANGEBOT ANFORDERN"}
               </button>
             </div>
           </motion.div>
         )}
+
+        {step === 5 && (
+          <motion.div
+            key="step5"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+            className="text-center py-8"
+          >
+            <h2 className="text-2xl font-bold text-[#669933] mb-4">Vielen Dank für Ihre Anfrage!</h2>
+            <p className="text-lg text-gray-700">
+              Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.
+            </p>
+          </motion.div>
+        )}
+
       </AnimatePresence>
     </div>
   );

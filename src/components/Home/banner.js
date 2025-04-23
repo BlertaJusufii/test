@@ -17,10 +17,10 @@ const VideoBanner = ({ videoSrc, title, mobileVideoSrc }) => {
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       <div
-        className="relative z-10 flex items-center justify-center h-full text-center px-4 max-w-5xl
+        className="relative z-10 flex items-center justify-center h-full text-center px-4 max-w-2xl
       mx-auto"
       >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">{title}</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl  text-white tracking-tight leading-tight">{title}</h1>
       </div>
     </div>
   );

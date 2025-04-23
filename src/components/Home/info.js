@@ -6,6 +6,32 @@ import { FaSolarPanel, FaIndustry, FaChartLine } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
+
+
+
+const CustomPrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl  text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleLeft />
+
+  </div>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-50 transform -translate-y-1/2  text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleRight />
+
+  </div>
+);
+
 
 export default function SolutionsPage() {
   const stats = [
@@ -159,111 +185,141 @@ export default function SolutionsPage() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 ">
+    <div className="max-w-7xl mx-auto px-4  ">
       {/* Title Section */}
       <div
-        className={`text-center mb-16 transition-all duration-700 ${
-          hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
+        className={`text-center mb-16 transition-all duration-700 ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
       >
-        <h2 className="text-[28px] md:text-[30px] font-bold text-gray-900 mb-6">
+        <h2 className="text-2xl md:text-3xl lg:text-2xl font-semibold text-gray-900 mb-6">
           Photovoltaiklösungen für Industrie, Gewerbe und Privatkunden
         </h2>
       </div>
 
       {/* Stats Section */}
-      <div ref={countersRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 relative pb-10">
+      <div ref={countersRef} className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 lg:mb-25 md:mb-10 sm:mb-10 relative pb-10">
         {stats.map((item, i) => (
           <div
             key={i}
-            className={`text-center transition-all duration-700 delay-${i * 100} ${
-              hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+            className={`text-center transition-all duration-700 delay-${i * 100} ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
           >
-            <div className="flex justify-center mb-4">{item.icon}</div>
-            <div className="text-[35px] font-bold text-[#669933]">
+            <div className="flex justify-center mb-2">{item.icon}</div>
+            <div className="text-[40px] font-[500] text-[#669933] mb-2">
               {counters[i].toLocaleString()}
               {item.suffix && <span>{item.suffix}</span>}
             </div>
-            <p className="text-gray-600 text-[18px]">{item.label}</p>
+            <p className="text-black  text-[18px]">{item.label}</p>
           </div>
         ))}
-        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-b from-transparent to-[#669933] w-full"></div>
-      </div>
+<div className="hidden lg:block lg:absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-transparent to-[#669933] w-full"></div>
+</div>
       <div
-        className={`mb-24 transition-all duration-700 ${
-          hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
+        className={`mb-24 transition-all duration-700 ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
       >
         <div className="text-center mb-6">
           <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
             Projekte
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>
-          <p className="text-center text-black-500 mx-auto mb-12 font-semibold text-[28px] md:text-[35px] mt-5">
+          <p className="text-center text-black-500 mx-auto mb-12 lg:text-[30px] text-2xl md:text-3xl font-bold mt-12">
             Entdecken Sie unsere neuesten Photovoltaik Projekte – echte Referenzen aus ganz Deutschland.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {projectFrappe.map((project, i) => (
-            <Link
-              href={`/referenzen/projekte/${project.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")
-                .replace(/\//g, "-")
-                .replace(/[ä]/g, "ae")
-                .replace(/[ö]/g, "oe")
-                .replace(/[ü]/g, "ue")
-                .replace(/[ß]/g, "ss")
-                .replace(/[^a-z0-9-]/g, "")}`}
-              key={i}
-              className={`relative group overflow-hidden rounded-lg h-64 transform transition-all duration-700 delay-${
-                i * 100
-              } ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-            >
-              <img
-                src={`http://192.168.68.197:8000${project.image}`}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <div>
-                  <h3 className="text-white text-[24px] font-bold">{project.title}</h3>
-                  <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
-                    {project.leistung}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <Slider
+          {...{
+            dots: false,
+            infinite: true,
+            speed: 700,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            arrows: true,
+            nextArrow: <CustomNextArrow />,
+            prevArrow: <CustomPrevArrow />,
 
-        <div className="text-center mt-8">
+
+            autoplay: true,
+            autoplaySpeed: 4000,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: { slidesToShow: 2 },
+              },
+              {
+                breakpoint: 768,
+                settings: { slidesToShow: 2 },
+              },
+              {
+                breakpoint: 450,
+                settings: { slidesToShow: 1 },
+              },
+            ],
+          }}
+          className="mb-12 relative"
+        >
+          {projectFrappe.map((project, i) => (
+            <div key={i} className="px-2">
+              <Link
+                href={`/referenzen/projekte/${project.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")
+                  .replace(/\//g, "-")
+                  .replace(/[ä]/g, "ae")
+                  .replace(/[ö]/g, "oe")
+                  .replace(/[ü]/g, "ue")
+                  .replace(/[ß]/g, "ss")
+                  .replace(/[^a-z0-9-]/g, "")}`}
+                className={`relative group overflow-hidden rounded-lg h-100 transform transition-all duration-700 delay-${i * 100
+                  } ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              >
+                <img
+                  src={`http://192.168.68.197:8000${project.image}`}
+                  alt={project.title}
+                  className="w-full h-100 object-cover rounded-lg"
+                />
+                <div className="absolute rounded-lg inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end  p-6">
+                  <div className="group-hover:scale-105 transition-transform duration-500 rounded-lg">
+                    <h3 className="text-white text-[20px]  uppercase">{project.title}</h3>
+                    <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
+                      {project.leistung}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Slider>
+
+
+
+        <div className="text-center flex flex-row items-center justify-center mt-8">
           <Link
             href={"/referenzen/projekte"}
-            className="bg-[#669933]/90 hover:bg-[#669933] text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[16px]"
+            className="flex items-center justify-center gap-2 bg-[#669933] hover:bg-[#669933]/90 text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[14px]"
           >
-            Mehr Projekte anzeigen
+            Weitere Projekte    <FaAngleRight />
+
           </Link>
+
         </div>
       </div>
 
       <div
-        className={`mb-5 transition-all duration-700 ${
-          hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
+        className={`mb-5 transition-all duration-700 ${hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
       >
         <div className="text-center mb-6">
-          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+          <h2 className="text-[#669933] mt-4 uppercase font-semibold tracking-wide inline-block relative text-[18px]">
             PARTNERS
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>
-          <p className="text-center text-black-500 mx-auto mb-12 font-semibold text-[28px] md:text-[35px] mt-5">
+          <p className="text-center text-black-500 mx-auto lg:text-[30px] text-2xl md:text-3xl font-bold mb-12 mt-12">
             Wir sind Partner von
           </p>
         </div>
 
-        <Slider {...sliderSettings} className="py-4">
+        <Slider {...sliderSettings} className="mt-6">
           {partnersFrappe.map((partner, index) => (
             <div key={index} className="px-2">
               <div className="flex items-center justify-center h-40 transition-transform duration-500 hover:scale-105">
@@ -272,9 +328,11 @@ export default function SolutionsPage() {
                   alt={partner.name}
                   width={200}
                   height={160}
-                  className="w-auto h-auto object-contain transition-all duration-300 "
+                  className="object-contain transition-all duration-300
+             w-[180px] h-[130px] sm:w-[200px] sm:h-[160px] md:w-[240px] md:h-[180px]"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
+
               </div>
             </div>
           ))}
