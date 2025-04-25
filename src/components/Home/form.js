@@ -252,15 +252,15 @@ export default function PVInquiryForm() {
             <div className="flex justify-between">
               <button
                 onClick={prevStep}
-                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
+                className="px-6 py-2 cursor-pointer border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
               >
                 ZURÜCK
               </button>
               <button
                 onClick={nextStep}
-                className="px-6 py-2 bg-[#669933]/90 hover:bg-[#669933] text-white rounded-md text-[16px]"
+                className="px-6 cursor-pointer py-2 bg-[#669933]/90 hover:bg-[#669933] text-white rounded-md text-[16px]"
               >
-                NÄCHSTE &gt;
+                NÄCHSTE 
               </button>
             </div>
           </motion.div>
@@ -369,14 +369,14 @@ export default function PVInquiryForm() {
             <div className="flex justify-between flex-col gap-2 lg:flex-row lg:gap-0 md:flex-row md:gap-0">
               <button
                 onClick={prevStep}
-                className="px-6 py-2 border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
+                className="px-6 py-2 cursor-pointer border-2 border-gray-300 rounded-md hover:bg-gray-50 text-[16px]"
               >
                 ZURÜCK
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className={`px-6 py-2 rounded-md text-[16px] ${loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
+                className={`px-6 py-2 rounded-md cursor-pointer text-[16px] ${loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
                   }`}
               >
                 {loading ? "Wird gesendet..." : "JETZT ANGEBOT ANFORDERN"}

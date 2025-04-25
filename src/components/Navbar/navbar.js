@@ -7,9 +7,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [openDropdown, setOpenDropdown] = useState(null);
-
   const toggleDropdown = (name) => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
@@ -105,55 +103,46 @@ const Navbar = () => {
             />
           </Link>
           <div>
-            <div className="hidden xl:flex items-center space-x-8 relative">
-              {navItems.map((item, index) => (
-                <div key={index} className="relative group">
-                  {item.items ? (
-                    <>
-                      <Link
-                        href={item.link || "#"}
-                        onClick={(e) => {
-                          e.preventDefault(); // Prevent navigation when clicking
-                          toggleDropdown(item.title);
-                        }}
-                        className="flex items-center hover:text-balck-90 hover:text-[#669933] transition uppercase text-lg cursor-pointer"
-                      >
-                        {item.title}
-                        {openDropdown === item.title ? (
-                          <FiChevronUp className="ml-1" />
-                        ) : (
-                          <FiChevronDown className="ml-1" />
-                        )}
-                      </Link>
-                      {openDropdown === item.title && (
-                        <div className="absolute left-0 mt-6 w-48 bg-[var(--ternary)] rounded-md shadow-lg py-1 z-50 bg-white">
-                          {item.items.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.link}
-                              className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933] text-md"
-                              onClick={() => {
-                                setOpenDropdown(null);
-                                closeMobileMenu();
-                              }}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <Link
-                      href={item.link}
-                      className="hover:text-[#000000] hover:text-[#669933] transition uppercase text-lg"
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </div>
+          <div className="hidden xl:flex items-center space-x-8 relative">
+  {navItems.map((item, index) => (
+    <div
+      key={index}
+      className="relative group"
+      onMouseEnter={() => item.items && setOpenDropdown(item.title)}
+      onMouseLeave={() => setOpenDropdown(null)}
+    >
+      {item.items ? (
+        <>
+          <div className="flex items-center hover:text-[#669933] transition uppercase text-lg cursor-pointer">
+            {item.title}
+            <FiChevronDown className="ml-1" />
+          </div>
+          {openDropdown === item.title && (
+            <div className="absolute right-0 mt-0 w-40 bg-white rounded-md shadow-lg py-1 z-50">
+              {item.items.map((subItem) => (
+                <Link
+                  key={subItem.name}
+                  href={subItem.link}
+                  className="block px-4 py-2 text-gray-700 hover:bg-black-90 hover:text-[#669933] text-md"
+                >
+                  {subItem.name}
+                </Link>
               ))}
             </div>
+          )}
+        </>
+      ) : (
+        <Link
+          href={item.link}
+          className="hover:text-[#669933] transition uppercase text-lg"
+        >
+          {item.title}
+        </Link>
+      )}
+    </div>
+  ))}
+</div>
+
           </div>
           {/* Mobile Menu Button */}
           <button

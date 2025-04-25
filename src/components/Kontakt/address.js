@@ -6,15 +6,16 @@ import Image from "next/image";
 const ContactSection = () => {
   return (
     <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 flex-col lg:flex-row sm:px-6 lg:px-8 flex  gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 flex-col lg:flex-row lg:justify-between sm:px-6 lg:px-8 flex  gap-8 items-center">
         {/* Left Side - Contact Information */}
-        <div className="space-y-6 w-full lg:w-3/5">
+        <div className="space-y-6 w-full lg:w-[600px]">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2">
+            <h2 className="text-lg font-bold text-[#669933] uppercase">
               WIR SIND FÜR SIE DA
             </h2>
-            <h3 className="text-[28px] md:text-[35px] font-bold text-gray-900 mb-4">Kontaktieren Sie Uns</h3>
-            <p className="text-lg text-gray-700 text-[16px]">
+            <div className="h-0.5 w-20 bg-[#669933] mt-1"></div>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl  text-gray-900 ">Kontaktieren Sie Uns</h3>
+            <p className="text-lg text-gray-700 text-[18px]">
               Sie schätzen den persönlichen Kontakt? Wir auch. Rufen Sie uns doch einfach an oder nutzen Sie unser
               Kontaktformular.
             </p>

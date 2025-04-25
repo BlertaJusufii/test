@@ -31,7 +31,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div className="space-y-4">
-              <div className="relative w-[200px] h-[100px]">
+              <div className="relative w-[200px] h-[70px]">
                 <Image
                   src="/Logo-Oekovolt-Gruen-mit-Weiss.webp"
                   alt="Ökovolt Logo"
@@ -40,7 +40,7 @@ const Footer = () => {
                   className="object-contain" // Maintains aspect ratio
                 />
               </div>
-              <p className="font-bold text-[18px]">ÖKOVOLT GmbH Solartechnik</p>
+              <p className="font-[400] text-[18px] mt-[-10]">ÖKOVOLT GmbH Solartechnik</p>
               <address className="not-italic text-[16px]">
                 Schlingener Straße 1a
                 <br />
@@ -53,18 +53,18 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-[18px] font-bold uppercase tracking-wider">Kontakt</h3>
+              <h3 className="text-[18px] font-[400] uppercase tracking-wider">Kontakt</h3>
               <hr className="border-t border-[#fffff]/30 my-3 " />
-              <div className="space-y-2">
+              <div className="space-y-6">
                 <p>
-                  <span className="font-medium text-[16px] ">Telefon:</span>
-                  <br />
-                  <a href="tel:+498245967880" className="hover:text-[#669933] transition-colors text-[16px]">
+                  <span className="font-medium text-[16px] ">Telefon</span>
+                 <br/>
+                  <a href="tel:+498245967880" className=" hover:text-[#669933] transition-colors text-[16px]">
                     +49 8245 96 788 0
                   </a>
                 </p>
                 <p>
-                  <span className="font-medium">E-Mail:</span>
+                  <span className="font-medium">E-Mail</span>
                   <br />
                   <a href="mailto:office@oekovolt.de" className="hover:text-[#669933] transition-colors text-[16px]">
                     office@oekovolt.de
@@ -73,9 +73,9 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-4">
-              <h3 className="text-[18px] font-bold uppercase tracking-wider">Öffnungszeiten</h3>
+              <h3 className="text-[18px] font-[400] uppercase tracking-wider">Öffnungzeiten</h3>
               <hr className="border-t border-[#fffff]/30 my-3 " />
-              <div className="space-y-2 text-[16px]">
+              <div className="space-y-6 text-[16px]">
                 <p>
                   Montag - Donnerstag
                   <br />
@@ -91,7 +91,7 @@ const Footer = () => {
 
             <div className="space-y-4">
               <div className="space-y-4">
-                <h3 className="text-[18px] font-bold uppercase tracking-wider ">Folgen Sie Uns</h3>
+                <h3 className="text-[18px] font-[400] uppercase tracking-wider ">Folgen Sie Uns</h3>
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <div className="flex space-y-2 space-x-5 my-6">
                   <a href="https://www.facebook.com/oekovoltdeutschland" target="_blank" aria-label="Facebook" className="text-xl hover:text-[#669933] transition-colors">
@@ -113,7 +113,7 @@ const Footer = () => {
               </div>
 
               <div>
-                <h3 className="text-[18px] font-bold uppercase tracking-wider">Weiterführende Links</h3>
+                <h3 className="text-[18px] font-[400] uppercase tracking-wider">Weiterführende Links</h3>
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <ul className="space-y-2 text-[16px]">
                   <li>

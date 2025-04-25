@@ -22,7 +22,7 @@ const BannerSection = ({ data }) => {
       <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/40 to-transparent w-1/2"></div>
       <div className="relative z-10 h-full flex items-center max-w-7xl mx-auto">
         <div className="container mx-auto px-4">
-          <div className="max-w-lg text-white">
+          <div className="max-w-[560px] text-white">
             <h1 className="text-[28px]  md:text-[40px] font-medium mb-4">{data.title}</h1>
             <p className="text-[20px] font-medium mb-4">{data.description}</p>
           </div>
