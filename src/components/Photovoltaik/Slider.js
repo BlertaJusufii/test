@@ -52,18 +52,23 @@ export default function KomponentenSlider() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 ">
+    <div className="max-w-7xl mx-auto px-4 mt-15 mb-15 lg:mt-20 lg:mb-20">
+      
+      <div className="flex justify-center items-center flex-col">
+            <h2 className="text-[#669933] text-lg font-semibold uppercase">KOMPONENTEN</h2>
+            <div className="h-0.5 w-25 bg-[#669933] mt-1"></div>
+          </div>
       <div
         className={`mb-16 transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <h2 className="text-center text-[#669933] text-[18px] font-bold mb-4">KOMPONENTEN</h2>
-        <p className="text-center text-black-600 mx-auto font-bold md:text-[35px]">
+
+        <p className="text-center text-black-600 mx-auto mt-10 mb-10 font-bold text-2xl md:text-3xl lg:text-3xl">
           Eine hochwertige Photovoltaikanlage besteht aus mehreren Schlüsselfaktoren
         </p>
 
-        <Slider {...sliderSettings} className="py-8">
+        <Slider {...sliderSettings} className="">
           {komponenten.map((komponent, index) => (
             <div key={index} className="px-4">
               <div className="p-6 h-96 flex flex-col items-center justify-end text-center">

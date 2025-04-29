@@ -105,14 +105,14 @@ const ProjectsSection = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4" id="projects-section">
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className=" pt-15 pb-15 lg:pt-20 lg:pb-20">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-10">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
               PROJEKTE
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-6">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mt-10">
               Nachhaltige Energielösungen für eine grüne Zukunft
             </h2>
           </div>
@@ -128,10 +128,14 @@ const ProjectsSection = () => {
               Einsatz moderner Technologien entstehen individuelle Lösungen, die exakt auf die Anforderungen von
               Gewerbe, Industrie und Privathaushalten abgestimmt sind.
             </p>
+            <p>
+            Eine Kombination aus hochwertiger Planung, professioneller Umsetzung und fortlaufender Optimierung sorgt dafür,
+             dass Solarenergie effizient und nachhaltig genutzt wird – ganz im Sinne einer zukunftsfähigen Energieversorgung.
+            </p>
           </div>
         </div>
       </section>
-      <section className="container mx-auto px-4 pb-16 md:pb-24">
+      <section className="container mx-auto px-4 pb-15 lg:pb-20 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />

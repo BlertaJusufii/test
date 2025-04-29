@@ -4,14 +4,14 @@ const InfoSection = ({ data }) => {
   return (
     <div className=" max-w-7xl mx-auto px-4">
       {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="pt-15 pb-15 lg:pt-20 lg:pb-20">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-10">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
               {data.title}
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-6">
+            <h2 className="text-3xl font-semibold text-gray-900 mt-10">
               {data.subtitle}
             </h2>
           </div>

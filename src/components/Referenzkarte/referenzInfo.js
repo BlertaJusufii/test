@@ -5,12 +5,36 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
 import { sendGTMEvent } from "@next/third-parties/google";
+import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
+
+const CustomPrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl  text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleLeft />
+
+  </div>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-50 transform -translate-y-1/2  text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleRight />
+
+  </div>
+);
+
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  
 
   return (
     <div
@@ -98,14 +122,16 @@ const ProjectsSection = () => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: false,
+    arrows: true,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
     centerMode: true,
     centerPadding: "0",
     responsive: [
@@ -135,18 +161,18 @@ const ProjectsSection = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="mt-15 mb-15 lg:mt-20 lg:mb-20">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-10">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
               UNSERE PROJEKTE
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-6">
+            <h2 className="text-3xl font-semibold text-gray-900 mt-10">
               Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
             </h2>
           </div>
-          <div className="text-gray-600 space-y-4 text-center text-[16px]">
+          <div className="text-gray-700 space-y-4 text-center text-[17px]">
             <p>
               Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
               Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
@@ -194,15 +220,16 @@ const ProjectsSection = () => {
         </div>
 
         {/* WEITERE PROJEKTE Button */}
-        <div className="flex justify-center mt-12">
+      
+        <div className="text-center flex flex-row items-center justify-center mt-15">
           <Link
             href={"/referenzen/projekte"}
-            onClick={() => sendGTMEvent({ event: "buttonClicked", value: "xyz" })}
-            className="bg-[#669933]/90 hover:bg-[#669933] text-white font-semibold py-3 px-6 rounded-[2px] flex items-center transition-colors duration-300 gap-2 text-[16px]"
+            className="flex items-center justify-center gap-2 bg-[#669933] hover:bg-[#669933]/90 text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[14px]"
           >
-            WEITERE PROJEKTE
-            <FaAngleRight />
+            Weitere Projekte    <FaAngleRight />
+
           </Link>
+
         </div>
       </section>
 

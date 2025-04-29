@@ -23,7 +23,7 @@ const BannerSection = ({ data }) => {
       <div className="relative z-10 h-full flex items-center max-w-7xl mx-auto px-4">
         <div>
           <div className="max-w-xl text-white">
-            <h1 className=" text-[28px]  md:text-[40px] font-bold mb-4 uppercase break-all">{data.title}</h1>
+            <h1 className=" text-[28px]  md:text-[40px] mb-4 uppercase break-all">{data.title}</h1>
           </div>
         </div>
       </div>

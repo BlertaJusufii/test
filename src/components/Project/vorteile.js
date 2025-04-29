@@ -5,19 +5,19 @@ import { FaFlag } from "react-icons/fa";
 const Vorteil = () => {
   return (
     <section className=" pb-16 md:pb-24 ">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-7xl">
         {/* Top Row: Image + Benefits Grid */}
         {/* Bottom Row: Split Text Sections */}
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Left Column - Zukunftsperspektiven */}
           <div className="lg:w-1/2 border-4 border-[#669933] rounded-lg p-6 bg-white flex flex-col items-center">
             <div className="bg-[#669933] rounded-full p-6 mb-6">
-              <FaSolarPanel className="text-white w-18 h-18  " />
+              <FaSolarPanel className="text-white w-10 h-10  " />
             </div>
-            <h2 className="text-[20px] font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-[20px]  text-gray-900 mb-6 text-center">
               Zukunftsperspektiven und nachhaltige Entwicklung
             </h2>
-            <div className="space-y-4 text-gray-700 text-center text-[16px]">
+            <div className="space-y-4 text-gray-500 text-center text-[17px]">
               <p>
                 Die Energiewende erfordert laufende Innovation und Anpassung. Förderprogramme und gesetzliche
                 Rahmenbedingungen machen nachhaltige Energielösungen zunehmend attraktiv – sowohl für Privatpersonen als
@@ -39,12 +39,12 @@ const Vorteil = () => {
           {/* Right Column - Zukunft der Energie */}
           <div className="lg:w-1/2 border-4 border-[#669933] rounded-lg p-6 bg-white flex flex-col items-center">
             <div className="bg-[#669933] rounded-full p-6 mb-6">
-              <FaFlag className="text-white w-18 h-18  " />
+              <FaFlag className="text-white w-10 h-10 " />
             </div>
-            <h2 className="text-[20px] font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-[20px] text-gray-900 mb-6 text-center">
               Die Zukunft der Energie: Nachhaltig und Unabhängig
             </h2>
-            <div className="space-y-4 text-gray-700 text-center text-[16px]">
+            <div className="space-y-4 text-gray-500 text-center text-[17px]">
               <p>
                 Die Nutzung von Solarenergie ist ein entscheidender Baustein für die Energiezukunft in Deutschland.
                 Moderne Technologien machen es möglich, erneuerbare Energien effizient zu nutzen – sowohl wirtschaftlich

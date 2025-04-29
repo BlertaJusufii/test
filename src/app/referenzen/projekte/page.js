@@ -54,7 +54,7 @@ export default function Home() {
       },
       {
         title: "Umweltschutz",
-        description: "Aktiver Beitrag zum Klimaschutz durch CO₂ freie Stromerzeugung.",
+        description: "Aktiver Beitrag zum Klimaschutz durch CO₂-freie Stromerzeugung mit erneuerbaren Energien.",
       },
       {
         title: "Unabhängigkeit",
@@ -62,7 +62,7 @@ export default function Home() {
       },
       {
         title: "Effizienz",
-        description: "Moderne Speicher- und Steuerungssysteme für maximale Effizienz.",
+        description: "Nutzung moderner Speicher- und Steuerungssysteme für maximale Effizienz in jedem Solarenergie Projekt.",
       },
     ],
   };

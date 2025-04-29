@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const TeamMember = ({ member }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg flex flex-col h-full">
+    <div className="bg-white rounded-lg  overflow-hidden transition-all duration-300 hover:shadow-lg flex flex-col h-full">
       {/* Member Photo */}
       <div className="relative aspect-square w-full max-h-100">
         <Image
@@ -79,9 +79,9 @@ const TeamSection = () => {
   }, []);
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <section className="pb-15 lg:pb-20">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {teams.map((member, index) => (
             <TeamMember key={index} member={member} />
           ))}
