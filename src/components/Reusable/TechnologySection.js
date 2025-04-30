@@ -1,3 +1,7 @@
+"use client";
+import React from "react";
+import Image from "next/image";
+
 const TechnologySection = ({ data = {} }) => {
   const {
     greenTitle = "",
@@ -10,14 +14,9 @@ const TechnologySection = ({ data = {} }) => {
 
   return (
     <div className="bg-gray-100 w-full text-white py-16 px-4 md:px-10 flex flex-col lg:flex-row lg:items-center justify-center gap-10 relative overflow-hidden">
-      {/* Left Side - Text Content */}
       <div className="max-w-xl lg:max-w-xl md:max-w-full z-10">
-        <p className="text-[#669933] font-semibold uppercase mb-2">
-          {greenTitle}
-        </p>
-        <h2 className="text-4xl text-gray-900 md:text-5xl font-bold leading-tight mb-6">
-          {heading}
-        </h2>
+        <p className="text-[#669933] font-semibold uppercase mb-2">{greenTitle}</p>
+        <h2 className="text-4xl text-gray-900 md:text-5xl font-bold leading-tight mb-6">{heading}</h2>
         <p className="text-gray-600 mb-6">{description}</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-semibold text-gray-600">
@@ -30,7 +29,6 @@ const TechnologySection = ({ data = {} }) => {
         </div>
       </div>
 
-      {/* Right Side - Images */}
       <div className="flex-shrink-0 flex flex-col gap-4 relative z-10">
         <div className="lg:w-120 lg:h-84 w-85 h-50 md:w-170 md:h-70 relative">
           {image1 && (
@@ -58,3 +56,5 @@ const TechnologySection = ({ data = {} }) => {
     </div>
   );
 };
+
+export default TechnologySection;

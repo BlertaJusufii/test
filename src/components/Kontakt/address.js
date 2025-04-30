@@ -10,10 +10,11 @@ const ContactSection = () => {
         {/* Left Side - Contact Information */}
         <div className="space-y-6 w-full lg:w-[600px]">
           <div className="flex flex-col gap-4">
-            <h2 className="text-lg font-bold text-[#669933] uppercase">
-              WIR SIND FÜR SIE DA
+           
+            <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
+            WIR SIND FÜR SIE DA
+              <span className="absolute left-0 w-20 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
-            <div className="h-0.5 w-20 bg-[#669933] mt-1"></div>
             <h3 className="text-2xl md:text-3xl lg:text-4xl  text-gray-900 ">Kontaktieren Sie Uns</h3>
             <p className="text-lg text-gray-700 text-[18px]">
               Sie schätzen den persönlichen Kontakt? Wir auch. Rufen Sie uns doch einfach an oder nutzen Sie unser

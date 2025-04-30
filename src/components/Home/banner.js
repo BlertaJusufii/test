@@ -10,17 +10,19 @@ const VideoBanner = ({ videoSrc, title, mobileVideoSrc }) => {
         </video>
         {mobileVideoSrc && (
           <video autoPlay loop muted playsInline className="md:hidden w-full h-full object-cover">
-            <source src={videoSrc} type="video/mp4" />
+            <source src={mobileVideoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
+
       <div
-        className="relative z-10 flex items-center justify-center h-full text-center px-4 max-w-2xl
-      mx-auto"
+        className="relative z-10 flex items-center justify-center h-full text-center px-4 max-w-2xl mx-auto"
       >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl  text-white tracking-tight leading-tight">{title}</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl text-white tracking-tight leading-tight animate-fadeInUp">
+          {title}
+        </h1>
       </div>
     </div>
   );

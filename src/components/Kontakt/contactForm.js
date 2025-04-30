@@ -111,7 +111,7 @@ export default function ContactForm() {
       </div>
 
       {/* Form Container */}
-      <div className="relative z-10 max-w-4xl mx-auto p-8 py-30">
+      <div className="relative z-10 max-w-4xl mx-auto p-8 py-20">
         <div className="rounded-lg shadow-xl p-0 bg-opacity-50 sm:p-0 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

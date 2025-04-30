@@ -12,7 +12,7 @@ function AnlageSection() {
                         Anlage
                         <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
                     </h2>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-15  text-gray-900 leading-[1.5]">
+                    <h2 className="text-2xl md:text-3xl lg:text-3xl font-bold mt-6  text-gray-900 leading-[1.5]">
                         Vorteile einer Solaranlage
                     </h2>
                 </div>

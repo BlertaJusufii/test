@@ -3,7 +3,7 @@ import VideoBanner from "@/components/Home/banner";
 import PVInquiryForm from "@/components/Home/form";
 import SolutionsPage from "@/components/Home/info";
 import RotatingCircleSection from "@/components/Home/welcome";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import GreenFeatureSection2 from "@/components/Reusable/contacthome";
 
 export default function Home() {
   return (
@@ -16,6 +16,6 @@ export default function Home() {
       <RotatingCircleSection />
       <SolutionsPage />
       <PVInquiryForm />
-      <GreenFeatureSection />
+      <GreenFeatureSection2 />
     </div>
   );}

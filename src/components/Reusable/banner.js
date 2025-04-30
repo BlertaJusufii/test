@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const BannerSection = ({ data }) => {
   return (
-    <section className="relative h-[300px] w-full overflow-hidden lg:h-[400px] relative">
+    <section className="h-[300px] w-full overflow-hidden lg:h-[400px] relative">
       {/* Background Image */}
       <div className="absolute inset-0 ">
         <Image
@@ -23,7 +23,8 @@ const BannerSection = ({ data }) => {
       <div className="relative z-10 h-full flex items-center max-w-7xl mx-auto px-4">
         <div>
           <div className="max-w-xl text-white">
-            <h1 className=" text-[28px]  md:text-[40px] mb-4 uppercase break-all">{data.title}</h1>
+            <h1 className="max-w-[660px] text-[28px]  md:text-[40px] font-medium mb-4">{data.title}</h1>
+            <p className="max-w-[560px] text-[20px] font-medium mb-4">{data.subtitle}</p>
           </div>
         </div>
       </div>

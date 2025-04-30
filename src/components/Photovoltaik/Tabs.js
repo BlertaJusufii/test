@@ -115,12 +115,12 @@ function Privathaushalte() {
       <h1 className="text-2xl font-semibold text-[#669933] mb-6">Warum eine Photovoltaikanlage für Ihr Zuhause?</h1>
       <div className="mb-6 flex justify-start">
         <Image
-          src="/Images/Dienstleistungen/Photovoltaik/Bild1.png"
+          src="/Images/Dienstleistungen/Photovoltaik/house.png"
           alt="Privathaushalte"
-          width={600}
-          height={350}
+          width={1200}
+          height={250}
           quality={100}
-          className="object-cover h-auto w-auto"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -150,7 +150,7 @@ function Mehrfamilienhaeuser() {
           width={600}
           height={350}
           quality={100}
-          className="object-cover w-auto h-auto"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -176,7 +176,7 @@ function Gwerbeundindustrie() {
           width={600}
           height={350}
           quality={100}
-          className="object-cover w-auto h-auto"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -203,7 +203,7 @@ function Landwirtschaft() {
           width={600}
           height={350}
           quality={100}
-          className="object-cover w-auto h-auto"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">

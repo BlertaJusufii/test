@@ -4,9 +4,9 @@ import Image from "next/image";
 const BenefitsLayout = ({ data }) => {
   return (
     <section className=" pt-16 md:pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 max-w-6xl">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Top Row: Image + Benefits Grid */}
-        <div className="flex flex-col items-center lg:flex-row gap-12 mb-16">
+        <div className="flex flex-col lg:items-center lg:flex-row gap-12 mb-16">
           {/* Left Column - Image */}
           <div className="lg:w-1/2  pr-2 lg:pr-0">
             <div className=" h-[300px] md:h-[500px] relative lg:h-[550px] w-full rounded-lg overflow-hidden">

@@ -4,10 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 
-export default function GreenFeatureSection() {
+export default function GreenFeatureSection2() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16 lg:py-20 animate-fadeInUp">
-      <div className="flex flex-col md:flex-row items-center gap-8 pt-[35px]">
+      <div className="flex flex-col md:flex-row items-center gap-8 pb-[20px]">
         <motion.div
           className="w-full md:w-3/4 space-y-6"
           initial={{ opacity: 0, x: -50 }}

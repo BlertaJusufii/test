@@ -140,7 +140,7 @@ function BatterieSysteme() {
           width={600}
           height={400}
           quality={100}
-          className="object-cover"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -166,7 +166,7 @@ function Ladestationen() {
           width={600}
           height={400}
           quality={100}
-          className="object-cover"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -192,7 +192,7 @@ function Notstrombox() {
           width={600}
           height={400}
           quality={100}
-          className="object-cover"
+          className="object-cover object-center h-[400] w-[100%]"
         />
       </div>
       <div className="space-y-3">
@@ -220,7 +220,7 @@ function Smartmeter() {
               width={300}
               height={300}
               quality={100}
-              className="object-cover"
+              className="object-cover object-center h-[400] w-[100%]"
             />
           </div>
           <div className="">
@@ -230,7 +230,7 @@ function Smartmeter() {
               width={300}
               height={400}
               quality={100}
-              className="object-cover"
+              className="object-cover object-center h-[400] w-[100%]"
             />
           </div>
         </div>

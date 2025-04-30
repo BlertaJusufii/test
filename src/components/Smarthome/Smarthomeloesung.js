@@ -1,17 +1,21 @@
-import React from 'react';
-import { FaBatteryThreeQuarters, FaCar, FaBolt, FaMobileAlt } from 'react-icons/fa';
+import React from "react";
+import {
+  FaBatteryThreeQuarters,
+  FaCar,
+  FaBolt,
+  FaMobileAlt,
+} from "react-icons/fa";
 
 function VorteileSection() {
   return (
     <section className="bg-gray-100 pt-15 pb-15 lg:pt-20 lg:pb-20 px-4">
       <div className="max-w-6xl mx-auto">
-        
         <div className="text-center mb-10">
           <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
-            VORTEILE
+            Vorteile
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-15 text-gray-900 leading-[1.5]">
+          <h2 className="text-2xl md:text-3xl lg:text-3xl font-bold mt-6 text-gray-900 leading-[1.5]">
             Vorteile mit einer Smarthome-Lösung
           </h2>
         </div>
@@ -29,8 +33,8 @@ function VorteileSection() {
                 Energiekosten reduzieren
               </h3>
               <p className="text-gray-700 text-md">
-                Ihre Photovoltaik-Großanlage verringert nicht nur die direkten Energiekosten,
-                sondern auch Netzgebühren und Abgaben erheblich.
+                Ihre Photovoltaik-Großanlage verringert nicht nur die direkten
+                Energiekosten, sondern auch Netzgebühren und Abgaben erheblich.
               </p>
             </div>
           </div>
@@ -47,7 +51,8 @@ function VorteileSection() {
                 Mobilitätskosten reduzieren
               </h3>
               <p className="text-gray-700 text-md">
-                Mit selbst erzeugter Solarenergie versorgen Sie Ihre E-Fahrzeugflotte kostengünstig und umweltfreundlich.
+                Mit selbst erzeugter Solarenergie versorgen Sie Ihre
+                E-Fahrzeugflotte kostengünstig und umweltfreundlich.
               </p>
             </div>
           </div>
@@ -64,8 +69,10 @@ function VorteileSection() {
                 Notstrombox
               </h3>
               <p className="text-gray-700 text-md">
-                Begriffe wie umweltfreundlich, wartungsarm, unabhängig und leise beschreiben die Vorteile einer Notstrombox perfekt. 
-                Sie bieten eine zuverlässige und nachhaltige Lösung für die Stromversorgung – ganz ohne Lärm oder hohe Wartungsanforderungen.
+                Begriffe wie umweltfreundlich, wartungsarm, unabhängig und leise
+                beschreiben die Vorteile einer Notstrombox perfekt. Sie bieten
+                eine zuverlässige und nachhaltige Lösung für die Stromversorgung
+                – ganz ohne Lärm oder hohe Wartungsanforderungen.
               </p>
             </div>
           </div>
@@ -82,12 +89,12 @@ function VorteileSection() {
                 Smartmeter
               </h3>
               <p className="text-gray-700 text-md">
-                Überwachen Sie Ihren Eigenverbrauch in Echtzeit und optimieren Sie Ihren Energiehaushalt. 
-                Das Smartmeter zeigt Ihnen genau, wie viel Energie aktuell produziert und verbraucht wird.
+                Überwachen Sie Ihren Eigenverbrauch in Echtzeit und optimieren
+                Sie Ihren Energiehaushalt. Das Smartmeter zeigt Ihnen genau, wie
+                viel Energie aktuell produziert und verbraucht wird.
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </section>

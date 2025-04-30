@@ -68,8 +68,14 @@ export default function RotatingImageSection() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
-      <div className="flex flex-col lg:flex-row items-center gap-5">
-        <div
+      <div className="flex flex-col lg:flex-row items-center gap-5 ">
+
+        {/* Animated Left side */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative flex items-center justify-center mx-auto"
           style={{
             width: `${containerSize}px`,
@@ -77,17 +83,16 @@ export default function RotatingImageSection() {
             maxWidth: "100%",
           }}
         >
-          {/* Image in center */}
+          {/* Center image animation */}
           <motion.div
             key={activeIndex}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-              rounded-full overflow-hidden border-[8px] border-gray-200 shadow-lg z-0`}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden border-[8px] border-gray-200 shadow-lg z-0"
             style={{
-              width: radius * 1.6,
-              height: radius * 1.6,
+              width: radius * 1.7,
+              height: radius * 1.7,
               maxWidth: "90vw",
               maxHeight: "90vw",
             }}
@@ -103,7 +108,7 @@ export default function RotatingImageSection() {
 
           {/* Dotted Circle */}
           <svg
-            className="absolute top-0 left-0 w-full h-full z-[5]"
+            className="absolute top-0 left-0 w-full h-full z-[5] "
             viewBox={`0 0 ${containerSize} ${containerSize}`}
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -118,21 +123,21 @@ export default function RotatingImageSection() {
             />
           </svg>
 
-          {/* Rotating Icons */}
+          {/* Icons rotating */}
           {icons.map(({ icon: Icon }, index) => {
-            const { x, y, zIndex } = getIconPosition(index);
+            const { x, y } = getIconPosition(index);
             const isActive = index === activeIndex;
             return (
               <motion.div
                 key={index}
                 className={`absolute top-1/2 z-[10] left-1/2 flex items-center justify-center rounded-full shadow-lg cursor-pointer border-2 
-                  ${isActive ? "bg-[#023a51] border-[#023a51]" : "bg-[#669933] border-[#669933]"}`}
+                ${isActive ? "bg-[#023a51] border-[#023a51]" : "bg-[#669933] border-[#669933]"}`}
                 style={{
                   width: `${iconSize}px`,
                   height: `${iconSize}px`,
                   marginLeft: `-${iconSize / 2}px`,
                   marginTop: `-${iconSize / 2}px`,
-                  zIndex:"100",
+                  zIndex: "100",
                 }}
                 onClick={() => setActiveIndex(index)}
                 whileHover={{ scale: 1.15 }}
@@ -151,12 +156,20 @@ export default function RotatingImageSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Right Side Text */}
-        <div className="space-y-4 w-full lg:w-1/2">
+        {/* Animated Right side */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-4 w-full lg:w-1/2"
+        >
           <div>
-            <h2 className="text-[#669933] text-lg font-semibold uppercase">WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK</h2>
+            <h2 className="text-[#669933] text-lg font-semibold uppercase">
+              WILLKOMMEN BEI ÖKOVOLT SOLARTECHNIK
+            </h2>
             <div className="h-0.5 w-20 bg-[#669933] mt-1"></div>
           </div>
           <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.5]">
@@ -167,20 +180,32 @@ export default function RotatingImageSection() {
             Industrie, Kommunen und Privathaushalte. Unsere Lösungen bieten maximale Effizienz, höchste Qualität und
             Energieunabhängigkeit.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-8">
+
+          {/* Animated Checklist */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-8"
+          >
             {items.map((item, i) => (
-              <div key={i} className="">
-                <div className="flex  gap-4">
+              <div key={i}>
+                <div className="flex gap-4">
                   <div className="w-8 h-8 p-0 m-0 rounded-full bg-[#669933] flex items-center justify-center">
                     <FaCheck className="text-white text-[12px]" />
                   </div>
-                  <span className="font-semibold text-[18px] leading-[1.7]">{item.name}</span>
+                  <span className="font-[500] text-[18px] leading-[1.7]">{item.name}</span>
+                  
                 </div>
-                <p className="text-sm text-gray-600 pl-11 text-[18px] leading-[1.7]">{item.description}</p>
+                <p className="text-sm text-gray-600 pl-12 mt-3 text-[18px] leading-[1.7]">
+                  {item.description}
+                </p>
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
       </div>
     </div>
   );

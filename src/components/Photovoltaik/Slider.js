@@ -35,7 +35,7 @@ export default function KomponentenSlider() {
     autoplay: true,
     autoplaySpeed: 3000,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
@@ -64,7 +64,7 @@ export default function KomponentenSlider() {
         }`}
       >
 
-        <p className="text-center text-black-600 mx-auto mt-10 mb-10 font-bold text-2xl md:text-3xl lg:text-3xl">
+        <p className="text-center text-black-600 mx-auto mt-6 mb-10 font-bold text-2xl md:text-3xl lg:text-3xl">
           Eine hochwertige Photovoltaikanlage besteht aus mehreren Schlüsselfaktoren
         </p>
 

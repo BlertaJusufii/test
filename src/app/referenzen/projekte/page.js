@@ -1,6 +1,7 @@
 import ProjectsHero from "@/components/Project/info";
 import Vorteil from "@/components/Project/vorteile";
-import TechnologySection from "@/components/Reusable/backgroundImage";
+import AnotherDesign from "@/components/Reusable/AnotherDesign";
+import TechnologySection from "@/components/Reusable/TechnologySection";
 import BannerSection from "@/components/Reusable/banner";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
@@ -21,16 +22,23 @@ export const metadata = {
 export default function Home() {
   const data = {
     title: "Referenzen",
+    subtitle:"Erfolgreiche Photovoltaik-Projekte – Maßgeschneidert für Gewerbe, Industrie und Privathaushalte",
     img: "/Images/Referenzen/projekteBanner.jpg",
   };
-  const backgroundImage = {
-    src: "/Images/Referenzen/Projekte-3.jpg",
-    title: "Technologische Entwicklungen und Effizienzsteigerung",
-    description: [
-      "Die fortschreitende Digitalisierung und innovative Technologien haben die Möglichkeiten in der Photovoltaik erheblich erweitert. Moderne Systeme ermöglichen eine intelligente Steuerung der Energieflüsse, eine optimierte Eigenverbrauchsquote sowie die Integration von Speicherlösungen.",
-      "Insbesondere smarte Steuerungssysteme und leistungsstarke Speicher sorgen dafür, dass überschüssiger Solarstrom gespeichert und genau dann genutzt wird, wenn er gebraucht wird.",
-      "So wird nicht nur der Eigenverbrauch gesteigert, sondern auch die Abhängigkeit vom öffentlichen Netz verringert.Diese technologische Kombination bildet die Basis für viele erfolgreiche Photovoltaik Referenzen von Oekovolt in ganz Deutschland.",
+
+  const sectionData = {
+    greenTitle: "Intelligente Energielösungen",
+    heading: "Technologische Entwicklungen und Effizienzsteigerung",
+    description:
+    "Die fortschreitende Digitalisierung und innovative Technologien haben die Möglichkeiten in der Photovoltaik erheblich erweitert. Moderne Systeme ermöglichen eine intelligente Steuerung der Energieflüsse, eine optimierte Eigenverbrauchsquote sowie die Integration von Speicherlösungen.",
+    bullets: [
+      "Stromnutzung bei Bedarf",
+      "Basis vieler Oekovolt-Projekte",
+      "Smarte Steuerung speichert Solarstrom.",
+      "Mehr Eigenverbrauch, weniger Netzabhängigkeit.",
     ],
+    image1: "/Images/Team/download-1.jpg",
+    image2: "/Images/Team/download.jpg",
   };
   const secondBackgroundImage = {
     src: "/Images/Referenzen/Projekte-2.jpg",
@@ -71,10 +79,11 @@ export default function Home() {
     <div>
       <BannerSection data={data} />
       <ProjectsHero />
-      <TechnologySection backgroundImage={backgroundImage} />
+       <TechnologySection data={sectionData} />
       <BenefitsLayout data={benefits} />
       <Vorteil />
-      <TechnologySection backgroundImage={secondBackgroundImage} />
+      {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}
+      <AnotherDesign/>
       <GreenFeatureSection />
     </div>
   );

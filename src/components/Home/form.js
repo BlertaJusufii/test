@@ -136,7 +136,7 @@ export default function PVInquiryForm() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white mt-15">
+    <div className="max-w-4xl mx-auto p-6 bg-white mt-15 animate-fadeInUp">
     
 
       <h2 className={`text-[25px] mb-6 text-[#669933] text-center transition-all duration-700 ${hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
