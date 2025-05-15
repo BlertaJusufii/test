@@ -1,9 +1,10 @@
-import TechnologySection from "@/components/Reusable/backgroundImage";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import InfoSection from "@/components/Reusable/info";
 import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
+import TechnologySection from "@/components/Reusable/TechnologySection";
+import AnotherDesign from "@/components/Reusable/AnotherDesign";
 
 export const metadata = {
   title: "Team",
@@ -63,6 +64,34 @@ export default function Home() {
     ],
   };
 
+  const team = {
+    greenTitle: "Energie mit Zukunft",
+    heading: "Unsere Philosophie – Innovation trifft Nachhaltigkeit",
+    description:
+      "Bei ÖKOVOLT Deutschland stehen Innovation, Umweltbewusstsein und Kundennähe im Mittelpunkt unseres Handelns. Unser Anspruch geht über die reine Installation hinaus: Wir schaffen langfristige, stabile und wirtschaftliche Lösungen für eine nachhaltige Energieversorgung, die ökologisch wie ökonomisch überzeugt.",
+    bullets: [
+      "Individuelle Beratung für jedes Projekt",
+      "Teamwork für smarte Energiekonzepte",
+      "Zuverlässigkeit durch Erfahrung und Know-how",
+      "Verantwortung für Umwelt und Gesellschaft",
+    ],
+    image1: "/Images/Team/download-1.jpg",
+    image2: "/Images/Team/download.jpg",
+  };
+  const another = {
+    mainImage: "/Images/Team/download-1.jpg",
+    title: "Gemeinsam die Zukunft gestalten",
+    description:
+    "Die Energiewende ist ein Generationenprojekt. Bei ÖKOVOLT Deutschland tragen wir täglich dazu bei, durch intelligente, nachhaltige Technologien eine bessere Zukunft zu gestalten. Unser Photovoltaik Team steht für Expertise, Qualität und Engagement – für eine klimafreundliche Energieversorgung von morgen, die sowohl ökologisch als auch wirtschaftlich überzeugt. Jedes Teammitglied – ob Projektmanager, Techniker oder Kundenberater – spielt eine zentrale Rolle bei der Realisierung individueller Lösungen für unsere Kunden. Gemeinsam schaffen wir Vertrauen, Effizienz und einen echten Beitrag zur CO₂-Reduktion in Deutschland.",
+    cardImage: "/Images/Team/download.jpg",
+    cardText:
+    "Wir begleiten unsere Kunden ganzheitlich: von der ersten Beratung über die technische Planung bis hin zur Umsetzung und langfristigen Betreuung. ",
+    bullets: [
+      "Motiviertes Team mit Leidenschaft für erneuerbare Energien.",
+      "Verlässliche Partnerschaft von der Planung bis zur Inbetriebnahme.",
+    ],
+  };
+  
   const infoData = {
     title: "Unser Team",
     subtitle: "Gemeinsam für eine nachhaltige Zukunft",
@@ -80,10 +109,11 @@ export default function Home() {
       <TeamBanner data={data} />
       <InfoSection data={infoData} />
       <TeamSection />
-      <TechnologySection backgroundImage={backgroundImage} />
+      <TechnologySection data={team} />
       <BenefitsLayout data={benefits} />
-      <TechnologySection backgroundImage={secondBackgroundImage} />
+      <AnotherDesign data={another} />
       <GreenFeatureSection />
+      
     </div>
   );
 }

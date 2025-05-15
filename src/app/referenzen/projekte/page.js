@@ -25,6 +25,20 @@ export default function Home() {
     subtitle:"Erfolgreiche Photovoltaik-Projekte – Maßgeschneidert für Gewerbe, Industrie und Privathaushalte",
     img: "/Images/Referenzen/projekteBanner.jpg",
   };
+  const another = {
+    mainImage: "/Images/Team/download-1.jpg",
+    title: "Ganzheitliche Planung und Umsetzung für nachhaltige Energielösungen",
+    description:
+      "Ein erfolgreicher Einstieg in die Photovoltaik beginnt mit einer fundierten Analyse Ihrer individuellen Anforderungen, gefolgt von einer präzisen Projektierung, detaillierten Planung und professionellen Umsetzung durch unsere erfahrenen Experten. Dabei berücksichtigen wir nicht nur technische Gegebenheiten, sondern auch wirtschaftliche Rahmenbedingungen, Fördermöglichkeiten sowie zukünftige Ausbaupotenziale Ihrer Anlage.",
+    cardImage: "/Images/Team/download.jpg",
+    cardText:
+      "Oekovolt bietet Ihnen komplette Photovoltaiklösungen – von der hochwertigen Installation bis zur intelligenten Systemoptimierung.",
+    bullets: [
+      "Langjährige Erfahrung aus Solarprojekten in ganz Deutschland.",
+      "Qualität, Präzision und persönliche Beratung für maximale Effizienz.",
+    ],
+  };
+  
 
   const sectionData = {
     greenTitle: "Intelligente Energielösungen",
@@ -83,7 +97,7 @@ export default function Home() {
       <BenefitsLayout data={benefits} />
       <Vorteil />
       {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}
-      <AnotherDesign/>
+      <AnotherDesign data={another} />
       <GreenFeatureSection />
     </div>
   );

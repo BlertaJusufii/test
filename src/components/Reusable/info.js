@@ -11,7 +11,7 @@ const InfoSection = ({ data }) => {
               {data.title}
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-10">
+            <h2 className="text-3xl font-semibold text-gray-900 mt-6 mb-6">
               {data.subtitle}
             </h2>
           </div>
