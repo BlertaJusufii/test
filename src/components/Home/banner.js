@@ -4,7 +4,7 @@ const VideoBanner = ({ videoSrc, title, mobileVideoSrc }) => {
   return (
     <div className="relative w-full h-screen max-h-[55vh] overflow-hidden z-0">
       <div className="absolute inset-0 z-0">
-        <video autoPlay loop muted playsInline className="hidden md:block w-full h-full object-cover">
+        <video autoPlay loop muted playsInline className=" md:block w-full h-full object-cover">
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
