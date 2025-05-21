@@ -1,6 +1,135 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import {
+  MdPerson,
+  MdEmail,
+  MdContactPhone,
+  MdBusiness,
+  MdMessage,
+  MdLocationOn,
+} from "react-icons/md";
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    padding: 10px;
+    height: 45px;
+    background-color: transparent;
+    color: #30373e;
+    position: relative;
+    overflow: hidden;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid #669933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+
+    @media (max-width: 640px) {
+      width: 260px;
+      height: 40px;
+      font-size: 12px;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: rgb(92, 92, 92);
+      transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+    }
+
+    &::before {
+      right: 0;
+      top: 0;
+    }
+
+    &::after {
+      left: 0;
+      bottom: 0;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      width: 100%;
+    }
+
+    span {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 0;
+        background-color: rgb(92, 92, 92);
+        transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+      }
+
+      &::before {
+        right: 0;
+        top: 0;
+      }
+
+      &::after {
+        left: 0;
+        bottom: 0;
+      }
+    }
+
+    &:hover span::before,
+    &:hover span::after {
+      height: 100%;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s ease;
+
+      &::before {
+        content: attr(data-title);
+      }
+
+      &::after {
+        display: none;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &:hover p svg {
+      transform: translateX(4px);
+    }
+  }
+`;
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -23,9 +152,8 @@ export default function ContactForm() {
       setShowMessage(true);
       timer = setTimeout(() => {
         setShowMessage(false);
-        // Wait for the fade-out animation to complete before removing the message
         setTimeout(() => setMessage(null), 300);
-      }, 10000); // 10 seconds
+      }, 10000);
     }
     return () => clearTimeout(timer);
   }, [message]);
@@ -40,32 +168,22 @@ export default function ContactForm() {
     setLoading(true);
     setMessage(null);
 
-    if (
-      !formData.firstName ||
-      !formData.email ||
-      !formData.message ||
-      !formData.lastName ||
-      !formData.phone ||
-      !formData.zipCity ||
-      !formData.street
-    ) {
+    const { firstName, lastName, email, phone, message, zipCity, street } = formData;
+    if (!firstName || !lastName || !email || !phone || !message || !zipCity || !street) {
       setMessage({ type: "error", text: "Bitte füllen Sie alle Pflichtfelder aus." });
       setLoading(false);
       return;
     }
 
     const payload = {
-      nachname: formData.firstName,
-      vorname: formData.lastName,
-      e_mail_adressee: formData.email,
-      telefonnummer: formData.phone,
-      ihre_nachricht: formData.message,
-      strasse_und_hausnummer: formData.street,
-      plz_und_ort: formData.zipCity,
+      nachname: firstName,
+      vorname: lastName,
+      e_mail_adressee: email,
+      telefonnummer: phone,
+      ihre_nachricht: message,
+      strasse_und_hausnummer: street,
+      plz_und_ort: zipCity,
     };
-
-    // Log payload to see what is being sent
-    console.log("Submitting payload:", payload);
 
     try {
       const response = await fetch(
@@ -91,8 +209,8 @@ export default function ContactForm() {
         email: "",
         phone: "",
         message: "",
-        street: "",
         zipCity: "",
+        street: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -103,208 +221,202 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image src="/Images/Kontakt/download-2.jpg" alt="Background" fill quality={100} className="object-cover" />
-        <div className="absolute inset-0 bg-black/70 bg-opacity-50"></div>
-      </div>
+    <motion.div
+      className="max-w-7xl mx-auto px-6 py-20 lg:py-20 relative mt-6"
+      initial={{ y: 40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="flex w-full overflow-hidden relative z-20">
+        {/* Left image block */}
+        <div
+          className="hidden md:flex w-1/2 relative rounded-r-[100px] overflow-hidden"
+          style={{
+            backgroundImage: "url('/Images/Jobs/download.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-gray-800/70 z-10"></div>
+          <div className="text-white flex flex-col justify-center items-center text-center relative z-20 px-5 lg:px-20">
+            <h2 className="text-3xl font-bold mb-2 text-white">Willkommen Zurück!</h2>
+            <p className="text-sm">
+              Wir freuen uns auf Ihre Nachricht und stehen Ihnen gerne zur Verfügung!
+            </p>
+          </div>
+        </div>
 
-      {/* Form Container */}
-      <div className="relative z-10 max-w-4xl mx-auto p-8 py-20">
-        <div className="rounded-lg shadow-xl p-0 bg-opacity-50 sm:p-0 md:p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* First Name */}
-              <div>
-                <label htmlFor="firstName" className="block text-[16px] font-medium text-white">
-                  Vorname *
-                </label>
+        {/* Right form block */}
+        <div className="w-full md:w-1/2 lg:p-10 md:pl-10 md:pr-10 p-6 sm:p-8">
+          <h2 className="text-md uppercase font-bold text-center mb-2 text-[#669933]">
+            Kontaktieren
+          </h2>
+          <h2 className="text-3xl font-bold text-center mb-2">Kontaktformular</h2>
+          <p className="text-center text-gray-500 mb-6">Senden Sie uns eine Nachricht</p>
+
+          <AnimatePresence>
+            {message && (
+              <Notification
+                key="notification"
+                type={message.type}
+                text={
+                  message.type === "success"
+                    ? "Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen."
+                    : message.text
+                }
+              />
+            )}
+          </AnimatePresence>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* First row: First + Last name */}
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="relative flex-1">
+                <MdPerson className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="text"
-                  id="firstName"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
+                  placeholder="Vorname *"
                   required
-                  autoComplete="firstName"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="Ihr Vorname"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
 
-              {/* Last Name */}
-              <div>
-                <label htmlFor="lastName" className="block text-[16px] font-medium text-white">
-                  Nachname *
-                </label>
+              <div className="relative flex-1">
+                <MdPerson className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="text"
-                  id="lastName"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
+                  placeholder="Nachname *"
                   required
-                  autoComplete="lastName"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="Ihr Nachname"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
+            </div>
 
-              {/* Street and House Number */}
-              <div>
-                <label htmlFor="street" className="block text-[16px] font-medium text-white">
-                  Strasse und Hausnummer *
-                </label>
+            {/* Second row: Street + ZipCity */}
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="relative flex-1">
+                <MdBusiness className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="text"
-                  id="street"
                   name="street"
                   value={formData.street}
                   onChange={handleChange}
+                  placeholder="Strasse und Hausnummer *"
                   required
-                  autoComplete="street-address"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="Musterstraße 123"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
 
-              {/* ZIP and City */}
-              <div>
-                <label htmlFor="zipCity" className="block text-[16px] font-medium text-white">
-                  PLZ und Ort *
-                </label>
+              <div className="relative flex-1">
+                <MdLocationOn className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="text"
-                  id="zipCity"
                   name="zipCity"
                   value={formData.zipCity}
                   onChange={handleChange}
+                  placeholder="PLZ und Ort *"
                   required
-                  autoComplete="zipCity"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="12345 Musterstadt"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
+            </div>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-[16px] font-medium text-white">
-                  E-Mail-Adresse *
-                </label>
+            {/* Third row: Email + Phone (responsive) */}
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="relative flex-1">
+                <MdEmail className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="E-Mail-Adresse *"
                   required
-                  autoComplete="email"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="ihre@email.de"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
 
-              {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-[16px] font-medium text-white">
-                  Telefonnummer
-                </label>
+              <div className="relative flex-1">
+                <MdContactPhone className="absolute top-3 left-3 text-gray-400 text-lg" />
                 <input
                   type="tel"
-                  id="phone"
                   name="phone"
-                  autoComplete="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                  placeholder="+49 123 456789"
+                  placeholder="Telefonnummer"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
                 />
               </div>
             </div>
 
             {/* Message */}
-            <div>
-              <label htmlFor="message" className="block text-[16px] font-medium text-white">
-                Ihre Nachricht *
-              </label>
+            <div className="relative">
+              <MdMessage className="absolute top-3 left-3 text-gray-400 text-lg" />
               <textarea
-                id="message"
                 name="message"
-                rows="4"
                 value={formData.message}
                 onChange={handleChange}
+                placeholder="Nachricht *"
                 required
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-white focus:border-white text-white bg-transparent placeholder-gray-400"
-                placeholder="Ihre Nachricht an uns..."
+                rows={4}
+                className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300 resize-none"
               ></textarea>
             </div>
 
             {/* Submit Button */}
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-[16px] font-medium text-white bg-[#669933] hover:bg-[#5a8a2d] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#669933] transition-colors duration-200 ${
-                  loading ? "opacity-70 cursor-not-allowed" : ""
-                }`}
-              >
-                {loading ? (
-                  <>
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
+            <Buttons>
+              <button type="submit" disabled={loading}>
+                <span></span>
+                <p data-title="Nachricht SENDEN">
+                  {loading ? (
+                    "Senden..."
+                  ) : (
+                    <>
+                     
+                      <svg
+                        className="ml-2"
+                        fill="none"
                         stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Wird gesendet...
-                  </>
-                ) : (
-                  "ANFRAGE SENDEN"
-                )}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </>
+                  )}
+                </p>
               </button>
-              {message && (
-                <div
-                  className={`mt-6 p-4 rounded-md transition-all duration-300 transform ${
-                    message.type === "error"
-                      ? "flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                      : "flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                  } ${showMessage ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"}`}
-                  role="alert"
-                >
-                  <svg
-                    className="shrink-0 inline w-4 h-4 me-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                  </svg>
-                  <span class="sr-only">Info</span>
-                  <div>
-                    <span class="font-medium"> {message.text}</span>
-                  </div>
-                </div>
-              )}
-            </div>
+            </Buttons>
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
+
+const Notification = ({ type, text }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className={`p-3 mb-5 rounded-md text-center ${
+        type === "success"
+          ? "bg-green-100 text-green-800"
+          : "bg-red-100 text-red-800"
+      }`}
+    >
+      {text}
+    </motion.div>
+  );
+};

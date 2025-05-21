@@ -2,13 +2,14 @@ import JobsInfo from "@/components/Jobs/jobs";
 import JobListings from "@/components/Jobs/jobsposition";
 import ProjectsHero from "@/components/Project/info";
 import Vorteil from "@/components/Project/vorteile";
-import TechnologySection from "@/components/Reusable/backgroundImage";
 import BannerSection from "@/components/Reusable/banner";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import InfoSection from "@/components/Reusable/info";
 import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
+import TechnologySection from "@/components/Reusable/TechnologySection";
+import AnotherDesign from "@/components/Reusable/AnotherDesign";
 
 export const metadata = {
   title: "Jobs",
@@ -88,6 +89,39 @@ export default function Home() {
       "Neben der wirtschaftlichen Stabilität bietet die Branche auch eine Vielzahl an beruflichen Entwicklungsmöglichkeiten. Von der technischen Planung über die Installation bis hin zur Optimierung und Wartung von Anlagen gibt es zahlreiche Tätigkeitsfelder, die sowohl handwerkliches als auch analytisches oder kaufmännisches Know-how erfordern. Der Einstieg ist sowohl für erfahrene Fachkräfte als auch für Quereinsteiger attraktiv, da sich die Branche stetig weiterentwickelt und innovative Technologien neue Jobperspektiven eröffnen.",
     ],
   };
+  const jobs = {
+    greenTitle: "JOBS",
+    heading: "Gemeinsam die Zukunft gestalten",
+    description:
+      "Nachhaltige Energieversorgung ist eine der größten Herausforderungen unserer Zeit. Deshalb setzen wir auf innovative Lösungen und engagierte Teams, die den Wandel aktiv mitgestalten. Wir sind davon überzeugt, dass jeder Einzelne einen wichtigen Beitrag leisten kann – sei es durch technisches Know-how, kreative Ideen oder lösungsorientiertes Denken.",
+    bullets: [
+      "Karriere mit Zukunft bei ÖKOVOLT",
+      "Einsatz für Energieeffizienz",
+      "Mitgestaltung einer besseren Welt von morgen",
+      "Werde Teil eines engagierten und zukunftsorientierten Teams",
+    ],
+    image1: "/Images/Jobs/jobs1.jpg",
+    image2: "/Images/Jobs/jobs2.jpg",
+  };
+  const another = {
+    mainImage: "/Images/Jobs/jobs4.jpg",
+    title: "Vielfältige Karrieremöglichkeiten in der Photovoltaik",
+    description:
+    "Die Solarbranche bietet zahlreiche Tätigkeitsfelder, die sowohl technisches als auch kaufmännisches Know-how erfordern. Von der Planung und Entwicklung über die Installation und Wartung bis hin zu Vertrieb und Beratung – bei uns gibt es vielfältige Einsatzmöglichkeiten. Ob du handwerklich begabt bist und gerne an der Montage von Solaranlagen mitwirkst, ein Talent für Vertrieb und Kundenberatung hast oder lieber im Hintergrund technische Konzepte entwickelst – in der Photovoltaikbranche gibt es für jeden eine passende Aufgabe.",
+    cardImage: "/Images/Jobs/jobs3.jpg",
+    cardText:
+    "Ob mit oder ohne Erfahrung – bei ÖKOVOLT findest du mit Schulungen und Teamgeist eine sinnvolle Karriere im Bereich Photovoltaik.",
+    bullets: [
+      "Individuelle Weiterbildungs- und Entwicklungsmöglichkeiten.",
+      "Sicherer Arbeitsplatz in einer zukunftsorientierten Branche.",
+    ],
+  };
+
+  const end={
+    greentitle:"Solaranlage",
+    title:"Jetzt bewerben & deine Zukunft mit ÖKOVOLT gestalten!",
+    description:"Möchten Sie in Solarenergie investieren? Dann nutzen Sie unser Kontaktformular oder treten Sie direkt mit uns in Verbindung – unser Team steht Ihnen für eine persönliche Beratung jederzeit zur Verfügung."
+  }
 
   return (
     <div>
@@ -95,10 +129,12 @@ export default function Home() {
       <InfoSection data={infoData} />
       <JobListings />
       <BenefitsLayout data={benefits} />
-      <TechnologySection backgroundImage={backgroundImage} />
+      <TechnologySection data={jobs} />
       <JobsInfo data={jobsData} />
-      <TechnologySection backgroundImage={secondBackgroundImage} />
-      <GreenFeatureSection />
+      {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}
+            <AnotherDesign data={another} />
+      
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

@@ -12,10 +12,10 @@ const BannerSection = ({ data }) => {
           alt="Banner Background"
           fill
           quality={100}
-          className="object-cover w-full h-full "
+          className="object-cover w-full h-full object-center"
           priority
           style={{
-            objectPosition: "center bottom",
+            objectPosition: "center center",
           }}
         />
       </div>

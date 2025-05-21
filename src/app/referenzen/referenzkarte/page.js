@@ -35,8 +35,8 @@ export default function Home() {
       "Effiziente Nutzung durch intelligente Systeme.",
     ],
     
-    image1: "/Images/Team/download-1.jpg",
-    image2: "/Images/Team/download.jpg",
+    image1: "/Images/Referenzen/referenzkarte1.jpg",
+    image2: "/Images/Referenzen/referenzkarte2.jpg",
   };
   const secondBackgroundImage = {
     src: "/Images/Referenzen/Referenzkarte-1.jpg",
@@ -71,6 +71,13 @@ export default function Home() {
       },
     ],
   };
+
+  const end={
+    greentitle:"Solaranlage",
+    title:"Ihr Weg zur eigenen Solaranlage",
+    description:"Sie möchten Ihre Energiekosten senken und auf Solar umsteigen? Entdecken Sie unsere Referenzkarte und lassen Sie sich unverbindlich beraten. Unser Team unterstützt Sie gerne bei Planung, Umsetzung und Service."
+  }
+
   return (
     <div>
       <BannerSection data={data} />
@@ -78,7 +85,7 @@ export default function Home() {
       <MapContainer />
       <BenefitsLayout data={benefits} />
       <TechnologySection data={karte} /> 
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

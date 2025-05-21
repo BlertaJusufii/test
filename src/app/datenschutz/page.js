@@ -15,11 +15,17 @@ export default function Home() {
     img: "/Images/Kontakt/download-2.jpg",
   };
 
+  const end={
+    greentitle:"Solarenergie",
+    title:"Ihre persönliche Solarberatung",
+    description:"Interessieren Sie sich für eine eigene Solaranlage? Wir beraten Sie individuell – kontaktieren Sie uns jetzt!"
+  }
+
   return (
     <div>
       <BannerSection data={data} />
       <PrivacyPolicy />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

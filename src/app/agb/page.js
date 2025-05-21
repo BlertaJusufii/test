@@ -16,11 +16,18 @@ export default function Home() {
     img: "/Images/Kontakt/download-2.jpg",
   };
 
+  const end={
+    greentitle:"Solarenergie",
+    title:"Ihr Einstieg in Solarenergie",
+    description:"Möchten Sie Ihre Energiekosten senken und nachhaltig leben? Füllen Sie unser Kontaktformular aus – wir melden uns bei Ihnen!"
+  }
+
+
   return (
     <div>
       <BannerSection data={data} />
       <AGComponent />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

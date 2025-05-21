@@ -1,80 +1,106 @@
 "use client";
 import React from "react";
-import { FaPhone, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaClock, FaEnvelope } from "react-icons/fa";
 import Image from "next/image";
 
 const ContactSection = () => {
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 flex-col lg:flex-row lg:justify-between sm:px-6 lg:px-8 flex  gap-8 items-center">
-        {/* Left Side - Contact Information */}
-        <div className="space-y-6 w-full lg:w-[600px]">
-          <div className="flex flex-col gap-4">
-           
-            <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
-            WIR SIND FÜR SIE DA
-              <span className="absolute left-0 w-20 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
-            </h2>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl  text-gray-900 ">Kontaktieren Sie Uns</h3>
-            <p className="text-lg text-gray-700 text-[18px]">
-              Sie schätzen den persönlichen Kontakt? Wir auch. Rufen Sie uns doch einfach an oder nutzen Sie unser
-              Kontaktformular.
-            </p>
-          </div>
-
-          <div className="space-y-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {/* Phone */}
-            <div className="flex flex-col items-start space-x-3 gap-4 ">
-              <div className="p-2 bg-[#669933] text-white rounded-md">
-                <FaPhone className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col gap-1">
-                <p className="text-gray-800  text-[16px]">+49 8245 96 788 0</p>
-                <p className="text-gray-600  text-[16px]">office@oekovolt.de</p>
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="flex flex-col items-start space-x-3 gap-4">
-              <div className="p-2 bg-[#669933] text-white rounded-md">
-                <FaMapMarkerAlt className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col gap-1">
-                <p className="text-gray-800 text-[16px]">Schlingener Straße 1a</p>
-                <p className="text-gray-600 text-[16px]">86842 Türkheim, </p>
-                <p className="text-gray-600 text-[16px]">Deutschland</p>
-              </div>
-            </div>
-
-            {/* Opening Hours */}
-            <div className="flex flex-col items-start space-x-3 gap-4">
-              <div className="p-2 bg-[#669933] text-white rounded-md">
-                <FaClock className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col gap-1">
-                <p className="text-gray-800 text-[16px]">Montag - Donnerstag</p>
-                <p className="text-gray-600 text-[16px]">08:00 - 16:00</p>
-                <p className="text-gray-800 mt-2 text-[16px]">Freitag</p>
-                <p className="text-gray-600 text-[16px]">08:00 - 13:00</p>
-              </div>
-            </div>
-          </div>
+    <section className="relative py-20 bg-white overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-[#669933] opacity-0"></div>
+      <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-[#669933] opacity-5"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header section */}
+        <div className="text-center mb-26">
+          <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold tracking-widest text-[#669933] uppercase rounded-full ">
+            Kontakt
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Wir sind für Sie da
+          </h2>
+          <p className="max-w-2xl mx-auto text-xl text-gray-600 ">
+            Persönlicher Service und kompetente Beratung - direkt bei Ihnen vor Ort.
+          </p>
         </div>
 
-        {/* Right Side - Image */}
-        <div className=" w-full lg:w-2/5">
-          <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-md">
-            <Image
-              src="/Images/Kontakt/download-1.jpg" // Replace with the actual image path
-              alt="Zentrale von Ökovolt Deutschland in Türkheim (Bayern)"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-              className="rounded-lg object-cover"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Contact cards */}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Phone & Email */}
+              <div className="relative bg-white p-8 rounded-2xl shadow-xl border border-gray-100 transform transition-all hover:-translate-y-2">
+                <div className="absolute -top-5 left-6 w-12 h-12 rounded-xl bg-[#669933] text-white flex items-center justify-center shadow-lg">
+                  <FaPhone className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 mt-2">Telefon & E-Mail</h3>
+                <div className="space-y-3">
+                  <a href="tel:+498245967880" className="flex items-center gap-3 text-gray-700 hover:text-[#669933] transition-colors">
+                    <FaPhone className="h-4 w-4 opacity-70" />
+                    +49 8245 96 788 0
+                  </a>
+                  <a href="mailto:office@oekovolt.de" className="flex items-center gap-3 text-gray-700 hover:text-[#669933] transition-colors">
+                    <FaEnvelope className="h-4 w-4 opacity-70" />
+                    office@oekovolt.de
+                  </a>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="relative bg-white p-8 rounded-2xl shadow-xl border border-gray-100 transform transition-all hover:-translate-y-2">
+                <div className="absolute -top-5 left-6 w-12 h-12 rounded-xl bg-[#669933] text-white flex items-center justify-center shadow-lg">
+                  <FaMapMarkerAlt className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 mt-2">Adresse</h3>
+                <div className="space-y-3 text-gray-700">
+                  <p>Schlingener Straße 1a</p>
+                  <p>86842 Türkheim</p>
+                  <p>Deutschland</p>
+                </div>
+              </div>
+
+              {/* Hours */}
+              <div className="relative bg-white p-8 rounded-2xl shadow-xl border border-gray-100 transform transition-all hover:-translate-y-2 md:col-span-2">
+                {/* <div className="absolute -top-5 left-6 w-12 h-12 rounded-xl bg-[#669933] text-white flex items-center justify-center shadow-lg">
+                  <FaClock className="h-5 w-5" />
+                </div> */}
+                <h3 className="text-xl font-bold text-gray-900 mb-4 mt-2">Öffnungszeiten</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-gray-800">Wochentage</h4>
+                    <p className="text-gray-600">Mo - Do: 08:00 - 16:00</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-gray-800">Freitag</h4>
+                    <p className="text-gray-600">08:00 - 13:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
           </div>
-          <p className="text-center text-gray-600 text-[16px] mt-2">
-            Zentrale von Ökovolt Deutschland in Türkheim (Bayern)
-          </p>
+
+          {/* Image with decorative frame */}
+          <div className="relative">
+            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl z-100">
+              <Image
+                src="/Images/Kontakt/download-1.jpg"
+                alt="Zentrale von Ökovolt Deutschland in Türkheim (Bayern)"
+                fill
+                className="object-cover"
+                priority
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
+            <div className="hidden lg:block absolute -bottom-[-25px] -right-6 w-32 h-32  border-4 border-[#669933] rounded-lg z-10 opacity-50"></div>
+            <div className="hidden lg:block absolute -top-6 -left-6 w-24 h-24 border-4 border-[#669933] rounded-lg z-10 opacity-50"></div>
+            <p className="text-center text-gray-600 mt-8 text-sm italic">
+              Zentrale von Ökovolt Deutschland in Türkheim (Bayern)
+            </p>
+          </div>
         </div>
       </div>
     </section>

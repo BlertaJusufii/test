@@ -12,6 +12,18 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translate(2%,65%);
+  }
+  50% {
+    transform: translate(2%, 70%);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 0.7s infinite;
+}
 
 @keyframes pulseblue {
   0%, 100% {
@@ -140,3 +152,83 @@ body {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+/* From Uiverse.io by dzoshi */ 
+.card2 {
+  position: relative;
+  width: 190px;
+  height: 254px;
+  background: linear-gradient(-45deg, #161616 0%, #000000 100%);
+  color: #81818144;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 14px;
+  gap: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 0;
+  margin: auto;
+  width: 190px;
+  height: 260px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #ff0000 0%, #d80000 40%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.8s cubic-bezier(0.175, 0.95, 0.9, 1.275);
+  box-shadow: 0px 20px 30px hsla(0, 0%, 100%, 0.979);
+}
+
+.card2::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  width: 165px;
+  height: 245px;
+  background: linear-gradient(-45deg, #fc0000 0%, #f00000 100%);
+  transform: translate3d(0, 0, 0) scale(0.45);
+}
+
+.heading {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 900;
+}
+
+.card2 p:not(.heading) {
+  font-size: 18px;
+}
+
+.card2 p:last-child {
+  color: #fa0000;
+  font-weight: 900;
+}
+
+.card2:hover::after {
+  transition: all 0.2s cubic-bezier(0.175, 0.285, 0.82, 1.275);
+}
+
+.card2:hover::before {
+  transform: scaleX(1.02) scaleY(1.02);
+  box-shadow: 0px 0px 30px 0px hsla(0, 100%, 50%, 0.356);
+}
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translate(2%,55%);
+  }
+  50% {
+    transform: translate(2%, 60%);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 0.7s infinite;
+}
+

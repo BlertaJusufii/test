@@ -4,7 +4,7 @@ const InfoSection = ({ data }) => {
   return (
     <div className="max-w-7xl mx-auto px-4">
       {/* Hero Section */}
-      <section className="pt-15 pb-15 lg:pt-20 lg:pb-20">
+      <section className="pt-15 pb-15 lg:pt-20 lg:pb-18">
         <div className="container mx-auto max-w-7xl">
           <div className="">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">

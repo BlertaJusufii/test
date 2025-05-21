@@ -89,6 +89,12 @@ export default function Home() {
     ],
   };
 
+  const end={
+    greentitle:"Smarthome-Lösung",
+    title:"Energie der Zukunft",
+    description:"Machen Sie den ersten Schritt in Richtung Unabhängigkeit mit Ihrer eigenen Solaranlage. Füllen Sie unser Kontaktformular aus – wir helfen Ihnen gerne weiter."
+  }
+
   return (
     <div>
       <BannerSection data={data} />
@@ -98,7 +104,7 @@ export default function Home() {
       <Vorteil />
       {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}
       <AnotherDesign data={another} />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

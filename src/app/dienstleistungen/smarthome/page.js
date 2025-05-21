@@ -23,12 +23,18 @@ export default function Home() {
     description: "Mit einer Kombination mit unseren Smarthome-Lösungen können Sie Ihren Eigenverbrauch erhöhen.",
   };
 
+  const end={
+    greentitle:"Smarthome-Lösung",
+    title:"Ihre individuelle Smarthome-Lösung – Jetzt Kontakt aufnehmen!",
+    description:"Möchten Sie Ihre Photovoltaikanlage mit Smarthome-Technologien kombinieren? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Team berät Sie individuell & professionell. Jetzt unverbindlich beraten lassen!"
+  }
+
   return (
     <div>
       <TeamBanner data={data} />
       <Tabs />
       <VorteileSection />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

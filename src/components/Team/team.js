@@ -1,9 +1,8 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { HiPhone } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
-
 
 const TeamMember = ({ member, index }) => {
   return (
@@ -11,57 +10,52 @@ const TeamMember = ({ member, index }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group h-130 w-100  relative overflow-hidden rounded-2xl bg-white border-3 border-[#669933] hover:text-white shadow-xl transition-all duration-300 hover:shadow-2xl"
+      className="relative w-full gap-8 pt-10 bg-white  rounded-xl overflow-hidden shadow-xl group "
     >
-      <div className=" overflow-hidden">
+      {/* Green top border */}
+      <div className="absolute top-0 left-0 w-full h-2 bg-[#669933] z-10" />
+
+      {/* Green bottom border */}
+      <div className="absolute bottom-0 left-0 w-full h-2 bg-[#669933] z-10" />
+
+      {/* Image with slight dark overlay */}
+      <div className="relative w-full h-100">
         <img
           src={member.image}
-          alt={member.name}
-          className="h-100 w-100 object-cover object-center transition-transform duration-700 group-hover:scale-110"
+          alt={`${member.name} ${member.surname}`}
+          className="w-full h-full  object-cover brightness-100 group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0  transition-all duration-300" />
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-14 transition-transform duration-300 group-hover:translate-y-0">
-        <div className="relative z-10 bg-blue">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <h3 className="text-2xl font-bold text-black ">{member.name}</h3>
-            <p className="mt-1 text-lg text-[#669933]">{member.position}</p>
-          </motion.div>
 
-          <motion.div
-            className="mt-4 flex space-x-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-          
+      {/* Info */}
+      <div className="p-4 text-gray-600">
+        <h3 className="text-lg font-bold hover:text-[#669933]">{member.name}</h3>
+        <p className="text-sm text-gray-600">{member.position}</p>
+
+        {/* Contact */}
+        <div className="flex gap-3 mt-4 mb-4">
+          {member.phone && (
             <a
-              href={`tel:+49 8245 96 788 0`}
-              className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-[#669933]"
+              href={`tel:${member.phone}`}
+              className="border-2 border-[#669933] hover:bg-[#669933] text-[#669933] hover:text-white p-2 rounded-full transition-all"
+              title="Call"
             >
- <HiPhone className="h-5 w-5" />
-             </a>
-            <a
-              href="mailto:office@oekovolt.de"
-              className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-[#669933]"
-            >
-              <MdEmail className="h-5 w-5"/>
+              <HiPhone className="w-5 h-5" />
             </a>
-          </motion.div>
-
-          {/* <motion.p
-            className="mt-4 text-sm text-white/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            {member.bio || 'Experte für nachhaltige Energielösungen mit langjähriger Erfahrung in der Solarbranche.'}
-          </motion.p> */}
+          )}
+          {member.email && (
+            <a
+              href={`mailto:${member.email}`}
+              className="border-2 border-[#669933] hover:bg-[#669933] text-[#669933] hover:text-white p-2 rounded-full transition-all"
+              title="Email"
+            >
+              <MdEmail className="w-5 h-5" />
+            </a>
+          )}
         </div>
+
+        
       </div>
     </motion.div>
   );
@@ -71,57 +65,54 @@ const TeamSection = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchTeam = async () => {
       try {
         const response = await fetch(
           "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data"
         );
-
-        if (!response.ok) {
-          throw new Error("Error fetching data");
-        }
-
+        if (!response.ok) throw new Error("Error fetching team");
         const data = await response.json();
-
-        const formattedEvents = data.message.map((marke) => ({
-          name: marke.name1,
-          surname: marke.vorname,
-          email: marke.e_mail,
-          phone: marke.telefon,
-          image: `http://192.168.68.197:8000${marke.bild_anhagen}`,
-          status: marke.status,
-          position: marke.rolle,
-          bio: "Experte für nachhaltige Energielösungen mit langjähriger Erfahrung in der Solarbranche."
+        const formatted = data.message.map((person) => ({
+          name: person.name1,
+          surname: person.vorname,
+          email: person.e_mail,
+          phone: person.telefon,
+          image: `http://192.168.68.197:8000${person.bild_anhagen}`,
+          status: person.status,
+          position: person.rolle,
+          bio: person.bio || "", // Optional bio if available
         }));
-
-        setTeams(formattedEvents);
+        setTeams(formatted);
       } catch (error) {
-        console.error("Error fetching events:", error);
+        console.error("Error:", error);
       }
     };
 
-    fetchEvents();
+    fetchTeam();
   }, []);
 
-  return (
-    <section className="pb-20 ">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-        
-        </motion.div>
 
-        <div className="grid grid-cols-3 gap-5 max-w-7xl mx-auto">
+  return (
+    teams.length > 0 && (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold text-center text-[#333] mb-12"
+        >
+          Unser Team
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 justify-items-center">
           {teams.map((member, index) => (
             <TeamMember key={index} member={member} index={index} />
           ))}
         </div>
       </div>
     </section>
+    )
   );
 };
 

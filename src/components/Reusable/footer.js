@@ -1,10 +1,15 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Image from "next/image";
+import CookieBanner from "../Cookies/cookiecomponent";
 
 const Footer = () => {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const handleShowPopup = () => setIsPopupVisible(true);
+
+
   const currentYear = new Date().getFullYear();
   return (
     <div className="relative">
@@ -117,9 +122,9 @@ const Footer = () => {
                 <hr className="border-t border-[#fffff]/30 my-3 " />
                 <ul className="space-y-2 text-[16px]">
                   <li>
-                    <a href="#" className="hover:text-[#669933] transition-colors">
-                      Privatsphäre
-                    </a>
+                 <button onClick={handleShowPopup} className="hover:text-white cursor-pointer transition">Privatsphäre-Einstellungen</button>
+
+                   
                   </li>
                   <li>
                     <a href="/agb" className="hover:text-[#669933] transition-colors">
@@ -141,8 +146,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </footer>
+      </footer>  
+      {isPopupVisible && (
+        <CookieBanner forceShow={isPopupVisible} onClose={() => setIsPopupVisible(false)} />
+      )}
     </div>
+    
   );
 };
 

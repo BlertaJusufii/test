@@ -36,10 +36,10 @@ export default function Home() {
   return (
     <div>
       <TeamBanner data={data} />
-      <ContactSection />
-      <ContactForm />
+      <ContactSection /> 
       <Map />
-      <GreenFeatureSection />
+      <ContactForm />
+     
     </div>
   );
 }

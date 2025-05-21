@@ -79,11 +79,11 @@ export default function Home() {
     image2: "/Images/Team/download.jpg",
   };
   const another = {
-    mainImage: "/Images/Team/download-1.jpg",
+    mainImage: "/Images/Referenzen/referenzkarte3.jpg",
     title: "Gemeinsam die Zukunft gestalten",
     description:
     "Die Energiewende ist ein Generationenprojekt. Bei ÖKOVOLT Deutschland tragen wir täglich dazu bei, durch intelligente, nachhaltige Technologien eine bessere Zukunft zu gestalten. Unser Photovoltaik Team steht für Expertise, Qualität und Engagement – für eine klimafreundliche Energieversorgung von morgen, die sowohl ökologisch als auch wirtschaftlich überzeugt. Jedes Teammitglied – ob Projektmanager, Techniker oder Kundenberater – spielt eine zentrale Rolle bei der Realisierung individueller Lösungen für unsere Kunden. Gemeinsam schaffen wir Vertrauen, Effizienz und einen echten Beitrag zur CO₂-Reduktion in Deutschland.",
-    cardImage: "/Images/Team/download.jpg",
+    cardImage: "/Images/Referenzen/referenzkarte4.jpg",
     cardText:
     "Wir begleiten unsere Kunden ganzheitlich: von der ersten Beratung über die technische Planung bis hin zur Umsetzung und langfristigen Betreuung. ",
     bullets: [
@@ -104,15 +104,20 @@ export default function Home() {
     ],
   };
 
+  const end={
+    greentitle:"Solaranlage",
+    title:"Solarstrom für Ihr Zuhause",
+    description:"Sie möchten von sauberer und günstiger Energie profitieren? Kontaktieren Sie uns, und wir erstellen Ihnen ein individuelles Angebot."
+  }
   return (
     <div>
       <TeamBanner data={data} />
       <InfoSection data={infoData} />
       <TeamSection />
-      <TechnologySection data={team} />
+      {/* <TechnologySection data={team} /> */}
       <BenefitsLayout data={benefits} />
       <AnotherDesign data={another} />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
       
     </div>
   );

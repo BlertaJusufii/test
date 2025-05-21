@@ -39,12 +39,18 @@ export default function Home() {
     ],
   };
 
+  const end={
+    greentitle:"Solarlösung",
+    title:"Ihre maßgeschneiderte Solarlösung – Jetzt beraten lassen!",
+    description:"Sie denken über eine eigene Solaranlage nach? Unser Team hilft Ihnen dabei, die perfekte Lösung für Ihr Zuhause zu finden."
+  }
+
   return (
     <div>
       <TeamBanner data={data} />
       <InfoSection data={infoData} />
       <SolarInfoAccordion />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end} />
     </div>
   );
 }

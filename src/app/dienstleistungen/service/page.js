@@ -18,12 +18,18 @@ export default function Home() {
       "Ihre Photovoltaikanlage in erfahrenen Händen – mit dem Photovoltaik Service von Oekovolt Deutschland.",
   };
 
+  const end={
+    greentitle:"Smarthome-Lösung",
+    title:"Jetzt Termin für Wartung & Service vereinbaren!",
+    description:"Möchten Sie Ihre Solaranlage professionell warten oder reparieren lassen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an. Unser Team berät Sie individuell und kompetent – von der einfachen Reinigung bis zur vollständigen Sanierung Ihrer PV-Anlage."
+  }
+
   return (
     <div>
       <TeamBanner data={data} />
       <ServiceSection />
       <AdvantagesSection />
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
     </div>
   );
 }

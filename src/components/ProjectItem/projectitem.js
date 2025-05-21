@@ -1,9 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { FaMapMarkerAlt, FaCalendarAlt, FaTools, FaBolt } from "react-icons/fa";
 import GreenFeatureSection from "../Reusable/contactInfo";
+
+const end={
+  greentitle:"Smarthome-Lösung",
+  title:"Ihre persönliche Solarberatung",
+  description:"Interessieren Sie sich für eine eigene Solaranlage? Wir beraten Sie individuell – kontaktieren Sie uns jetzt!"
+}
+
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,119 +25,112 @@ const ProjectCard = ({ project }) => {
         .replace(/[ü]/g, "ue")
         .replace(/[ß]/g, "ss")
         .replace(/[^a-z0-9-]/g, "")}`}
-      className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg groupe"
+      className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image with Next.js Image component */}
       <div className="relative w-full h-full">
         <Image
-          src={`http://192.168.68.197:8000${project?.bild_anhagen[0].bild_anhagen}`} // Replace with dynamic image if necessary
+          src={`http://192.168.68.197:8000${project?.bild_anhagen[0].bild_anhagen}`}
           alt={`Project background - ${project?.location}`}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-          className={`transition-all duration-300 obeject-cover object-center ${
-            isHovered ? "scale-110 brightness-75" : "scale-100 brightness-100"
+          className={`transition-all duration-500 object-cover object-center ${
+            isHovered ? "scale-110 blur-[1px]" : "scale-100 blur-0"
           }`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-
-        {/* Dark overlay (Vein Effect) */}
-        <div className={`absolute inset-0 bg-black transition-opacity duration-300 opacity-40 `}></div>
+        <div className="absolute inset-0 bg-black/30 transition-opacity duration-300"></div>
       </div>
 
-      {/* Content */}
-      <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300`}>
-        <div className="text-white">
-          <h3 className="text-[20px]">{project?.title}</h3>
-          <p
-            className={`text-xl font-light mt-2 transition-all duration-300 transform text-[16px] ${
-              isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
-            }`}
-          >
-            {project?.leistung}
-          </p>
+      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+        <div
+          className={`transition-all duration-500 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 ${
+            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          <h3 className="text-white text-xl font-semibold">{project?.title}</h3>
+          <div className="flex items-center text-white gap-2 mt-2 text-[16px]">
+            <FaBolt className="text-[#ffde59]" />
+            <span>{project?.leistung}</span>
+          </div>
         </div>
       </div>
     </Link>
   );
 };
 
+
 const ProjectDetailComponent = ({ project, related }) => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Main Content Section */}
-      <div className="flex flex-col md:flex-row gap-8 mb-16">
-        {/* Left Column - Images (75% width) */}
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="flex flex-col md:flex-row gap-10 mb-16">
         <div className="w-full md:w-3/4">
-          <h2 className="text-2xl font-bold mb-6">Fotos</h2>
-          {/* Main Project Image */}
-          {project?.bild_anhagen && project?.bild_anhagen.length > 0 && (
-            <div className="grid grid-cols-1 gap-4">
-              {project.bild_anhagen.map((image, index) => (
-                <div key={index} className="rounded-lg overflow-hidden relative h-[500px]  ">
-                  <Image
-                    src={`http://192.168.68.197:8000${image.bild_anhagen}`}
-                    alt={`${project.title} - ${index + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-                    className="w-full h-100 object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <h2 className="text-3xl font-bold text-[#669933] mb-6">Fotos</h2>
+          <div className="grid grid-cols-1 gap-6">
+            {project?.bild_anhagen?.map((image, index) => (
+              <div
+                key={index}
+                className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg"
+              >
+                <Image
+                  src={`http://192.168.68.197:8000${image.bild_anhagen}`}
+                  alt={`${project.title} - ${index + 1}`}
+                  fill
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right Column - Text (25% width) */}
-        <div className="w-full md:w-1/4">
-          <div className="sticky top-30">
-            {/* Project Title */}
-            <h2 className="text-2xl font-bold mb-6">{project?.title}</h2>
-            {/* Listing Section */}
+        <div className="w-full md:w-1/4 space-y-6">
+          <div className="sticky top-28 p-6 rounded-xl shadow-md border border-gray-200 bg-white">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              {project?.title}
+            </h2>
             {project?.leistung && (
-              <div className="mb-8">
-                <span className="text-sm text-gray-500 uppercase tracking-wider">Leistung</span>
-                <p className="text-lg font-medium mt-1">{project.leistung}</p>
+              <div className="flex items-center gap-3 text-gray-700 mb-3">
+                <FaBolt className="text-[#669933]" />
+                <span className="font-medium">{project.leistung}</span>
               </div>
             )}
-            {/* Year Section */}
             {project?.jahr && (
-              <div className="mb-8">
-                <span className="text-sm text-gray-500 uppercase tracking-wider">Jahr</span>
-                <p className="text-lg font-medium mt-1">{project.jahr}</p>
+              <div className="flex items-center gap-3 text-gray-700 mb-3">
+                <FaCalendarAlt className="text-[#669933]" />
+                <span className="font-medium">{project.jahr}</span>
               </div>
             )}
-            {/* Project Description */}
             {project?.typ && (
-              <div className=" mb-8">
-                <span className="text-sm text-gray-500 uppercase tracking-wider">Typ</span>
-                <p className="text-lg font-medium mt-1">{project.typ}</p>
+              <div className="flex items-center gap-3 text-gray-700 mb-3">
+                <FaTools className="text-[#669933]" />
+                <span className="font-medium">{project.typ}</span>
               </div>
             )}
             {project?.ort && (
-              <div className=" mb-8">
-                <span className="text-sm text-gray-500 uppercase tracking-wider">Ort</span>
-                <p className="text-lg font-medium mt-1">{project.ort}</p>
+              <div className="flex items-center gap-3 text-gray-700">
+                <FaMapMarkerAlt className="text-[#669933]" />
+                <span className="font-medium">{project.ort}</span>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Weitere Kundenprojekte Section */}
-      <div className="border-t border-gray-200 pt-12">
-        <h2 className="text-2xl font-bold mb-8">Weitere Kundenprojekte entdecken</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="pt-10 border-t border-gray-200">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          Weitere Kundenprojekte entdecken
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {related.map((relatedProject, index) => (
             <ProjectCard project={relatedProject} key={index} />
           ))}
         </div>
       </div>
-      <GreenFeatureSection />
+      <GreenFeatureSection data={end}/>
+
     </div>
   );
 };
+
 
 export default ProjectDetailComponent;

@@ -4,53 +4,66 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 
-export default function GreenFeatureSection() {
+export default function GreenFeatureSection({data}) {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16 lg:py-20 animate-fadeInUp">
-      <div className="flex flex-col md:flex-row items-center gap-8 pt-[35px]">
-        <motion.div
-          className="w-full md:w-3/4 space-y-6"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 className="lg:text-[30px] text-2xl md:text-3xl  font-[500]" style={{ color: "#2e8400" }}>
-            Nachhaltige Energie für Ihr Zuhause
-          </h2>
+    <motion.div
+      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 lg:py-20 py-10 max-w-7xl mx-auto rounded-2xl mt-12"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      viewport={{ once: true }}
+    >
+      {/* LEFT: Text Content */}
+      <div className="w-full lg:w-1/2">
+        <p className="uppercase text-sm tracking-wide text-[#669933] font-semibold mb-3 mt-3">
+         {data.greentitle}
+        </p>
+        <h2 className="text-2xl lg:text-3xl md:text-3xl font-bold text-gray-900 mb-5 leading-tight">
+          {data.title}
+        </h2>
+        <p className="text-gray-700 mb-6">
+          {data.description}
+        </p>
 
-          <p className="text-[18px] text-gray-800">
-            Entdecken Sie unsere maßgeschneiderten Photovoltaik-Lösungen, die Ihnen helfen, Energie zu sparen und
-            gleichzeitig die Umwelt zu schonen. Unsere Experten beraten Sie gerne zu den besten Optionen für Ihr
-            Zuhause.
-          </p>
+       
 
-          <Link
-            href="/kontakt"
-            className="inline-flex items-center font-[550] gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[14px] uppercase"
-            style={{ backgroundColor: "#669933" }}
-          >
-            Jetzt Kontaktieren
-            <FaChevronRight />
-          </Link>
-        </motion.div>
-        <motion.div
-          className="w-full md:w-1/4 flex justify-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        <Link
+          href="/kontakt"
+          className="inline-flex items-center font-semibold gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[14px] uppercase"
+          style={{ backgroundColor: "#669933" }}
         >
-          <div className="relative aspect-square w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden">
-            <Image
-              src="/Images/Home/contactImage.jpg"
-              alt="Solaranlage auf einem Hausdach"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 768px) 100px, 200px; (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        </motion.div>
+          Jetzt Kontaktieren
+          <FaChevronRight />
+        </Link>
       </div>
-    </div>
+
+    {/* RIGHT: Image with Floating Elements */}
+<div className="relative w-full lg:w-1/2 flex justify-center items-center group mt-8 lg:mt-0">
+  <div className="relative z-10 w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden border-4 border-white shadow-xl">
+    <Image
+      src="/Images/Home/contactImage.jpg"
+      alt="Solaranlage auf einem Hausdach"
+      fill
+      className="object-cover"
+      sizes="(max-width: 768px) 100px, 200px; (max-width: 1024px) 50vw, 33vw"
+    />
+  </div>
+
+  {/* Floating Box 1 */}
+  <div className="absolute top-2 right-2 lg:top-10 lg:right-0 bg-gray-800 text-white rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-lg z-20 transition-all duration-1000 group-hover:lg:bottom-10 group-hover:lg:left-0 group-hover:lg:top-auto group-hover:lg:right-auto">
+    <span className="text-[#a7e255]">+20%</span> Energieeinsparung
+  </div>
+
+  {/* Floating Box 2 */}
+  <div className="absolute bottom-2 left-2 lg:bottom-10 lg:left-0 bg-[#669933] text-white rounded-xl px-3 py-2 text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-lg z-20 transition-all duration-1000 group-hover:lg:top-10 group-hover:lg:right-0 group-hover:lg:bottom-auto group-hover:lg:left-auto">
+    <span className="text-gray-800">100%</span> Grüne Energie
+  </div>
+
+  {/* Background Circles */}
+  <div className="hidden md:block absolute w-[340px] h-[340px] rounded-full bg-[#a7e255]/20 -z-10"></div>
+  <div className="hidden md:block absolute w-[380px] h-[380px] rounded-full border border-[#a7e255]/50 -z-20"></div>
+</div>
+
+    </motion.div>
   );
 }
