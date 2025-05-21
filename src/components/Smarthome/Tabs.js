@@ -23,7 +23,7 @@ export default function Tabs() {
                       activeComponent === "batteriesysteme" ? null : "batteriesysteme"
                     )
                   }
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full p-2 text-left cursor-pointer rounded text-[21px] ${
                     activeComponent === "batteriesysteme"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -47,7 +47,7 @@ export default function Tabs() {
                       activeComponent === "ladestationen" ? null : "ladestationen"
                     )
                   }
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center cursor-pointer w-full p-2 text-left rounded text-[21px] ${
                     activeComponent === "ladestationen"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -71,7 +71,7 @@ export default function Tabs() {
                       activeComponent === "notstrombox" ? null : "notstrombox"
                     )
                   }
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full cursor-pointer p-2 text-left rounded text-[21px] ${
                     activeComponent === "notstrombox"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -95,7 +95,7 @@ export default function Tabs() {
                       activeComponent === "smartmeter" ? null : "smartmeter"
                     )
                   }
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full cursor-pointer p-2 text-left rounded text-[21px] ${
                     activeComponent === "smartmeter"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"

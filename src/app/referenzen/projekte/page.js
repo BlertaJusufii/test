@@ -99,7 +99,7 @@ export default function Home() {
     <div>
       <BannerSection data={data} />
       <ProjectsHero />
-       <TechnologySection data={sectionData} />
+      <TechnologySection data={sectionData} />
       <BenefitsLayout data={benefits} />
       <Vorteil />
       {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}

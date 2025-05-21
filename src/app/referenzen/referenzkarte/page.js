@@ -20,8 +20,9 @@ export const metadata = {
 
 export default function Home() {
   const data = {
-    title: "REFERENZSTANDORTE",
-    img: "/Images/Referenzen/projekteBanner.jpg",
+    title: "Referenzstandorde",
+    subtitle:"Ein Überblick über erfolgreich umgesetzte Photovoltaikprojekte",
+    img: "/Images/Referenzen/referenzkarte1.jpg",
   };
   const karte = {
     greenTitle: "Solar Lösungen",

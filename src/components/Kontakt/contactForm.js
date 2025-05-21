@@ -280,7 +280,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="Vorname *"
                   required
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
 
@@ -293,7 +293,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="Nachname *"
                   required
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
             </div>
@@ -309,7 +309,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="Strasse und Hausnummer *"
                   required
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
 
@@ -322,7 +322,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="PLZ und Ort *"
                   required
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
             </div>
@@ -338,7 +338,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   placeholder="E-Mail-Adresse *"
                   required
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
 
@@ -350,7 +350,7 @@ export default function ContactForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Telefonnummer"
-                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300"
+                  className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300"
                 />
               </div>
             </div>
@@ -365,7 +365,7 @@ export default function ContactForm() {
                 placeholder="Nachricht *"
                 required
                 rows={4}
-                className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#d1b250] border border-gray-300 resize-none"
+                className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:ring-2 focus:ring-[#669933] border border-gray-300 resize-none"
               ></textarea>
             </div>
 

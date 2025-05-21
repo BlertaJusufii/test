@@ -218,10 +218,6 @@ export default function SolutionsPage() {
         ></div> */}
       </motion.div>
 
-
-
-   
-
       {/* Projects Section */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}

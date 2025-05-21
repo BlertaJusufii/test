@@ -17,7 +17,7 @@ export default function Tabs() {
               <li>
                 <button
                   onClick={() => setActiveComponent(activeComponent === "privathaushalte" ? null : "privathaushalte")}
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full p-2 text-left rounded cursor-pointer text-[21px] ${
                     activeComponent === "privathaushalte"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -37,7 +37,7 @@ export default function Tabs() {
               <li>
                 <button
                   onClick={() => setActiveComponent(activeComponent === "mehrfamilienhaeuser" ? null : "mehrfamilienhaeuser")}
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full p-2 text-left cursor-pointer rounded text-[21px] ${
                     activeComponent === "mehrfamilienhaeuser"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -57,7 +57,7 @@ export default function Tabs() {
               <li>
                 <button
                   onClick={() => setActiveComponent(activeComponent === "gwerbeundindustrie" ? null : "gwerbeundindustrie")}
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full p-2 text-left cursor-pointer rounded text-[21px] ${
                     activeComponent === "gwerbeundindustrie"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
@@ -77,7 +77,7 @@ export default function Tabs() {
               <li>
                 <button
                   onClick={() => setActiveComponent(activeComponent === "landwirtschaft" ? null : "landwirtschaft")}
-                  className={`flex items-center w-full p-2 text-left rounded text-[21px] ${
+                  className={`flex items-center w-full p-2 text-left cursor-pointer rounded text-[21px] ${
                     activeComponent === "landwirtschaft"
                       ? "bg-gray-100 text-[#669933] font-medium"
                       : "hover:bg-gray-100 text-gray-800"
