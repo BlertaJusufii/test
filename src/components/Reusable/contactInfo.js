@@ -60,8 +60,8 @@ export default function GreenFeatureSection({data}) {
   </div>
 
   {/* Background Circles */}
-  <div className="hidden md:block absolute w-[340px] h-[340px] rounded-full bg-[#a7e255]/20 -z-10"></div>
-  <div className="hidden md:block absolute w-[380px] h-[380px] rounded-full border border-[#a7e255]/50 -z-20"></div>
+  <div className="hidden md:block absolute w-[340px] h-[340px] rounded-full bg-[#669933]/40 -z-10"></div>
+  <div className="hidden md:block absolute w-[380px] h-[380px] rounded-full border border-[#669933] -z-20"></div>
 </div>
 
     </motion.div>
