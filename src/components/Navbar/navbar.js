@@ -94,7 +94,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8 cursor-pointer">
             {navItems.map((item) => (
               <div
                 key={item.title}
