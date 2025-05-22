@@ -3,7 +3,7 @@ import { FaBatteryThreeQuarters, FaCar, FaBicycle , FaTree  } from 'react-icons/
 
 function AnlageSection() {
     return (
-        <section className="bg-gray-100 pt-15 pb-15 lg:pt-20 lg:pb-20 px-4 ">
+        <section className="bg-gray-100 py-10 md:py-16 px-4 ">
             
             <div className="max-w-6xl mx-auto">
                 

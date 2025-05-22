@@ -10,7 +10,7 @@ export default function KomponentenSlider() {
   const komponenten = [
     {
       name: "Montagegestell",
-      image: "/Images/Dienstleistungen/Photovoltaik/Montagegestell.png",
+      image: "/Images/Dienstleistungen/Photovoltaik/montage.png",
     },
     {
       name: "Photovoltaikmodule",
@@ -52,14 +52,14 @@ export default function KomponentenSlider() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mt-15 mb-15 lg:mt-20 lg:mb-20">
+    <div className="max-w-7xl mx-auto px-4 py-10 md:py-16">
       
       <div className="flex justify-center items-center flex-col">
             <h2 className="text-[#669933] text-lg font-semibold uppercase">KOMPONENTEN</h2>
             <div className="h-0.5 w-25 bg-[#669933] mt-1"></div>
           </div>
       <div
-        className={`mb-16 transition-all duration-700 ${
+        className={` transition-all duration-700 ${
           hasMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
@@ -71,7 +71,7 @@ export default function KomponentenSlider() {
         <Slider {...sliderSettings} className="">
           {komponenten.map((komponent, index) => (
             <div key={index} className="px-4">
-              <div className="p-6 h-96 flex flex-col items-center justify-end text-center">
+              <div className="pt-6 pr-6 pl-6 lg:h-80 md:h-50 flex flex-col items-center justify-end text-center">
                 <div className="flex items-center justify-center mb-4">
                   <Image
                     width={300}

@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import img from "../../../public/Images/Referenzen/Referenzkarte-1.jpg"
 
-const BannerSection = ({ data }) => {
+const BannerProject = ({ data }) => {
   return (
     <section className="h-[300px] w-full overflow-hidden lg:h-[400px] relative">
       {/* Background Image */}
       <div className="absolute inset-0 ">
         <Image
-          src={`${data.img}`}
+          src={img}
           alt="Banner Background"
           fill
           quality={100}
@@ -32,4 +33,4 @@ const BannerSection = ({ data }) => {
   );
 };
 
-export default BannerSection;
+export default BannerProject;

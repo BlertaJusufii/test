@@ -34,6 +34,8 @@ const CustomNextArrow = ({ onClick }) => (
 );
 
 export default function SolutionsPage() {
+  const [isHovered, setIsHovered] = useState(false);
+
   const stats = [
     {
       icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
@@ -133,10 +135,10 @@ export default function SolutionsPage() {
       try {
         const [partnersRes, projectsRes] = await Promise.all([
           fetch(
-            "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data"
+            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data"
           ),
           fetch(
-            "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
           ),
         ]);
 
@@ -193,7 +195,7 @@ export default function SolutionsPage() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 lg:mb-25 md:mb-10 sm:mb-10 relative pb-10"
+        className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8  lg:mb-12 relative pb-10"
       >
         {stats.map((item, i) => (
           <motion.div
@@ -224,13 +226,13 @@ export default function SolutionsPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="mb-24"
+        className="mb-9 md:mb-17"
       >
-        <div className="text-center mb-6 flex flex-col items-center justify-center">
-        <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
-                        Projekte
-                        <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
-                    </h2>
+        <div className="text-center  flex flex-col items-center justify-center">
+          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
+            Projekte
+            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+          </h2>
           <p className="text-center text-black-500 mx-auto mb-12 lg:text-[30px] text-2xl md:text-3xl font-bold mt-6">
             Entdecken Sie unsere neuesten Photovoltaik Projekte – echte
             Referenzen aus ganz Deutschland.
@@ -272,18 +274,20 @@ export default function SolutionsPage() {
                 className="relative group overflow-hidden rounded-lg h-100 transform transition-all duration-700"
               >
                 <img
-                  src={`http://192.168.68.197:8000${project.image}`}
+                  src={`http://10.10.200.192:8000${project.image}`}
                   alt={project.title}
-                  className="w-full h-120 object-cover rounded-lg"
+                  className="w-full md:h-100 lg:h-120 h-85 object-cover rounded-lg"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                  <div className="group-hover:scale-105 transition-transform duration-500">
-                    <h3 className="text-white text-[20px] uppercase">
+                {/* 👇 Make this box appear only when hovered using Tailwind */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="transition-all duration-500 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0">
+                    <h3 className="text-white text-xl font-semibold">
                       {project.title}
                     </h3>
-                    <p className="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[18px]">
-                      {project.leistung}
-                    </p>
+                    <div className="flex items-center text-white gap-2 mt-2 text-[16px]">
+                      <FaSolarPanel className="text-[#ffde59]" />
+                      <span>{project.leistung}</span>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -307,14 +311,14 @@ export default function SolutionsPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="mb-5"
+        className=""
       >
         <div className="text-center mb-6">
-        <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
-                        PARTNERS
-                        <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
-                    </h2>
-          <p className="text-center text-black-500 mx-auto lg:text-[30px] text-2xl md:text-3xl font-bold mb-12 mt-6">
+          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
+            PARTNERS
+            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+          </h2>
+          <p className="text-center text-black-500 mx-auto lg:text-[30px] text-2xl md:text-3xl font-bold mb-6 mt-6">
             Wir sind Partner von
           </p>
         </div>
@@ -324,7 +328,7 @@ export default function SolutionsPage() {
             <div key={index} className="px-2">
               <div className="flex items-center justify-center h-40 transition-transform duration-500 hover:scale-105">
                 <Image
-                  src={`http://192.168.68.197:8000${partner.image}`}
+                  src={`http://10.10.200.192:8000${partner.image}`}
                   alt={partner.name}
                   width={200}
                   height={160}

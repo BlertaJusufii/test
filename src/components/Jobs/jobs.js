@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const JobsInfo = ({ data }) => {
   return (
-    <section className=" pt-16 md:pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 max-w-6xl">
+    <section className=" py-10 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 ">
         {/* Top Row: Image + Benefits Grid */}
-        <div className="flex flex-col lg:flex-row gap-12 mb-16">
+        <div className="flex flex-col lg:flex-row gap-12 ">
           {/* Left Column - Image */}
 
           <div className="lg:w-1/2">

@@ -117,9 +117,16 @@ const Map = () => {
     <section className="">
       <div className="w-[100%] mx-auto px-4  sm:px-6 lg:px-0 flex flex-col gap-8 items-center">
         <div className="flex flex-col gap-4">
-          <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2 text-center">
+          {/* <h2 className="text-[18px] font-semibold text-[#669933] uppercase tracking-wider mb-2 text-center">
             Unsere Standorte
-          </h2>
+          </h2> */}
+
+        
+
+      <h2 className="text-[#669933] uppercase text-center font-semibold tracking-wide inline-block relative text-[18px]">
+              UNSERE standorte
+              <span className="absolute mx-auto w-50 left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+            </h2>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
             Regional präsent, überregional aktiv – Finden Sie uns in Ihrer Nähe.
           </h3>

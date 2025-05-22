@@ -187,7 +187,7 @@ export default function ContactForm() {
 
     try {
       const response = await fetch(
-        "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.kontakt_de.api.create_contact",
+        "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.kontakt_de.api.create_contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -222,7 +222,7 @@ export default function ContactForm() {
 
   return (
     <motion.div
-      className="max-w-7xl mx-auto px-6 py-20 lg:py-20 relative mt-6"
+      className="max-w-7xl mx-auto px-6 py-10 md:py-16 relative mb-[-12px]"
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}

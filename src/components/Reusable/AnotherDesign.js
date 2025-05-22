@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function AnotherDesign({ data }) {
   return (
     <div className="w-full bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col lg:flex-row items-center lg:gap-20 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-10 md:py-16 flex flex-col lg:flex-row items-center lg:gap-20 gap-5">
         {/* Left - Image with decorations */}
         <div className="relative w-full max-w-xl">
           <div className="relative z-10 rounded-lg overflow-hidden">
@@ -13,7 +13,7 @@ export default function AnotherDesign({ data }) {
               alt="Main visual"
               width={600}
               height={800}
-              className="rounded-xl h-100 w-full lg:pl-10 object-cover"
+              className="rounded-xl lg:h-140 md:h-100 h-80 w-full lg:pl-10 object-cover"
             />
           </div>
         </div>

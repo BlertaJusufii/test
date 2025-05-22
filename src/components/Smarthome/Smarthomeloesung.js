@@ -8,10 +8,10 @@ import {
 
 function VorteileSection() {
   return (
-    <section className="bg-gray-100 pt-15 pb-15 lg:pt-20 lg:pb-20 px-4">
+    <section className="bg-gray-100 py-10 md:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
+          <h2 className="text-[#669933] uppercase m-0 p-0 font-semibold tracking-wide inline-block relative text-lg">
             Vorteile
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>

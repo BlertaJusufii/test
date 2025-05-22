@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation";
 import BannerSection from "@/components/Reusable/banner";
 import ProjectDetailComponent from "@/components/ProjectItem/projectitem";
+import BannerProject from "@/components/Reusable/bannerproject";
 
 // Function to slugify the title manually
 function generateSlug(title) {
@@ -20,7 +21,7 @@ function generateSlug(title) {
 export async function generateStaticParams() {
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
     );
     const data = await res.json();
 
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
     );
     const data = await res.json();
 
@@ -72,7 +73,7 @@ export default async function ProjectDetailPage({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
     );
     const data = await res.json();
 
@@ -93,13 +94,13 @@ export default async function ProjectDetailPage({ params }) {
 
     const bannerInfo = {
       title: project.title || project.name, // Use project.name if title is undefined
-      img: `http://192.168.68.197:8000${project?.bild_anhagen?.[0]?.bild_anhagen}`,
+      img: `http://10.10.200.192:8000${project?.bild_anhagen?.[0]?.bild_anhagen}`,
     };
 
     return (
       <div>
         {/* Project Header */}
-        <BannerSection data={bannerInfo} />
+        <BannerProject data={bannerInfo}/>
         <ProjectDetailComponent project={project} related={randomProjects} />
       </div>
     );

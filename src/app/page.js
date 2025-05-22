@@ -3,12 +3,11 @@ import VideoBanner from "@/components/Home/banner";
 import PVInquiryForm from "@/components/Home/form";
 import SolutionsPage from "@/components/Home/info";
 import RotatingCircleSection from "@/components/Home/welcome";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndWhite from "@/components/Reusable/Endwhite";
 
 export default function Home() {
 
-
-  const end={
+  const endd={
     greentitle:"Solaranlage sichern",
     title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
     description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
@@ -25,6 +24,6 @@ export default function Home() {
       <RotatingCircleSection />
       <SolutionsPage />
       <PVInquiryForm />
-      <GreenFeatureSection data={end} />
+      <EndWhite data={endd}/>
     </div>
   );}

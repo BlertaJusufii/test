@@ -31,7 +31,7 @@ const ProjectCard = ({ project }) => {
     >
       <div className="relative w-full h-full">
         <Image
-          src={`http://192.168.68.197:8000${project?.bild_anhagen[0].bild_anhagen}`}
+          src={`http://10.10.200.192:8000${project?.bild_anhagen[0].bild_anhagen}`}
           alt={`Project background - ${project?.location}`}
           fill
           className={`transition-all duration-500 object-cover object-center ${
@@ -63,9 +63,15 @@ const ProjectCard = ({ project }) => {
 const ProjectDetailComponent = ({ project, related }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
+
+<h2 className="text-2xl  font-semibold  tracking-wide inline-block relative">
+          Projekt Details
+      </h2>
+      <hr className="w-70  h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+
       <div className="flex flex-col md:flex-row gap-10 mb-16">
-        <div className="w-full md:w-3/4">
-          <h2 className="text-3xl font-bold text-[#669933] mb-6">Fotos</h2>
+        <div className="w-full md:w-2/4">
+        
           <div className="grid grid-cols-1 gap-6">
             {project?.bild_anhagen?.map((image, index) => (
               <div
@@ -73,7 +79,7 @@ const ProjectDetailComponent = ({ project, related }) => {
                 className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg"
               >
                 <Image
-                  src={`http://192.168.68.197:8000${image.bild_anhagen}`}
+                  src={`http://10.10.200.192:8000${image.bild_anhagen}`}
                   alt={`${project.title} - ${index + 1}`}
                   fill
                   className="object-cover w-full h-full"
@@ -83,33 +89,37 @@ const ProjectDetailComponent = ({ project, related }) => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/4 space-y-6">
-          <div className="sticky top-28 p-6 rounded-xl shadow-md border border-gray-200 bg-white">
+        <div className="w-full md:w-2/4 space-y-6">  
+          
+
+          <div className="p-6 rounded-xl shadow-md border border-gray-200 bg-white">
+
+      
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               {project?.title}
             </h2>
             {project?.leistung && (
               <div className="flex items-center gap-3 text-gray-700 mb-3">
                 <FaBolt className="text-[#669933]" />
-                <span className="font-medium">{project.leistung}</span>
+                <span className="font-medium text-xl">{project.leistung}</span>
               </div>
             )}
             {project?.jahr && (
               <div className="flex items-center gap-3 text-gray-700 mb-3">
                 <FaCalendarAlt className="text-[#669933]" />
-                <span className="font-medium">{project.jahr}</span>
+                <span className="font-medium text-xl">{project.jahr}</span>
               </div>
             )}
             {project?.typ && (
               <div className="flex items-center gap-3 text-gray-700 mb-3">
                 <FaTools className="text-[#669933]" />
-                <span className="font-medium">{project.typ}</span>
+                <span className="font-medium text-xl">{project.typ}</span>
               </div>
             )}
             {project?.ort && (
               <div className="flex items-center gap-3 text-gray-700">
                 <FaMapMarkerAlt className="text-[#669933]" />
-                <span className="font-medium">{project.ort}</span>
+                <span className="font-medium text-xl">{project.ort}</span>
               </div>
             )}
           </div>
@@ -126,7 +136,7 @@ const ProjectDetailComponent = ({ project, related }) => {
           ))}
         </div>
       </div>
-      <GreenFeatureSection data={end}/>
+      {/* <GreenFeatureSection data={end}/> */}
 
     </div>
   );

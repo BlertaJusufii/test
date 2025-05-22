@@ -4,10 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaChevronRight } from "react-icons/fa";
 
-export default function GreenFeatureSection({data}) {
+export default function EndWhite({data}) {
   return (
     <motion.div
-      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 max-w-7xl mx-auto rounded-2xl md:mt-12 lg:pt-12 lg:mt-12 md:mb-10 "
+      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 lg:py-20 py-10 max-w-7xl mx-auto rounded-2xl "
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -29,7 +29,7 @@ export default function GreenFeatureSection({data}) {
 
         <Link
           href="/kontakt"
-          className="inline-flex items-center font-semibold gap-2 px-6 mb-8 md:mb-0 lg:mb-0 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[14px] uppercase"
+          className="inline-flex items-center font-semibold gap-2 px-6 py-3 rounded-md text-white transition-colors hover:bg-[#558822] text-[14px] uppercase"
           style={{ backgroundColor: "#669933" }}
         >
           Jetzt Kontaktieren
@@ -38,7 +38,7 @@ export default function GreenFeatureSection({data}) {
       </div>
 
     {/* RIGHT: Image with Floating Elements */}
-<div className="relative w-full lg:w-1/2 flex justify-center items-center group mt-8 lg:mt-0">
+<div className="relative w-full lg:w-1/2 flex justify-center items-center group  lg:mt-0">
   <div className="relative z-10 w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden border-4 border-white shadow-xl">
     <Image
       src="/Images/Home/contactImage.jpg"

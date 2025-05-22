@@ -114,7 +114,12 @@ const SolarInfoAccordion = () => {
       <div className="max-w-7xl mx-auto px-4 space-y-16">
         {sections.map((section) => (
           <div key={section.key}>
-            <h2 className="text-[28px] font-bold text-[#669933] mb-6 text-left">{section.title}</h2>
+            {/* <h2 className="text-[28px] font-bold text-[#669933] mb-6 text-left">{section.title}</h2> */}
+
+            <h2 className="text-2xl  font-semibold text-[#669933] tracking-wide inline-block relative">
+            {section.title}
+      </h2>
+      <hr className="w-70  h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
 
             <div className="divide-y divide-gray-200 border-t border-b border-gray-200">
               {section.faqs.map((item, index) => {

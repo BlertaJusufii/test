@@ -68,7 +68,7 @@ const TeamSection = () => {
     const fetchTeam = async () => {
       try {
         const response = await fetch(
-          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data"
+          "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data"
         );
         if (!response.ok) throw new Error("Error fetching team");
         const data = await response.json();
@@ -77,7 +77,7 @@ const TeamSection = () => {
           surname: person.vorname,
           email: person.e_mail,
           phone: person.telefon,
-          image: `http://192.168.68.197:8000${person.bild_anhagen}`,
+          image: `http://10.10.200.192:8000${person.bild_anhagen}`,
           status: person.status,
           position: person.rolle,
           bio: person.bio || "", // Optional bio if available
@@ -94,7 +94,7 @@ const TeamSection = () => {
 
   return (
     teams.length > 0 && (
-    <section className="py-16 bg-gray-50">
+    <section className="py-10 md:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}

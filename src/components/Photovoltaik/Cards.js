@@ -55,7 +55,7 @@ const steps = [
 
 const ProcessSteps = () => {
   return (
-    <section className="relative bg-[#f7f7f7] px-4 py-20">
+    <section className="relative bg-[#f7f7f7] px-4 py-10 md:py-16">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
           Projektablauf

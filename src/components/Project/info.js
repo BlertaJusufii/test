@@ -22,9 +22,9 @@ const ProjectCard = ({ project }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full ">
         <Image
-          src={`http://192.168.68.197:8000${project?.image}`}
+          src={`http://10.10.200.192:8000${project?.image}`}
           alt={`Project - ${project?.location}`}
           fill
           className={`transition-all duration-500 object-cover object-center ${
@@ -82,7 +82,7 @@ const ProjectsSection = () => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+          "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
         );
         if (!response.ok) throw new Error("Gabim gjate marrjes se te dhenave");
         const data = await response.json();
@@ -102,9 +102,9 @@ const ProjectsSection = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4" id="projects-section">
-      <section className="pt-15 pb-15">
+      <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-10">
+          <div className="text-center mb-6">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
               PROJEKTE
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
@@ -129,14 +129,14 @@ const ProjectsSection = () => {
           </div>
         </div>
       </section>
-      <section className="container mx-auto px-4 pb-15 ">
+      <section className="container mx-auto px-4 mb-9 md:mb-17">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
         {totalPages > 1 && (
-          <div className="flex justify-center mt-15 ">
+          <div className="flex justify-center mt-8 ">
             <nav className="flex items-center space-x-2">
               <button
                 onClick={() => paginate(Math.max(1, currentPage - 1))}

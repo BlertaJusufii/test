@@ -4,13 +4,14 @@ import Image from "next/image";
 import { IoIosBatteryCharging } from "react-icons/io";
 import { MdPowerSettingsNew } from "react-icons/md";
 import { FaChargingStation, FaTachometerAlt } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Tabs() {
   const [activeComponent, setActiveComponent] = useState("batteriesysteme");
 
   return (
     <div className="flex justify-center items-center">
-      <main className="flex flex-col lg:flex-row max-w-7xl w-full mt-15 mb-15 lg:mt-20 lg:mb-20 pl-0 pr-0 md:pr-10 md:pl-10">
+      <main className="flex flex-col lg:flex-row max-w-7xl w-full py-10 md:py-16 pl-0 pr-0 md:pr-10 md:pl-10">
         {/* Sidebar */}
         <div className="w-full lg:w-84 bg-white">
           <nav className="p-4 border border-gray-200">
@@ -32,11 +33,20 @@ export default function Tabs() {
                   <IoIosBatteryCharging className="mr-2 text-[#669933]" size={24} />
                   Batteriesysteme
                 </button>
-                {activeComponent === "batteriesysteme" && (
-                  <div className="p-4 mt-2 border-b border-gray-200 lg:hidden">
-                    <BatterieSysteme />
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {activeComponent === "batteriesysteme" && (
+                    <motion.div
+                      key="mobile-batteriesysteme"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-4 mt-2 border-b border-gray-200 lg:hidden"
+                    >
+                      <BatterieSysteme />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
 
               {/* Ladestationen */}
@@ -56,11 +66,20 @@ export default function Tabs() {
                   <FaChargingStation className="mr-2 text-[#669933]" size={24} />
                   Ladestationen
                 </button>
-                {activeComponent === "ladestationen" && (
-                  <div className="p-4 mt-2 border-b border-gray-200 lg:hidden">
-                    <Ladestationen />
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {activeComponent === "ladestationen" && (
+                    <motion.div
+                      key="mobile-ladestationen"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-4 mt-2 border-b border-gray-200 lg:hidden"
+                    >
+                      <Ladestationen />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
 
               {/* Notstrombox */}
@@ -80,11 +99,20 @@ export default function Tabs() {
                   <MdPowerSettingsNew className="mr-2 text-[#669933]" size={24} />
                   Notstrombox
                 </button>
-                {activeComponent === "notstrombox" && (
-                  <div className="p-4 mt-2 border-b border-gray-200 lg:hidden">
-                    <Notstrombox />
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {activeComponent === "notstrombox" && (
+                    <motion.div
+                      key="mobile-notstrombox"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-4 mt-2 border-b border-gray-200 lg:hidden"
+                    >
+                      <Notstrombox />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
 
               {/* Smartmeter */}
@@ -104,11 +132,20 @@ export default function Tabs() {
                   <FaTachometerAlt className="mr-2 text-[#669933]" size={24} />
                   Smartmeter
                 </button>
-                {activeComponent === "smartmeter" && (
-                  <div className="p-4 mt-2 border-b border-gray-200 lg:hidden">
-                    <Smartmeter />
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {activeComponent === "smartmeter" && (
+                    <motion.div
+                      key="mobile-smartmeter"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-4 mt-2 border-b border-gray-200 lg:hidden"
+                    >
+                      <Smartmeter />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
             </ul>
           </nav>
@@ -116,10 +153,56 @@ export default function Tabs() {
 
         {/* Right Content (desktop only) */}
         <div className="hidden lg:flex flex-1 p-8 border border-gray-200">
-          {activeComponent === "batteriesysteme" && <BatterieSysteme />}
-          {activeComponent === "ladestationen" && <Ladestationen />}
-          {activeComponent === "notstrombox" && <Notstrombox />}
-          {activeComponent === "smartmeter" && <Smartmeter />}
+          <AnimatePresence mode="wait">
+            {activeComponent === "batteriesysteme" && (
+              <motion.div
+                key="desktop-batteriesysteme"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.3 }}
+                className="w-full"
+              >
+                <BatterieSysteme />
+              </motion.div>
+            )}
+            {activeComponent === "ladestationen" && (
+              <motion.div
+                key="desktop-ladestationen"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.3 }}
+                className="w-full"
+              >
+                <Ladestationen />
+              </motion.div>
+            )}
+            {activeComponent === "notstrombox" && (
+              <motion.div
+                key="desktop-notstrombox"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.3 }}
+                className="w-full"
+              >
+                <Notstrombox />
+              </motion.div>
+            )}
+            {activeComponent === "smartmeter" && (
+              <motion.div
+                key="desktop-smartmeter"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.3 }}
+                className="w-full"
+              >
+                <Smartmeter />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </main>
     </div>
@@ -130,9 +213,11 @@ export default function Tabs() {
 function BatterieSysteme() {
   return (
     <div className="max-w-4xl">
-      <h1 className="text-2xl font-semibold text-[#669933] mb-6">
+      <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
         Sonnenstrom rund um die Uhr nutzen
-      </h1>
+      </h2>
+      <hr className="w-70 h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+      
       <div className="mb-6 flex justify-start">
         <Image
           src="/Images/Dienstleistungen/Smartphone/Stronspeicher.jpg"
@@ -156,9 +241,11 @@ function BatterieSysteme() {
 function Ladestationen() {
   return (
     <div className="max-w-4xl">
-      <h1 className="text-2xl font-semibold text-[#669933] mb-6">
+      <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
         Elektrofahrzeuge intelligent laden
-      </h1>
+      </h2>
+      <hr className="w-70 h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+
       <div className="mb-6 flex justify-start">
         <Image
           src="/Images/Dienstleistungen/Smartphone/wallbox-scaled.jpg"
@@ -182,9 +269,11 @@ function Ladestationen() {
 function Notstrombox() {
   return (
     <div className="max-w-4xl">
-      <h1 className="text-2xl font-semibold text-[#669933] mb-6">
+      <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
         Unabhängig bei Stromausfällen
-      </h1>
+      </h2>
+      <hr className="w-70 h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+
       <div className="mb-6 flex justify-start">
         <Image
           src="/Images/Dienstleistungen/Smartphone/smart-guard-scaled.jpg"
@@ -208,9 +297,11 @@ function Notstrombox() {
 function Smartmeter() {
   return (
     <div className="max-w-4xl">
-      <h1 className="text-2xl font-semibold text-[#669933] mb-6">
-        Smarte Steuerung mit Smartmeter – Ihr Energieverbrauch in Echtzeit
-      </h1>
+      <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
+        Smarte Steuerung mit Smartmeter
+      </h2>
+      <hr className="w-70 h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+      
       <div className="mb-6 flex justify-start">
         <div className="grid grid-cols-2 gap-4">
           <div className="">

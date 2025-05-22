@@ -47,7 +47,7 @@ export default function PVInquiryForm() {
       };
 
       const response = await fetch(
-        "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.anfrage_de.api.create_anfrage",
+        "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.anfrage_de.api.create_anfrage",
         {
           method: "POST",
           headers: {
@@ -136,7 +136,7 @@ export default function PVInquiryForm() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white mt-15 animate-fadeInUp">
+    <div className="max-w-4xl mx-auto p-6 bg-white  animate-fadeInUp">
     
 
       <h2 className={`text-[25px] mb-6 text-[#669933] text-center transition-all duration-700 ${hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
@@ -159,7 +159,7 @@ export default function PVInquiryForm() {
               Bitte wähle die Form des Daches auf welchem die Anlage installiert werden soll
             </p>
 
-            <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
+            <div className="lg:mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
               {roofTypes.map((type) => (
                 <div key={type.id} className="group">
                   <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${formData.roofType === type.id ? "border-[#669933] bg-[#669933]/10" : "border-gray-200 hover:border-[#669933]/50"}`}>
@@ -353,16 +353,17 @@ export default function PVInquiryForm() {
                 {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
               </div>
 
-              <div className="flex items-start mt-4">
-                <input
-                  type="checkbox"
-                  name="acceptTerms"
-                  checked={formData.acceptTerms}
-                  onChange={handleChange}
-                  className="mr-2 mt-1"
-                />
-                <label className="text-sm text-gray-600">Ich akzeptiere die Datenschutzbestimmungen und AGB</label>
-              </div>
+              <label className="flex items-start mt-4 cursor-pointer text-sm text-gray-600">
+  <input
+    type="checkbox"
+    name="acceptTerms"
+    checked={formData.acceptTerms}
+    onChange={handleChange}
+    className="mr-2 mt-1"
+  />
+  Ich akzeptiere die Datenschutzbestimmungen und AGB
+</label>
+
               {errors.acceptTerms && <p className="text-red-500 text-sm mt-1">{errors.acceptTerms}</p>}
             </div>
 

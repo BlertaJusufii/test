@@ -2,7 +2,7 @@ import React from "react";
 
 const ServiceSection = () => {
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto text-center">
+    <section className="py-10 md:py-16 px-4 max-w-7xl mx-auto text-center">
       <div className="mb-8">
         <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
           SERVICE

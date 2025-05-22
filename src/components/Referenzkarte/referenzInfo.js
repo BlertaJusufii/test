@@ -1,94 +1,182 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import { motion } from "framer-motion"; // ✅ Import motion
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import {
+  FaSolarPanel,
+  FaIndustry,
+  FaChartLine,
+  FaArrowLeft,
+  FaArrowRight,
+} from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { FaSolarPanel } from "react-icons/fa";
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa6";
+import Image from "next/image";
 
-const ProjectCard = ({ project }) => {
+const CustomPrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleLeft />
+  </div>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleRight />
+  </div>
+);
+
+export default function SolutionsPage() {
   const [isHovered, setIsHovered] = useState(false);
 
-  return (
-    <Link
-      href={`/referenzen/projekte/${project.location
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/\//g, "-")
-        .replace(/[ä]/g, "ae")
-        .replace(/[ö]/g, "oe")
-        .replace(/[ü]/g, "ue")
-        .replace(/[ß]/g, "ss")
-        .replace(/[^a-z0-9-]/g, "")}`}
-      className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="relative w-full h-full">
-        <Image
-          src={`http://192.168.68.197:8000${project.image}`}
-          alt={`Project - ${project.location}`}
-          fill
-          className={`transition-all duration-500 object-cover object-center ${
-            isHovered ? "scale-110 blur-[1px]" : "scale-100 blur-0"
-          }`}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-black/30 transition-opacity duration-300"></div>
-      </div>
+  const stats = [
+    {
+      icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
+      value: 5000,
+      label: "PV-Kraftwerke",
+    },
+    {
+      icon: <FaIndustry className="text-[35px] text-[#669933]/90" />,
+      value: 340000,
+      suffix: "kWp",
+      label: "Leistung",
+    },
+    {
+      icon: <FaChartLine className="text-[35px] text-[#669933]/90" />,
+      value: 112000,
+      suffix: "t",
+      label: "Co2-Einsparung",
+    },
+  ];
 
-      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-        <div
-          className={`transition-all duration-500 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 ${
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <h3 className="text-white text-xl font-semibold">{project.location}</h3>
-          <div className="flex items-center text-white gap-2 mt-2 text-[16px]">
-            <FaSolarPanel className="text-[#ffde59]" />
-            <span>{project.capacity}</span>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-const ProjectsSection = () => {
-  const [projects, setProjects] = useState([]);
+  const [counters, setCounters] = useState(stats.map(() => 0));
+  const countersRef = useRef(null);
+  const animationRef = useRef(null);
+  const [hasMounted, setHasMounted] = useState(false);
+  const [partnersFrappe, setPartnersFrappe] = useState([]);
+  const [projectFrappe, setProjectFrappe] = useState([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(
-          "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
-        );
+    setHasMounted(true);
+  }, []);
 
-        if (!response.ok) throw new Error("Failed to fetch");
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          startCounters();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-        const data = await response.json();
+    if (countersRef.current) {
+      observer.observe(countersRef.current);
+    }
 
-        const formatted = data.message
-          .slice(0, 3) // adjust number of projects shown
-          .map((marke) => ({
-            location: marke.title,
-            capacity: marke.leistung,
-            image: marke.bild_anhagen[0]?.bild_anhagen,
-            status: marke.status,
-          }));
+    return () => {
+      observer.disconnect();
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
 
-        setProjects(formatted);
-      } catch (error) {
-        console.error("Fetch error:", error);
+  const startCounters = () => {
+    const duration = 3000;
+    const startTime = performance.now();
+
+    const animateCounters = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+
+      const newCounters = stats.map((stat, i) => {
+        const value = stats[i].value;
+        return Math.floor(progress * value);
+      });
+
+      setCounters(newCounters);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animateCounters);
       }
     };
 
-    fetchProjects();
+    animationRef.current = requestAnimationFrame(animateCounters);
+  };
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    cssEase: "linear",
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 3, autoplay: true } },
+      { breakpoint: 768, settings: { slidesToShow: 2, autoplay: true } },
+      { breakpoint: 468, settings: { slidesToShow: 1, autoplay: true } },
+    ],
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [partnersRes, projectsRes] = await Promise.all([
+          fetch(
+            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data"
+          ),
+          fetch(
+            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+          ),
+        ]);
+
+        if (!partnersRes.ok || !projectsRes.ok)
+          throw new Error("Fehler beim Laden der Daten");
+
+        const partnersData = await partnersRes.json();
+        const projectsData = await projectsRes.json();
+
+        const formattedPartners = partnersData.message.map((marke) => ({
+          name: marke.name1,
+          image: marke.bild_anhagen,
+          status: marke.status,
+        }));
+
+        const formattedProjects = projectsData.message
+          .slice(0, 3)
+          .map((projekt) => ({
+            title: projekt.title,
+            image: projekt.bild_anhagen[0]?.bild_anhagen,
+            leistung: projekt.leistung,
+            status: projekt.status,
+          }));
+
+        setPartnersFrappe(formattedPartners);
+        setProjectFrappe(formattedProjects);
+      } catch (error) {
+        console.error("Fehler:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <section className="mt-15 mb-15 lg:mt-20 lg:mb-20">
+
+<section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-10">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
@@ -99,16 +187,17 @@ const ProjectsSection = () => {
               Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
             </h2>
           </div>
-          <div className="text-gray-700 space-y-4 text-center text-[17px]">
+          <div className="text-gray-700 space-y-4 text-center text-[17px] max-w-4xl mx-auto">
             <p>
               Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
               Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
               Projekte erfolgreich realisiert.
-              <br />
+            </p>
+            <p>
               Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche Darstellung unserer bisherigen Einsätze
               – eine Solaranlagen Karte, die zeigt, wo unsere Systeme zur Energiewende beitragen.
-              <br />
-              <br />
+            </p>
+            <p>
               Jedes Projekt ist individuell geplant und auf die spezifischen Anforderungen unserer Kunden abgestimmt.
               Von kleinen privaten Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen in Deutschland
               stehen für Effizienz, Qualität und Nachhaltigkeit.
@@ -116,25 +205,81 @@ const ProjectsSection = () => {
           </div>
         </div>
       </section>
+      {/* Projects Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mb-9 md:mb-17"
+      >
+       
 
-      <section className="container mx-auto px-4 pb-16 md:pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+        <Slider
+          {...{
+            dots: false,
+            infinite: true,
+            speed: 700,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            nextArrow: <CustomNextArrow />,
+            prevArrow: <CustomPrevArrow />,
+            autoplay: true,
+            autoplaySpeed: 4000,
+            responsive: [
+              { breakpoint: 1024, settings: { slidesToShow: 2 } },
+              { breakpoint: 768, settings: { slidesToShow: 2 } },
+              { breakpoint: 450, settings: { slidesToShow: 1 } },
+            ],
+          }}
+          className="mb-12 relative"
+        >
+          {projectFrappe.map((project, i) => (
+            <div key={i} className="px-5">
+              <Link
+                href={`/referenzen/projekte/${project.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")
+                  .replace(/\//g, "-")
+                  .replace(/[ä]/g, "ae")
+                  .replace(/[ö]/g, "oe")
+                  .replace(/[ü]/g, "ue")
+                  .replace(/[ß]/g, "ss")
+                  .replace(/[^a-z0-9-]/g, "")}`}
+                className="relative group overflow-hidden rounded-lg h-100 transform transition-all duration-700"
+              >
+                <img
+                  src={`http://10.10.200.192:8000${project.image}`}
+                  alt={project.title}
+                  className="w-full h-70 object-cover rounded-lg"
+                />
+                {/* 👇 Make this box appear only when hovered using Tailwind */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <div className="transition-all duration-500 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0">
+                    <h3 className="text-white text-xl font-semibold">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center text-white gap-2 mt-2 text-[16px]">
+                      <FaSolarPanel className="text-[#ffde59]" />
+                      <span>{project.leistung}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
           ))}
-        </div>
+        </Slider>
 
-        <div className="text-center flex flex-row items-center justify-center mt-16">
+        <div className="text-center flex flex-row items-center justify-center mt-4">
           <Link
-            href="/referenzen/projekte"
+            href={"/referenzen/projekte"}
             className="flex items-center justify-center gap-2 bg-[#669933] hover:bg-[#669933]/90 text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[14px]"
           >
-            Weitere Projekte <FaAngleRight/>
+            Weitere Projekte <FaAngleRight />
           </Link>
         </div>
-      </section>
+      </motion.div>
     </div>
   );
-};
-
-export default ProjectsSection;
+}

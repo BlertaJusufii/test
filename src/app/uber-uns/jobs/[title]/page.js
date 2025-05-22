@@ -22,7 +22,7 @@ function generateSlug(title) {
 export async function generateStaticParams() {
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
     );
     const data = await res.json();
 
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
     );
     const data = await res.json();
 
@@ -56,7 +56,6 @@ export async function generateMetadata({ params }) {
     return {
       title: project.name,
       description: `Learn more about ${project.name} jobs`,
-      keywords: [`${project.keywords.map((keyword) => keyword.keyword)}`],
     };
   } catch (error) {
     console.error("Error fetching metadata:", error);
@@ -74,7 +73,7 @@ export default async function ProjectDetailPage({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://192.168.68.197:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
     );
     const data = await res.json();
 
@@ -90,12 +89,19 @@ export default async function ProjectDetailPage({ params }) {
       img: `/Images/Jobs/drone-view-of-technician-installing-solar-panels-2025-03-08-04-40-16-utc.jpg`,
     };
 
+    
+  const end={
+    greentitle:"Solaranlage sichern",
+    title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
+    description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
+  }
+
     return (
       <div>
         {/* Project Header */}
         <BannerSection data={bannerInfo} />
         <JobDetails jobData={project} />
-        <GreenFeatureSection />
+        {/* <GreenFeatureSection data={end} /> */}
       </div>
     );
   } catch (error) {

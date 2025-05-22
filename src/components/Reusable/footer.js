@@ -45,7 +45,7 @@ const Footer = () => {
                   className="object-contain" // Maintains aspect ratio
                 />
               </div>
-              <p className="font-[400] text-[18px] mt-[-10]">ÖKOVOLT GmbH Solartechnik</p>
+              {/* <p className="font-[400] text-[18px] mt-[-10]">ÖKOVOLT GmbH Solartechnik</p> */}
               <address className="not-italic text-[16px]">
                 Schlingener Straße 1a
                 <br />

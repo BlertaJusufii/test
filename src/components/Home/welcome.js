@@ -30,8 +30,8 @@ export default function RotatingImageSection() {
     const updateLayout = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        setRadius(100);
-        setIconSize(48);
+        setRadius(160);
+        setIconSize(56);
       } else if (width < 1024) {
         setRadius(160);
         setIconSize(56);
