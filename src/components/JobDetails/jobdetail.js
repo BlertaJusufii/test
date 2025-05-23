@@ -17,7 +17,8 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
-
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const Buttons = styled.div`
   display: flex;
@@ -80,17 +81,111 @@ const JobDetails = ({ jobData }) => {
     phone: "",
     message: "",
   });
+  const [file, setFile] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [fileError, setFileError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleApply = (e) => {
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Check if file is PDF
+      if (selectedFile.type !== "application/pdf") {
+        setFileError("Bitte laden Sie nur PDF-Dateien hoch");
+        setFile(null);
+        e.target.value = ""; // Reset file input
+      } else {
+        setFile(selectedFile);
+        setFileError(null);
+      }
+    }
+  };
+
+  const validateForm = () => {
+    // Basic field validation
+    if (!formData.name.trim()) {
+      setError("Bitte geben Sie Ihren Namen ein");
+      return false;
+    }
+    if (!formData.email.trim() || !/^\S+@\S+\.\S+$/.test(formData.email)) {
+      setError("Bitte geben Sie eine gültige E-Mail-Adresse ein");
+      return false;
+    }
+    if (!formData.phone.trim()) {
+      setError("Bitte geben Sie Ihre Telefonnummer ein");
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setError("Bitte geben Sie eine Nachricht ein");
+      return false;
+    }
+    if (!file) {
+      setError("Bitte laden Sie Ihren Lebenslauf hoch");
+      return false;
+    }
+    return true;
+  };
+
+  const handleApply = async (e) => {
     e.preventDefault();
-    setShowSuccess(true);
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setTimeout(() => setShowSuccess(false), 5000);
+    setLoading(true);
+    setError(null);
+
+    // Validate form before submission
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const formPayload = new FormData();
+      formPayload.append("name", formData.name);
+      formPayload.append("email", formData.email);
+      formPayload.append("phone", formData.phone);
+      formPayload.append("message", formData.message);
+      
+      if (file) {
+        formPayload.append("cv", file);
+      }
+
+      const response = await fetch(
+        `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.karriere_bewerbung.api.submit_application`,
+        {
+          method: "POST",
+          body: formPayload,
+          // Content-Type will be automatically set to multipart/form-data by the browser
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Fehler beim Absenden der Bewerbung");
+      }
+
+      setShowSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setFile(null);
+      document.getElementById("file-upload").value = "";
+    } catch (err) {
+      setError(err.message || "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.");
+    } finally {
+      setLoading(false);
+      setTimeout(() => {
+        setShowSuccess(false);
+        setError(null);
+      }, 5000);
+    }
   };
 
   if (!jobData) {
@@ -106,66 +201,6 @@ const JobDetails = ({ jobData }) => {
 
   return (
     <>
-      {/* Header Image & Title
-      {jobData.bild_anhagen ? (
-        <div className="relative w-full h-72 sm:h-96">
-          <Image
-            src={`http://10.10.200.192:8000${jobData.bild_anhagen}`}
-            alt="Job Image"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-          <div className="absolute bottom-6 left-6 right-6">
-            <motion.h1
-              className="text-4xl sm:text-5xl font-bold text-white drop-shadow-lg mb-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {jobData.title}
-            </motion.h1>
-            {jobData.ort && (
-              <motion.div
-                className="flex items-center text-white/90"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                <FaMapMarkerAlt className="mr-2 text-[#669933]" />
-                <span>{jobData.ort}</span>
-              </motion.div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div className="w-full h-72 bg-gradient-to-r from-[#1f1f1f] to-[#30373e] flex flex-col items-center justify-center rounded-t-lg text-white p-6 text-center">
-          <FaInfoCircle className="text-5xl mb-4 text-[#669933]" />
-          <motion.h1
-            className="text-3xl font-bold mb-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {jobData.title}
-          </motion.h1>
-          {jobData.ort && (
-            <motion.div
-              className="flex items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <FaMapMarkerAlt className="mr-2 text-[#669933]" />
-              <span>{jobData.ort}</span>
-            </motion.div>
-          )}
-        </div>
-      )} */}
-
-      {/* Main Content */}
       <div className="max-w-5xl mx-auto px-4 py-10 md:py-16">
         {/* Job Overview Section */}
         <motion.div
@@ -184,11 +219,6 @@ const JobDetails = ({ jobData }) => {
               <strong>Gehalt:</strong> {jobData.gehalt || "Nicht angegeben"}
             </p>
           </div>
-
-          {/* <p className="whitespace-pre-line mb-4 text-[17px] leading-relaxed">
-          <strong>Beschreibung:</strong> {jobData.beschreibung || "Nicht angegeben"}
-
-          </p> */}
         </motion.div>
 
         {/* Tasks, Qualifications, Benefits */}
@@ -258,14 +288,11 @@ const JobDetails = ({ jobData }) => {
             </div>
           )}
         </motion.div>
-        {/* <p className="whitespace-pre-line mb-4 text-[17px] leading-relaxed">
+        
+        <p className="flex items-center gap-2 whitespace-pre-line mb-4 text-[17px] leading-relaxed">
+          <MdDescription className="text-[#669933]" />{" "}
           <strong>Beschreibung:</strong> {jobData.beschreibung || "Nicht angegeben"}
-
-          </p> */}
-          <p className="flex items-center gap-2 whitespace-pre-line mb-4 text-[17px] leading-relaxed">
-              <MdDescription className="text-[#669933]" />{" "}
-              <strong>Beschreibung:</strong> {jobData.beschreibung || "Nicht angegeben"}
-            </p>
+        </p>
 
         {/* Application Form */}
         <motion.div
@@ -286,6 +313,17 @@ const JobDetails = ({ jobData }) => {
               >
                 <FaCheckCircle />
                 <span>Vielen Dank! Ihre Bewerbung wurde erfolgreich eingereicht.</span>
+              </motion.div>
+            )}
+            {error && (
+              <motion.div
+                className="flex items-center gap-2 bg-red-100 text-red-800 px-4 py-3 rounded-md mb-4"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+              >
+                <FaCheckCircle />
+                <span>{error}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -317,7 +355,6 @@ const JobDetails = ({ jobData }) => {
               />
             </div>
 
-            {/* New Phone Number Field */}
             <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded px-3 py-2">
               <FaPhone className="text-[#669933]" />
               <input
@@ -344,34 +381,49 @@ const JobDetails = ({ jobData }) => {
             </div>
 
             <div className="relative inline-block">
-              <input type="file" id="file-upload" className="hidden" />
+              <input
+                type="file"
+                id="file-upload"
+                className="hidden"
+                onChange={handleFileChange}
+                accept=".pdf"
+              />
               <label
                 htmlFor="file-upload"
                 className="inline-flex items-center gap-2 bg-[#669933] text-white px-4 py-2 rounded cursor-pointer hover:bg-[#669933]/80 transition text-sm font-medium"
               >
                 <FaFileUpload className="text-white" />
-                Datei auswählen
+                {file ? file.name : "Lebenslauf auswählen (nur PDF)"}
               </label>
+              {fileError && (
+                <p className="text-red-500 text-sm mt-1">{fileError}</p>
+              )}
             </div>
 
             <Buttons>
-              <button type="submit">
+              <button type="submit" disabled={loading}>
                 <span></span>
                 <p data-title="Bewerbung Absenden">
-                  Bewerbung Absenden
-                  <svg
-                    className="ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
+                  {loading ? (
+                    "Wird gesendet..."
+                  ) : (
+                    <>
+                      Bewerbung Absenden
+                      <svg
+                        className="ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </>
+                  )}
                 </p>
               </button>
             </Buttons>

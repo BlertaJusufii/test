@@ -221,10 +221,10 @@ body {
 }
 @keyframes bounce-slow {
   0%, 100% {
-    transform: translate(200%,55%);
+    transform: translate(200%,58%);
   }
   50% {
-    transform: translate(180%, 60%);
+    transform: translate(195%, 62%);
   }
 }
 

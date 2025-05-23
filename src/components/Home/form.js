@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 export default function PVInquiryForm() {
   const [step, setStep] = useState(1);
@@ -47,7 +49,7 @@ export default function PVInquiryForm() {
       };
 
       const response = await fetch(
-        "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.anfrage_de.api.create_anfrage",
+        `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.anfrage_de.api.create_anfrage`,
         {
           method: "POST",
           headers: {

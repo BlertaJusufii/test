@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSolarPanel } from "react-icons/fa";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -24,7 +26,7 @@ const ProjectCard = ({ project }) => {
     >
       <div className="relative w-full h-full ">
         <Image
-          src={`http://10.10.200.192:8000${project?.image}`}
+          src={`${API_IMG_URL}${project?.image}`}
           alt={`Project - ${project?.location}`}
           fill
           className={`transition-all duration-500 object-cover object-center ${
@@ -82,7 +84,7 @@ const ProjectsSection = () => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+          `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
         );
         if (!response.ok) throw new Error("Gabim gjate marrjes se te dhenave");
         const data = await response.json();

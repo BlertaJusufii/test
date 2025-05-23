@@ -11,6 +11,10 @@ import {
   MdWorkOutline,
 } from "react-icons/md";
 import { FaChevronRight } from "react-icons/fa";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
+import { MdSentimentDissatisfied } from "react-icons/md";
+
 
 const Buttons = styled.div`
   display: flex;
@@ -80,7 +84,7 @@ const JobListings = () => {
     const fetchJobs = async () => {
       try {
         const response = await fetch(
-          "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+          `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data`
         );
 
         if (!response.ok) throw new Error("Failed to fetch data");
@@ -208,9 +212,13 @@ const JobListings = () => {
             })}
           </div>
         ) : (
-          <div className="bg-white p-6 rounded-lg shadow-md text-center text-gray-600">
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center text-gray-700 flex flex-col items-center space-y-3 border border-gray-200">
+          <MdSentimentDissatisfied className="text-5xl text-yellow-500" />
+          <h3 className="text-lg font-semibold">Keine offenen Stellen</h3>
+          <p className="text-sm max-w-md">
             Derzeit sind keine offenen Stellen verfügbar. Bitte schauen Sie später wieder vorbei.
-          </div>
+          </p>
+        </div>
         )}
       </div>
     </div>

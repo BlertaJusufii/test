@@ -14,7 +14,8 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 const CustomPrevArrow = ({ onClick }) => (
   <div
     onClick={onClick}
@@ -135,10 +136,10 @@ export default function SolutionsPage() {
       try {
         const [partnersRes, projectsRes] = await Promise.all([
           fetch(
-            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data"
+            `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.partnersde.api.partnersde_data`
           ),
           fetch(
-            "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data"
+            `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
           ),
         ]);
 
@@ -250,7 +251,7 @@ export default function SolutionsPage() {
                 className="relative group overflow-hidden rounded-lg h-100 transform transition-all duration-700"
               >
                 <img
-                  src={`http://10.10.200.192:8000${project.image}`}
+                  src={`${API_IMG_URL}${project.image}`}
                   alt={project.title}
                   className="w-full h-70 object-cover rounded-lg"
                 />

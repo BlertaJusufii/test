@@ -10,6 +10,8 @@ import {
   MdMessage,
   MdLocationOn,
 } from "react-icons/md";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const Buttons = styled.div`
   display: flex;
@@ -187,7 +189,7 @@ export default function ContactForm() {
 
     try {
       const response = await fetch(
-        "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.kontakt_de.api.create_contact",
+        `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.kontakt_de.api.create_contact`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

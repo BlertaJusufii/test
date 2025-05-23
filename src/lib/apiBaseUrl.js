@@ -1,0 +1,1 @@
+export const API_BASE_URL = "http://10.10.200.192:8000/api/method/";

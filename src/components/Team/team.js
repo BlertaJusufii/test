@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { HiPhone } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const TeamMember = ({ member, index }) => {
   return (
@@ -68,7 +70,7 @@ const TeamSection = () => {
     const fetchTeam = async () => {
       try {
         const response = await fetch(
-          "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data"
+          `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.teamde.api.teamde_data`
         );
         if (!response.ok) throw new Error("Error fetching team");
         const data = await response.json();
@@ -77,7 +79,7 @@ const TeamSection = () => {
           surname: person.vorname,
           email: person.e_mail,
           phone: person.telefon,
-          image: `http://10.10.200.192:8000${person.bild_anhagen}`,
+          image: `${API_IMG_URL}${person.bild_anhagen}`,
           status: person.status,
           position: person.rolle,
           bio: person.bio || "", // Optional bio if available

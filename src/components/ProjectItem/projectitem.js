@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaMapMarkerAlt, FaCalendarAlt, FaTools, FaBolt } from "react-icons/fa";
 import GreenFeatureSection from "../Reusable/contactInfo";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const end={
   greentitle:"Smarthome-Lösung",
@@ -31,7 +33,7 @@ const ProjectCard = ({ project }) => {
     >
       <div className="relative w-full h-full">
         <Image
-          src={`http://10.10.200.192:8000${project?.bild_anhagen[0].bild_anhagen}`}
+          src={`${API_IMG_URL}${project?.bild_anhagen[0].bild_anhagen}`}
           alt={`Project background - ${project?.location}`}
           fill
           className={`transition-all duration-500 object-cover object-center ${
@@ -79,7 +81,7 @@ const ProjectDetailComponent = ({ project, related }) => {
                 className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg"
               >
                 <Image
-                  src={`http://10.10.200.192:8000${image.bild_anhagen}`}
+                  src={`${API_IMG_URL}${image.bild_anhagen}`}
                   alt={`${project.title} - ${index + 1}`}
                   fill
                   className="object-cover w-full h-full"

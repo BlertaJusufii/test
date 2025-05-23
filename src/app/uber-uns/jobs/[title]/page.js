@@ -4,6 +4,8 @@ import BannerSection from "@/components/Reusable/banner";
 import ProjectDetailComponent from "@/components/ProjectItem/projectitem";
 import JobDetails from "@/components/JobDetails/jobdetail";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 // Function to slugify the title manually
 function generateSlug(title) {
@@ -22,7 +24,7 @@ function generateSlug(title) {
 export async function generateStaticParams() {
   try {
     const res = await fetch(
-      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data`
     );
     const data = await res.json();
 
@@ -44,7 +46,7 @@ export async function generateMetadata({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data`
     );
     const data = await res.json();
 
@@ -73,7 +75,7 @@ export default async function ProjectDetailPage({ params }) {
   const { title } = await params;
   try {
     const res = await fetch(
-      "http://10.10.200.192:8000/api/method/oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data"
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.jobsde.api.jobsde_data`
     );
     const data = await res.json();
 
