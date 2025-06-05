@@ -53,9 +53,68 @@ const Navbar = () => {
       title: "Dienstleistungen",
       slug: "dienstleistungen",
       items: [
-        { name: "Photovoltaik", slug: "photovoltaik", link: "/dienstleistungen/photovoltaik" },
-        { name: "Smarthome", slug: "smarthome", link: "/dienstleistungen/smarthome" },
+        {
+          name: "Photovoltaik",
+          slug: "photovoltaik",
+          link: "/dienstleistungen/photovoltaik",
+        },
+        {
+          name: "Smarthome",
+          slug: "smarthome",
+          link: "/dienstleistungen/smarthome",
+        },
         { name: "Service", slug: "service", link: "/dienstleistungen/service" },
+      ],
+    },
+    {
+      title: "Produkte",
+      slug: "produkte",
+      items: [
+        {
+          name: "Smart Energy Home",
+          slug: "smartenergyhome",
+          link: "/produkte/smartenergyhome",
+        },
+        {
+          name: "Photovoltaikanlage",
+          slug: "photovoltaikanlage",
+          link: "/produkte/photovoltaikanlage",
+        },
+        {
+          name: "Stromspeicher",
+          slug: "stromspeicher",
+          link: "/produkte/stromspeicher",
+        },
+        {
+          name: "Wärmepumpe",
+          slug: "warmepumpe",
+          link: "/produkte/warmepumpe",
+        },
+        {
+          name: "Wallbox",
+          slug: "wallbox",
+          link: "/produkte/wallbox",
+        },
+        {
+          name: "Energiemanager",
+          slug: "energiemanager",
+          link: "/produkte/energiemanager",
+        },
+        {
+          name: "Smart Meter",
+          slug: "smartmeter",
+          link: "/produkte/smartmeter",
+        },
+        {
+          name: "Mieterstrom",
+          slug: "mieterstrom",
+          link: "/produkte/mieterstrom",
+        },
+        {
+          name: "Hersteller",
+          slug: "hersteller",
+          link: "/produkte/hersteller",
+        },
       ],
     },
     {
@@ -63,7 +122,11 @@ const Navbar = () => {
       slug: "referenzen",
       items: [
         { name: "Projekte", slug: "projekte", link: "/referenzen/projekte" },
-        { name: "Referenzkarte", slug: "referenzkarte", link: "/referenzen/referenzkarte" },
+        {
+          name: "Referenzkarte",
+          slug: "referenzkarte",
+          link: "/referenzen/referenzkarte",
+        },
       ],
     },
     {
@@ -82,7 +145,11 @@ const Navbar = () => {
     <header className="sticky top-0 w-full z-150 bg-white shadow-lg">
       <nav className="w-full max-w-7xl mx-auto py-4">
         <div className="px-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center h-16 w-40 lg:w-80 relative" onClick={closeMobileMenu}>
+          <Link
+            href="/"
+            className="flex items-center h-16 w-40 lg:w-80 relative"
+            onClick={closeMobileMenu}
+          >
             <Image
               src="/Images/Navbar/Logo.png"
               alt="Logo"
@@ -162,13 +229,20 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="xl:hidden fixed inset-0 bg-black/30 z-40" onClick={closeMobileMenu}>
+          <div
+            className="xl:hidden fixed inset-0 bg-black/30 z-40"
+            onClick={closeMobileMenu}
+          >
             <div
               className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto z-50"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-60">
-                <Link href="/" className="flex items-center h-20 w-40 relative" onClick={closeMobileMenu}>
+                <Link
+                  href="/"
+                  className="flex items-center h-20 w-40 relative"
+                  onClick={closeMobileMenu}
+                >
                   <Image
                     src="/Images/Navbar/Logo.png"
                     alt="Company Logo"
