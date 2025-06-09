@@ -4,17 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { FiArrowRight } from "react-icons/fi";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_strom_page_with_keywords`;
 
-// Krijon një slug të sigurt për URL nga një titull
+const umlautMap = {
+  ä: "a",
+  ö: "o",
+  ü: "u",
+  ß: "ss"
+};
+
 const createSlug = (title) => {
   return title
     .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")         // hapësira -> "-"
-    .replace(/[^a-z0-9-]/g, "");  // heq çdo karakter jo të lejuar
+    .split("")
+    .map(char => umlautMap[char] || char)
+    .join("")
+    .replace(/\s+/g, "-")
+    .replace(/\//g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 };
+
 
 const StromSecondCardSection = () => {
   const [items, setItems] = useState([]);
@@ -36,30 +47,31 @@ const StromSecondCardSection = () => {
   if (!items.length) return null;
 
   return (
-    <section className="w-full bg-white py-12 px-4">
-      <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <section className="w-full bg-white py-16 px-4">
+      <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {items.map((item, index) => {
           const slug = createSlug(item.title);
 
           return (
             <div
               key={index}
-              className="bg-gray-100 rounded-xl shadow-md overflow-hidden flex flex-col"
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group flex flex-col"
             >
               {/* Banner Image */}
-              <div className="relative w-full h-48">
+              <div className="relative w-full h-52">
                 <Image
                   src={`${API_IMG_URL}${item.banner_image}`}
                   alt={item.alt_banner_image || "Banner Image"}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-t-2xl"
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col grow">
-                <div className="flex items-center mb-4">
-                  <div className="relative w-24 h-8 mr-3">
+              <div className="pl-6 pr-6 pb-6 flex flex-col grow">
+                {/* Logo */}
+                {item.logo_image && (
+                  <div className="relative w-20 h-18">
                     <Image
                       src={`${API_IMG_URL}${item.logo_image}`}
                       alt={item.alt_logo_image || "Logo"}
@@ -67,20 +79,24 @@ const StromSecondCardSection = () => {
                       className="object-contain"
                     />
                   </div>
-                </div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                )}
+
+                {/* Title */}
+                <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#669933] transition">
                   {item.title}
                 </h2>
-                <p className="text-sm text-gray-600 whitespace-pre-line mb-4">
+
+                {/* Description */}
+                <p className="text-sm text-gray-600 whitespace-pre-line mb-6 leading-relaxed">
                   {item.main_description}
                 </p>
 
                 {/* Button */}
                 <Link
-                  href={`/stromspeicher/${slug}`}
-                  className="mt-auto inline-block bg-[#669933] text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-[#557a26] transition duration-300"
+                  href={`/produkte/stromspeicher/${slug}`}
+                  className="mt-auto inline-flex items-center gap-2 self-start bg-[#669933] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#557a26] transition"
                 >
-                  Mehr Informationen
+                  Mehr Informationen <FiArrowRight className="text-lg" />
                 </Link>
               </div>
             </div>

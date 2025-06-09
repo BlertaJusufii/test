@@ -5,6 +5,8 @@ import LawyerSectionStromspeicher from '@/components/stromspeicher/first';
 import HeroStromspeicher from '@/components/stromspeicher/first';
 import FeaturedLogos from '@/components/photovoltaikanlage/partners';
 import StromSecondCardSection from '@/components/stromspeicher/second';
+import StromThirdCardSection from '@/components/stromspeicher/third';
+import GreenFeatureSection from '@/components/Reusable/contactInfo';
 
 const DATA_URL =
   `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_strom_page_with_keywords`;
@@ -21,6 +23,12 @@ export default async function StromspeicherPage (){
     console.error("Failed to fetch smart energy data", error);
   }
 
+    const endd={
+    greentitle:"Solaranlage sichern",
+    title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
+    description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
+  }
+
 
   return (
     <div>
@@ -28,6 +36,8 @@ export default async function StromspeicherPage (){
       <HeroStromspeicher data={data} />
       <FeaturedLogos data={data}/>
       <StromSecondCardSection  />
+      <StromThirdCardSection data={data}/>
+      <GreenFeatureSection data={endd}/>
       
 
     </div>
