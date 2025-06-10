@@ -96,11 +96,6 @@ const Navbar = () => {
           link: "/produkte/wallbox",
         },
         {
-          name: "Energiemanager",
-          slug: "energiemanager",
-          link: "/produkte/energiemanager",
-        },
-        {
           name: "Smart Meter",
           slug: "smartmeter",
           link: "/produkte/smartmeter",
