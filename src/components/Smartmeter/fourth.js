@@ -8,7 +8,8 @@ const HeroEnergy = ({data}) => {
   if (!data) return null;
 
   return (
-    <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 py-10 md:py-16 bg-white">
+    <section className="relative">
+       <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 py-10 md:py-16 bg-white">
       
       {/* Text section */}
       <div className="w-full lg:w-1/2 text-gray-800 space-y-6 px-6">
@@ -52,7 +53,12 @@ const HeroEnergy = ({data}) => {
 
 
     
-    </div>
+    </div> 
+
+              {/* <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" /> */}
+
+    </section>
+    
   );
 };
 

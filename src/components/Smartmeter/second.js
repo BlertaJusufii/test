@@ -44,7 +44,7 @@ const SmartMeterCardSection = ({ data }) => {
   };
 
   return (
-    <section className="py-10 md:py-16 ">
+    <section className="relative py-10 md:py-16 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -60,7 +60,7 @@ const SmartMeterCardSection = ({ data }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <h2 className="text-3xl  text-[#669933]">
+              <h2 className="text-3xl  text-gray-900">
                 {data.smart_meter_first_card_title}
               </h2>
               <p className="mt-4 text-lg text-gray-600">
@@ -75,7 +75,7 @@ const SmartMeterCardSection = ({ data }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <h3 className="text-2xl text-[#669933] mb-6">
+              <h3 className="text-2xl text-gray-900 mb-6">
                 {data.smart_meter_first_card_title_table}
               </h3>
               <Slider {...sliderSettings} className="relative">
@@ -88,7 +88,7 @@ const SmartMeterCardSection = ({ data }) => {
                       transition={{ duration: 0.3 }}
                     >
                       <div>
-                        <h4 className="text-lg font-medium text-gray-900">
+                        <h4 className="text-lg font-medium text-gray-900 mb-3">
                           {item.primary_paragraph}
                         </h4>
                         <p className="mt-1 text-gray-600">
@@ -126,6 +126,9 @@ const SmartMeterCardSection = ({ data }) => {
      
         </motion.div>
       </div>
+
+                <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" />
+
     </section>
   );
 };
