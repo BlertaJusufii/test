@@ -4,29 +4,34 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaMapMarkerAlt, FaCalendarAlt, FaTools, FaBolt } from "react-icons/fa";
 import GreenFeatureSection from "../Reusable/contactInfo";
-import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-const end={
-  greentitle:"Smarthome-Lösung",
-  title:"Ihre persönliche Solarberatung",
-  description:"Interessieren Sie sich für eine eigene Solaranlage? Wir beraten Sie individuell – kontaktieren Sie uns jetzt!"
+
+export function generateSlug(title = "") {
+  return title
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/\//g, "-")
+    .replace(/[ä]/g, "ae")
+    .replace(/[ö]/g, "oe")
+    .replace(/[ü]/g, "ue")
+    .replace(/[ß]/g, "ss")
+    .replace(/[^a-z0-9-]/g, "");
 }
+
+
+const end = {
+  greentitle: "Smarthome-Lösung",
+  title: "Ihre persönliche Solarberatung",
+  description: "Interessieren Sie sich für eine eigene Solaranlage? Wir beraten Sie individuell – kontaktieren Sie uns jetzt!"
+};
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link
-      href={`/referenzen/projekte/${project.title
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/\//g, "-")
-        .replace(/[ä]/g, "ae")
-        .replace(/[ö]/g, "oe")
-        .replace(/[ü]/g, "ue")
-        .replace(/[ß]/g, "ss")
-        .replace(/[^a-z0-9-]/g, "")}`}
+      href={`/referenzen/projekte/${encodeURIComponent(generateSlug(project.title))}`}
       className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -36,9 +41,7 @@ const ProjectCard = ({ project }) => {
           src={`${API_IMG_URL}${project?.bild_anhagen[0].bild_anhagen}`}
           alt={`Project background - ${project?.location}`}
           fill
-          className={`transition-all duration-500 object-cover object-center ${
-            isHovered ? "scale-110 blur-[1px]" : "scale-100 blur-0"
-          }`}
+          className={`transition-all duration-500 object-cover object-center ${isHovered ? "scale-110 blur-[1px]" : "scale-100 blur-0"}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-black/30 transition-opacity duration-300"></div>
@@ -61,19 +64,16 @@ const ProjectCard = ({ project }) => {
   );
 };
 
-
 const ProjectDetailComponent = ({ project, related }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-
-<h2 className="text-2xl  font-semibold  tracking-wide inline-block relative">
-          Projekt Details
+      <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
+        Projekt Details
       </h2>
-      <hr className="w-70  h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
+      <hr className="w-70 h-1 bg-[#669933] text-[#669933] mt-[10px] mb-5"></hr>
 
       <div className="flex flex-col md:flex-row gap-10 mb-16">
         <div className="w-full md:w-2/4">
-        
           <div className="grid grid-cols-1 gap-6">
             {project?.bild_anhagen?.map((image, index) => (
               <div
@@ -91,12 +91,8 @@ const ProjectDetailComponent = ({ project, related }) => {
           </div>
         </div>
 
-        <div className="w-full md:w-2/4 space-y-6">  
-          
-
+        <div className="w-full md:w-2/4 space-y-6">
           <div className="p-6 rounded-xl shadow-md border border-gray-200 bg-white">
-
-      
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               {project?.title}
             </h2>
@@ -138,11 +134,10 @@ const ProjectDetailComponent = ({ project, related }) => {
           ))}
         </div>
       </div>
-      {/* <GreenFeatureSection data={end}/> */}
 
+      {/* <GreenFeatureSection data={end} /> */}
     </div>
   );
 };
-
 
 export default ProjectDetailComponent;

@@ -2,6 +2,8 @@ import ServicesBanner from "@/components/Home/about";
 import VideoBanner from "@/components/Home/banner";
 import PVInquiryForm from "@/components/Home/form";
 import SolutionsPage from "@/components/Home/info";
+import Partners from "@/components/Home/partners";
+import ProjectsSlider from "@/components/Home/projekte";
 import RotatingCircleSection from "@/components/Home/welcome";
 import EndWhite from "@/components/Reusable/Endwhite";
 
@@ -22,7 +24,10 @@ export default function Home() {
         mobileVideoSrc={"Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"} />
       <ServicesBanner />
       <RotatingCircleSection />
+    
       <SolutionsPage />
+        <ProjectsSlider/>
+        <Partners/>
       <PVInquiryForm />
       <EndWhite data={endd}/>
     </div>

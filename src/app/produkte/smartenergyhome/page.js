@@ -7,7 +7,8 @@ import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_smart_energy_page_with_keywords`;
+  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.smart_energy_home_page.api.get_smart_energy_page_with_keywords`;
+
 
 export default async function SmartEnergyPage() {
   let data = null;

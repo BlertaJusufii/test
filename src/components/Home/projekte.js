@@ -1,0 +1,154 @@
+"use client";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import { FaSolarPanel } from "react-icons/fa";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import Link from "next/link";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
+
+// Reusable slug generator
+export function generateSlug(title) {
+  if (!title) return '';
+  return title
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // heq aksentet
+    .replace(/[\s–—]+/g, "-") // hapësira dhe lloje të ndryshme të dash
+    .replace(/\//g, "-")
+    .replace(/[ä]/g, "ae")
+    .replace(/[ö]/g, "oe")
+    .replace(/[ü]/g, "ue")
+    .replace(/[ß]/g, "ss")
+    .replace(/[^a-z0-9-]/g, "") // largon karaktere të tjera
+    .replace(/-+/g, "-") // bashkon `--` në një `-`
+    .replace(/^-+|-+$/g, ""); // heq `-` nga fillimi ose fundi
+}
+
+const CustomPrevArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute left-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleLeft />
+  </div>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <div
+    onClick={onClick}
+    className="absolute right-2 top-1/2 z-50 transform -translate-y-1/2 text-5xl text-white rounded-full w-10 h-10 flex items-center justify-center cursor-pointer shadow-md"
+  >
+    <FaAngleRight />
+  </div>
+);
+
+export default function ProjectsSection() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch(
+          `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
+        );
+        if (!res.ok) throw new Error("Fehler beim Laden der Projekte");
+        const data = await res.json();
+
+        const formatted = data.message
+          .filter(p => p.status === "Aktiv")
+          .map(projekt => ({
+            title: projekt.title,
+            slug: generateSlug(projekt.title),
+            image: projekt.bild_anhagen?.[0]?.bild_anhagen,
+            leistung: projekt.leistung,
+            status: projekt.status,
+          }))
+          .slice(0, 3); // Now slice after slug generation
+
+        setProjects(formatted);
+      } catch (error) {
+        console.error("Fehler:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="mb-9 md:mb-17 max-w-7xl mx-auto"
+    >
+      <div className="text-center flex flex-col items-center justify-center">
+        <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
+          Projekte
+          <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+        </h2>
+        <p className="text-center text-black-500 mx-auto mb-6 md:mb-12 lg:text-[30px] text-2xl md:text-3xl font-bold mt-6">
+          Entdecken Sie unsere neuesten Photovoltaik Projekte – echte
+          Referenzen aus ganz Deutschland.
+        </p>
+      </div>
+
+      <Slider
+        {...{
+          dots: false,
+          infinite: true,
+          speed: 700,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+          nextArrow: <CustomNextArrow />,
+          prevArrow: <CustomPrevArrow />,
+          autoplay: true,
+          autoplaySpeed: 4000,
+          responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 768, settings: { slidesToShow: 2 } },
+            { breakpoint: 450, settings: { slidesToShow: 1 } },
+          ],
+        }}
+        className="mb-12 relative"
+      >
+        {projects.map((project, i) => (
+          <div key={i} className="px-5">
+           <Link
+  href={`/referenzen/projekte/${generateSlug(project.title)}`}
+  className="relative group overflow-hidden rounded-lg h-100 transform transition-all duration-700"
+>
+              <img
+                src={`${API_IMG_URL}${project.image}`}
+                alt={project.title}
+                className="w-full md:h-100 lg:h-120 h-85 object-cover rounded-lg"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                <div className="transition-all duration-500 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0">
+                  <h3 className="text-white text-xl font-semibold">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center text-white gap-2 mt-2 text-[16px]">
+                    <FaSolarPanel className="text-[#ffde59]" />
+                    <span>{project.leistung}</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </Slider>
+
+      <div className="text-center flex flex-row items-center justify-center mt-4">
+        <Link
+          href={"/referenzen/projekte"}
+          className="flex items-center justify-center gap-2 bg-[#669933] hover:bg-[#669933]/90 text-white uppercase px-6 py-3 rounded-lg transition-colors duration-300 text-[14px]"
+        >
+          Weitere Projekte <FaAngleRight />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}

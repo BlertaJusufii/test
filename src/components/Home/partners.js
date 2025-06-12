@@ -15,7 +15,7 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 
-export default function SolutionsPage() {
+export default function Partners() {
   const stats = [
     {
       icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
@@ -133,48 +133,42 @@ export default function SolutionsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      {/* Title Section */}
+
+      {/* Partners Section */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-16"
+        className=""
       >
-        <h2 className="text-2xl md:text-2xl lg:text-2xl font-[500] text-gray-900 mb-6">
-          Photovoltaiklösungen für Industrie, Gewerbe und Privatkunden
-        </h2>
-      </motion.div>
+        <div className="text-center mb-6">
+          <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
+            PARTNERS
+            <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
+          </h2>
+          <p className="text-center text-black-500 mx-auto lg:text-[30px] text-2xl md:text-3xl font-bold mb-6 mt-6">
+            Wir sind Partner von
+          </p>
+        </div>
 
-      {/* Stats Section */}
-      <motion.div
-        ref={countersRef}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 lg:mb-12 relative pb-10"
-      >
-        {stats.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.2, duration: 0.8 }}
-            className="text-center"
-          >
-            <div className="flex justify-center mb-2">{item.icon}</div>
-            <div className="text-[40px] font-[500] text-[#669933] mb-2">
-              {counters[i].toLocaleString()}
-              {item.suffix && <span>{item.suffix}</span>}
+        <Slider {...sliderSettings} className="mt-6">
+          {partnersFrappe.map((partner, index) => (
+            <div key={index} className="px-2">
+              <div className="flex items-center justify-center h-40 transition-transform duration-500 hover:scale-105">
+                <Image
+                  src={`${API_IMG_URL}${partner.image}`}
+                  alt={partner.name}
+                  width={200}
+                  height={160}
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
             </div>
-            <p className="text-black text-[18px]">{item.label}</p>
-          </motion.div>
-        ))}
+          ))}
+        </Slider>
       </motion.div>
-
-    
     </div>
   );
 }

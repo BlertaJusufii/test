@@ -112,6 +112,42 @@ const Navbar = () => {
         },
       ],
     },
+      {
+      title: "Service",
+      slug: "service",
+      items: [
+        {
+          name: "Oekovolt Vorteilswelt",
+          slug: "vorteilswelt",
+          link: "/service/vorteilswelt",
+        },
+           {
+          name: "Finanzierung",
+          slug: "finanzierung",
+          link: "/service/finanzierung",
+        },
+           {
+          name: "Dynamischer Stromtarif",
+          slug: "stromtarif",
+          link: "/service/stromtarif",
+        },
+          {
+          name: "Photovoltaik Repowering",
+          slug: "repowering",
+          link: "/service/repowering",
+        },
+           {
+          name: "Solar-Versicherung",
+          slug: "versicherung",
+          link: "/service/versicherung",
+        },
+         {
+          name: "Direktvermaktung",
+          slug: "direktvermaktung",
+          link: "/service/direktvermaktung",
+        },
+      ],
+    },
     {
       title: "Referenzen",
       slug: "referenzen",
@@ -168,7 +204,7 @@ const Navbar = () => {
                   <>
                     <button
                       type="button"
-                      className="flex items-center hover:text-[#669933] transition uppercase text-lg"
+                      className="flex items-center hover:text-[#669933] transition uppercase text-[16px]"
                       onClick={(e) => e.preventDefault()} // prevent toggling on click in desktop
                     >
                       {item.title}
@@ -198,7 +234,7 @@ const Navbar = () => {
                 ) : (
                   <Link
                     href={item.link}
-                    className="hover:text-[#669933] transition uppercase text-lg"
+                    className="hover:text-[#669933] transition uppercase text-[16px]"
                     onClick={() => setHoverDropdown(null)}
                   >
                     {item.title}

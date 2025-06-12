@@ -1,4 +1,3 @@
-// Page Component
 import { notFound } from "next/navigation";
 import BannerSection from "@/components/Reusable/banner";
 import ProjectDetailComponent from "@/components/ProjectItem/projectitem";
@@ -6,112 +5,143 @@ import BannerProject from "@/components/Reusable/bannerproject";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-// Function to slugify the title manually
-function generateSlug(title) {
+// Consistent slug generation function
+export function generateSlug(title) {
+  if (!title) return '';
   return title
     .toLowerCase()
-    .replace(/\s+/g, "-")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // heq aksentet
+    .replace(/[\s–—]+/g, "-") // hapësira dhe lloje të ndryshme të dash
     .replace(/\//g, "-")
     .replace(/[ä]/g, "ae")
     .replace(/[ö]/g, "oe")
     .replace(/[ü]/g, "ue")
     .replace(/[ß]/g, "ss")
-    .replace(/[^a-z0-9-]/g, ""); // Remove other special characters
+    .replace(/[^a-z0-9-]/g, "") // largon karaktere të tjera
+    .replace(/-+/g, "-") // bashkon `--` në një `-`
+    .replace(/^-+|-+$/g, ""); // heq `-` nga fillimi ose fundi
 }
 
-// Function to generate static paths
 export async function generateStaticParams() {
   try {
     const res = await fetch(
-      `${API_BASE_URL}/oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`,
+      { next: { revalidate: 3600 } }
     );
+    
+    if (!res.ok) throw new Error('Failed to fetch projects');
+    
     const data = await res.json();
-
-    const paths = data.message.map((project) => ({
-      title: generateSlug(project.name),
+    
+    if (!data?.message) return [];
+    
+    return data.message.map((project) => ({
+      title: generateSlug(project.title || project.name)
     }));
-
-    console.log("Generated Static Paths:", paths);
-
-    return paths;
+    
   } catch (error) {
-    console.error("Error fetching paths:", error);
+    console.error('Error generating static params:', error);
     return [];
   }
 }
 
-// Function to generate metadata for SEO
 export async function generateMetadata({ params }) {
-  const { title } = await params;
   try {
+    const { title } = await params;
     const res = await fetch(
-      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`,
+      { next: { revalidate: 3600 } }
     );
+    
     const data = await res.json();
-
-    // Find the matching project based on slugified title
-    const project = data.message.find((p) => generateSlug(p.name) === title);
-
-    if (!project) notFound();
-
-    return {
-      title: project.name,
-      description: `Learn more about ${project.name} project`,
-      // keywords: [`${project.keywords.map((keyword) => keyword.keyword)}`],
+    
+    // Find project by comparing slugs
+    const project = data.message?.find(p => 
+      generateSlug(p.title) === title || 
+      generateSlug(p.name) === title
+    );
+    
+    if (!project) return {
+      title: 'Project Not Found',
+      description: 'The requested project could not be found'
     };
-  } catch (error) {
-    console.error("Error fetching metadata:", error);
+    
     return {
-      title: "Project Not Found",
-      description: "The project you are looking for does not exist.",
+      title: project.title || project.name,
+      description: project.description || `Details about ${project.title || project.name} project`,
+    };
+    
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {
+      title: 'Project Error',
+      description: 'Error loading project information'
     };
   }
 }
 
-// ... keep your generateStaticParams and generateMetadata functions the same ...
-
-// Page Component
 export default async function ProjectDetailPage({ params }) {
   const { title } = await params;
+  
   try {
     const res = await fetch(
-      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`
+      `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.projektede.api.projektede_data`,
+      { next: { revalidate: 3600 } }
     );
+    
     const data = await res.json();
+    
+ const project = data.message.find((p) => {
+      const projectSlug = generateSlug(p.title || p.name);
+      console.log(`Comparing: ${projectSlug} === ${title}`);
+      return projectSlug === title;
+    });
+    
+    // if (!project) {
+    //   console.log("No match found for title:", title);
+    //   notFound();
+    // }
 
-    const project = data.message.find((p) => generateSlug(p.name) === title);
+console.log("Param Title:", title);
+console.log("Available slugs:", data.message.map(p => generateSlug(p.title || p.name)));
 
-    if (!project) {
-      console.log("No match found!");
+
+    
+     if (!project) {
+      console.log("No match found");
       notFound();
     }
-    const getRandomItems = (array, count, excludeItem) => {
-      const filtered = array.filter((item) => generateSlug(item.name) !== generateSlug(excludeItem.name));
-      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, count);
+    // Get related projects
+    const getRandomItems = (array, count, excludeSlug) => {
+      const filtered = array.filter(item => 
+        generateSlug(item.title) !== excludeSlug &&
+        generateSlug(item.name) !== excludeSlug
+      );
+      return [...filtered]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, count);
     };
-
-    const randomProjects = getRandomItems(data.message, 3, project);
-    console.log("Random projects:", randomProjects);
-
+    
+    const currentSlug = generateSlug(project.title || project.name);
+    const relatedProjects = getRandomItems(data.message, 3, currentSlug);
+    
     const bannerInfo = {
-      title: project.title || project.name, // Use project.name if title is undefined
+      title: project.title || project.name,
       img: `${API_IMG_URL}${project?.bild_anhagen?.[0]?.bild_anhagen}`,
     };
-
+    
     return (
       <div>
-        {/* Project Header */}
-        <BannerProject data={bannerInfo}/>
-        <ProjectDetailComponent project={project} related={randomProjects} />
+        <BannerProject data={bannerInfo} />
+        <ProjectDetailComponent 
+          project={project} 
+          related={relatedProjects} 
+        />
       </div>
     );
+    
   } catch (error) {
-    console.error("Error fetching project data:", error);
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-8 text-red-500">
-        Error loading the project page. Please try again later.
-      </div>
-    );
+    console.error('Error loading project:', error);
+    notFound();
   }
 }
