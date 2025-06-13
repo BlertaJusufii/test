@@ -5,6 +5,7 @@ import ThirdPart from "@/components/smartenergyhome/third";
 import EnergyOfferSection from "@/components/smartenergyhome/fourth";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import EndSection from "@/components/Reusable/end";
 
 const DATA_URL =
   `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.smart_energy_home_page.api.get_smart_energy_page_with_keywords`;
@@ -21,13 +22,6 @@ export default async function SmartEnergyPage() {
     console.error("Failed to fetch smart energy data", error);
   }
 
-  const endd = {
-    greentitle: "Smarthome-Lösung",
-    title: "Energie der Zukunft",
-    description:
-      "Machen Sie den ersten Schritt in Richtung Unabhängigkeit mit Ihrer eigenen Solaranlage. Füllen Sie unser Kontaktformular aus – wir helfen Ihnen gerne weiter.",
-  };
-
   return (
     <div>
       <SmartBanner data={data} />
@@ -35,7 +29,7 @@ export default async function SmartEnergyPage() {
       <SmartEnergySection data={data} />
       <EnergyOfferSection data={data} />
       <ThirdPart data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection />
     </div>
   );
 }

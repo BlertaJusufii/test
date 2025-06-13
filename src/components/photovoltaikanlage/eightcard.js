@@ -5,6 +5,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import {motion} from 'framer-motion'
 
 export default function FaqSection({ data }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -18,11 +19,30 @@ export default function FaqSection({ data }) {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 mb-9 md:mb-17">
+    <section className="max-w-7xl mx-auto px-6 md:px-12 mb-9 md:mb-17">
       {/* Centered Title & Subtitle */}
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <p className="text-xl uppercase text-[#669933] font-semibold">{title}</p>
-        <h4 className="mt-4 text-2xl text-gray-600">{subtitle}</h4>
+
+         <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-sm mb-3 font-semibold text-[#669933] uppercase tracking-wide"
+          >
+            {title}
+          </motion.p>
+
+        {/* <h4 className="mt-4 text-2xl text-gray-600">{subtitle}</h4> */}
+          <motion.h2
+            className="text-3xl  mt-4  text-gray-900"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            {subtitle}
+          </motion.h2>
       </div>
 
       {/* Questions Below, Centered */}

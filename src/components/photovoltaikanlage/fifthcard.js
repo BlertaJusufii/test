@@ -30,22 +30,24 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
   };
 
   return (
-    <section className="bg-white py-10  md:py-16 px-6">
+    <section className="bg-white py-10  md:py-16 px-6  md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
 
-              <motion.p
-            className="mb-3 text-lg text-[#669933] uppercase"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            
+            <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-sm mb-3 font-semibold text-[#669933] uppercase tracking-wide"
           >
             {subtitle}
           </motion.p>
+
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-gray-900"
+            className="text-3xl md:text-4xl  text-gray-900"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

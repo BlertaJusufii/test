@@ -121,7 +121,7 @@ const PhotovoltaikIntroSection = ({ data }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold leading-tight text-gray-900"
+            className="text-4xl leading-tight text-gray-900"
           >
             {data.photovoltaik_first_subtitle}
           </motion.h1>

@@ -7,7 +7,7 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_photovoltaik_page_with_keywords`;
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.hersteller.api.get_icon_partners`;
 
 const FeaturedLogos = () => {
   const [logos, setLogos] = useState([]);
@@ -17,7 +17,7 @@ const FeaturedLogos = () => {
       try {
         const res = await fetch(DATA_URL, { cache: "no-store" });
         const json = await res.json();
-        setLogos(json.message?.photovoltaik_partners || []);
+        setLogos(json.message || []);
       } catch (error) {
         console.error("Failed to fetch logos", error);
       }
@@ -48,15 +48,15 @@ const FeaturedLogos = () => {
 
   return (
     <div className="w-full bg-[#f5f5f5] py-3">
-      <div className="max-w-7xl mx-auto px-4 flex items-center gap-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 flex items-center gap-6">
         <div className="w-full">
           <Slider {...settings}>
             {logos.map((logo, index) => (
-              <div key={index} className="flex justify-center items-center px-2">
-                <div className="relative w-full h-20 grayscale">
+              <div key={index} className="flex justify-center h-20 items-center px-2">
+                <div className="relative w-full h-10 grayscale translate-y-1/2">
                   <Image
-                    src={`${API_IMG_URL}${logo.partner_logo}`}
-                    alt={logo.alt_image || `Partner Logo ${index + 1}`}
+                    src={`${API_IMG_URL}${logo.logo_image}`}
+                    alt={logo.alt_logo_image || `Partner Logo ${index + 1}`}
                     fill
                     className="object-contain"
                   />

@@ -62,15 +62,16 @@ const PhotovoltaikSliderSection = ({ data }) => {
         <div className=" md:flex-row lg:flex flex-col justify-between">
           <div className="flex-col">
             {/* title */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-lg text-[#669933] uppercase mb-3"
-            >
-              {title}
-            </motion.p>
+           
+             <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-sm mb-3 font-semibold text-[#669933] uppercase tracking-wide"
+          >
+            {title}
+          </motion.p>
 
             {/* Subtitle */}
             <motion.h2
@@ -78,7 +79,7 @@ const PhotovoltaikSliderSection = ({ data }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-3xl text-gray-900 "
+              className="text-3xl md:text-4xl text-gray-900 "
             >
               {subtitle}
             </motion.h2>

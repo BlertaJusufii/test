@@ -23,12 +23,7 @@ export default function FourthCardSection({ data }) {
             height={600}
             className="rounded-2xl shadow-xl object-cover w-full h-full"
           />
-          {/* <h2 className="text-3xl  text-gray-900 mt-8">
-            {data.fourth_card_title}
-          </h2>
-          <p className="text-gray-700 mt-4 whitespace-pre-line">
-            {data.fourth_card_description}
-          </p> */}
+        
         </motion.div>
 
         {/* Right: Option Boxes */}

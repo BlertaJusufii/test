@@ -4,6 +4,11 @@ import BannerSection from '@/components/Repowering/banner';
 import EnhancedCardsSection from '@/components/Repowering/second';
 import PhotovoltaikOptimization from '@/components/Repowering/third';
 import InverterReplacementSection from '@/components/Repowering/fourth';
+import SystemExpansionSection from '@/components/Repowering/fifth';
+import SixSection from '@/components/Repowering/six';
+import RepoweringSection from '@/components/Repowering/seven';
+import ThirdCardSection from '@/components/Repowering/eight';
+import GreenFeatureSection from '@/components/Reusable/contactInfo';
 
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.photovoltaik_repowering_service_page.api.get_photovoltaik_repowering_page_with_keywords`;
@@ -32,10 +37,14 @@ export default async function RepoweringPage(){
   return (
     <div>
       <BannerSection data={data} />
-            <PhotovoltaikOptimization data={data} />
-
+      <PhotovoltaikOptimization data={data} />
       <EnhancedCardsSection data={data} />
       <InverterReplacementSection data={data} />
+      <SystemExpansionSection data={data} />
+      <SixSection data={data} />
+      <RepoweringSection data={data} />
+      <ThirdCardSection data={data} />
+      <GreenFeatureSection data={endd} />
     </div>
   )
 

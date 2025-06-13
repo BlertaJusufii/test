@@ -125,7 +125,7 @@ const PhotovoltaikSixthCardSection = ({ data }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold leading-tight text-gray-900"
+            className="text-3xl md:text-4xl leading-tight text-gray-900"
           >
             {data.photovoltaik_subtitle_sixth_card_first}
           </motion.h2>

@@ -10,7 +10,7 @@ const ReviewsPage = ({ data }) => {
 
   return (
     <div className="py-10 md:py-16 bg-gray-100">
-      <div className="flex-col  max-w-7xl mx-auto space-y-10 px-4">
+      <div className="flex-col  max-w-7xl mx-auto space-y-10 px-4  md:px-12">
         <motion.div
           className="sm:flex-col md:flex-row lg:flex items-center  justify-between w-full gap-16"
           initial={{ opacity: 0, y: 40 }}
@@ -25,10 +25,17 @@ const ReviewsPage = ({ data }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg text-[#669933] uppercase">
-              {data.photovoltaik_title_second_card}
-            </p>
-            <h3 className="text-4xl">
+           
+               <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-sm font-semibold text-[#669933] uppercase tracking-wide "
+          >
+            {data.photovoltaik_title_second_card}
+          </motion.p>
+            <h3 className="text-4xl md:mb-5 lg:mb-0">
               {data.photovoltaik_subtitle_second_card}
             </h3>
           </motion.div>
