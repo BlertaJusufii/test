@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
@@ -20,6 +20,21 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
   const items = data.photovoltaik_fifth_table;
 
   const [index, setIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1); // Initialize with 1
+
+  // Calculate visible count on client side only
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) setVisibleCount(3);
+      else if (width >= 768) setVisibleCount(2);
+      else setVisibleCount(1);
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % items.length);
@@ -30,13 +45,11 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
   };
 
   return (
-    <section className="bg-white py-10  md:py-16 px-6  md:px-12">
+    <section className="bg-white py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
-
-            
-            <motion.p
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -47,7 +60,7 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
           </motion.p>
 
           <motion.h2
-            className="text-3xl md:text-4xl  text-gray-900"
+            className="text-3xl md:text-4xl text-gray-900"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -55,7 +68,6 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
           >
             {title}
           </motion.h2>
-        
         </div>
 
         {/* Slider */}
@@ -64,12 +76,14 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
             <button
               onClick={prevSlide}
               className="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+              aria-label="Previous slide"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={nextSlide}
               className="p-3 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+              aria-label="Next slide"
             >
               <FaArrowRight />
             </button>
@@ -77,24 +91,25 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
-              {Array.from({ length: getVisibleCount() }).map((_, i) => {
+              {Array.from({ length: visibleCount }).map((_, i) => {
                 const item = items[(index + i) % items.length];
                 return (
                   <motion.div
-                    key={item.title + i}
+                    key={`${item.title}-${i}-${index}`} // More unique key
                     className="bg-white shadow-lg rounded-lg overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.5 }}
+                    layout // Add layout animation
                   >
                     <div className="relative w-full h-48">
                       <Image
-                src={`${API_IMG_URL}${item.image}`}
-                      
+                        src={`${API_IMG_URL}${item.image}`}
                         alt={item.alt_text || "Image"}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                     <div className="p-5">
@@ -114,14 +129,6 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
       </div>
     </section>
   );
-
-  function getVisibleCount() {
-    if (typeof window === "undefined") return 1;
-    const width = window.innerWidth;
-    if (width >= 1024) return 3;
-    if (width >= 768) return 2;
-    return 1;
-  }
 };
 
 export default PhotovoltaikOverviewSlider;

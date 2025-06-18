@@ -21,7 +21,7 @@ export default function FifthCardSection({ data }) {
 
   return (
     <section className="relative pt-9 md:pt-15 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ export default function FifthCardSection({ data }) {
           </div>
 
           {/* Slider Container */}
-          <div className="relative h-70 w-full overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="relative h-120 md:h-80 lg:h-70 w-full overflow-hidden rounded-xl bg-white shadow-lg">
             <div 
               ref={sliderRef}
               className="absolute inset-0 flex"

@@ -6,7 +6,7 @@ import { API_IMG_URL } from '@/lib/apiImgUrl';
 
 export default function DynamicInfoSection({data}) {
   return (
-    <section className="w-full bg-gray-100 py-10 md:py-16 px-4">
+    <section className="w-full bg-gray-100 py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-15">
         {/* Green line accent and content */}
         <motion.div

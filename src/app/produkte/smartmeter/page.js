@@ -1,18 +1,16 @@
-import React from 'react'
-import { API_BASE_URL } from '@/lib/apiBaseUrl';
-import SmartmeterBanner from '@/components/Smartmeter/banner';
-import SmartMeterCardSection from '@/components/Smartmeter/second';
-import Smartmeter from '@/components/Smartmeter/third';
-import Smartmetersectionfour from '@/components/Smartmeter/fourth';
-import GreenFeatureSection from '@/components/Reusable/contactInfo';
-import SmartMeterCostSection from '@/components/Smartmeter/fifth';
+import React from "react";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import SmartmeterBanner from "@/components/Smartmeter/banner";
+import SmartMeterCardSection from "@/components/Smartmeter/second";
+import Smartmeter from "@/components/Smartmeter/third";
+import Smartmetersectionfour from "@/components/Smartmeter/fourth";
+import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import SmartMeterCostSection from "@/components/Smartmeter/fifth";
+import EndSection from "@/components/Reusable/end";
 
-const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_smart_meter_page_with_keywords`;
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_smart_meter_page_with_keywords`;
 
-
-export default async function SmartmeterPage(){
-
+export default async function SmartmeterPage() {
   let data = null;
 
   try {
@@ -23,12 +21,12 @@ export default async function SmartmeterPage(){
     console.error("Failed to fetch smart energy data", error);
   }
 
-
-  const endd={
-    greentitle:"Solaranlage sichern",
-    title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
-    description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
-  }
+  const endd = {
+    greentitle: "Solaranlage sichern",
+    title: "Jetzt Kontakt aufnehmen & Solaranlage sichern",
+    description:
+      "Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell.",
+  };
 
   return (
     <div>
@@ -36,9 +34,8 @@ export default async function SmartmeterPage(){
       <SmartMeterCardSection data={data} />
       <Smartmeter data={data} />
       <Smartmetersectionfour data={data} />
-<SmartMeterCostSection data={data} />
-      <GreenFeatureSection data={endd} />
+      <SmartMeterCostSection data={data} />
+      <EndSection />
     </div>
-  )
+  );
 }
-

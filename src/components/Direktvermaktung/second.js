@@ -8,7 +8,7 @@ const HeroEnergy = ({data}) => {
   if (!data) return null;
 
   return (
-    <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 py-10 md:py-16 bg-white">
+    <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 d:px-12 py-10 md:py-16 bg-white">
       
       {/* Image section */}
       <div className="w-full lg:w-1/2 relative px-6">
@@ -37,7 +37,7 @@ const HeroEnergy = ({data}) => {
           <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-[#669933] to-[#003473]" />
           <div className="pl-4">
          
-              <p className="text-gray-700 mb-4 whitespace-pre-line">
+              <p className="text-gray-700  whitespace-pre-line">
                 {data.first_card_description}
               </p>
           

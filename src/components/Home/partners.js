@@ -15,7 +15,7 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 
-export default function Partners() {
+export default function Partners({data}) {
   const stats = [
     {
       icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
@@ -148,7 +148,7 @@ export default function Partners() {
             <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
           </h2>
           <p className="text-center text-black-500 mx-auto lg:text-[30px] text-2xl md:text-3xl font-bold mb-6 mt-6">
-            Wir sind Partner von
+            {data.partners_title}
           </p>
         </div>
 

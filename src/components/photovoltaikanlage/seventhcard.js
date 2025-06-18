@@ -113,7 +113,7 @@ const PhotovoltaikSliderSection = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-100 rounded-2xl overflow-hidden flex flex-col h-[420px] justify-between transition duration-300"
+                className="bg-gray-100 rounded-2xl overflow-hidden flex flex-col h-auto md:h-[420px] justify-between transition duration-300"
               >
                 {/* Image */}
                 <div className="relative w-full h-52 shrink-0">

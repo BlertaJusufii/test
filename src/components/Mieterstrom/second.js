@@ -20,7 +20,7 @@ const MieterstromSection = ({ data }) => {
 
   return (
     <section className="py-10 md:py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
         {/* Image */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -44,9 +44,16 @@ const MieterstromSection = ({ data }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-[#669933] text-sm uppercase tracking-widest mb-2">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-sm mb-3 font-semibold text-[#669933] uppercase tracking-wide"
+          >
             {card.title}
-          </h2>
+          </motion.p>
+        
           <h3 className="text-2xl md:text-3xl mb-4 text-gray-800">
             {card.tableTitle}
           </h3>

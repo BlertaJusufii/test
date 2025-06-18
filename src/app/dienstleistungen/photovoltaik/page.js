@@ -1,10 +1,15 @@
 import React from "react";
-import TeamBanner from "@/components/Reusable/teamBanner";
 import Tabs from "@/components/Photovoltaik/Tabs";
 import AnlageSection from "@/components/Photovoltaik/Anlage";
 import KomponentenSlider from "@/components/Photovoltaik/Slider";
 import ProcessSteps from "@/components/Photovoltaik/Cards";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import PhotovoltaikanlageBannerSection from "@/components/Photovoltaik/banner";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import EndSection from "@/components/Reusable/end";
+
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.photovoltaikanlagen_primary_page.api.get_photovoltaikanlagen`;
+
 
 export const metadata = {
   title: "Photovoltaikanlagen",
@@ -19,30 +24,33 @@ export const metadata = {
   ],
 };
 
-export default function Home() {
-  const data = {
-    title: "Photovoltaikanlagen",
-    img: "/Images/Dienstleistungen/Photovoltaik/fuschl-am-see-scaled-1.jpg",
-    description:
-      "Mit einer Photovoltaikanlage von Oekovolt Deutschland können Sie Ihre Energiekosten signifikant senken und gleichzeitig aktiv zur Energiewende beitragen.",
-  };
+export default async function Home() {
+
+   let data = null;
+
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const json = await res.json();
+    data = json.message;
+  } catch (error) {
+    console.error("Failed to fetch smart energy data", error);
+  } 
+
+  
 
 
-  const end={
-    greentitle:"Solaranlage",
-    title:"Ihre Solaranlage – Jetzt Kontakt aufnehmen!",
-    description:"Interessieren Sie sich für eine maßgeschneiderte Photovoltaikanlage? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Team berät Sie gerne individuell & professionell."
-  }
+ 
 
 
   return (
     <div>
-      <TeamBanner data={data} />
-      <Tabs />
-      <AnlageSection />
-      <KomponentenSlider />
-      <ProcessSteps />
-      <GreenFeatureSection data={end}/>
+      {/* <TeamBanner data={data} /> */}
+      <PhotovoltaikanlageBannerSection data={data} />
+      <Tabs data={data}/>
+      <AnlageSection data={data} />
+      <KomponentenSlider data={data}/>
+      <ProcessSteps data={data}/>
+      <EndSection/>
     </div>
   );
 }

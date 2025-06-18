@@ -8,6 +8,7 @@ import DynamicSteps from "@/components/Stromtarif/fifth";
 import FlexibleBenefitsSection from "@/components/Stromtarif/sixth";
 import RequirementsSection from "@/components/Stromtarif/seventh";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.dynamischer_stromtarif_service_page.api.get_dynamischer_page_with_keywords`;
 
@@ -37,7 +38,7 @@ export default async function StromtarifPage() {
       <DynamicSteps data={data} />
       <FlexibleBenefitsSection data={data} />
       <RequirementsSection data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection/>
     </div>
   );
 }

@@ -34,7 +34,7 @@ const CustomNextArrow = ({ onClick }) => (
   </div>
 );
 
-export default function SolutionsPage() {
+export default function SolutionsPage({data}) {
   const [isHovered, setIsHovered] = useState(false);
 
   const stats = [
@@ -181,28 +181,19 @@ export default function SolutionsPage() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-10">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
-              UNSERE PROJEKTE
+              {data.first_card_title}
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
             <h2 className="text-3xl font-semibold text-gray-900 mt-10">
-              Unsere Referenzkarte – Erfolgreiche Projekte auf einen Blick
+             {data.first_card_subtitle}
             </h2>
           </div>
           <div className="text-gray-700 space-y-4 text-center text-[17px] max-w-4xl mx-auto">
-            <p>
-              Nachhaltige Energielösungen sind der Schlüssel zu einer umweltfreundlichen Zukunft. Mit der steigenden
-              Nachfrage nach Photovoltaikanlagen für Industrie, Gewerbe und Privathaushalte haben wir zahlreiche
-              Projekte erfolgreich realisiert.
-            </p>
-            <p>
-              Unsere Photovoltaik-Referenzkarte bietet Ihnen eine übersichtliche Darstellung unserer bisherigen Einsätze
-              – eine Solaranlagen Karte, die zeigt, wo unsere Systeme zur Energiewende beitragen.
-            </p>
-            <p>
-              Jedes Projekt ist individuell geplant und auf die spezifischen Anforderungen unserer Kunden abgestimmt.
-              Von kleinen privaten Anlagen bis zu großflächigen Solarparks – unsere PV-Installationen in Deutschland
-              stehen für Effizienz, Qualität und Nachhaltigkeit.
-            </p>
+           {data.first_card_table?.map((item, key) => (
+  <p key={key}>{item.option}</p>
+))}
+
+           
           </div>
         </div>
       </section>

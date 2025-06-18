@@ -29,8 +29,8 @@ const WallboxFeatures2 = ({ data }) => {
   const features = data.wallbox_first_card_options || [];
 
   return (
-    <section className="py-14 md:py-20 bg-gray-100">
-      <div className="container mx-auto px-4  max-w-7xl">
+    <section className="py-10 md:py-16 bg-gray-100">
+      <div className="container mx-auto px-6 md:px-12  max-w-7xl">
         <h2 className="text-4xl text-center mb-14 text-gray-800">
           Deine Vorteile mit <span className="text-[#669933]">Oekovolt</span>
         </h2>

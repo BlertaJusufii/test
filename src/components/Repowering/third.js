@@ -8,8 +8,8 @@ const icons = [BarChart3, MonitorSmartphone, CheckCircle2];
 
 const PhotovoltaikOptimization = ({ data }) => {
   return (
-    <section className="py-10 md:py-16 px-6 md:px-12 lg:px-24 bg-white">
-        <div className='max-w-7xl mx-auto'>
+    <section className="py-10 md:py-16 px-6 md:px-12  bg-white">
+        <div className="max-w-7xl mx-auto">
 
                   <motion.h2
             initial={{ opacity: 0, y: 20 }}

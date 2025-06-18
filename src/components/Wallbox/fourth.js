@@ -6,9 +6,9 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 const WallboxThirdCard = ({ data }) => {
   return (
-    <section className="py-16 bg-white overflow-hidden relative">
-      <div className="container mx-auto px-6 lg:px-20">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
+    <section className="py-10 md:py-16 bg-white overflow-hidden relative max-w-7xl mx-auto ">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-15 items-center mb-[-25]">
           
           {/* Image Section */}
           <motion.div

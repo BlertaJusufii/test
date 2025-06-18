@@ -8,11 +8,11 @@ const iconMap = [FaClock, FaEuroSign, FaCheckCircle, FaRocket];
 
 export default function WarmepumpeFinancingSection({ data }) {
   return (
-    <section className="bg-white py-10 md:py-16 px-4">
+    <section className="bg-white py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
            {/* Right side - Image + Text */}
         <motion.div
-          className="relative w-full h-fit"
+          className="relative w-full "
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
@@ -31,7 +31,7 @@ export default function WarmepumpeFinancingSection({ data }) {
             {data.warmepumpe_fourth_card_title}
           </h3>
 
-          <p className="text-gray-700 whitespace-pre-line">
+          <p className="text-gray-700">
             {data.warmepumpe_fourth_card_first_description}
           </p>
         </motion.div>

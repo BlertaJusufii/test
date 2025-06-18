@@ -7,7 +7,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 export default function RepoweringSection({ data }) {
   return (
-    <section className="w-full px-6 py-10 md:py-16 bg-gray-100 relative overflow-hidden">
+    <section className="w-full px-6 md:px-12 py-10 md:py-16 bg-gray-100 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#f0f7e6] rounded-full blur-3xl opacity-40 -mr-32 -mt-32"></div>
       

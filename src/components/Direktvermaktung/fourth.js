@@ -11,7 +11,7 @@ const ThirdCardSection = ({ data }) => {
       {/* <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#66993310] to-transparent"></div> */}
       {/* <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-[#f0f7e6] blur-3xl opacity-40 -mr-32 -mb-32"></div> */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Main Content */}
         <div className="flex flex-col gap-16">
 

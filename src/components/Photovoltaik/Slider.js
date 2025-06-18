@@ -5,30 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-export default function KomponentenSlider() {
-  const komponenten = [
-    {
-      name: "Montagegestell",
-      image: "/Images/Dienstleistungen/Photovoltaik/montage.png",
-    },
-    {
-      name: "Photovoltaikmodule",
-      image: "/Images/Dienstleistungen/Photovoltaik/photovoltaikmodule.png",
-    },
-    {
-      name: "BYD",
-      image: "/Images/Dienstleistungen/Photovoltaik/BYD.png",
-    },
-    {
-      name: "HUAWEI LUNA",
-      image: "/Images/Dienstleistungen/Photovoltaik/HUAWEI-LUNA.jpg",
-    },
-    {
-      name: "Welschelrichter",
-      image: "/Images/Dienstleistungen/Photovoltaik/welschelrichter.webp",
-    },
-  ];
+export default function KomponentenSlider({data}) {
 
   const sliderSettings = {
     dots: false,
@@ -55,7 +34,7 @@ export default function KomponentenSlider() {
     <div className="max-w-7xl mx-auto px-4 py-10 md:py-16">
       
       <div className="flex justify-center items-center flex-col">
-            <h2 className="text-[#669933] text-lg font-semibold uppercase">KOMPONENTEN</h2>
+            <h2 className="text-[#669933] text-lg font-semibold uppercase">{data.third_card_title}</h2>
             <div className="h-0.5 w-25 bg-[#669933] mt-1"></div>
           </div>
       <div
@@ -65,11 +44,11 @@ export default function KomponentenSlider() {
       >
 
         <p className="text-center text-black-600 mx-auto mt-6 mb-10 font-bold text-2xl md:text-3xl lg:text-3xl">
-          Eine hochwertige Photovoltaikanlage besteht aus mehreren Schlüsselfaktoren
+          {data.third_card_subtitle}
         </p>
 
         <Slider {...sliderSettings} className="">
-          {komponenten.map((komponent, index) => (
+          {data.third_card_component_table.map((komponent, index) => (
             <div key={index} className="px-4">
               <div className="pt-6 pr-6 pl-6 lg:h-80 md:h-50 flex flex-col items-center justify-end text-center">
                 <div className="flex items-center justify-center mb-4">
@@ -77,12 +56,12 @@ export default function KomponentenSlider() {
                     width={300}
                     height={300}
                     quality={100}
-                    src={komponent.image}
-                    alt={komponent.name}
+                     src={`${API_IMG_URL}${komponent.image}`}
+                    alt={komponent.alt_text}
                     className="h-auto object-contain"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">{komponent.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-800">{komponent.title}</h3>
               </div>
             </div>
           ))}

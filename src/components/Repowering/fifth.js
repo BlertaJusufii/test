@@ -6,7 +6,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 export default function SystemExpansionSection({ data }) {
   return (
-    <section className="bg-gray-100 py-10 md:py-16 px-6">
+    <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Title with decorative elements */}
         <motion.div
@@ -32,7 +32,7 @@ export default function SystemExpansionSection({ data }) {
             className="space-y-8"
           >
             <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-xl group">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#669933]/10 to-transparent z-10"></div>
+              <div className=" absolute inset-0 bg-gradient-to-br from-[#669933]/10 to-transparent z-10"></div>
               <Image
                 src={`${API_IMG_URL}${data.second_sec_1st_card_image}`}
                 alt={data.second_sec_1st_card_alt_image}

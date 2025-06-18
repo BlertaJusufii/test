@@ -7,7 +7,7 @@ const icons = [<FaPlug />, <FaWifi />];
 
 const RequirementsSection = ({ data }) => {
   return (
-    <section className="bg-gray-100 py-10  md:py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-gray-100 py-10  md:py-16 px-6 md:px-12 ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         {/* LEFT SIDE: Title, Description, Image */}
         <div>

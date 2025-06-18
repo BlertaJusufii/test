@@ -11,7 +11,7 @@ export default function DynamicSteps({ data }) {
 
   return (
     <section className="w-full bg-gray-100 py-10 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2  gap-10 lg:gap-15 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2  gap-10 lg:gap-15 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}

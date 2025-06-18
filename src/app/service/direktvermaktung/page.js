@@ -9,6 +9,7 @@ import FifthCardSection from '@/components/Direktvermaktung/six';
 import SixthCardSection from '@/components/Direktvermaktung/seven';
 import DirektvermaktungFAQ from '@/components/Direktvermaktung/eight';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
+import EndSection from '@/components/Reusable/end';
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.direktvermarktung_service_page.api.get_photovoltaik_repowering_page_with_keywords`;
 
@@ -44,7 +45,7 @@ export default async function DirektvermaktungPage(){
       <FifthCardSection data={data} />
       <SixthCardSection data={data} />
       <DirektvermaktungFAQ data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection/>
     </div>
   )
 }

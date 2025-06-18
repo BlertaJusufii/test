@@ -21,7 +21,7 @@ const SecondCardSection = ({ data }) => {
 
   return (
     <section className="relative py-10 md:py-16 bg-gray-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col gap-20">
           {/* Top Section with Slider */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -44,7 +44,7 @@ const SecondCardSection = ({ data }) => {
               </h2>
 
               {/* Slider Container */}
-              <div className="relative h-64 w-full overflow-hidden rounded-xl bg-white">
+              <div className="relative h-120 md:h-64 w-full overflow-hidden rounded-xl bg-white">
                 {/* Logo at top-right */}
                 <div className="absolute top-5 right-5 z-20">
                   <Image

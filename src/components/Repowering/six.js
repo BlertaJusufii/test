@@ -6,7 +6,7 @@ import { API_IMG_URL } from '@/lib/apiImgUrl';
 
 const SixSection = ({ data }) => {
   return (
-    <section className="relative bg-white py-10 md:py-16 px-6 overflow-hidden">
+    <section className="relative bg-white py-10 md:py-16 px-6 md:px-12 overflow-hidden">
       {/* Decorative elements */}
       {/* <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#669933] to-transparent opacity-10"></div> */}
       <div className="absolute bottom-20 right-0 w-64 h-64 rounded-full bg-[#f0f7e6] blur-3xl opacity-60 -mr-32"></div>
@@ -36,7 +36,7 @@ const SixSection = ({ data }) => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-lg w-3/4 border-l-4 border-[#669933]"
+              className="hidden md:block absolute -bottom-8 -left-8 md:-left-2 bg-white p-6 rounded-xl shadow-lg w-3/4 border-l-4 border-[#669933]"
             >
               <h3 className="text-xl text-gray-900 mb-2">{data.third_sec_1st_card_first_title}</h3>
               <p className="text-gray-600">{data.third_sec_1st_card_first_description}</p>

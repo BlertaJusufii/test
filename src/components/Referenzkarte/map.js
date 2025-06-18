@@ -36,7 +36,7 @@ const points = [
   { lat: 47.10218295, lng: 9.486962484194526, label: "Innsbruck" },
 ];
 
-const Map = () => {
+const Map = ({data}) => {
   const [cookieAccepted, setCookieAccepted] = useState(false);
   const [customIcon, setCustomIcon] = useState(null);
 
@@ -124,11 +124,11 @@ const Map = () => {
         
 
       <h2 className="text-[#669933] uppercase text-center font-semibold tracking-wide inline-block relative text-[18px]">
-              UNSERE standorte
+             {data.maps_card_title}
               <span className="absolute mx-auto w-50 left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 text-center">
-            Regional präsent, überregional aktiv – Finden Sie uns in Ihrer Nähe.
+            {data.maps_card_subtitle}
           </h3>
         </div>
 

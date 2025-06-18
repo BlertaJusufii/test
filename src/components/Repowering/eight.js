@@ -8,10 +8,10 @@ import { API_IMG_URL } from '@/lib/apiImgUrl'
 
 export default function ThirdCardSection({ data }) {
   return (
-    <section className="relative overflow-hidden">
+    <section className="">
       {/* White Section with Header + First Feature Row */}
       <div className="py-10 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
           {/* Header section */}
           <motion.div 
@@ -76,7 +76,7 @@ export default function ThirdCardSection({ data }) {
 
       {/* Full-width gray background reversed section */}
       <div className="w-full bg-gray-100 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div 
             className="flex flex-col lg:flex-row-reverse items-center gap-12"
             initial={{ opacity: 0, y: 40 }}
@@ -104,7 +104,7 @@ export default function ThirdCardSection({ data }) {
                 </h3>
               </div>
               
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4">
                 {data.third_sec_3rd_card_second_options_table.map((item, index) => (
                   <motion.li 
                     key={index} 

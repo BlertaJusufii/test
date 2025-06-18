@@ -47,7 +47,7 @@ const StromSecondCardSection = () => {
   if (!items.length) return null;
 
   return (
-    <section className="w-full bg-white py-16 px-4">
+    <section className="w-full bg-white py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {items.map((item, index) => {
           const slug = createSlug(item.title);

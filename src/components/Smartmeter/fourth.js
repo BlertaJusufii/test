@@ -2,14 +2,13 @@ import Image from "next/image";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 import { FaSolarPanel } from 'react-icons/fa';
 
-
 const HeroEnergy = ({data}) => {
  
   if (!data) return null;
 
   return (
     <section className="relative">
-       <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 py-10 md:py-16 bg-white">
+       <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 md:px-12 py-10 md:py-16 bg-white">
       
       {/* Text section */}
       <div className="w-full lg:w-1/2 text-gray-800 space-y-6 px-6">

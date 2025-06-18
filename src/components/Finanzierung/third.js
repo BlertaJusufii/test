@@ -13,7 +13,7 @@ const FinancingBenefitsSection = ({ data }) => {
           key={index}
           className={`w-full ${
             index % 2 === 1 ? "bg-white" : "bg-gray-100"
-          } py-10 md:py-16 px-4`}
+          } py-10 md:py-16 px-6 md:px-12`}
         >
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
             {/* Alternate layout direction */}

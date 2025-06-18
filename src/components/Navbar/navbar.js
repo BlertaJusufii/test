@@ -63,7 +63,6 @@ const Navbar = () => {
           slug: "smarthome",
           link: "/dienstleistungen/smarthome",
         },
-        { name: "Service", slug: "service", link: "/dienstleistungen/service" },
       ],
     },
     {
@@ -112,7 +111,7 @@ const Navbar = () => {
         },
       ],
     },
-      {
+    {
       title: "Service",
       slug: "service",
       items: [
@@ -121,27 +120,22 @@ const Navbar = () => {
           slug: "vorteilswelt",
           link: "/service/vorteilswelt",
         },
-           {
+        {
           name: "Finanzierung",
           slug: "finanzierung",
           link: "/service/finanzierung",
         },
-           {
+        {
           name: "Dynamischer Stromtarif",
           slug: "stromtarif",
           link: "/service/stromtarif",
         },
-          {
+        {
           name: "Photovoltaik Repowering",
           slug: "repowering",
           link: "/service/repowering",
         },
-           {
-          name: "Solar-Versicherung",
-          slug: "versicherung",
-          link: "/service/versicherung",
-        },
-         {
+        {
           name: "Direktvermaktung",
           slug: "direktvermaktung",
           link: "/service/direktvermaktung",
@@ -157,6 +151,32 @@ const Navbar = () => {
           name: "Referenzkarte",
           slug: "referenzkarte",
           link: "/referenzen/referenzkarte",
+        },
+      ],
+    },
+    {
+      title: "Förderungen",
+      slug: "forderungen",
+      items: [
+        {
+          name: "Landesförderungen",
+          slug: "landes",
+          link: "/forderungen/landesforderungen",
+        },
+        {
+          name: "Steuerlich",
+          slug: "steuerlich",
+          link: "/forderungen/steuerlich",
+        },
+        {
+          name: "Baurecht",
+          slug: "baurecht",
+          link: "/forderungen/baurecht",
+        },
+        {
+          name: "Richtlinen",
+          slug: "richtlinen",
+          link: "/forderungen/richtlinen",
         },
       ],
     },
@@ -178,7 +198,7 @@ const Navbar = () => {
         <div className="px-4 flex justify-between items-center">
           <Link
             href="/"
-            className="flex items-center h-16 w-40 lg:w-80 relative"
+            className="flex items-center h-16 w-40 lg:w-50 relative"
             onClick={closeMobileMenu}
           >
             <Image
@@ -192,7 +212,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-8 cursor-pointer">
+          <div className="hidden xl:flex items-center space-x-5 cursor-pointer">
             {navItems.map((item) => (
               <div
                 key={item.title}
@@ -204,7 +224,7 @@ const Navbar = () => {
                   <>
                     <button
                       type="button"
-                      className="flex items-center hover:text-[#669933] transition uppercase text-[16px]"
+                      className="flex items-center hover:text-[#669933] transition uppercase text-[15px]"
                       onClick={(e) => e.preventDefault()} // prevent toggling on click in desktop
                     >
                       {item.title}
@@ -234,7 +254,7 @@ const Navbar = () => {
                 ) : (
                   <Link
                     href={item.link}
-                    className="hover:text-[#669933] transition uppercase text-[16px]"
+                    className="hover:text-[#669933] transition uppercase text-[15px]"
                     onClick={() => setHoverDropdown(null)}
                   >
                     {item.title}

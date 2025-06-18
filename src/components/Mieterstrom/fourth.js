@@ -18,9 +18,9 @@ const MieterstromThirdSection = ({ data }) => {
         return (
           <div
             key={index}
-            className={`w-full py-16 ${isEven ? "bg-white" : "bg-gray-100"}`}
+            className={`w-full py-10 md:py-16 ${isEven ? "bg-white" : "bg-gray-100"}`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Text */}
               <motion.div
                 initial={{ opacity: 0, x: isEven ? 30 : -30 }}

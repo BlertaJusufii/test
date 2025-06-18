@@ -1,7 +1,13 @@
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 import TeamBanner from "@/components/Reusable/teamBanner";
+import SmarthomeBannerSection from "@/components/Smarthome/banner";
 import VorteileSection from "@/components/Smarthome/Smarthomeloesung";
 import Tabs from "@/components/Smarthome/Tabs";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.smarthome_page.api.get_smarthome_page`;
+
 
 export const metadata = {
   title: "Smarthome",
@@ -16,25 +22,27 @@ export const metadata = {
   ],
 };
 
-export default function Home() {
-  const data = {
-    title: "Smarthome",
-    img: "/Images/Dienstleistungen/Smartphone/smart-home-3920905_1280.jpg",
-    description: "Mit einer Kombination mit unseren Smarthome-Lösungen können Sie Ihren Eigenverbrauch erhöhen.",
-  };
+export default async function Home() {
 
-  const end={
-    greentitle:"Smarthome-Lösung",
-    title:"Ihre individuelle Smarthome-Lösung – Jetzt Kontakt aufnehmen!",
-    description:"Möchten Sie Ihre Photovoltaikanlage mit Smarthome-Technologien kombinieren? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Team berät Sie individuell & professionell. Jetzt unverbindlich beraten lassen!"
-  }
+  
+   let data = null;
 
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const json = await res.json();
+    data = json.message;
+  } catch (error) {
+    console.error("Failed to fetch smart energy data", error);
+  } 
+
+
+ 
   return (
     <div>
-      <TeamBanner data={data} />
-      <Tabs />
-      <VorteileSection />
-      <GreenFeatureSection data={end}/>
+      <SmarthomeBannerSection data={data} />
+      <Tabs data={data}/>
+      <VorteileSection data={data}/>
+      <EndSection/>
     </div>
   );
 }

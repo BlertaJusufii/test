@@ -6,6 +6,7 @@ import FinancingBenefitsSection from "@/components/Finanzierung/third";
 import FinanzierungPartnerSection from "@/components/Finanzierung/fourth";
 import FinanzierungFAQ from "@/components/Finanzierung/fifth";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.finanzierung_service_page.api.get_finanzierung_page_with_keywords`;
 
 export default async function FinanzierungPage() {
@@ -32,7 +33,7 @@ export default async function FinanzierungPage() {
       <FinancingBenefitsSection data={data} />
       <FinanzierungPartnerSection data={data} />
       <FinanzierungFAQ data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection/>
     </div>
   );
 }

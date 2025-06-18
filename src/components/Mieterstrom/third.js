@@ -15,9 +15,7 @@ const MieterstromBenefits = ({ data }) => {
 
   return (
     <section className="py-10 md:py-16 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-        
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Text & Features */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}

@@ -19,7 +19,7 @@ export default function FaqSection({ data }) {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 md:px-12 mb-9 md:mb-17">
+    <section className="max-w-7xl mx-auto px-6 md:px-12 mb-9 ">
       {/* Centered Title & Subtitle */}
       <div className="text-center max-w-2xl mx-auto mb-12">
 

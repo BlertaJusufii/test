@@ -34,7 +34,7 @@ const StromspeicherBanner = ({ data }) => {
           <span className="uppercase text-sm tracking-widest text-[#669933] block mb-2">
             {data.strom_title}
           </span>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3">
+          <h1 className="text-xl sm:text-2xl md:text-3xl  mb-3">
             {data.strom_subtitle}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">

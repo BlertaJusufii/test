@@ -10,7 +10,7 @@ const EnergyOfferSection = ({data}) => {
   if (!data) return null;
 
   return (
-    <section className="py-10 md:py-16 px-6 bg-white">
+    <section className="py-10 md:py-16 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10  md:gap-12">
 
          {/* Image with green background layer */}

@@ -16,7 +16,7 @@ const PhotovoltaikBanner = ({ data }) => {
             Photovoltaik Lösung
           </p>
 
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
+          <h1 className="text-4xl md:text-5xl leading-tight text-gray-900">
             {data.photovoltaik_title}
           </h1>
 

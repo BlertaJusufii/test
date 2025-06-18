@@ -5,7 +5,7 @@ import { FaCheckCircle } from 'react-icons/fa'; // Example icon
 
 const FlexibleBenefitsSection = ({ data }) => {
   return (
-    <section className="bg-white py-14 px-6 md:px-12 lg:px-24">
+    <section className="bg-white py-10 md:py-16 px-6 md:px-12 ">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <motion.h2

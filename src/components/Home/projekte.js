@@ -43,7 +43,7 @@ const CustomNextArrow = ({ onClick }) => (
   </div>
 );
 
-export default function ProjectsSection() {
+export default function ProjectsSection({data}) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -89,8 +89,7 @@ export default function ProjectsSection() {
           <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
         </h2>
         <p className="text-center text-black-500 mx-auto mb-6 md:mb-12 lg:text-[30px] text-2xl md:text-3xl font-bold mt-6">
-          Entdecken Sie unsere neuesten Photovoltaik Projekte – echte
-          Referenzen aus ganz Deutschland.
+          {data.projekte_title}
         </p>
       </div>
 

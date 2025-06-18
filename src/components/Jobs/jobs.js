@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const JobsInfo = ({ data }) => {
   return (
@@ -11,11 +12,11 @@ const JobsInfo = ({ data }) => {
           {/* Left Column - Image */}
 
           <div className="lg:w-1/2">
-            <h2 className="text-[28px] md:text-[35px] font-bold text-[#669933] mb-8">{data.title}</h2>
+            <h2 className="text-[28px] md:text-[35px] font-bold text-[#669933] mb-8">{data.fourth_card_title}</h2>
 
-            {data.description.map((desc, index) => (
+            {data.fourth_card_description.map((desc, index) => (
               <p key={index} className="text-gray-700 mb-8  max-w-4xl mx-auto text-[16px]">
-                {desc}
+                {desc.option}
               </p>
             ))}
           </div>
@@ -23,8 +24,9 @@ const JobsInfo = ({ data }) => {
           <div className="lg:w-1/2">
             <div className="relative h-full w-full rounded-lg overflow-hidden shadow-lg min-h-[400px] ">
               <Image
-                src="/Images/Jobs/renewable-energy-eco-technology-electric-power-fl-2025-02-11-14-15-57-utc.jpg"
-                alt="Renewable energy technology installation"
+                          src={`${API_IMG_URL}${data.fourth_card_image}`} // Replace with your image path
+              
+                alt={data.fourth_card_alt_text}
                 fill
                 priority
                 className="object-cover rounded-lg"

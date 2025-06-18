@@ -9,12 +9,12 @@ const Smartmeter = ({data}) => {
   if (!data) return null;
 
   return (
-    <section className="py-10 md:py-16 px-6 bg-gray-100">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10  md:gap-12">
+    <section className="py-10 md:py-16 px-6 md:px-12 bg-gray-100">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10  md:gap-12">
 
          {/* Image with green background layer */}
         <motion.div
-          className="w-full md:w-1/2 relative flex justify-center h-[450px]"
+          className="w-full lg:w-1/2 relative flex justify-center h-[450px]"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -35,7 +35,7 @@ const Smartmeter = ({data}) => {
 
         {/* Text */}
         <motion.div
-          className="w-full md:w-1/2 space-y-6"
+          className="w-full lg:w-1/2 space-y-6"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}

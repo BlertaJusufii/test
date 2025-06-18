@@ -30,8 +30,8 @@ export default function WarmepumpeHerstellerList({ data }) {
 
   return (
     <section className="py-10 md:py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl text-center mb-14">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <h2 className="text-3xl text-center mb-9 md:mb-14">
           {data.warmepumpe_third_card_title || "Wärmepumpen Hersteller"}
         </h2>
 

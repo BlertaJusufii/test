@@ -51,7 +51,7 @@ const NextArrow = ({ onClick }) => (
 
   return (
     <section className="py-10 md:py-16 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial="hidden"
           whileInView="visible"

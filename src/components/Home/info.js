@@ -15,7 +15,7 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 
-export default function SolutionsPage() {
+export default function SolutionsPage({data}) {
   const stats = [
     {
       icon: <FaSolarPanel className="text-[35px] text-[#669933]/90" />,
@@ -142,7 +142,7 @@ export default function SolutionsPage() {
         className="text-center mb-16"
       >
         <h2 className="text-2xl md:text-2xl lg:text-2xl font-[500] text-gray-900 mb-6">
-          Photovoltaiklösungen für Industrie, Gewerbe und Privatkunden
+          {data.photovoltaiklösungen_title}
         </h2>
       </motion.div>
 

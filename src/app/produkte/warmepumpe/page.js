@@ -8,6 +8,8 @@ import KontaktFormular from '@/components/Warmepumpe/fifth';
 import WarmepumpeFinancingSection from '@/components/Warmepumpe/six';
 import WaermepumpePartnerSection from '@/components/Warmepumpe/seven';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
+import WarmeBanner from '@/components/Warmepumpe/bannertwo';
+import EndSection from '@/components/Reusable/end';
 
 
 const DATA_URL =
@@ -33,15 +35,14 @@ export default async function WarmepumpePage (){
   
   return (
     <div>
-      <WarmepumpeBanner data={data} /> 
+      <WarmeBanner data={data} />
        <WarmepumpeSecondCardSection data={data} />
       <WarmepumpeVorteileSection data={data} />
-    
       <WarmepumpeManufacturerSection data={data} />
       <KontaktFormular />
       <WarmepumpeFinancingSection data={data} />
       <WaermepumpePartnerSection data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection/>
       
     </div>
   )

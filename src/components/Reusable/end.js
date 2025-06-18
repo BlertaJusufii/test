@@ -41,7 +41,7 @@ export default function EndSection() {
 
   return (
     <motion.div
-      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 max-w-7xl mx-auto rounded-2xl md:mt-12 lg:pt-12 lg:mt-12 md:mb-10"
+      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 md:px-12 max-w-7xl mx-auto rounded-2xl md:mt-12 lg:pt-12 lg:mt-12 md:mb-10"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -52,7 +52,7 @@ export default function EndSection() {
         <p className="uppercase text-sm tracking-wide text-[#669933] font-semibold mb-3 mt-3">
           {info?.title}
         </p>
-        <h2 className="text-2xl lg:text-3xl md:text-3xl font-bold text-gray-900 mb-5 leading-tight">
+        <h2 className="text-2xl lg:text-3xl md:text-3xl  text-gray-900 mb-5 leading-tight">
           {info?.subtitle || "Dein Solarstrom. Dein Gewinn."}
         </h2>
         <p className="text-gray-700 mb-6">

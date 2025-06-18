@@ -62,7 +62,7 @@ const ProjectCard = ({ project }) => {
   );
 };
 
-const ProjectsSection = () => {
+const ProjectsSection = ({data}) => {
   const [marken, setMarken] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 9;
@@ -108,26 +108,18 @@ const ProjectsSection = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-6">
             <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-[18px]">
-              PROJEKTE
+              {data.first_card_title}
               <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#669933] mt-1"></span>
             </h2>
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mt-6">
-              Nachhaltige Energielösungen für eine grüne Zukunft
+              {data.first_card_subtitle}
             </h2>
           </div>
           <div className="prose prose-lg text-gray-600 space-y-4 text-center text-[18px]">
-            <p>
-              In einer Zeit, in der nachhaltige Energiequellen immer wichtiger werden, ist es essenziell, innovative
-              Photovoltaik Projekte zu entwickeln, die wirtschaftlich und umweltfreundlich zugleich sind.
-            </p>
-            <p>
-              Die Nutzung von Solarenergie trägt nicht nur zur Reduzierung von CO<sub>2</sub>-Emissionen bei, sondern
-              ermöglicht langfristige Einsparungen und größere Unabhängigkeit von steigenden Energiepreisen.
-            </p>
-            <p>
-              Eine Kombination aus hochwertiger Planung, professioneller Umsetzung und fortlaufender Optimierung sorgt
-              dafür, dass Solarenergie effizient und nachhaltig genutzt wird.
-            </p>
+           {data.first_card_table?.map((item, key) => (
+  <p key={key}>{item.option}</p>
+))}
+
           </div>
         </div>
       </section>

@@ -8,7 +8,7 @@ export default function FourthCardSection({ data }) {
 
   return (
     <section className="max-w-7xl mx-auto py-10 md:py-16 bg-white">
-      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-stretch gap-10 lg:gap-15">
+      <div className="container mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-stretch gap-10 lg:gap-15">
         {/* Left: Image and Text */}
         <motion.div
           className="lg:w-1/2"

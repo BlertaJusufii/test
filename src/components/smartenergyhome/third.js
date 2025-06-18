@@ -12,7 +12,7 @@ const SmartEnergyFourthSection = ({data}) => {
 
   return (
     <>
-        <section className="relative bg-gradient-to-r from-gray-100 to-[#f8fafc] py-10 md:py-16 px-6 overflow-hidden">
+        <section className="relative bg-gradient-to-r from-gray-100 to-[#f8fafc] py-10 md:py-16 px-6  md:px-12 overflow-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
             {/* Left data */}
             <motion.div

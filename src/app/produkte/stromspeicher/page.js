@@ -7,6 +7,7 @@ import FeaturedLogos from '@/components/photovoltaikanlage/partners';
 import StromSecondCardSection from '@/components/stromspeicher/second';
 import StromThirdCardSection from '@/components/stromspeicher/third';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
+import EndSection from '@/components/Reusable/end';
 
 const DATA_URL =
   `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_strom_page_with_keywords`;
@@ -37,7 +38,7 @@ export default async function StromspeicherPage (){
       <FeaturedLogos data={data}/>
       <StromSecondCardSection  />
       <StromThirdCardSection data={data}/>
-      <GreenFeatureSection data={endd}/>
+      <EndSection/>
       
 
     </div>

@@ -7,7 +7,7 @@ import { CheckCircle, BatteryCharging, Settings, Home, Plus } from 'lucide-react
 
 const EnhancedCardsSection = ({ data }) => {
   return (
-    <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

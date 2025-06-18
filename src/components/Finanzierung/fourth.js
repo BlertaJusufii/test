@@ -9,8 +9,8 @@ const FinanzierungPartnerSection = ({ data }) => {
 
   return (
     <section className="w-full bg-white py-10 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 {/* Right Side: Content */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}

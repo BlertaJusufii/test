@@ -1,15 +1,14 @@
-"use client"
-import Image from 'next/image';
-import { API_IMG_URL } from '@/lib/apiImgUrl';
-import { motion } from 'framer-motion';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-
+"use client";
+import Image from "next/image";
+import { API_IMG_URL } from "@/lib/apiImgUrl";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 // Custom Arrow Components to Handle Props
-  const PrevArrow = ({ onClick }) => (
+const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
     className="cursor-pointer absolute z-10 left-[-20px] top-1/2 transform -translate-y-1/2 text-[#669933] bg-white rounded-full p-2 shadow hover:bg-[#669933] hover:text-white transition"
@@ -28,8 +27,6 @@ const NextArrow = ({ onClick }) => (
 );
 
 const SmartMeterCardSection = ({ data }) => {
- 
-
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -44,16 +41,16 @@ const SmartMeterCardSection = ({ data }) => {
   };
 
   return (
-    <section className="relative py-10 md:py-16 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-10 md:py-16  ">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className=" overflow-hidden flex flex-col lg:flex-row lg:gap-15"
         >
-     {/* Right Side - Content (Stretched) */}
-          <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between ">
+          {/* Right Side - Content (Stretched) */}
+          <div className="w-full lg:w-1/2 lg:p-8  flex flex-col justify-between ">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -82,7 +79,7 @@ const SmartMeterCardSection = ({ data }) => {
                 {data.smart_meter_first_card_table.map((item, index) => (
                   <div key={index} className="">
                     <motion.div
-                      className="flex items-start space-x-4 p-4 bg-gray-100 rounded-lg"
+                      className="flex items-start space-x-4 p-4 bg-gray-100 rounded-lg mb-9 md:mb-12"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
@@ -91,24 +88,20 @@ const SmartMeterCardSection = ({ data }) => {
                         <h4 className="text-lg font-medium text-gray-900 mb-3">
                           {item.primary_paragraph}
                         </h4>
-                        <p className="mt-1 text-gray-600">
-                          {item.description}
-                        </p>
+                        <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </motion.div>
                   </div>
                 ))}
               </Slider>
             </motion.div>
-
-        
           </div>
 
           {/* Left Side - Image (Stretched) */}
           <div className="w-full lg:w-1/2 relative h-64 sm:h-80 lg:h-[600px]">
             <Image
               src={`${API_IMG_URL}${data.smart_meter_first_card_image}`}
-              alt={data.smart_meter_first_card_alt_image || 'Smart Meter'}
+              alt={data.smart_meter_first_card_alt_image || "Smart Meter"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
@@ -122,13 +115,10 @@ const SmartMeterCardSection = ({ data }) => {
               transition={{ delay: 0.3, duration: 0.5 }}
             />
           </div>
-
-     
         </motion.div>
       </div>
 
-                <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" />
-
+      <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" />
     </section>
   );
 };

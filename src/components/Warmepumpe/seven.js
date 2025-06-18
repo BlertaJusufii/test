@@ -56,7 +56,7 @@ export default function WaermepumpePartnerSection({ data }) {
   };
 
   return (
-    <section className="bg-gray-100 py-10 md:py-16 px-4 md:px-10 lg:px-24">
+    <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12 ">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl  text-center text-gray-800 mb-12">
           {title}

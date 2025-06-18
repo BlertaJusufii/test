@@ -5,7 +5,7 @@ import Image from "next/image";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-export default function PVInquiryForm() {
+export default function PVInquiryForm({ data }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     roofType: "",
@@ -29,7 +29,6 @@ export default function PVInquiryForm() {
     setHasMounted(true);
   }, []);
 
-
   const handleSubmit = async () => {
     if (!validateFields()) return;
 
@@ -37,7 +36,8 @@ export default function PVInquiryForm() {
     try {
       const payload = {
         welche_dachform_hat_dein_haus: formData.roofType,
-        bist_du_eigentümer_der_immobilie: formData.isOwner === "yes" ? "Eigentümer" : "Nicht Eigentümer",
+        bist_du_eigentümer_der_immobilie:
+          formData.isOwner === "yes" ? "Eigentümer" : "Nicht Eigentümer",
         wieviel_stromverbrauch_hast_du_im_jahr: `Jährlicher Stromverbrauch: ${formData.powerConsumption} kWh`,
         nachname: formData.lastName,
         vorname: formData.firstName,
@@ -93,22 +93,22 @@ export default function PVInquiryForm() {
     }
   };
 
-
-
-
-
-
   const validateFields = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\+?[0-9\s\-]{7,20}$/;
 
-    if (!formData.firstName.trim()) newErrors.firstName = "Vorname ist erforderlich";
-    if (!emailRegex.test(formData.email)) newErrors.email = "Ungültige E-Mail-Adresse";
-    if (!formData.zipCode.trim()) newErrors.zipCode = "Postleitzahl ist erforderlich";
+    if (!formData.firstName.trim())
+      newErrors.firstName = "Vorname ist erforderlich";
+    if (!emailRegex.test(formData.email))
+      newErrors.email = "Ungültige E-Mail-Adresse";
+    if (!formData.zipCode.trim())
+      newErrors.zipCode = "Postleitzahl ist erforderlich";
     if (!formData.city.trim()) newErrors.city = "Ort ist erforderlich";
-    if (!phoneRegex.test(formData.phone)) newErrors.phone = "Ungültige Telefonnummer";
-    if (!formData.acceptTerms) newErrors.acceptTerms = "Sie müssen die Bedingungen akzeptieren";
+    if (!phoneRegex.test(formData.phone))
+      newErrors.phone = "Ungültige Telefonnummer";
+    if (!formData.acceptTerms)
+      newErrors.acceptTerms = "Sie müssen die Bedingungen akzeptieren";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -132,39 +132,68 @@ export default function PVInquiryForm() {
 
   const roofTypes = [
     { id: "pultdach", label: "Pultdach", image: "/Images/Home/pultdach.png" },
-    { id: "flachdach", label: "Flachdach", image: "/Images/Home/flachdach.png" },
-    { id: "satteldach", label: "Satteldach", image: "/Images/Home/satteldach.png" },
+    {
+      id: "flachdach",
+      label: "Flachdach",
+      image: "/Images/Home/flachdach.png",
+    },
+    {
+      id: "satteldach",
+      label: "Satteldach",
+      image: "/Images/Home/satteldach.png",
+    },
     { id: "other", label: "Sonstiges", image: "/Images/Home/sonstiges.png" },
   ];
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white  animate-fadeInUp">
-    
-
-      <h2 className={`text-[25px] mb-6 text-[#669933] text-center transition-all duration-700 ${hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}>
+      <h2
+        className={`text-[25px] mb-6 text-[#669933] text-center transition-all duration-700 ${
+          hasMounted ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+        }`}
+      >
         Unverbindliche Anfrage Photovoltaik Anlage
       </h2>
 
       <div className="mb-6">
         <div className="flex mb-2">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className={`flex-1 h-2 mx-1 rounded-full ${i <= step ? "bg-[#669933]" : "bg-gray-200"}`} />
+            <div
+              key={i}
+              className={`flex-1 h-2 mx-1 rounded-full ${
+                i <= step ? "bg-[#669933]" : "bg-gray-200"
+              }`}
+            />
           ))}
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         {step === 1 && (
-          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }} key="step1">
-            <h2 className="text-[20px] lg:text-[24px] mb-4 text-center">Welche Dachform hat dein Haus?</h2>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+            key="step1"
+          >
+            <h2 className="text-[20px] lg:text-[24px] mb-4 text-center">
+              {data.first_step_title}
+            </h2>
             <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
-              Bitte wähle die Form des Daches auf welchem die Anlage installiert werden soll
+              {data.first_step_description}
             </p>
 
             <div className="lg:mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
               {roofTypes.map((type) => (
                 <div key={type.id} className="group">
-                  <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${formData.roofType === type.id ? "border-[#669933] bg-[#669933]/10" : "border-gray-200 hover:border-[#669933]/50"}`}>
+                  <label
+                    className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${
+                      formData.roofType === type.id
+                        ? "border-[#669933] bg-[#669933]/10"
+                        : "border-gray-200 hover:border-[#669933]/50"
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="roofType"
@@ -180,7 +209,9 @@ export default function PVInquiryForm() {
                       height={100}
                       className="mb-3 rounded-full object-cover"
                     />
-                    <span className="font-medium text-center">{type.label}</span>
+                    <span className="font-medium text-center">
+                      {type.label}
+                    </span>
                   </label>
                 </div>
               ))}
@@ -190,15 +221,32 @@ export default function PVInquiryForm() {
 
         {/* ...rest of the steps remain the same, you can repeat the structure of step 2–4 here */}
         {step === 2 && (
-          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.3 }} key="step2">
-            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">Bist du Eigentümer der Immobilie?</h2>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+            key="step2"
+          >
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">
+              {data.second_step_title}
+            </h2>
             <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
-              Bitte bestätige ob du der Eigentümer der Immobilie bist
+              {data.second_step_description}
             </p>
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {[{ id: "yes", label: "Ja", image: "/Images/Home/ja.png" }, { id: "no", label: "Nein", image: "/Images/Home/nein.png" }].map((option) => (
+              {[
+                { id: "yes", label: "Ja", image: "/Images/Home/ja.png" },
+                { id: "no", label: "Nein", image: "/Images/Home/nein.png" },
+              ].map((option) => (
                 <div key={option.id} className="group">
-                  <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${formData.isOwner === option.id ? "border-[#669933] bg-[#669933]/10" : "border-gray-200 hover:border-[#669933]/50"}`}>
+                  <label
+                    className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all h-full ${
+                      formData.isOwner === option.id
+                        ? "border-[#669933] bg-[#669933]/10"
+                        : "border-gray-200 hover:border-[#669933]/50"
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="isOwner"
@@ -214,7 +262,9 @@ export default function PVInquiryForm() {
                       height={100}
                       className="mb-3 rounded-full object-cover"
                     />
-                    <span className="font-medium text-center">{option.label}</span>
+                    <span className="font-medium text-center">
+                      {option.label}
+                    </span>
                   </label>
                 </div>
               ))}
@@ -230,9 +280,11 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step3"
           >
-            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">Wieviel Stromverbrauch hast du im Jahr?</h2>
+            <h2 className="text-[20px] lg:text-[24px] font-semibold mb-4 text-center">
+              {data.third_step_title}
+            </h2>
             <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
-              Benutze den Schieberegler um den ungefähren Jahresbedarf anzugeben
+              {data.third_step_description}
             </p>
 
             <div className="mb-8">
@@ -262,7 +314,7 @@ export default function PVInquiryForm() {
                 onClick={nextStep}
                 className="px-6 cursor-pointer py-2 bg-[#669933]/90 hover:bg-[#669933] text-white rounded-md text-[16px]"
               >
-                NÄCHSTE 
+                NÄCHSTE
               </button>
             </div>
           </motion.div>
@@ -276,14 +328,18 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             key="step4"
           >
-            <h2 className="text-[20px] lg:text-[24px] font-bold mb-2 text-center">Noch ein Schritt bis zu deinem Angebot</h2>
+            <h2 className="text-[20px] lg:text-[24px] font-bold mb-2 text-center">
+              {data.fourth_step_title}
+            </h2>
             <p className="text-gray-600 mb-6 text-[16px] lg:text-[20px] text-center">
-              Klasse, das Angebot ist in deiner Region verfügbar. Wir melden uns schnellstmöglich bei dir!
+              {data.fourth_step_description}
             </p>
 
             <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Vorname *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Vorname *
+                </label>
                 <input
                   type="text"
                   name="firstName"
@@ -291,11 +347,17 @@ export default function PVInquiryForm() {
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
-                {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.firstName}
+                  </p>
+                )}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Nachname</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nachname
+                </label>
                 <input
                   type="text"
                   name="lastName"
@@ -306,7 +368,9 @@ export default function PVInquiryForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email *
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -314,12 +378,16 @@ export default function PVInquiryForm() {
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Postleitzahl *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Postleitzahl *
+                  </label>
                   <input
                     type="text"
                     name="zipCode"
@@ -327,11 +395,17 @@ export default function PVInquiryForm() {
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-md"
                   />
-                  {errors.zipCode && <p className="text-red-500 text-sm mt-1">{errors.zipCode}</p>}
+                  {errors.zipCode && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.zipCode}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Ort *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Ort *
+                  </label>
                   <input
                     type="text"
                     name="city"
@@ -339,12 +413,16 @@ export default function PVInquiryForm() {
                     onChange={handleChange}
                     className="w-full p-3 border border-gray-300 rounded-md"
                   />
-                  {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+                  {errors.city && (
+                    <p className="text-red-500 text-sm mt-1">{errors.city}</p>
+                  )}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Telefonnummer *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Telefonnummer *
+                </label>
                 <input
                   type="tel"
                   name="phone"
@@ -352,21 +430,27 @@ export default function PVInquiryForm() {
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-md"
                 />
-                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
               </div>
 
               <label className="flex items-start mt-4 cursor-pointer text-sm text-gray-600">
-  <input
-    type="checkbox"
-    name="acceptTerms"
-    checked={formData.acceptTerms}
-    onChange={handleChange}
-    className="mr-2 mt-1"
-  />
-  Ich akzeptiere die Datenschutzbestimmungen und AGB
-</label>
+                <input
+                  type="checkbox"
+                  name="acceptTerms"
+                  checked={formData.acceptTerms}
+                  onChange={handleChange}
+                  className="mr-2 mt-1"
+                />
+                Ich akzeptiere die Datenschutzbestimmungen und AGB
+              </label>
 
-              {errors.acceptTerms && <p className="text-red-500 text-sm mt-1">{errors.acceptTerms}</p>}
+              {errors.acceptTerms && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.acceptTerms}
+                </p>
+              )}
             </div>
 
             <div className="flex justify-between flex-col gap-2 lg:flex-row lg:gap-0 md:flex-row md:gap-0">
@@ -379,8 +463,11 @@ export default function PVInquiryForm() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className={`px-6 py-2 rounded-md cursor-pointer text-[16px] ${loading ? "bg-gray-400 text-white cursor-wait" : "bg-[#669933]/90 hover:bg-[#669933] text-white"
-                  }`}
+                className={`px-6 py-2 rounded-md cursor-pointer text-[16px] ${
+                  loading
+                    ? "bg-gray-400 text-white cursor-wait"
+                    : "bg-[#669933]/90 hover:bg-[#669933] text-white"
+                }`}
               >
                 {loading ? "Wird gesendet..." : "JETZT ANGEBOT ANFORDERN"}
               </button>
@@ -397,13 +484,15 @@ export default function PVInquiryForm() {
             transition={{ duration: 0.3 }}
             className="text-center py-8"
           >
-            <h2 className="text-2xl font-bold text-[#669933] mb-4">Vielen Dank für Ihre Anfrage!</h2>
+            <h2 className="text-2xl font-bold text-[#669933] mb-4">
+              Vielen Dank für Ihre Anfrage!
+            </h2>
             <p className="text-lg text-gray-700">
-              Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.
+              Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich
+              bei Ihnen melden.
             </p>
           </motion.div>
         )}
-
       </AnimatePresence>
     </div>
   );

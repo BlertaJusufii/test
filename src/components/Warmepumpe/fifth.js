@@ -19,13 +19,13 @@ export default function KontaktFormular() {
     "flex items-center border border-gray-300 bg-white rounded-md px-4 py-3 gap-3 w-full text-sm focus-within:border-[#669933] focus-within:ring-2 focus-within:ring-[#669933]/30 transition";
 
   return (
-    <section className="bg-[#f9fafb] py-16 px-4">
+    <section className="bg-[#f9fafb] py-10 md:py-16 px-6 md:px-12">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white rounded-3xl shadow-xl overflow-hidden p-8"
+        className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 bg-white rounded-3xl shadow-xl overflow-hidden p-1 md:p-8"
       >
         {/* Left Column - Info Box */}
         <motion.div

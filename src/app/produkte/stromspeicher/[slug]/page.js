@@ -34,7 +34,7 @@ export default async function HerstellerDetailPage({ params }) {
     console.error("Error fetching data:", err);
   }
 
-  if (!hersteller || hersteller.hersteller_category !== "Stromspeicher") {
+  if (!hersteller) {
     return <div className="p-6 text-center text-gray-500">Keine Daten gefunden.</div>;
   }
 
@@ -85,7 +85,7 @@ export default async function HerstellerDetailPage({ params }) {
     hersteller_category: hersteller.fifth_product_category,
   },
 ].filter(
-  (p) => p.status === "Aktiv" && p.hersteller_category === "Stromspeicher"
+  (p) => p.status === "Aktiv"
 );
 
 

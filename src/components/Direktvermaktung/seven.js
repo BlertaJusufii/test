@@ -7,7 +7,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 export default function SixthCardSection({ data }) {
   return (
-    <section className="py-10 md:py-16 px-4 bg-white">
+    <section className="py-10 md:py-16 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <motion.div

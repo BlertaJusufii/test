@@ -8,7 +8,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const DynamicGreenEnergy = ({data}) => {
   return (
-    <section className="w-full py-10 md:py-16 px-4">
+    <section className="w-full py-10 md:py-16 px-6 md:px-12">
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
         {data.dynami_first_card_table.map((card, index) => (

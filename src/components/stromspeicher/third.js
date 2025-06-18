@@ -6,7 +6,7 @@ const iconList = [FiShield, FiSun, FiTrendingDown, FiZap];
 
 const StromThirdCardSection = ({ data }) => {
   return (
-    <section className="bg-gray-100 py-10 md:py-16 px-4 w-full">
+    <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12 w-full">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* Image */}
         <div className="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-lg">

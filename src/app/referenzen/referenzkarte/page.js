@@ -4,6 +4,13 @@ import ProjectsSection from "@/components/Referenzkarte/referenzInfo";
 import BenefitsLayout from "@/components/Reusable/benefitsSection";
 import MapContainer from "@/components/Referenzkarte/map";
 import TechnologySection from "@/components/Reusable/TechnologySection";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import ReferenzkarteBannerSection from "@/components/Referenzkarte/banner";
+import EndSection from "@/components/Reusable/end";
+import ReferenzkarteBenefitsLayout from "@/components/Referenzkarte/newsection";
+import ReferenzkarteTechnologySection from "@/components/Referenzkarte/endsection";
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.referenzstandorde_page.api.get_referenzstandorde_page`;
+
 
 export const metadata = {
   title: "Referenzen",
@@ -18,75 +25,28 @@ export const metadata = {
   ],
 };
 
-export default function Home() {
-  const data = {
-    title: "Referenzstandorde",
-    subtitle:"Ein Überblick über erfolgreich umgesetzte Photovoltaikprojekte",
-    img: "/Images/Referenzen/referenzkarte1.jpg",
-  };
-  const karte = {
-    greenTitle: "Solar Lösungen",
-    heading: "Solarlösungen für Privathaushalte",
-    description:
-    "Immer mehr Eigenheimbesitzer setzen auf Photovoltaik für Zuhause, um Stromkosten zu senken und sich unabhängig zu machen.Unsere Projekte reichen von klassischen Dachanlagen über kompakte Balkonkraftwerke bis hin zu Systemen mit Speicher und Smartsteuerung. Mit intelligenter Hausautomation und modernen Energiemanagementsystemen wird der Eigenverbrauch optimiert und überschüssige Energie gezielt gespeichert.Kunden berichten von Einsparungen bis zu 70 % bei Stromkosten – kombiniert mit CO₂-Reduktion und staatlicher Förderung wird Photovoltaik zur lohnenden Investition.",
-    bullets: [
-      "Nachhaltiger Strom aus eigener Quelle.",
-      "Zukunftssichere Technik",
-      "Energieversorgung auch bei Stromausfall.",
-      "Effiziente Nutzung durch intelligente Systeme.",
-    ],
-    
-    image1: "/Images/Referenzen/referenzkarte1.jpg",
-    image2: "/Images/Referenzen/referenzkarte2.jpg",
-  };
-  const secondBackgroundImage = {
-    src: "/Images/Referenzen/Referenzkarte-1.jpg",
-    title: "Solarlösungen für Privathaushalte",
-    description: [
-      "Immer mehr Eigenheimbesitzer setzen auf Photovoltaik für Zuhause, um Stromkosten zu senken und sich unabhängig zu machen.Unsere Projekte reichen von klassischen Dachanlagen über kompakte Balkonkraftwerke bis hin zu Systemen mit Speicher und Smartsteuerung.",
-      "Mit intelligenter Hausautomation und modernen Energiemanagementsystemen wird der Eigenverbrauch optimiert und überschüssige Energie gezielt gespeichert.Kunden berichten von Einsparungen bis zu 70 % bei Stromkosten – kombiniert mit CO₂-Reduktion und staatlicher Förderung wird Photovoltaik zur lohnenden Investition.",
-    ],
-  };
-  const benefits = {
-    title: "Gewerbliche Photovoltaikanlagen",
-    img: "/Images/Referenzen/Referenzekarte-2.jpg",
-    description:
-      "Viele unserer gewerblichen Kunden konnten durch PV-Anlage und Speicher ihren Eigenverbrauch maximieren und langfristig Energiekosten sparen.",
-    benefits: [
-      {
-        title: "Produktionsbetriebe mit Solardächern",
-        description: "Reduzierung des Netzbezugs durch Eigenstromnutzung.",
-      },
-      {
-        title: "Logistikzentren mit Großanlagen",
-        description: "Effiziente Nutzung großer Dachflächen für eine nachhaltige Energieerzeugung.",
-      },
-      {
-        title: "Hotels und Restaurants mit PV-Anlagen",
-        description: "Umweltfreundliche Energieversorgung für Gäste und Geschäftsabläufe.",
-      },
-      {
-        title: "Supermärkte und Einzelhandelsgeschäfte",
-        description:
-          "Nachhaltige Stromversorgung für den täglichen Betrieb und Reduzierung der Betriebskosten durch Eigenverbrauch.",
-      },
-    ],
-  };
+export default async function Home() {
 
-  const end={
-    greentitle:"Solaranlage",
-    title:"Ihr Weg zur eigenen Solaranlage",
-    description:"Sie möchten Ihre Energiekosten senken und auf Solar umsteigen? Entdecken Sie unsere Referenzkarte und lassen Sie sich unverbindlich beraten. Unser Team unterstützt Sie gerne bei Planung, Umsetzung und Service."
+    let data = null;
+
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const json = await res.json();
+    data = json.message;
+  } catch (error) {
+    console.error("Failed to fetch smart energy data", error);
   }
+  
+
 
   return (
     <div>
-      <BannerSection data={data} />
-      <ProjectsSection />
-      <MapContainer />
-      <BenefitsLayout data={benefits} />
-      <TechnologySection data={karte} /> 
-      <GreenFeatureSection data={end}/>
+      <ReferenzkarteBannerSection data={data} />
+      <ProjectsSection data={data}/>
+      <MapContainer data={data}/>
+      <ReferenzkarteBenefitsLayout data={data} />
+      <ReferenzkarteTechnologySection data={data} />
+      <EndSection/>
     </div>
   );
 }

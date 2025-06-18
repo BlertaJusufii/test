@@ -16,7 +16,7 @@ export default function WarmepumpeSecondCardSection({ data }) {
   } = data;
 
   return (
-    <div className="py-10 md:py-16 px-6 flex flex-col-reverse lg:flex-row items-center mx-auto gap-10 max-w-7xl">
+    <div className="py-10 md:py-16 px-6 md:px-12 flex flex-col-reverse lg:flex-row items-center mx-auto gap-10 max-w-7xl">
       
       {/* Text Section */}
       <motion.div

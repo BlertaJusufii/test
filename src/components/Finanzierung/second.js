@@ -36,7 +36,7 @@ const FinancingSection = ({ data }) => {
   }, [slider]);
 
   return (
-    <section className="w-full py-10 md:py-16 px-4 sm:px-6 md:px-8">
+    <section className="w-full py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
         {/* Left Content */}
         <div className="w-full lg:w-1/2 space-y-6">

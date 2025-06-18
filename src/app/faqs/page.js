@@ -1,14 +1,13 @@
+import BannerSection from "@/components/Faqs/banner";
 import SolarInfoAccordion from "@/components/Faqs/faqs";
-import JobsInfo from "@/components/Jobs/jobs";
-import ProjectsHero from "@/components/Project/info";
-import Vorteil from "@/components/Project/vorteile";
-import TechnologySection from "@/components/Reusable/backgroundImage";
-import BannerSection from "@/components/Reusable/banner";
-import BenefitsLayout from "@/components/Reusable/benefitsSection";
+import FAQInfoSection from "@/components/Faqs/info";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 import InfoSection from "@/components/Reusable/info";
-import TeamBanner from "@/components/Reusable/teamBanner";
-import TeamSection from "@/components/Team/team";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.faqs_page.api.get_faqs_page`;
+
 
 export const metadata = {
   title: "Faqs",
@@ -23,12 +22,18 @@ export const metadata = {
   ],
 };
 
-export default function Home() {
-  const data = {
-    title: "FAQs",
-    img: "/Images/Kontakt/faqs.jpg",
-    description: "Hier finden Sie Antworten auf die wichtigsten Fragen rund um unsere Photovoltaik-Lösungen.",
-  };
+export default async function Home() {
+
+    let data = null;
+
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const json = await res.json();
+    data = json.message;
+  } catch (error) {
+    console.error("Failed to fetch smart energy data", error);
+  }
+
 
   const infoData = {
     title: "Photovoltaik FAQs – Antworten auf Ihre wichtigsten Fragen",
@@ -39,18 +44,14 @@ export default function Home() {
     ],
   };
 
-  const end={
-    greentitle:"Solarlösung",
-    title:"Ihre maßgeschneiderte Solarlösung – Jetzt beraten lassen!",
-    description:"Sie denken über eine eigene Solaranlage nach? Unser Team hilft Ihnen dabei, die perfekte Lösung für Ihr Zuhause zu finden."
-  }
+
 
   return (
     <div>
-      <TeamBanner data={data} />
-      <InfoSection data={infoData} />
-      <SolarInfoAccordion />
-      <GreenFeatureSection data={end} />
+      <BannerSection data={data}/>
+      <FAQInfoSection data={data}/>
+      <SolarInfoAccordion data={data}/>
+    <EndSection/>
     </div>
   );
 }

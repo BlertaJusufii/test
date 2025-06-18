@@ -31,10 +31,10 @@ const MieterstromBanner = ({ data }) => {
       {/* Text Content */}
       <div className="relative z-30 h-full flex items-center px-4 sm:px-8 md:px-[66px] lg:px-[186px]">
         <div className="text-gray-800 max-w-2xl">
-          <span className="uppercase text-sm tracking-widest text-[#669933] block mb-2">
+          <span className="uppercase text-sm tracking-widest text-[#669933] block mb-3">
             {data.mieterstorm_banner_title}
           </span>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3">
+          <h1 className="text-xl sm:text-2xl md:text-3xl  mb-3">
             {data.mieterstorm_banner_subtitle}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">

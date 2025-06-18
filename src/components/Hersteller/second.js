@@ -24,8 +24,8 @@ const HerstellerSection = ({ data }) => {
   };
 
   return (
-    <section className="py-10 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-10 md:py-16 mb-[-25]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <motion.div

@@ -5,6 +5,7 @@ import MieterstromSection from '@/components/Mieterstrom/second';
 import MieterstromBenefits from '@/components/Mieterstrom/third';
 import MieterstromThirdSection from '@/components/Mieterstrom/fourth';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
+import EndSection from '@/components/Reusable/end';
 const DATA_URL =
   `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_mieterstrom_page_with_keywords`;
 
@@ -35,7 +36,7 @@ export default async function MieterstromPage() {
       <MieterstromSection data={data} />
       <MieterstromBenefits data={data} />
       <MieterstromThirdSection data={data} />
-      <GreenFeatureSection data={endd} />
+      <EndSection/>
     </div>
   )
 }
