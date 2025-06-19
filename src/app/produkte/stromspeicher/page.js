@@ -9,39 +9,109 @@ import StromThirdCardSection from '@/components/stromspeicher/third';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
 import EndSection from '@/components/Reusable/end';
 
-const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_strom_page_with_keywords`;
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_strom_page_with_keywords`;
 
-export default async function StromspeicherPage (){
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Stromspeicher Lösungen | Ökovolt Solartechnik",
+      description: "Hochwertige Stromspeicher für Photovoltaikanlagen. Maximieren Sie Ihren Eigenverbrauch und werden Sie energieunabhängig mit unseren intelligenten Speicherlösungen.",
+      keywords: [
+        "Stromspeicher",
+        "Batteriespeicher",
+        "Solarstromspeicher",
+        "Energiespeicher",
+        "Photovoltaik Speicher"
+      ],
+      openGraph: {
+        title: "Stromspeicher Lösungen | Ökovolt Solartechnik",
+        description: "Hochwertige Stromspeicher für Photovoltaikanlagen.",
+        images: [{ url: "/images/stromspeicher-og.jpg" }],
+      },
+    };
+  }
 
-   let data = null;
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Stromspeicher",
+        "Batteriespeicher",
+        "Solarstromspeicher",
+        "Energiespeicher",
+        "Photovoltaik Speicher"
+      ];
+
+  return {
+    title: seoData?.title || "Stromspeicher Lösungen | Ökovolt Solartechnik",
+    description: seoData?.description || "Hochwertige Stromspeicher für Photovoltaikanlagen. Maximieren Sie Ihren Eigenverbrauch und werden Sie energieunabhängig mit unseren intelligenten Speicherlösungen.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Stromspeicher Lösungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Hochwertige Stromspeicher für Photovoltaikanlagen.",
+      url: "https://www.oekovolt.de/stromspeicher",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/stromspeicher-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Stromspeicher Lösungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Hochwertige Stromspeicher für Photovoltaikanlagen.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/stromspeicher-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/stromspeicher",
+    },
+  };
+}
+
+export default async function StromspeicherPage() {
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch stromspeicher data", error);
   }
 
-    const endd={
-    greentitle:"Solaranlage sichern",
-    title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
-    description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
-  }
-
+  const endd = {
+    greentitle: "Solaranlage sichern",
+    title: "Jetzt Kontakt aufnehmen & Solaranlage sichern",
+    description: "Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
+  };
 
   return (
     <div>
       <StromspeicherBanner data={data} />
       <HeroStromspeicher data={data} />
       <FeaturedLogos data={data}/>
-      <StromSecondCardSection  />
+      <StromSecondCardSection />
       <StromThirdCardSection data={data}/>
-      <EndSection/>
-      
-
+      <EndSection data={endd}/>
     </div>
-  )
+  );
 }
-

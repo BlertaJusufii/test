@@ -2,36 +2,103 @@ import React from 'react'
 import { API_BASE_URL } from '@/lib/apiBaseUrl';
 import HerstellerBanner from '@/components/Hersteller/banner';
 import HerstellerSection from '@/components/Hersteller/second';
-const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_hersteller_page_with_keywords`;
+import EndSection from '@/components/Reusable/end';
 
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_hersteller_page_with_keywords`;
 
-export default async function HerstellerPage(){
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Hersteller & Partner | Ökovolt Solartechnik",
+      description: "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
+      keywords: [
+        "Photovoltaik Hersteller",
+        "Solar Komponenten",
+        "Energietechnik Partner",
+        "Qualitätshersteller",
+        "Solar Marken"
+      ],
+      openGraph: {
+        title: "Hersteller & Partner | Ökovolt Solartechnik",
+        description: "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
+        images: [{ url: "/images/hersteller-og.jpg" }],
+      },
+    };
+  }
 
-   let data = null;
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Photovoltaik Hersteller",
+        "Solar Komponenten",
+        "Energietechnik Partner",
+        "Qualitätshersteller",
+        "Solar Marken"
+      ];
+
+  return {
+    title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
+    description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
+      url: "https://www.oekovolt.de/hersteller",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/hersteller-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/hersteller-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/hersteller",
+    },
+  };
+}
+
+export default async function HerstellerPage() {
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch hersteller data", error);
   }
-
-  const endd = {
-    greentitle: "Smarthome-Lösung",
-    title: "Energie der Zukunft",
-    description:
-      "Machen Sie den ersten Schritt in Richtung Unabhängigkeit mit Ihrer eigenen Solaranlage. Füllen Sie unser Kontaktformular aus – wir helfen Ihnen gerne weiter.",
-  };
 
 
   return (
     <div>
       <HerstellerBanner data={data} />
       <HerstellerSection data={data} />
-      
+      <EndSection />
     </div>
-  )
+  );
 }
-

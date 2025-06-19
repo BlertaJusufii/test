@@ -1,134 +1,244 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { API_IMG_URL } from "@/lib/apiImgUrl";
-import { FiArrowRight } from "react-icons/fi"; // at the top of your file
+"use client"
+import React, { useState, useEffect } from 'react';
+import { ChevronRight, Loader2, AlertCircle, FileText, ArrowRight } from 'lucide-react';
+import { API_IMG_URL } from '@/lib/apiImgUrl';
+import Image from 'next/image';
 
-const LandesSection = ({ data }) => {
-  const { hersteller_title, hersteller_description, hersteller_data_table } =
-    data;
-  const [activeIndex, setActiveIndex] = useState(0);
+const ForderungenSection = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const activeCategory = hersteller_data_table[activeIndex];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Simulated API call - replace with your actual endpoint
+        const response = await fetch('http://10.10.200.192:8000/api/method/oekovoltdeutchland.forderungen_pages.doctype.forderungen_lande.api.get_all_forderung_lande_pages');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData.message);
+        if (jsonData.message && jsonData.message.length > 0) {
+          setSelectedItem(jsonData.message[0]);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Animation variants
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+    fetchData();
+  }, []);
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
   };
 
-  const sidebarItemVariants = {
-    inactive: { backgroundColor: "#f3f4f6", color: "#374151" },
-    active: { backgroundColor: "#669933", color: "#ffffff" },
-  };
+  if (loading) return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex justify-center items-center">
+      <div className="bg-white p-8 rounded-2xl shadow-xl">
+        <div className="flex items-center space-x-4">
+          <Loader2 className="h-8 w-8 animate-spin text-[#669933]" />
+          <span className="text-xl font-medium text-gray-700">Laden...</span>
+        </div>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex justify-center items-center">
+      <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md text-center">
+        <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+        <h3 className="text-xl font-semibold text-gray-800 mb-2">Fehler beim Laden</h3>
+        <p className="text-gray-600">{error}</p>
+      </div>
+    </div>
+  );
 
   return (
-    <section className="py-10 md:py-16 mb-[-25]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-1"
-          >
-            <div className="bg-white rounded-3xl p-6 shadow-xl sticky top-6">
-              <h3 className="text-2xl text-gray-900 mb-6">Kategorien</h3>
-              <ul className="space-y-3">
-                {hersteller_data_table.map((cat, i) => (
-                  <motion.li
-                    key={i}
-                    variants={sidebarItemVariants}
-                    initial="inactive"
-                    animate={i === activeIndex ? "active" : "inactive"}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => setActiveIndex(i)}
-                    className={`cursor-pointer group flex justify-between items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 ${
-                      i === activeIndex
-                        ? "bg-[#669933] text-white shadow-md"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+    <div className="">
+     
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 pb-9 md:pb-14">
+        <div className="grid lg:grid-cols-12 gap-8">
+          
+          {/* Sidebar Navigation */}
+          <div className="lg:col-span-4">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-8">
+              <div className="bg-gradient-to-r from-[#669933] to-[#7bb33f] p-6">
+                <h2 className="text-xl text-white flex items-center">
+                  <FileText className="mr-3 h-6 w-6" />
+                  Förderungen
+                </h2>
+              </div>
+              
+              <div className="p-2 max-h-96 overflow-y-auto">
+                {data.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`group relative m-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                      selectedItem === item 
+                        ? 'bg-gray-100 border-2 border-[#669933] shadow-lg' 
+                        : 'hover:bg-gray-100 border-2 border-transparent hover:border-gray-100 hover:shadow-md'
                     }`}
+                    onClick={() => handleItemClick(item)}
                   >
-                    <span className="font-medium text-lg">
-                      {cat.hersteller_category}
-                    </span>
-                    <FiArrowRight
-                      className={`text-2xl transition-transform duration-300 ${
-                        i === activeIndex
-                          ? "translate-x-0 opacity-100"
-                          : "-translate-x-2 opacity-0 group-hover:opacity-80"
-                      }`}
-                    />
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Content */}
-          <div className="lg:col-span-3 space-y-8">
-            {activeCategory.hersteller_list.map((item, i) => {
-              const isEven = i % 2 === 1; // 0-based index, so 1 = 2nd item
-
-              return (
-                <motion.div
-                  key={i}
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`bg-white flex flex-col lg:flex-row ${
-                    isEven ? "lg:flex-row-reverse" : ""
-                  } gap-10 p-5 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100`}
-                >
-                  {/* Image (banner) */}
-                  {item.banner_image && (
-                    <div className="lg:w-1/2 relative">
-                      <Image
-                        src={`${API_IMG_URL}${item.banner_image}`}
-                        alt={item.alt_banner_image || "Banner"}
-                        width={1500}
-                        height={500}
-                        className="rounded-2xl object-cover w-full h-full"
-                      />
-
-                      {item.logo_image && (
-                        <div className="absolute top-4 left-4  p-2  z-10 max-w-[120px] bg-white/80 rounded-xl">
-                          <Image
-                            src={`${API_IMG_URL}${item.logo_image}`}
-                            alt={item.alt_logo_image || item.title}
-                            width={120}
-                            height={40}
-                            className="object-contain w-full h-10"
-                          />
-                        </div>
-                      )}
+                    <div className="p-4 flex items-center justify-between">
+                      <div className="flex-1">
+                        <h3 className={`font-semibold text-sm leading-relaxed transition-colors ${
+                          selectedItem === item ? 'text-[#669933]' : 'text-gray-700 group-hover:text-gray-900'
+                        }`}>
+                          {item.firstcard_title}
+                        </h3>
+                      </div>
+                      <ChevronRight className={`h-5 w-5 transition-all duration-300 ${
+                        selectedItem === item 
+                          ? 'text-[#669933] rotate-90' 
+                          : 'text-gray-400 group-hover:text-gray-600'
+                      }`} />
                     </div>
-                  )}
-                  {/* Text and logo */}
-                  <div className="flex flex-col gap-3 justify-center lg:w-1/2">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <h4 className="text-2xl md:text-3xl text-[#669933]">
-                          {item.title}
-                        </h4>
+                    
+                    
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Content Area */}
+          <div className="lg:col-span-8">
+            {selectedItem ? (
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                {/* Hero Section */}
+                <div className="relative">
+                  {selectedItem.firstcard_image && (
+                    <div className="relative w-full h-64 lg:h-80 overflow-hidden">
+                      <Image 
+                      fill
+                        src={`${API_IMG_URL}${selectedItem.firstcard_image}`}
+                        alt={selectedItem.firstcard_alt_image || selectedItem.firstcard_title} 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <h2 className="text-3xl  text-white mb-2 drop-shadow-lg">
+                          {selectedItem.firstcard_title}
+                        </h2>
                       </div>
                     </div>
-                    <p className=" text-gray-600 leading-relaxed text-lg">
-                      {item.main_description}
-                    </p>
+                  )}
+                  
+                  {!selectedItem.firstcard_image && (
+                    <div className="bg-gradient-to-r from-[#669933] to-[#7bb33f] p-8">
+                      <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                        {selectedItem.firstcard_title}
+                      </h2>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="p-8 space-y-8">
+                  {/* Main Text Content */}
+                  {selectedItem.forderungen_text && selectedItem.forderungen_text.map((text, idx) => (
+                    <div key={idx} className="space-y-4">
+                      {text.primary_paragraph && (
+                        <h3 className="text-2xl font-bold text-gray-800 flex items-center">
+                          <div className="w-1 h-6 bg-gradient-to-b from-[#669933] to-[#7bb33f] rounded-full mr-3"></div>
+                          {text.primary_paragraph}
+                        </h3>
+                      )}
+                      {text.secondary_paragraph && (
+                        <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line pl-4 border-l-2 border-gray-300">
+                          {text.secondary_paragraph}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+
+                  {/* Detailed Content */}
+                  {selectedItem.table_data_forderungen_content && (
+                    <div className="space-y-6">
+                      {/* <div className="flex items-center space-x-3 pb-4 border-b-2 border-gray-100">
+                        <div className="p-2 bg-gradient-to-r from-[#669933] to-[#7bb33f] rounded-lg">
+                          <ArrowRight className="h-5 w-5 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-800">Detaillierte Informationen</h3>
+                      </div> */}
+                      
+                      <div className="grid gap-6">
+                        {selectedItem.table_data_forderungen_content.map((content, contentIdx) => (
+                          <div key={contentIdx} className="bg-gray-100 p-6 rounded-xl border border-gray-200 hover:border-[#669933]/30 transition-colors duration-300">
+                            {content.firstcard_subtitle && (
+                              <h4 className="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                                <div className="w-2 h-2 bg-[#669933] rounded-full mr-3"></div>
+                                {content.firstcard_subtitle}
+                              </h4>
+                            )}
+                            
+                            {content.title_options && (
+                              <h5 className="text-lg font-semibold text-[#669933] mb-3">
+                                {content.title_options}
+                              </h5>
+                            )}
+                            
+                            <div className="space-y-3">
+                              {content.first_card_description && (
+                                <p className="text-gray-700 leading-relaxed">
+                                  {content.first_card_description}
+                                </p>
+                              )}
+                              {content.second_card_description && (
+                                <p className="text-gray-700 leading-relaxed">
+                                  {content.second_card_description}
+                                </p>
+                              )}
+                            </div>
+                            
+                            {content.forderungen_text && content.forderungen_text.map((text, textIdx) => (
+                              <div key={textIdx} className="mt-4 p-4 bg-white rounded-lg border border-gray-100">
+                                {text.primary_paragraph && (
+                                  <h6 className="font-bold text-gray-800 mb-2">
+                                    {text.primary_paragraph}
+                                  </h6>
+                                )}
+                                {text.secondary_paragraph && (
+                                  <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                                    {text.secondary_paragraph}
+                                  </p>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+                <div className="max-w-md mx-auto">
+                  <div className="w-16 h-16 bg-gradient-to-r from-[#669933] to-[#7bb33f] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FileText className="h-8 w-8 text-white" />
                   </div>
-                </motion.div>
-              );
-            })}
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    Wählen Sie eine Förderung aus
+                  </h3>
+                  <p className="text-gray-600">
+                    Klicken Sie auf einen Eintrag links, um die Details anzuzeigen
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default LandesSection;
+export default ForderungenSection;

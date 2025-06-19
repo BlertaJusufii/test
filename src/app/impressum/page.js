@@ -2,6 +2,7 @@ import PrivacyPolicy from "@/components/Datenschutz/datenschutz";
 import Impressum from "@/components/Impressum/impressum";
 import BannerSection from "@/components/Reusable/banner";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 
 export const metadata = {
   title: "Impressum",
@@ -32,7 +33,7 @@ export default function Home() {
     <div>
       <BannerSection data={data} />
       <Impressum />
-      <GreenFeatureSection data={end}/>
+      <EndSection/>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import PrivacyPolicy from "@/components/Datenschutz/datenschutz";
 import BannerSection from "@/components/Reusable/banner";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
+import EndSection from "@/components/Reusable/end";
 
 export const metadata = {
   title: "Datenschutz",
@@ -15,17 +16,13 @@ export default function Home() {
     img: "/Images/Kontakt/download-2.jpg",
   };
 
-  const end={
-    greentitle:"Solarenergie",
-    title:"Ihre persönliche Solarberatung",
-    description:"Interessieren Sie sich für eine eigene Solaranlage? Wir beraten Sie individuell – kontaktieren Sie uns jetzt!"
-  }
+ 
 
   return (
     <div>
       <BannerSection data={data} />
       <PrivacyPolicy />
-      <GreenFeatureSection data={end}/>
+      <EndSection/>
     </div>
   );
 }

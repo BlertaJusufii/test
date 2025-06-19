@@ -1,6 +1,5 @@
 import PhotovoltaikBanner from "@/components/photovoltaikanlage/banner";
 import React from "react";
-
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import BannerLegal from "@/components/photovoltaikanlage/test";
 import SolvixBanner from "@/components/photovoltaikanlage/bannertwo";
@@ -17,15 +16,91 @@ import FaqSection from "@/components/photovoltaikanlage/eightcard";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_photovoltaik_page_with_keywords`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: "Hochwertige Photovoltaikanlagen für Privathaushalte und Gewerbe. Senken Sie Ihre Energiekosten und werden Sie unabhängig mit maßgeschneiderten Solar-Lösungen.",
+      keywords: [
+        "Photovoltaikanlage",
+        "Solaranlage",
+        "Photovoltaik",
+        "Solarenergie",
+        "PV-Anlage"
+      ],
+      openGraph: {
+        title: "Photovoltaikanlagen | Ökovolt Solartechnik",
+        description: "Hochwertige Photovoltaikanlagen für Privathaushalte und Gewerbe.",
+        images: [{ url: "/images/photovoltaik-og.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Photovoltaikanlage",
+        "Solaranlage",
+        "Photovoltaik",
+        "Solarenergie",
+        "PV-Anlage"
+      ];
+
+  return {
+    title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+    description: seoData?.description || "Hochwertige Photovoltaikanlagen für Privathaushalte und Gewerbe. Senken Sie Ihre Energiekosten und werden Sie unabhängig mit maßgeschneiderten Solar-Lösungen.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: seoData?.description || "Hochwertige Photovoltaikanlagen für Privathaushalte und Gewerbe.",
+      url: "https://www.oekovolt.de/photovoltaikanlagen",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/photovoltaik-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: seoData?.description || "Hochwertige Photovoltaikanlagen für Privathaushalte und Gewerbe.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/photovoltaik-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/photovoltaikanlagen",
+    },
+  };
+}
+
 export default async function PhotovoltaikanlagePage() {
   let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch photovoltaik data", error);
   }
 
   return (

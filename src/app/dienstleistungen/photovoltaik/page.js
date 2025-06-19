@@ -10,41 +10,95 @@ import EndSection from "@/components/Reusable/end";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.photovoltaikanlagen_primary_page.api.get_photovoltaikanlagen`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: "Maßgeschneiderte Photovoltaik-Lösungen für Privathaushalte, Gewerbe und Landwirtschaft. Senken Sie Ihre Energiekosten mit nachhaltiger Solarenergie.",
+      keywords: [
+        "Photovoltaikanlage",
+        "Solarenergie",
+        "Energiekosten senken",
+        "Photovoltaik Förderung",
+        "Solaranlage"
+      ],
+      openGraph: {
+        title: "Photovoltaikanlagen | Ökovolt Solartechnik",
+        description: "Maßgeschneiderte Photovoltaik-Lösungen für Privathaushalte, Gewerbe und Landwirtschaft.",
+        images: [{ url: "/images/photovoltaik-og.jpg" }],
+      },
+    };
+  }
 
-export const metadata = {
-  title: "Photovoltaikanlagen",
-  description:
-    "Nutzen Sie die Vorteile von Photovoltaikanlagen mit ÖKOVOLT Deutschland und senken Sie Ihre Energiekosten. Ob für Privathaushalte, Mehrfamilienhäuser, Gewerbe oder Landwirtschaft – wir bieten maßgeschneiderte Lösungen für nachhaltige, umweltfreundliche und kostengünstige Solarenergie. Profitieren Sie von Förderprogrammen, reduzieren Sie CO₂-Emissionen und machen Sie sich unabhängig von steigenden Strompreisen.",
-  keywords: [
-    "Photovoltaikanlage",
-    "Energiekosten senken",
-    "Solarenergie",
-    "CO₂-Emissionen reduzieren",
-    "Förderprogramme",
-  ],
-};
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Photovoltaikanlage",
+        "Solarenergie",
+        "Energiekosten senken",
+        "Photovoltaik Förderung",
+        "Solaranlage"
+      ];
+
+  return {
+    title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+    description: seoData?.description || "Maßgeschneiderte Photovoltaik-Lösungen für Privathaushalte, Gewerbe und Landwirtschaft. Senken Sie Ihre Energiekosten mit nachhaltiger Solarenergie.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: seoData?.description || "Maßgeschneiderte Photovoltaik-Lösungen für Privathaushalte, Gewerbe und Landwirtschaft.",
+      url: "https://www.oekovolt.de/photovoltaik",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/photovoltaik-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Photovoltaikanlagen | Ökovolt Solartechnik",
+      description: seoData?.description || "Maßgeschneiderte Photovoltaik-Lösungen für Privathaushalte, Gewerbe und Landwirtschaft.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/photovoltaik-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/photovoltaik",
+    },
+  };
+}
 
 export default async function Home() {
-
-   let data = null;
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
-  } 
-
-  
-
-
- 
-
+    console.error("Failed to fetch photovoltaik data", error);
+  }
 
   return (
     <div>
-      {/* <TeamBanner data={data} /> */}
       <PhotovoltaikanlageBannerSection data={data} />
       <Tabs data={data}/>
       <AnlageSection data={data} />

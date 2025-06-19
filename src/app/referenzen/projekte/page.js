@@ -4,44 +4,99 @@ import ProjectsHero from "@/components/Project/info";
 import ProjekteTechnologySection from "@/components/Project/newsection";
 import ProjekteBenefitsLayout from "@/components/Project/second";
 import Vorteil from "@/components/Project/vorteile";
-import AnotherDesign from "@/components/Reusable/AnotherDesign";
-import TechnologySection from "@/components/Reusable/TechnologySection";
-import BannerSection from "@/components/Reusable/banner";
-import BenefitsLayout from "@/components/Reusable/benefitsSection";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import EndSection from "@/components/Reusable/end";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.referenzen_page.api.get_referenzen`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Referenzen | Ökovolt Solartechnik",
+      description: "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
+      keywords: [
+        "Photovoltaik Referenzen",
+        "Solarprojekte",
+        "PV-Anlagen Beispiele", 
+        "Ökovolt Projekte",
+        "Energielösungen Referenzen"
+      ],
+      openGraph: {
+        title: "Referenzen | Ökovolt Solartechnik",
+        description: "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
+        images: [{ url: "/images/referenzen-og.jpg" }],
+      },
+    };
+  }
 
-export const metadata = {
-  title: "Referenzen",
-  description:
-    "Entdecken Sie die erfolgreichen Photovoltaik-Projekte von ÖKOVOLT Deutschland. Wir bieten maßgeschneiderte, effiziente und umweltfreundliche Lösungen für Gewerbe, Industrie und Privathaushalte. Erfahren Sie mehr über unsere innovativen Projekte und technologischen Entwicklungen, die den Weg zu einer nachhaltigen Energiezukunft ebnen.",
-  keywords: [
+  // Process keywords - combine API keywords with defaults if available
+  const defaultKeywords = [
     "Photovoltaik Referenzen",
-    "Nachhaltige Energielösungen",
-    "Solarenergie Projekte",
-    "Photovoltaik Technologien",
-    "ÖKOVOLT Deutschland",
-  ],
-};
+    "Solarprojekte",
+    "PV-Anlagen Beispiele",
+    "Ökovolt Projekte",
+    "Energielösungen Referenzen"
+  ];
+  
+  const apiKeywords = seoData?.keywords 
+    ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
+    : defaultKeywords;
+
+  return {
+    title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
+    description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
+      url: "https://www.oekovolt.de/referenzen",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/referenzen-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/referenzen-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/referenzen",
+    },
+  };
+}
 
 export default async function Home() {
-
-    let data = null;
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
-  } 
-  
-
-  
+    console.error("Failed to fetch projects data", error);
+  }
 
   return (
     <div>
@@ -50,9 +105,8 @@ export default async function Home() {
       <ProjekteTechnologySection data={data} />
       <ProjekteBenefitsLayout data={data} />
       <Vorteil data={data}/>
-      {/* <TechnologySection backgroundImage={secondBackgroundImage} /> */}
       <ProjekteAnotherDesign data={data} />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

@@ -9,35 +9,99 @@ import ReferenzkarteBannerSection from "@/components/Referenzkarte/banner";
 import EndSection from "@/components/Reusable/end";
 import ReferenzkarteBenefitsLayout from "@/components/Referenzkarte/newsection";
 import ReferenzkarteTechnologySection from "@/components/Referenzkarte/endsection";
+
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.referenzstandorde_page.api.get_referenzstandorde_page`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Referenzkarte | Ökovolt Solartechnik",
+      description: "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
+      keywords: [
+        "Photovoltaik Referenzkarte",
+        "Solarprojekte Karte",
+        "PV-Anlagen Standorte",
+        "Ökovolt Referenzen",
+        "Energielösungen Standorte"
+      ],
+      openGraph: {
+        title: "Referenzkarte | Ökovolt Solartechnik",
+        description: "Unsere Photovoltaik-Projekte auf der Karte.",
+        images: [{ url: "/images/referenzkarte-og.jpg" }],
+      },
+    };
+  }
 
-export const metadata = {
-  title: "Referenzen",
-  description:
-    "Entdecken Sie die erfolgreichen Photovoltaik-Projekte von ÖKOVOLT Deutschland. Wir bieten maßgeschneiderte, effiziente und umweltfreundliche Lösungen für Gewerbe, Industrie und Privathaushalte. Erfahren Sie mehr über unsere innovativen Projekte und technologischen Entwicklungen, die den Weg zu einer nachhaltigen Energiezukunft ebnen.",
-  keywords: [
-    "Photovoltaik Referenzen",
-    "Nachhaltige Energielösungen",
-    "Solarenergie Projekte",
-    "Photovoltaik Technologien",
-    "ÖKOVOLT Deutschland",
-  ],
-};
+  // Process keywords - combine API keywords with defaults if available
+  const defaultKeywords = [
+    "Photovoltaik Referenzkarte",
+    "Solarprojekte Karte",
+    "PV-Anlagen Standorte",
+    "Ökovolt Referenzen",
+    "Energielösungen Standorte"
+  ];
+  
+  const apiKeywords = seoData?.keywords 
+    ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
+    : defaultKeywords;
+
+  return {
+    title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
+    description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte.",
+      url: "https://www.oekovolt.de/referenzkarte",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/referenzkarte-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
+      description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/referenzkarte-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/referenzkarte",
+    },
+  };
+}
 
 export default async function Home() {
-
-    let data = null;
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch reference map data", error);
   }
-  
 
+ 
 
   return (
     <div>
@@ -46,7 +110,7 @@ export default async function Home() {
       <MapContainer data={data}/>
       <ReferenzkarteBenefitsLayout data={data} />
       <ReferenzkarteTechnologySection data={data} />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

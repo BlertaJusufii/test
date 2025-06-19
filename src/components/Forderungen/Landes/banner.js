@@ -1,14 +1,50 @@
-import { API_IMG_URL } from "@/lib/apiImgUrl";
+"use client";
+import { API_IMG_URL} from "@/lib/apiImgUrl";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const LandesBannerSection = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}oekovoltdeutchland.forderungen_pages.doctype.forderungen_page.api.get_forderungen_page`,
+          { cache: "no-store" }
+        );
+        const json = await response.json();
+        setData(json.message);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[300px] lg:h-[500px] bg-gray-200 animate-pulse"></div>
+    );
+  }
+
+  if (!data) {
+    return <div className="w-full h-[300px] lg:h-[500px] bg-gray-200"></div>;
+  }
+
   return (
-    <section className="relative w-full h-auto lg:h-[500px] flex flex-col lg:flex-row overflow-hidden bg-[#0a1e35]">
+    <div>
+         <section className="relative w-full h-auto lg:h-[500px] flex flex-col lg:flex-row overflow-hidden bg-[#0a1e35]">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/Images/Kontakt/download-2.jpg"
-          alt="Banner Image"
+          src={`${API_IMG_URL}${data.image}`}
+          alt={data.alt_text_for_image || "Banner Image"}
           fill
           className="object-cover"
           priority
@@ -41,17 +77,34 @@ const LandesBannerSection = () => {
         {/* Text content */}
         <div className="w-full lg:w-1/2 h-full flex items-center justify-center px-6 py-10 md:px-10 lg:pl-4 lg:pr-46 bg-white/80 lg:bg-transparent">
           <div className="max-w-xl space-y-6 text-center lg:text-left">
-            <p className="text-md  text-[#669933] uppercase ">Förderungen</p>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 drop-shadow-lg ">
-              Baurecht
+            <p className="text-md text-[#669933] uppercase">Förderungen</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 drop-shadow-lg">
+              {data.title }
             </h2>
             <p className="text-base sm:text-lg lg:text-lg leading-relaxed text-gray-700 drop-shadow-lg">
-              Dieser Bereich gibt einen Überblick über die baurechtlichen Vorschriften für Photovoltaikanlagen in Österreich. Behandelt werden Genehmigungspflichten, Bauvorschriften, Abstandsregelungen und Sonderbestimmungen für unterschiedliche Gebäudearten sowie die aktuellen Änderungen durch die Novellierung des Örtlichen Raumordnungsprogramms.
+              {data.description }
             </p>
           </div>
         </div>
       </div>
     </section>
+
+    <section>
+         <div className="max-w-7xl mx-auto  flex items-center justify-center px-6 md:px-12 pt-9 md:pt-14">
+          <div className="max-w-7xl space-y-6 text-center ">
+            <p className="text-md text-[#669933] uppercase">Landesförderungen </p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 drop-shadow-lg">
+              {data.first_card_title }
+            </h2>
+            <p className="text-base sm:text-lg lg:text-lg leading-relaxed text-gray-700 drop-shadow-lg">
+              {data.first_card_description }
+            </p>
+          </div>
+        </div>
+    </section>
+    </div>
+
+ 
   );
 };
 

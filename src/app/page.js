@@ -10,11 +10,75 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.home_page.api.get_home_page`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Ökovolt Solartechnik - Photovoltaik Lösungen",
+      description: "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+      keywords: ["Photovoltaik", "Solaranlagen", "Energielösungen"],
+      openGraph: {
+        title: "Ökovolt Solartechnik",
+        description: "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+        images: [{ url: "/images/og-image.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords from API
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : ["Photovoltaik", "Solaranlagen", "Energielösungen"];
+
+  return {
+    title: seoData?.title || "Ökovolt Solartechnik - Photovoltaik Lösungen",
+    description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Ökovolt Solartechnik",
+      description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+      url: "https://www.oekovolt.de",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.first_card_images?.[0]?.image 
+            ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
+            : "/images/og-image.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Ökovolt Solartechnik",
+      description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+      images: [
+        seoData?.first_card_images?.[0]?.image 
+          ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
+          : "/images/og-image.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de",
+    },
+  };
+}
+
 export default async function Home() {
   let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
@@ -32,10 +96,8 @@ export default async function Home() {
     <div>
       <VideoBanner
         videoSrc={"/Images/Navbar/intro.mp4"}
-        title={"Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
-        mobileVideoSrc={
-          "Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"
-        }
+        title={data?.title || "Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
+        mobileVideoSrc={data?.title || "Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
       />
       <ServicesBanner data={data} />
       <RotatingCircleSection data={data} />

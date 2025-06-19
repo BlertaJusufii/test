@@ -6,36 +6,101 @@ import RecommendationSection2 from '@/components/Vorteilswelt/second';
 import ReferralStepsSection from '@/components/Vorteilswelt/third';
 import EndSection from '@/components/Reusable/end';
 
-const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.oekovolt_vorteilswelt_service_page.api.get_vorteilswelt_page_with_keywords`;
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.oekovolt_vorteilswelt_service_page.api.get_vorteilswelt_page_with_keywords`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Vorteilswelt | Ökovolt Solartechnik",
+      description: "Exklusive Vorteile und Services für unsere Kunden. Profitieren Sie von besonderen Konditionen und Services in unserer Ökovolt Vorteilswelt.",
+      keywords: [
+        "Ökovolt Vorteilswelt",
+        "Kundenvorteile",
+        "Energie-Services",
+        "Exklusive Angebote",
+        "Solar-Vorteile"
+      ],
+      openGraph: {
+        title: "Vorteilswelt | Ökovolt Solartechnik",
+        description: "Exklusive Vorteile und Services für unsere Kunden.",
+        images: [{ url: "/images/vorteilswelt-og.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Ökovolt Vorteilswelt",
+        "Kundenvorteile",
+        "Energie-Services",
+        "Exklusive Angebote",
+        "Solar-Vorteile"
+      ];
+
+  return {
+    title: seoData?.title || "Vorteilswelt | Ökovolt Solartechnik",
+    description: seoData?.description || "Exklusive Vorteile und Services für unsere Kunden. Profitieren Sie von besonderen Konditionen und Services in unserer Ökovolt Vorteilswelt.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Vorteilswelt | Ökovolt Solartechnik",
+      description: seoData?.description || "Exklusive Vorteile und Services für unsere Kunden.",
+      url: "https://www.oekovolt.de/vorteilswelt",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/vorteilswelt-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Vorteilswelt | Ökovolt Solartechnik",
+      description: seoData?.description || "Exklusive Vorteile und Services für unsere Kunden.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/vorteilswelt-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/vorteilswelt",
+    },
+  };
+}
 
 export default async function VorteilsweltPage() {
-
-  
-   let data = null;
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
-  }
-
-    const endd={
-    greentitle:"Solaranlage sichern",
-    title:"Jetzt Kontakt aufnehmen & Solaranlage sichern",
-    description:"Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell."
+    console.error("Failed to fetch vorteilswelt data", error);
   }
 
   return (
     <div>
       <VorteilsweltBanner data={data} />
-            <RecommendationSection2 data={data} />
-<ReferralStepsSection data={data} />
-      <EndSection/>
+      <RecommendationSection2 data={data} />
+      <ReferralStepsSection data={data} />
+      <EndSection  />
     </div>
-  )
+  );
 }
-

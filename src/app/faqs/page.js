@@ -8,32 +8,94 @@ import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.primary_page.doctype.faqs_page.api.get_faqs_page`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+      description: "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
+      keywords: [
+        "Photovoltaik FAQ",
+        "Solaranlagen Fragen",
+        "PV-Anlage Antworten",
+        "Solarenergie Fragen",
+        "Solar Förderung FAQ"
+      ],
+      openGraph: {
+        title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+        description: "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
+        images: [{ url: "/images/faqs-og.jpg" }],
+      },
+    };
+  }
 
-export const metadata = {
-  title: "Faqs",
-  description:
-    "Finden Sie in unseren FAQs Antworten auf Ihre wichtigsten Fragen zu Photovoltaikanlagen. Erfahren Sie mehr über die Funktionsweise von Solarmodulen, Vorteile der Solarenergie, Fördermöglichkeiten und Einsparungen bei der Nutzung von Solaranlagen. Unsere Experten bieten klare und verständliche Informationen.",
-  keywords: [
-    "Photovoltaik FAQs",
+  // Process keywords - combine API keywords with defaults if available
+  const defaultKeywords = [
+    "Photovoltaik FAQ",
     "Solaranlagen Fragen",
-    "Solarenergie Vorteile",
-    "Förderungen Solaranlagen",
-    "Solarmodule Funktionsweise",
-  ],
-};
+    "PV-Anlage Antworten",
+    "Solarenergie Fragen",
+    "Solar Förderung FAQ"
+  ];
+  
+  const apiKeywords = seoData?.keywords 
+    ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
+    : defaultKeywords;
+
+  return {
+    title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+    description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+      description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
+      url: "https://www.oekovolt.de/faqs",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/faqs-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+      description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/faqs-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/faqs",
+    },
+  };
+}
 
 export default async function Home() {
-
-    let data = null;
+  let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch FAQs data", error);
   }
-
 
   const infoData = {
     title: "Photovoltaik FAQs – Antworten auf Ihre wichtigsten Fragen",
@@ -45,13 +107,12 @@ export default async function Home() {
   };
 
 
-
   return (
     <div>
       <BannerSection data={data}/>
       <FAQInfoSection data={data}/>
       <SolarInfoAccordion data={data}/>
-    <EndSection/>
+      <EndSection />
     </div>
   );
 }

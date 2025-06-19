@@ -12,23 +12,95 @@ import EndSection from "@/components/Reusable/end";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.dynamischer_stromtarif_service_page.api.get_dynamischer_page_with_keywords`;
 
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Dynamischer Stromtarif | Ökovolt Solartechnik",
+      description: "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
+      keywords: [
+        "Dynamischer Stromtarif",
+        "Flexibler Strompreis",
+        "Stromtarif für PV-Anlagen",
+        "Intelligenter Stromtarif",
+        "Energiekosten optimieren"
+      ],
+      openGraph: {
+        title: "Dynamischer Stromtarif | Ökovolt Solartechnik",
+        description: "Flexible Stromtarife für Photovoltaik-Besitzer.",
+        images: [{ url: "/images/stromtarif-og.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Dynamischer Stromtarif",
+        "Flexibler Strompreis",
+        "Stromtarif für PV-Anlagen",
+        "Intelligenter Stromtarif",
+        "Energiekosten optimieren"
+      ];
+
+  return {
+    title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
+    description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
+      description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer.",
+      url: "https://www.oekovolt.de/stromtarif",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/stromtarif-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
+      description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/stromtarif-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/stromtarif",
+    },
+  };
+}
+
 export default async function StromtarifPage() {
   let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch stromtarif data", error);
   }
 
-  const endd = {
-    greentitle: "Solaranlage sichern",
-    title: "Jetzt Kontakt aufnehmen & Solaranlage sichern",
-    description:
-      "Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell.",
-  };
+
+
   return (
     <div>
       <BannerSection data={data} />
@@ -38,7 +110,7 @@ export default async function StromtarifPage() {
       <DynamicSteps data={data} />
       <FlexibleBenefitsSection data={data} />
       <RequirementsSection data={data} />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

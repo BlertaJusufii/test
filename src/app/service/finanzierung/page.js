@@ -7,25 +7,98 @@ import FinanzierungPartnerSection from "@/components/Finanzierung/fourth";
 import FinanzierungFAQ from "@/components/Finanzierung/fifth";
 import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import EndSection from "@/components/Reusable/end";
+
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.finanzierung_service_page.api.get_finanzierung_page_with_keywords`;
+
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Finanzierung & Förderungen | Ökovolt Solartechnik",
+      description: "Attraktive Finanzierungsmöglichkeiten und Förderprogramme für Ihre Photovoltaikanlage. Finden Sie die passende Lösung für Ihre Solarinvestition.",
+      keywords: [
+        "Photovoltaik Finanzierung",
+        "Solar Förderungen",
+        "PV-Anlage Finanzierung",
+        "KfW Förderung",
+        "Solarfinanzierung"
+      ],
+      openGraph: {
+        title: "Finanzierung & Förderungen | Ökovolt Solartechnik",
+        description: "Attraktive Finanzierungsmöglichkeiten für Ihre Photovoltaikanlage.",
+        images: [{ url: "/images/finanzierung-og.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords - use API keywords if available, otherwise fallback
+  const apiKeywords = seoData?.keywords 
+    ? seoData.keywords.split(/,\s*/) 
+    : [
+        "Photovoltaik Finanzierung",
+        "Solar Förderungen",
+        "PV-Anlage Finanzierung",
+        "KfW Förderung",
+        "Solarfinanzierung"
+      ];
+
+  return {
+    title: seoData?.title || "Finanzierung & Förderungen | Ökovolt Solartechnik",
+    description: seoData?.description || "Attraktive Finanzierungsmöglichkeiten und Förderprogramme für Ihre Photovoltaikanlage. Finden Sie die passende Lösung für Ihre Solarinvestition.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Finanzierung & Förderungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Attraktive Finanzierungsmöglichkeiten für Ihre Photovoltaikanlage.",
+      url: "https://www.oekovolt.de/finanzierung",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/finanzierung-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Finanzierung & Förderungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Attraktive Finanzierungsmöglichkeiten für Ihre Photovoltaikanlage.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/finanzierung-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/finanzierung",
+    },
+  };
+}
 
 export default async function FinanzierungPage() {
   let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch finanzierung data", error);
   }
 
-  const endd = {
-    greentitle: "Solaranlage sichern",
-    title: "Jetzt Kontakt aufnehmen & Solaranlage sichern",
-    description:
-      "Interessiert an einer maßgeschneiderten Photovoltaikanlage für Ihr Zuhause oder Unternehmen? Füllen Sie unser Kontaktformular aus oder rufen Sie uns direkt an! Unser Expertenteam berät Sie persönlich und individuell.",
-  };
+ 
+
   return (
     <div>
       <BannerSection data={data} />
@@ -33,7 +106,7 @@ export default async function FinanzierungPage() {
       <FinancingBenefitsSection data={data} />
       <FinanzierungPartnerSection data={data} />
       <FinanzierungFAQ data={data} />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

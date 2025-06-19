@@ -6,29 +6,98 @@ import MieterstromBenefits from '@/components/Mieterstrom/third';
 import MieterstromThirdSection from '@/components/Mieterstrom/fourth';
 import GreenFeatureSection from '@/components/Reusable/contactInfo';
 import EndSection from '@/components/Reusable/end';
-const DATA_URL =
-  `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_mieterstrom_page_with_keywords`;
 
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_mieterstrom_page_with_keywords`;
+
+export async function generateMetadata() {
+  // Fetch data for metadata
+  let seoData = null;
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    const json = await res.json();
+    seoData = json.message;
+  } catch (error) {
+    console.error("Failed to fetch SEO data", error);
+    // Fallback metadata if API fails
+    return {
+      title: "Mieterstrom & Quartierslösungen | Ökovolt Solartechnik",
+      description: "Innovative Mieterstrom-Modelle für Mehrfamilienhäuser und Wohnanlagen. Profitieren Sie von günstigem Solarstrom direkt vom Dach.",
+      keywords: [
+        "Mieterstrom",
+        "Quartiersstrom",
+        "Solarstrom für Mieter",
+        "Energieversorgung Mehrfamilienhaus",
+        "Nachhaltige Wohnanlagen"
+      ],
+      openGraph: {
+        title: "Mieterstrom & Quartierslösungen | Ökovolt Solartechnik",
+        description: "Innovative Mieterstrom-Modelle für Mehrfamilienhäuser.",
+        images: [{ url: "/images/mieterstrom-og.jpg" }],
+      },
+    };
+  }
+
+  // Process keywords - combine API keywords with defaults if available
+  const defaultKeywords = [
+    "Mieterstrom",
+    "Quartiersstrom",
+    "Solarstrom für Mieter",
+    "Energieversorgung Mehrfamilienhaus",
+    "Nachhaltige Wohnanlagen"
+  ];
+  
+  const apiKeywords = seoData?.keywords 
+    ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
+    : defaultKeywords;
+
+  return {
+    title: seoData?.title || "Mieterstrom & Quartierslösungen | Ökovolt Solartechnik",
+    description: seoData?.description || "Innovative Mieterstrom-Modelle für Mehrfamilienhäuser und Wohnanlagen. Profitieren Sie von günstigem Solarstrom direkt vom Dach.",
+    keywords: apiKeywords,
+    openGraph: {
+      title: seoData?.title || "Mieterstrom & Quartierslösungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Innovative Mieterstrom-Modelle für Mehrfamilienhäuser.",
+      url: "https://www.oekovolt.de/mieterstrom",
+      siteName: "Ökovolt Solartechnik",
+      images: [
+        {
+          url: seoData?.banner_image 
+            ? `${API_BASE_URL}${seoData.banner_image}` 
+            : "/images/mieterstrom-og.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoData?.title || "Mieterstrom & Quartierslösungen | Ökovolt Solartechnik",
+      description: seoData?.description || "Innovative Mieterstrom-Modelle für Mehrfamilienhäuser.",
+      images: [
+        seoData?.banner_image 
+          ? `${API_BASE_URL}${seoData.banner_image}` 
+          : "/images/mieterstrom-og.jpg"
+      ],
+    },
+    alternates: {
+      canonical: "https://www.oekovolt.de/mieterstrom",
+    },
+  };
+}
 
 export default async function MieterstromPage() {
-
   let data = null;
 
   try {
-    const res = await fetch(DATA_URL, { cache: "no-store" }); // "no-store" = disable caching
+    const res = await fetch(DATA_URL, { cache: "no-store" });
     const json = await res.json();
     data = json.message;
   } catch (error) {
-    console.error("Failed to fetch smart energy data", error);
+    console.error("Failed to fetch mieterstrom data", error);
   }
-
-  const endd = {
-    greentitle: "Smarthome-Lösung",
-    title: "Energie der Zukunft",
-    description:
-      "Machen Sie den ersten Schritt in Richtung Unabhängigkeit mit Ihrer eigenen Solaranlage. Füllen Sie unser Kontaktformular aus – wir helfen Ihnen gerne weiter.",
-  };
-
+  
 
   return (
     <div>
@@ -38,6 +107,5 @@ export default async function MieterstromPage() {
       <MieterstromThirdSection data={data} />
       <EndSection/>
     </div>
-  )
+  );
 }
-

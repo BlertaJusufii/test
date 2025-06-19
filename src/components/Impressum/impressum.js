@@ -4,7 +4,7 @@ import React from "react";
 
 const Impressum = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-4 pt-9 md:pt-14">
       <section className="mb-12">
         <h2 className="text-2xl md:text-3xl text-gray-800 mb-4">Herausgeber</h2>
         <address className="not-italic mb-4">

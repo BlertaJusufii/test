@@ -4,8 +4,8 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <section className="mb-12">
+    <div className="max-w-7xl mx-auto px-4 pt-9 md:pt-14">
+      <section className="">
         <h2 className="text-2xl md:text-3xl  text-gray-800 mb-4">Allgemeiner Hinweis und Pflichtinformationen</h2>
         <p className="mb-4">Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
         <address className="not-italic mb-4 ">
