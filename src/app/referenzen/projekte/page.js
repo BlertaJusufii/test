@@ -30,12 +30,7 @@ export async function generateMetadata() {
         "Ökovolt Projekte",
         "Energielösungen Referenzen",
       ],
-      openGraph: {
-        title: "Referenzen | Ökovolt Solartechnik",
-        description:
-          "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
-        images: [{ url: "/images/referenzen-og.jpg" }],
-      },
+   
     };
   }
 

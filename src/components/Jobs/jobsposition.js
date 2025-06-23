@@ -110,7 +110,7 @@ const JobListings = () => {
     );
 
   return (
-    <div className="bg-gray-50 py-10 md:py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-10 md:py-16 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
         <motion.h1
           className="text-3xl font-bold mb-10 text-gray-900 text-center"

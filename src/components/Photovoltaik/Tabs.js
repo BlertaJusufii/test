@@ -8,7 +8,7 @@ export default function Tabs({ data }) {
   const [activeComponent, setActiveComponent] = useState(data.first_card_table[0].title.toLowerCase().replace(/\s+/g, ''));
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center px-6 md:px-12">
       <main className="flex flex-col lg:flex-row max-w-7xl w-full py-10 md:py-16 pl-0 pr-0 md:pr-10 md:pl-10">
         {/* Sidebar */}
         <div className="w-full lg:w-84 bg-white">

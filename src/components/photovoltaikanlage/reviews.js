@@ -10,7 +10,7 @@ const ReviewsPage = ({ data }) => {
 
   return (
     <div className="py-10 md:py-16 bg-gray-100">
-      <div className="flex-col  max-w-7xl mx-auto space-y-10 px-4  md:px-12">
+      <div className="flex-col  max-w-7xl mx-auto space-y-10 px-6  md:px-12">
         <motion.div
           className="sm:flex-col md:flex-row lg:flex items-center  justify-between w-full gap-16"
           initial={{ opacity: 0, y: 40 }}

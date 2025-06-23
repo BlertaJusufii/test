@@ -224,7 +224,7 @@ export default function ContactForm() {
 
   return (
     <motion.div
-      className="max-w-7xl mx-auto px-6 py-10 md:py-16 relative mb-[-12px]"
+      className="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16 relative mb-[-12px]"
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}

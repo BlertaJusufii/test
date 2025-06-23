@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const ContactSection = () => {
   return (
-    <section className="relative py-10 md:py-16 bg-white overflow-hidden">
+    <section className="relative py-10 md:py-16 bg-white overflow-hidden px-6 md:px-12">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-32 bg-[#669933] opacity-0"></div>
       <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-[#669933] opacity-5"></div>

@@ -11,7 +11,7 @@ const HeroEnergy = ({data}) => {
     <div className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-10 px-6 md:px-12 py-10 md:py-16 bg-white">
       
       {/* Image section */}
-      <div className="w-full lg:w-1/2 relative px-6">
+      <div className="w-full lg:w-1/2 relative px-6 ">
         {/* Gradient box - hidden on mobile */}
         <div className="hidden lg:block absolute top-[-7px] left-[17px] w-72 h-72 bg-gradient-to-b from-[#669933] to-[#003473] rounded-tl-[145px] z-0" />
 

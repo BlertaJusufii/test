@@ -7,7 +7,7 @@ import Image from "next/image";
 const Vorteil = ({data}) => {
   return (
     <section className="mb-9 md:mb-17 ">
-      <div className="container mx-auto px-4 max-w-7xl">
+      <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         {/* Top Row: Image + Benefits Grid */}
         {/* Bottom Row: Split Text Sections */}
         <div className="flex flex-col lg:flex-row gap-12">

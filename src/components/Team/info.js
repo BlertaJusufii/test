@@ -2,7 +2,7 @@ import React from "react";
 
 const InfoSectionTeam = ({ data }) => {
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-6 md:px-12">
       {/* Hero Section */}
       <section className="py-10 md:py-16">
         <div className="container mx-auto max-w-7xl">

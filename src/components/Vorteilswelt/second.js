@@ -7,7 +7,7 @@ const RecommendationSection2 = ({ data }) => {
       {/* First Row - Text Right / Image Left */}
       {data.first_card_table[0] && (
         <section className="bg-white py-10 md:py-16">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-6 md:px-12">
             {/* Text */}
             <div className="order-2 lg:order-1 space-y-6">
               <h2 className="text-3xl md:text-4xl text-gray-900">

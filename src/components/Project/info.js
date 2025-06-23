@@ -103,7 +103,7 @@ const ProjectsSection = ({data}) => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4" id="projects-section">
+    <div className="max-w-7xl mx-auto px-6 md:px-12" id="projects-section">
       <section className="py-10 md:py-16">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-6">

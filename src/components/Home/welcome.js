@@ -91,7 +91,7 @@ export default function RotatingImageSection({ data = {} }) {
   const containerSize = (radius + iconSize / 2) * 2 + 20;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 py-15">
       <div className="flex flex-col lg:flex-row items-center gap-5">
         {/* Animated Left side */}
         <motion.div

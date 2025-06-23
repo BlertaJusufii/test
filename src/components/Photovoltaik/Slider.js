@@ -31,7 +31,7 @@ export default function KomponentenSlider({data}) {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 md:py-16">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
       
       <div className="flex justify-center items-center flex-col">
             <h2 className="text-[#669933] text-lg font-semibold uppercase">{data.third_card_title}</h2>

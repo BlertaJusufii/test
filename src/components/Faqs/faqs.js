@@ -42,7 +42,7 @@ const SolarInfoAccordion = ({ data }) => {
 
   return (
     <section className="">
-      <div className="max-w-7xl mx-auto px-4 space-y-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
         {sections.map((section) => {
           const questions = data[section.dataKey] || [];
 

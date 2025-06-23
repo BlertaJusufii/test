@@ -16,7 +16,7 @@ export default function KontaktFormular() {
   const [isHovering, setIsHovering] = useState(false);
 
   const inputStyle =
-    "flex items-center border border-gray-300 bg-white rounded-md px-4 py-3 gap-3 w-full text-sm focus-within:border-[#669933] focus-within:ring-2 focus-within:ring-[#669933]/30 transition";
+    "flex items-center border border-gray-300 bg-white rounded-md px-6 md:px-12 py-3 gap-3 w-full text-sm focus-within:border-[#669933] focus-within:ring-2 focus-within:ring-[#669933]/30 transition";
 
   return (
     <section className="bg-[#f9fafb] py-10 md:py-16 px-6 md:px-12">

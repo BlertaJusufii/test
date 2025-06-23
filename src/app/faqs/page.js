@@ -29,12 +29,12 @@ export async function generateMetadata() {
         "Solarenergie Fragen",
         "Solar Förderung FAQ",
       ],
-      openGraph: {
-        title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-        description:
-          "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
-        images: [{ url: "/images/faqs-og.jpg" }],
-      },
+      // openGraph: {
+      //   title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
+      //   description:
+      //     "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
+      //   images: [{ url: "/images/faqs-og.jpg" }],
+      // },
     };
   }
 

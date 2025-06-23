@@ -5,7 +5,7 @@ import Image from "next/image";
 const ProjekteBenefitsLayout = ({ data }) => {
   return (
     <section className="mt-9 md:mt-17">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Top Row: Image + Benefits Grid */}
         <div className="flex flex-col lg:items-center lg:flex-row md:gap-12 gap-9 md:mb-17 mb-9">
           {/* Left Column - Image */}

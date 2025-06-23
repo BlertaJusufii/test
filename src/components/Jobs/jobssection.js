@@ -5,7 +5,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const JobsTechnologySection = ({data}) => {
   return (
-    <div className="bg-gray-100 w-full text-white py-10 md:py-16 px-4 md:px-10 flex flex-col lg:flex-row lg:items-center justify-center gap-10 relative overflow-hidden">
+    <div className="bg-gray-100 w-full text-white py-10 md:py-16 px-6 md:px-12 flex flex-col lg:flex-row lg:items-center justify-center gap-10 relative overflow-hidden">
       <div className="max-w-xl lg:max-w-xl md:max-w-full z-10">
         <p className="text-[#669933] font-semibold uppercase mb-2">{data.third_card_title}</p>
         <h2 className="text-4xl text-gray-900 md:text-5xl font-bold leading-tight mb-6">{data.third_card_subtitle}</h2>

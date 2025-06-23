@@ -97,7 +97,7 @@ const TeamSection = () => {
   return (
     teams.length > 0 && (
     <section className="py-10 md:py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
