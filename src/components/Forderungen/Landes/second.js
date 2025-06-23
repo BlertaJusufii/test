@@ -59,11 +59,11 @@ const ForderungenSection = () => {
   );
 
   return (
-    <div className="">
+    <div className="w-full overflow-x-hidden">
      
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mt-9 md:mt-14 ">
-        <div className="grid lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Sidebar Navigation */}
           <div className="lg:col-span-4">
@@ -133,7 +133,7 @@ const ForderungenSection = () => {
                   
                   {!selectedItem.firstcard_image && (
                     <div className="bg-gradient-to-r from-[#669933] to-[#7bb33f] p-8">
-                      <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                      <h2 className="text-2xl lg:text-3xl  text-white">
                         {selectedItem.firstcard_title}
                       </h2>
                     </div>
@@ -141,7 +141,7 @@ const ForderungenSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-8 space-y-8">
+                <div className="p-3 md:p-8 space-y-8">
                   {/* Main Text Content */}
                   {selectedItem.forderungen_text && selectedItem.forderungen_text.map((text, idx) => (
                     <div key={idx} className="space-y-4">

@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function FifthCardSection({ data }) {
+export default function SixCardSection({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 

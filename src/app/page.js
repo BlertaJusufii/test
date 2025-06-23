@@ -97,7 +97,7 @@ export default async function Home() {
       <VideoBanner
         videoSrc={"/Images/Navbar/intro.mp4"}
         title={data?.title || "Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
-        mobileVideoSrc={data?.title || "Photovoltaik-Lösungen für Industrie, Gewerbe und Privat"}
+        mobileVideoSrc={"/Images/Navbar/intro.mp4"}
       />
       <ServicesBanner data={data} />
       <RotatingCircleSection data={data} />

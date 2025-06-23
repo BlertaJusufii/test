@@ -1,17 +1,16 @@
 import React from "react";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
-import BannerSection from "@/components/Direktvermarktung/banner";
-import HeroEnergy from "@/components/Direktvermarktung/second";
-import SecondCardSection from "@/components/Direktvermarktung/third";
-import ThirdCardSection from "@/components/Direktvermarktung/fourth";
-import FourthCardSection from "@/components/Direktvermarktung/fifth";
-import FifthCardSection from "@/components/Direktvermarktung/six";
-import SixthCardSection from "@/components/Direktvermarktung/seven";
-import DirektvermarktungFAQ from "@/components/Direktvermarktung/eight";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import EndSection from "@/components/Reusable/end";
+import BannerSection from "@/components/Direktvermaktung/banner";
+import HeroEnergy from "@/components/Direktvermaktung/second";
+import SecondCardSection from "@/components/Direktvermaktung/third";
+import ThirdCardSection from "@/components/Direktvermaktung/fourth";
+import FifthCardSection from "@/components/Direktvermaktung/fifth";
+import SixCardSection from "@/components/Direktvermaktung/six";
+import DirektvermaktungFAQ from "@/components/Direktvermaktung/eight";
 
-const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.direktvermarktung_service_page.api.get_direktvermarktung_page_with_keywords`;
+
+const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.direktvermarktung_service_page.api.get_photovoltaik_repowering_page_with_keywords`;
 
 export async function generateMetadata() {
   // Fetch data for metadata
@@ -34,11 +33,11 @@ export async function generateMetadata() {
         "Energie Direktvermarktung",
         "Solarstrom verkaufen",
       ],
-      openGraph: {
-        title: "Direktvermarktung von Solarstrom | Ökovolt Solartechnik",
-        description: "Professionelle Direktvermarktung Ihres Solarstroms.",
-        images: [{ url: "/images/direktvermarktung-og.jpg" }],
-      },
+      // openGraph: {
+      //   title: "Direktvermarktung von Solarstrom | Ökovolt Solartechnik",
+      //   description: "Professionelle Direktvermarktung Ihres Solarstroms.",
+      //   images: [{ url: "/images/direktvermarktung-og.jpg" }],
+      // },
     };
   }
 
@@ -80,12 +79,11 @@ export default async function DirektvermarktungPage() {
     <div>
       <BannerSection data={data} />
       <HeroEnergy data={data} />
-      <SecondCardSection data={data} />
-      <ThirdCardSection data={data} />
-      <FourthCardSection data={data} />
-      <FifthCardSection data={data} />
-      <SixthCardSection data={data} />
-      <DirektvermarktungFAQ data={data} />
+      <SecondCardSection data={data}/>
+    <ThirdCardSection data={data}/>
+    <FifthCardSection data={data} />
+    <SixCardSection data={data}/>
+    <DirektvermaktungFAQ data={data}/>
       <EndSection />
     </div>
   );

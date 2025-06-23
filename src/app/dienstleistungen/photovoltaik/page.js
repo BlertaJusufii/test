@@ -3,7 +3,6 @@ import Tabs from "@/components/Photovoltaik/Tabs";
 import AnlageSection from "@/components/Photovoltaik/Anlage";
 import KomponentenSlider from "@/components/Photovoltaik/Slider";
 import ProcessSteps from "@/components/Photovoltaik/Cards";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import PhotovoltaikanlageBannerSection from "@/components/Photovoltaik/banner";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import EndSection from "@/components/Reusable/end";

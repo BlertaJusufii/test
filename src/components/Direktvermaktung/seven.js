@@ -5,7 +5,7 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-export default function SixthCardSection({ data }) {
+export default function SeventhhCardSection({ data }) {
   return (
     <section className="py-10 md:py-16 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">

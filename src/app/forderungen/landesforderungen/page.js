@@ -51,40 +51,40 @@ export async function generateMetadata() {
       seoData?.description ||
       "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher. Finden Sie die passende Förderung für Ihr Projekt.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
-      description:
-        seoData?.description ||
-        "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
-      url: "https://www.oekovolt.de/foerderungen/landesfoerderungen",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image
-            ? `${API_BASE_URL}${seoData.banner_image}`
-            : "/images/landesfoerderungen-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
-      description:
-        seoData?.description ||
-        "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
-      images: [
-        seoData?.banner_image
-          ? `${API_BASE_URL}${seoData.banner_image}`
-          : "/images/landesfoerderungen-og.jpg",
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/foerderungen/landesfoerderungen",
-    },
+    // openGraph: {
+    //   title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
+    //   description:
+    //     seoData?.description ||
+    //     "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
+    //   url: "https://www.oekovolt.de/foerderungen/landesfoerderungen",
+    //   siteName: "Ökovolt Solartechnik",
+    //   images: [
+    //     {
+    //       url: seoData?.banner_image
+    //         ? `${API_BASE_URL}${seoData.banner_image}`
+    //         : "/images/landesfoerderungen-og.jpg",
+    //       width: 1200,
+    //       height: 630,
+    //     },
+    //   ],
+    //   locale: "de_DE",
+    //   type: "website",
+    // },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
+    //   description:
+    //     seoData?.description ||
+    //     "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
+    //   images: [
+    //     seoData?.banner_image
+    //       ? `${API_BASE_URL}${seoData.banner_image}`
+    //       : "/images/landesfoerderungen-og.jpg",
+    //   ],
+    // },
+    // alternates: {
+    //   canonical: "https://www.oekovolt.de/foerderungen/landesfoerderungen",
+    // },
   };
 }
 

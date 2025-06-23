@@ -4,7 +4,7 @@ import { CheckCircle2, AlertTriangle, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-const FourthCardSection = ({ data }) => {
+const FifthCardSection = ({ data }) => {
   const advantages = data?.fourth_card_1st_description || [];
   const challenges = data?.fourth_card_2nd_description || [];
 
@@ -163,4 +163,4 @@ const FourthCardSection = ({ data }) => {
   );
 };
 
-export default FourthCardSection;
+export default FifthCardSection;
