@@ -32,8 +32,13 @@ const Navbar = () => {
 
   // Disable body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
-  }, [isOpen]);
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+}, [isOpen]);
+
 
   // Close dropdown if clicked outside (for desktop hover submenu)
   useEffect(() => {
@@ -237,7 +242,7 @@ const Navbar = () => {
 
                     {/* Show submenu on hover */}
                     {hoverDropdown === item.title && (
-                      <div className="absolute right-0 mt-0 w-40 bg-white rounded-md shadow-lg py-1 z-50">
+                      <div className="absolute mt-0  w-45 bg-white rounded-md shadow-lg py-1 z-50">
                         {item.items.map((subItem) => (
                           <Link
                             key={subItem.name}

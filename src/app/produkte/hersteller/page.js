@@ -1,8 +1,8 @@
-import React from 'react'
-import { API_BASE_URL } from '@/lib/apiBaseUrl';
-import HerstellerBanner from '@/components/Hersteller/banner';
-import HerstellerSection from '@/components/Hersteller/second';
-import EndSection from '@/components/Reusable/end';
+import React from "react";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import HerstellerBanner from "@/components/Hersteller/banner";
+import HerstellerSection from "@/components/Hersteller/second";
+import EndSection from "@/components/Reusable/end";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_hersteller_page_with_keywords`;
 
@@ -18,67 +18,42 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Hersteller & Partner | Ökovolt Solartechnik",
-      description: "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
+      description:
+        "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
       keywords: [
         "Photovoltaik Hersteller",
         "Solar Komponenten",
         "Energietechnik Partner",
         "Qualitätshersteller",
-        "Solar Marken"
+        "Solar Marken",
       ],
       openGraph: {
         title: "Hersteller & Partner | Ökovolt Solartechnik",
-        description: "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
+        description:
+          "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
         images: [{ url: "/images/hersteller-og.jpg" }],
       },
     };
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Photovoltaik Hersteller",
         "Solar Komponenten",
         "Energietechnik Partner",
         "Qualitätshersteller",
-        "Solar Marken"
+        "Solar Marken",
       ];
 
   return {
     title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
-    description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
+    description:
+      seoData?.description ||
+      "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen. Qualitätsprodukte führender Marken.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
-      url: "https://www.oekovolt.de/hersteller",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/hersteller-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Hersteller & Partner | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere Partner und Hersteller hochwertiger Komponenten für Photovoltaik- und Energielösungen.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/hersteller-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/hersteller",
-    },
+   
   };
 }
 
@@ -92,7 +67,6 @@ export default async function HerstellerPage() {
   } catch (error) {
     console.error("Failed to fetch hersteller data", error);
   }
-
 
   return (
     <div>

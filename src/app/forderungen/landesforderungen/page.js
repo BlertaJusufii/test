@@ -1,9 +1,9 @@
-import LandesBannerSection from '@/components/Forderungen/Landes/banner'
-import ForderungenSection from '@/components/Forderungen/Landes/second'
-import LandesSection from '@/components/Forderungen/Landes/second'
-import EndSection from '@/components/Reusable/end'
-import React from 'react'
-import { API_BASE_URL } from '@/lib/apiBaseUrl'
+import LandesBannerSection from "@/components/Forderungen/Landes/banner";
+import ForderungenSection from "@/components/Forderungen/Landes/second";
+import LandesSection from "@/components/Forderungen/Landes/second";
+import EndSection from "@/components/Reusable/end";
+import React from "react";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.forderungen_pages.doctype.forderungen_page.api.get_forderungen_page`;
 
@@ -19,19 +19,16 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Landesförderungen | Ökovolt Solartechnik",
-      description: "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher. Finden Sie die passende Förderung für Ihr Projekt.",
+      description:
+        "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher. Finden Sie die passende Förderung für Ihr Projekt.",
       keywords: [
         "Photovoltaik Förderung",
         "Landesförderprogramme",
         "Solarförderung",
         "Bundesländer Förderung",
-        "Energie Förderungen"
+        "Energie Förderungen",
       ],
-      openGraph: {
-        title: "Landesförderungen | Ökovolt Solartechnik",
-        description: "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
-        images: [{ url: "/images/landesfoerderungen-og.jpg" }],
-      },
+     
     };
   }
 
@@ -41,26 +38,30 @@ export async function generateMetadata() {
     "Landesförderprogramme",
     "Solarförderung",
     "Bundesländer Förderung",
-    "Energie Förderungen"
+    "Energie Förderungen",
   ];
-  
-  const apiKeywords = seoData?.keywords 
+
+  const apiKeywords = seoData?.keywords
     ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
     : defaultKeywords;
 
   return {
     title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
-    description: seoData?.description || "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher. Finden Sie die passende Förderung für Ihr Projekt.",
+    description:
+      seoData?.description ||
+      "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher. Finden Sie die passende Förderung für Ihr Projekt.",
     keywords: apiKeywords,
     openGraph: {
       title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
+      description:
+        seoData?.description ||
+        "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
       url: "https://www.oekovolt.de/foerderungen/landesfoerderungen",
       siteName: "Ökovolt Solartechnik",
       images: [
         {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
+          url: seoData?.banner_image
+            ? `${API_BASE_URL}${seoData.banner_image}`
             : "/images/landesfoerderungen-og.jpg",
           width: 1200,
           height: 630,
@@ -72,11 +73,13 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: seoData?.title || "Landesförderungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
+      description:
+        seoData?.description ||
+        "Aktuelle Förderprogramme der Bundesländer für Photovoltaik und Speicher.",
       images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/landesfoerderungen-og.jpg"
+        seoData?.banner_image
+          ? `${API_BASE_URL}${seoData.banner_image}`
+          : "/images/landesfoerderungen-og.jpg",
       ],
     },
     alternates: {

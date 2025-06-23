@@ -21,17 +21,19 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Referenzen | Ökovolt Solartechnik",
-      description: "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
+      description:
+        "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
       keywords: [
         "Photovoltaik Referenzen",
         "Solarprojekte",
-        "PV-Anlagen Beispiele", 
+        "PV-Anlagen Beispiele",
         "Ökovolt Projekte",
-        "Energielösungen Referenzen"
+        "Energielösungen Referenzen",
       ],
       openGraph: {
         title: "Referenzen | Ökovolt Solartechnik",
-        description: "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
+        description:
+          "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
         images: [{ url: "/images/referenzen-og.jpg" }],
       },
     };
@@ -43,47 +45,20 @@ export async function generateMetadata() {
     "Solarprojekte",
     "PV-Anlagen Beispiele",
     "Ökovolt Projekte",
-    "Energielösungen Referenzen"
+    "Energielösungen Referenzen",
   ];
-  
-  const apiKeywords = seoData?.keywords 
+
+  const apiKeywords = seoData?.keywords
     ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
     : defaultKeywords;
 
   return {
     title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
-    description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
+    description:
+      seoData?.description ||
+      "Unsere erfolgreichen Photovoltaik-Projekte für Gewerbe, Industrie und Privathaushalte. Entdecken Sie Referenzen unserer nachhaltigen Energielösungen.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
-      url: "https://www.oekovolt.de/referenzen",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/referenzen-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Referenzen | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere erfolgreichen Photovoltaik-Projekte und Referenzen.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/referenzen-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/referenzen",
-    },
+  
   };
 }
 
@@ -101,10 +76,10 @@ export default async function Home() {
   return (
     <div>
       <ProjekteBannerSection data={data} />
-      <ProjectsHero data={data}/>
+      <ProjectsHero data={data} />
       <ProjekteTechnologySection data={data} />
       <ProjekteBenefitsLayout data={data} />
-      <Vorteil data={data}/>
+      <Vorteil data={data} />
       <ProjekteAnotherDesign data={data} />
       <EndSection />
     </div>

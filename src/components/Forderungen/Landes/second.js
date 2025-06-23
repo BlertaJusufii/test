@@ -38,7 +38,7 @@ const ForderungenSection = () => {
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex justify-center items-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex justify-center items-center pt-9 md:pt-14">
       <div className="bg-white p-8 rounded-2xl shadow-xl">
         <div className="flex items-center space-x-4">
           <Loader2 className="h-8 w-8 animate-spin text-[#669933]" />
@@ -62,7 +62,7 @@ const ForderungenSection = () => {
     <div className="">
      
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 pb-9 md:pb-14">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-9 md:mt-14 ">
         <div className="grid lg:grid-cols-12 gap-8">
           
           {/* Sidebar Navigation */}

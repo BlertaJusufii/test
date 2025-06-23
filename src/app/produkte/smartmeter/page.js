@@ -22,13 +22,14 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Smart Meter & Zähler | Ökovolt Solartechnik",
-      description: "Moderne Smart Meter für intelligentes Energiemanagement. Optimieren Sie Ihren Energieverbrauch mit digitalen Zählern und Echtzeit-Monitoring.",
+      description:
+        "Moderne Smart Meter für intelligentes Energiemanagement. Optimieren Sie Ihren Energieverbrauch mit digitalen Zählern und Echtzeit-Monitoring.",
       keywords: [
         "Smart Meter",
         "Digitaler Zähler",
         "Energiemanagement",
         "Stromzähler",
-        "Intelligente Messsysteme"
+        "Intelligente Messsysteme",
       ],
       openGraph: {
         title: "Smart Meter & Zähler | Ökovolt Solartechnik",
@@ -39,50 +40,23 @@ export async function generateMetadata() {
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Smart Meter",
         "Digitaler Zähler",
         "Energiemanagement",
         "Stromzähler",
-        "Intelligente Messsysteme"
+        "Intelligente Messsysteme",
       ];
 
   return {
     title: seoData?.title || "Smart Meter & Zähler | Ökovolt Solartechnik",
-    description: seoData?.description || "Moderne Smart Meter für intelligentes Energiemanagement. Optimieren Sie Ihren Energieverbrauch mit digitalen Zählern und Echtzeit-Monitoring.",
+    description:
+      seoData?.description ||
+      "Moderne Smart Meter für intelligentes Energiemanagement. Optimieren Sie Ihren Energieverbrauch mit digitalen Zählern und Echtzeit-Monitoring.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Smart Meter & Zähler | Ökovolt Solartechnik",
-      description: seoData?.description || "Moderne Smart Meter für intelligentes Energiemanagement.",
-      url: "https://www.oekovolt.de/smartmeter",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/smartmeter-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Smart Meter & Zähler | Ökovolt Solartechnik",
-      description: seoData?.description || "Moderne Smart Meter für intelligentes Energiemanagement.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/smartmeter-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/smartmeter",
-    },
+   
   };
 }
 
@@ -96,8 +70,6 @@ export default async function SmartmeterPage() {
   } catch (error) {
     console.error("Failed to fetch smartmeter data", error);
   }
-
- 
 
   return (
     <div>

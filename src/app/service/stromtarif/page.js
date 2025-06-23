@@ -24,67 +24,37 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Dynamischer Stromtarif | Ökovolt Solartechnik",
-      description: "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
+      description:
+        "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
       keywords: [
         "Dynamischer Stromtarif",
         "Flexibler Strompreis",
         "Stromtarif für PV-Anlagen",
         "Intelligenter Stromtarif",
-        "Energiekosten optimieren"
+        "Energiekosten optimieren",
       ],
-      openGraph: {
-        title: "Dynamischer Stromtarif | Ökovolt Solartechnik",
-        description: "Flexible Stromtarife für Photovoltaik-Besitzer.",
-        images: [{ url: "/images/stromtarif-og.jpg" }],
-      },
+    
     };
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Dynamischer Stromtarif",
         "Flexibler Strompreis",
         "Stromtarif für PV-Anlagen",
         "Intelligenter Stromtarif",
-        "Energiekosten optimieren"
+        "Energiekosten optimieren",
       ];
 
   return {
     title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
-    description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
+    description:
+      seoData?.description ||
+      "Flexible Stromtarife für Photovoltaik-Besitzer. Nutzen Sie dynamische Strompreise und optimieren Sie Ihre Energiekosten mit intelligenten Tarifen.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
-      description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer.",
-      url: "https://www.oekovolt.de/stromtarif",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/stromtarif-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Dynamischer Stromtarif | Ökovolt Solartechnik",
-      description: seoData?.description || "Flexible Stromtarife für Photovoltaik-Besitzer.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/stromtarif-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/stromtarif",
-    },
+    
   };
 }
 
@@ -98,8 +68,6 @@ export default async function StromtarifPage() {
   } catch (error) {
     console.error("Failed to fetch stromtarif data", error);
   }
-
-
 
   return (
     <div>

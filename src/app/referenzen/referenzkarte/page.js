@@ -24,19 +24,16 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Referenzkarte | Ökovolt Solartechnik",
-      description: "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
+      description:
+        "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
       keywords: [
         "Photovoltaik Referenzkarte",
         "Solarprojekte Karte",
         "PV-Anlagen Standorte",
         "Ökovolt Referenzen",
-        "Energielösungen Standorte"
+        "Energielösungen Standorte",
       ],
-      openGraph: {
-        title: "Referenzkarte | Ökovolt Solartechnik",
-        description: "Unsere Photovoltaik-Projekte auf der Karte.",
-        images: [{ url: "/images/referenzkarte-og.jpg" }],
-      },
+    
     };
   }
 
@@ -46,47 +43,20 @@ export async function generateMetadata() {
     "Solarprojekte Karte",
     "PV-Anlagen Standorte",
     "Ökovolt Referenzen",
-    "Energielösungen Standorte"
+    "Energielösungen Standorte",
   ];
-  
-  const apiKeywords = seoData?.keywords 
+
+  const apiKeywords = seoData?.keywords
     ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
     : defaultKeywords;
 
   return {
     title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
-    description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
+    description:
+      seoData?.description ||
+      "Unsere Photovoltaik-Projekte auf der Karte. Entdecken Sie unsere Referenzstandorte in ganz Deutschland.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte.",
-      url: "https://www.oekovolt.de/referenzkarte",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/referenzkarte-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Referenzkarte | Ökovolt Solartechnik",
-      description: seoData?.description || "Unsere Photovoltaik-Projekte auf der Karte.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/referenzkarte-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/referenzkarte",
-    },
+    
   };
 }
 
@@ -101,13 +71,11 @@ export default async function Home() {
     console.error("Failed to fetch reference map data", error);
   }
 
- 
-
   return (
     <div>
       <ReferenzkarteBannerSection data={data} />
-      <ProjectsSection data={data}/>
-      <MapContainer data={data}/>
+      <ProjectsSection data={data} />
+      <MapContainer data={data} />
       <ReferenzkarteBenefitsLayout data={data} />
       <ReferenzkarteTechnologySection data={data} />
       <EndSection />

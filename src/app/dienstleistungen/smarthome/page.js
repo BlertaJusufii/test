@@ -20,46 +20,47 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Smarthome Lösungen | Ökovolt Solartechnik",
-      description: "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz in Ihrem Zuhause. Vernetzte Technologie für modernes Wohnen.",
+      description:
+        "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz in Ihrem Zuhause. Vernetzte Technologie für modernes Wohnen.",
       keywords: [
         "Smarthome",
         "Smart Home",
         "Hausautomation",
         "Energieeffizienz",
-        "Vernetztes Wohnen"
+        "Vernetztes Wohnen",
       ],
-      openGraph: {
-        title: "Smarthome Lösungen | Ökovolt Solartechnik",
-        description: "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz.",
-        images: [{ url: "/images/smarthome-og.jpg" }],
-      },
+    
     };
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Smarthome",
         "Smart Home",
         "Hausautomation",
         "Energieeffizienz",
-        "Vernetztes Wohnen"
+        "Vernetztes Wohnen",
       ];
 
   return {
     title: seoData?.title || "Smarthome Lösungen | Ökovolt Solartechnik",
-    description: seoData?.description || "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz in Ihrem Zuhause. Vernetzte Technologie für modernes Wohnen.",
+    description:
+      seoData?.description ||
+      "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz in Ihrem Zuhause. Vernetzte Technologie für modernes Wohnen.",
     keywords: apiKeywords,
     openGraph: {
       title: seoData?.title || "Smarthome Lösungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz.",
+      description:
+        seoData?.description ||
+        "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz.",
       url: "https://www.oekovolt.de/smarthome",
       siteName: "Ökovolt Solartechnik",
       images: [
         {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
+          url: seoData?.banner_image
+            ? `${API_BASE_URL}${seoData.banner_image}`
             : "/images/smarthome-og.jpg",
           width: 1200,
           height: 630,
@@ -71,11 +72,13 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: seoData?.title || "Smarthome Lösungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz.",
+      description:
+        seoData?.description ||
+        "Intelligente Smarthome-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz.",
       images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/smarthome-og.jpg"
+        seoData?.banner_image
+          ? `${API_BASE_URL}${seoData.banner_image}`
+          : "/images/smarthome-og.jpg",
       ],
     },
     alternates: {
@@ -98,9 +101,9 @@ export default async function Home() {
   return (
     <div>
       <SmarthomeBannerSection data={data} />
-      <Tabs data={data}/>
-      <VorteileSection data={data}/>
-      <EndSection/>
+      <Tabs data={data} />
+      <VorteileSection data={data} />
+      <EndSection />
     </div>
   );
 }

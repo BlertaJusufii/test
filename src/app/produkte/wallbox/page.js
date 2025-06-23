@@ -1,10 +1,10 @@
-import WallboxBanner from '@/components/Wallbox/banner';
-import React from 'react'
-import { API_BASE_URL } from '@/lib/apiBaseUrl';
-import WallboxFeatures2 from '@/components/Wallbox/third';
-import WallboxSecondCard2 from '@/components/Wallbox/second';
-import WallboxThirdCard from '@/components/Wallbox/fourth';
-import EndSection from '@/components/Reusable/end';
+import WallboxBanner from "@/components/Wallbox/banner";
+import React from "react";
+import { API_BASE_URL } from "@/lib/apiBaseUrl";
+import WallboxFeatures2 from "@/components/Wallbox/third";
+import WallboxSecondCard2 from "@/components/Wallbox/second";
+import WallboxThirdCard from "@/components/Wallbox/fourth";
+import EndSection from "@/components/Reusable/end";
 
 const DATA_URL = `${API_BASE_URL}oekovoltdeutchland.oekovoltdeutchland.doctype.products.api.get_wallbox_page_with_keywords`;
 
@@ -20,67 +20,42 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Wallbox & Ladestationen | Ökovolt Solartechnik",
-      description: "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge. Schnelles und sicheres Laden mit intelligenten Ladelösungen für Zuhause und Gewerbe.",
+      description:
+        "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge. Schnelles und sicheres Laden mit intelligenten Ladelösungen für Zuhause und Gewerbe.",
       keywords: [
         "Wallbox",
         "Ladestation",
         "E-Auto laden",
         "Elektroauto Ladestation",
-        "Wallbox Installation"
+        "Wallbox Installation",
       ],
       openGraph: {
         title: "Wallbox & Ladestationen | Ökovolt Solartechnik",
-        description: "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge.",
+        description:
+          "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge.",
         images: [{ url: "/images/wallbox-og.jpg" }],
       },
     };
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Wallbox",
         "Ladestation",
         "E-Auto laden",
         "Elektroauto Ladestation",
-        "Wallbox Installation"
+        "Wallbox Installation",
       ];
 
   return {
     title: seoData?.title || "Wallbox & Ladestationen | Ökovolt Solartechnik",
-    description: seoData?.description || "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge. Schnelles und sicheres Laden mit intelligenten Ladelösungen für Zuhause und Gewerbe.",
+    description:
+      seoData?.description ||
+      "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge. Schnelles und sicheres Laden mit intelligenten Ladelösungen für Zuhause und Gewerbe.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Wallbox & Ladestationen | Ökovolt Solartechnik",
-      description: seoData?.description || "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge.",
-      url: "https://www.oekovolt.de/wallbox",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/wallbox-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Wallbox & Ladestationen | Ökovolt Solartechnik",
-      description: seoData?.description || "Hochwertige Wallboxen und Ladestationen für Elektrofahrzeuge.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/wallbox-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/wallbox",
-    },
+   
   };
 }
 
@@ -95,14 +70,13 @@ export default async function WallboxPage() {
     console.error("Failed to fetch wallbox data", error);
   }
 
- 
   return (
     <div>
       <WallboxBanner data={data} />
       <WallboxSecondCard2 data={data} />
       <WallboxFeatures2 data={data} />
       <WallboxThirdCard data={data} />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

@@ -20,17 +20,19 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-      description: "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
+      description:
+        "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
       keywords: [
         "Photovoltaik FAQ",
         "Solaranlagen Fragen",
         "PV-Anlage Antworten",
         "Solarenergie Fragen",
-        "Solar Förderung FAQ"
+        "Solar Förderung FAQ",
       ],
       openGraph: {
         title: "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-        description: "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
+        description:
+          "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
         images: [{ url: "/images/faqs-og.jpg" }],
       },
     };
@@ -42,47 +44,21 @@ export async function generateMetadata() {
     "Solaranlagen Fragen",
     "PV-Anlage Antworten",
     "Solarenergie Fragen",
-    "Solar Förderung FAQ"
+    "Solar Förderung FAQ",
   ];
-  
-  const apiKeywords = seoData?.keywords 
+
+  const apiKeywords = seoData?.keywords
     ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
     : defaultKeywords;
 
   return {
     title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-    description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
+    description:
+      seoData?.description ||
+      "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik, Solaranlagen und Förderungen. Unser FAQ-Bereich klärt alle Themen rund um Solarenergie.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-      description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
-      url: "https://www.oekovolt.de/faqs",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/faqs-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Häufige Fragen (FAQ) | Ökovolt Solartechnik",
-      description: seoData?.description || "Antworten auf Ihre wichtigsten Fragen zu Photovoltaik und Solaranlagen.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/faqs-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/faqs",
-    },
+   
+   
   };
 }
 
@@ -106,12 +82,11 @@ export default async function Home() {
     ],
   };
 
-
   return (
     <div>
-      <BannerSection data={data}/>
-      <FAQInfoSection data={data}/>
-      <SolarInfoAccordion data={data}/>
+      <BannerSection data={data} />
+      <FAQInfoSection data={data} />
+      <SolarInfoAccordion data={data} />
       <EndSection />
     </div>
   );

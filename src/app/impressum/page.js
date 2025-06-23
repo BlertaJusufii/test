@@ -23,17 +23,18 @@ export default function Home() {
     img: "/Images/Kontakt/download-2.jpg",
   };
 
-  const end={
-    greentitle:"Solarenergie",
-    title:"Ihre Zukunft mit Solarenergie",
-    description:"Möchten Sie unabhängig von steigenden Strompreisen werden? Kontaktieren Sie uns für eine unverbindliche Beratung – wir finden die beste Lösung für Sie!"
-  }
+  const end = {
+    greentitle: "Solarenergie",
+    title: "Ihre Zukunft mit Solarenergie",
+    description:
+      "Möchten Sie unabhängig von steigenden Strompreisen werden? Kontaktieren Sie uns für eine unverbindliche Beratung – wir finden die beste Lösung für Sie!",
+  };
 
   return (
     <div>
       <BannerSection data={data} />
       <Impressum />
-      <EndSection/>
+      <EndSection />
     </div>
   );
 }

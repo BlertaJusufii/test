@@ -3,7 +3,6 @@ import HeroEnergy from "@/components/smartenergyhome/hero";
 import SmartEnergySection from "@/components/smartenergyhome/smartenergy";
 import ThirdPart from "@/components/smartenergyhome/third";
 import EnergyOfferSection from "@/components/smartenergyhome/fourth";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import EndSection from "@/components/Reusable/end";
 
@@ -21,67 +20,42 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Smart Energy Lösungen | Ökovolt Solartechnik",
-      description: "Innovative Smart Energy Lösungen für intelligentes Energiemanagement in Ihrem Zuhause. Energieeffizienz, Nachhaltigkeit und Kosteneinsparung durch moderne Technologie.",
+      description:
+        "Innovative Smart Energy Lösungen für intelligentes Energiemanagement in Ihrem Zuhause. Energieeffizienz, Nachhaltigkeit und Kosteneinsparung durch moderne Technologie.",
       keywords: [
         "Smart Energy",
         "Energiemanagement",
         "Energieeffizienz",
         "Intelligente Stromnutzung",
-        "Nachhaltige Energie"
+        "Nachhaltige Energie",
       ],
       openGraph: {
         title: "Smart Energy Lösungen | Ökovolt Solartechnik",
-        description: "Innovative Smart Energy Lösungen für intelligentes Energiemanagement.",
+        description:
+          "Innovative Smart Energy Lösungen für intelligentes Energiemanagement.",
         images: [{ url: "/images/smart-energy-og.jpg" }],
       },
     };
   }
 
   // Process keywords - use API keywords if available, otherwise fallback
-  const apiKeywords = seoData?.keywords 
-    ? seoData.keywords.split(/,\s*/) 
+  const apiKeywords = seoData?.keywords
+    ? seoData.keywords.split(/,\s*/)
     : [
         "Smart Energy",
         "Energiemanagement",
         "Energieeffizienz",
         "Intelligente Stromnutzung",
-        "Nachhaltige Energie"
+        "Nachhaltige Energie",
       ];
 
   return {
     title: seoData?.title || "Smart Energy Lösungen | Ökovolt Solartechnik",
-    description: seoData?.description || "Innovative Smart Energy Lösungen für intelligentes Energiemanagement in Ihrem Zuhause. Energieeffizienz, Nachhaltigkeit und Kosteneinsparung durch moderne Technologie.",
+    description:
+      seoData?.description ||
+      "Innovative Smart Energy Lösungen für intelligentes Energiemanagement in Ihrem Zuhause. Energieeffizienz, Nachhaltigkeit und Kosteneinsparung durch moderne Technologie.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Smart Energy Lösungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Innovative Smart Energy Lösungen für intelligentes Energiemanagement.",
-      url: "https://www.oekovolt.de/smart-energy",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/smart-energy-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Smart Energy Lösungen | Ökovolt Solartechnik",
-      description: seoData?.description || "Innovative Smart Energy Lösungen für intelligentes Energiemanagement.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/smart-energy-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/smart-energy",
-    },
+    
   };
 }
 

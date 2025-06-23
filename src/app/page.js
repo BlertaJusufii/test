@@ -24,11 +24,11 @@ export async function generateMetadata() {
       title: "Ökovolt Solartechnik - Photovoltaik Lösungen",
       description: "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
       keywords: ["Photovoltaik", "Solaranlagen", "Energielösungen"],
-      openGraph: {
-        title: "Ökovolt Solartechnik",
-        description: "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
-        images: [{ url: "/images/og-image.jpg" }],
-      },
+      // openGraph: {
+      //   title: "Ökovolt Solartechnik",
+      //   description: "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+      //   images: [{ url: "/images/og-image.jpg" }],
+      // },
     };
   }
 
@@ -41,36 +41,36 @@ export async function generateMetadata() {
     title: seoData?.title || "Ökovolt Solartechnik - Photovoltaik Lösungen",
     description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Ökovolt Solartechnik",
-      description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
-      url: "https://www.oekovolt.de",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.first_card_images?.[0]?.image 
-            ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
-            : "/images/og-image.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Ökovolt Solartechnik",
-      description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
-      images: [
-        seoData?.first_card_images?.[0]?.image 
-          ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
-          : "/images/og-image.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de",
-    },
+    // openGraph: {
+    //   title: seoData?.title || "Ökovolt Solartechnik",
+    //   description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+    //   url: "https://www.oekovolt.de",
+    //   siteName: "Ökovolt Solartechnik",
+    //   images: [
+    //     {
+    //       url: seoData?.first_card_images?.[0]?.image 
+    //         ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
+    //         : "/images/og-image.jpg",
+    //       width: 1200,
+    //       height: 630,
+    //     },
+    //   ],
+    //   locale: "de_DE",
+    //   type: "website",
+    // },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: seoData?.title || "Ökovolt Solartechnik",
+    //   description: seoData?.first_card_description || "Ihr Experte für Photovoltaik in Deutschland – seit über 15 Jahren.",
+    //   images: [
+    //     seoData?.first_card_images?.[0]?.image 
+    //       ? `${API_BASE_URL}${seoData.first_card_images[0].image}` 
+    //       : "/images/og-image.jpg"
+    //   ],
+    // },
+    // alternates: {
+    //   canonical: "https://www.oekovolt.de",
+    // },
   };
 }
 

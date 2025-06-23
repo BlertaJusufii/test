@@ -1,10 +1,4 @@
-import BenefitsLayout from "@/components/Reusable/benefitsSection";
-import GreenFeatureSection from "@/components/Reusable/contactInfo";
-import InfoSection from "@/components/Reusable/info";
-import TeamBanner from "@/components/Reusable/teamBanner";
 import TeamSection from "@/components/Team/team";
-import TechnologySection from "@/components/Reusable/TechnologySection";
-import AnotherDesign from "@/components/Reusable/AnotherDesign";
 import { API_BASE_URL } from "@/lib/apiBaseUrl";
 import BannerSection from "@/components/Team/banner";
 import InfoSectionTeam from "@/components/Team/info";
@@ -26,19 +20,16 @@ export async function generateMetadata() {
     // Fallback metadata if API fails
     return {
       title: "Unser Team | Ökovolt Solartechnik",
-      description: "Lernen Sie unser Expertenteam kennen. Erfahrene Spezialisten für Photovoltaik, die Ihnen maßgeschneiderte Lösungen für nachhaltige Energie bieten.",
+      description:
+        "Lernen Sie unser Expertenteam kennen. Erfahrene Spezialisten für Photovoltaik, die Ihnen maßgeschneiderte Lösungen für nachhaltige Energie bieten.",
       keywords: [
         "Ökovolt Team",
         "Photovoltaik Experten",
         "Solar Fachleute",
         "Energieberater Team",
-        "PV-Installateure"
+        "PV-Installateure",
       ],
-      openGraph: {
-        title: "Unser Team | Ökovolt Solartechnik",
-        description: "Lernen Sie unser Expertenteam für Photovoltaik-Lösungen kennen.",
-        images: [{ url: "/images/team-og.jpg" }],
-      },
+    
     };
   }
 
@@ -48,47 +39,20 @@ export async function generateMetadata() {
     "Photovoltaik Experten",
     "Solar Fachleute",
     "Energieberater Team",
-    "PV-Installateure"
+    "PV-Installateure",
   ];
-  
-  const apiKeywords = seoData?.keywords 
+
+  const apiKeywords = seoData?.keywords
     ? [...new Set([...seoData.keywords.split(/,\s*/), ...defaultKeywords])]
     : defaultKeywords;
 
   return {
     title: seoData?.title || "Unser Team | Ökovolt Solartechnik",
-    description: seoData?.description || "Lernen Sie unser Expertenteam kennen. Erfahrene Spezialisten für Photovoltaik, die Ihnen maßgeschneiderte Lösungen für nachhaltige Energie bieten.",
+    description:
+      seoData?.description ||
+      "Lernen Sie unser Expertenteam kennen. Erfahrene Spezialisten für Photovoltaik, die Ihnen maßgeschneiderte Lösungen für nachhaltige Energie bieten.",
     keywords: apiKeywords,
-    openGraph: {
-      title: seoData?.title || "Unser Team | Ökovolt Solartechnik",
-      description: seoData?.description || "Lernen Sie unser Expertenteam für Photovoltaik-Lösungen kennen.",
-      url: "https://www.oekovolt.de/team",
-      siteName: "Ökovolt Solartechnik",
-      images: [
-        {
-          url: seoData?.banner_image 
-            ? `${API_BASE_URL}${seoData.banner_image}` 
-            : "/images/team-og.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: "de_DE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoData?.title || "Unser Team | Ökovolt Solartechnik",
-      description: seoData?.description || "Lernen Sie unser Expertenteam für Photovoltaik-Lösungen kennen.",
-      images: [
-        seoData?.banner_image 
-          ? `${API_BASE_URL}${seoData.banner_image}` 
-          : "/images/team-og.jpg"
-      ],
-    },
-    alternates: {
-      canonical: "https://www.oekovolt.de/team",
-    },
+ 
   };
 }
 
