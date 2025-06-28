@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar/navbar";
 import Footer from "@/components/Reusable/footer";
 import CookieComponent from "@/components/Cookies/cookiecomponent";
 import { GoogleTagManager } from "@next/third-parties/google";
+import ToTopButton from "@/components/Home/BackToTop";
 
 export const metadata = {
   title: {
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
         {children}
         <CookieComponent />
         <Footer />
+        <ToTopButton/>
         <GoogleTagManager gtmId="GTM-MTT7LVDC" />
       </body>
     </html>

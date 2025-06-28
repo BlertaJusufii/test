@@ -8,7 +8,7 @@ const SmartBanner = ({data}) => {
 
 
   return (
-    <section className="relative h-[300px] w-full overflow-hidden lg:h-[400px] px-6">
+    <section className="relative h-[300px] w-full overflow-hidden lg:h-[400px] px-6 md:px-12">
       <div className="absolute inset-0">
         <Image
             src={`${API_IMG_URL}${data.banner_image}`}

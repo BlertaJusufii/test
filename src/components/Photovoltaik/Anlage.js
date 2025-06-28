@@ -4,7 +4,7 @@ import { API_IMG_URL } from '@/lib/apiImgUrl';
 
 function AnlageSection({ data }) {
     return (
-        <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12">
+        <section className="bg-gray-100 py-10 md:py-16 px-6 md:px-12 overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-10">
                     <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">

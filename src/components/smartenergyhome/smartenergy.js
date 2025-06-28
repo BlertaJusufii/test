@@ -1,13 +1,10 @@
-
-"use client"
+"use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MdBolt, MdCheckCircle } from "react-icons/md";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
-
-const SmartEnergySection = ({data}) => {
- 
+const SmartEnergySection = ({ data }) => {
   if (!data) return null;
 
   return (
@@ -44,8 +41,9 @@ const SmartEnergySection = ({data}) => {
           </div>
         </motion.div>
 
+        {/* Image section */}
         <motion.div
-          className="relative rounded-xl overflow-hidden shadow-2xl h-[450px]"
+          className="relative rounded-xl overflow-hidden shadow-2xl h-[300px] sm:h-[400px] lg:h-[450px]"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9 }}
@@ -59,7 +57,7 @@ const SmartEnergySection = ({data}) => {
           />
 
           {/* Bottom Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent text-white text-sm px-6 py-5 backdrop-blur-md">
+          <div className="hidden md:block absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent text-white text-sm px-6 py-5 backdrop-blur-md">
             <p className="font-medium leading-snug">
               {data.second_card_image_descripiton}
             </p>
@@ -68,7 +66,7 @@ const SmartEnergySection = ({data}) => {
       </div>
 
       {/* Decorative glow element */}
-      <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" />
+      <div className="hidden md:block absolute -top-20 -right-20 w-[300px] h-[300px] bg-[#669933]/30 rounded-full blur-3xl z-0" />
     </section>
   );
 };

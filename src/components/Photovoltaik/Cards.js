@@ -12,7 +12,7 @@ import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const ProcessSteps = ({ data }) => {
   return (
-    <section className="relative bg-[#f7f7f7] px-6 md:px-12 py-10 md:py-16">
+    <section className="relative bg-[#f7f7f7] px-6 md:px-12 py-10 md:py-16 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
           {data.fourth_card_title}

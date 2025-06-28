@@ -66,7 +66,7 @@ const ProjectCard = ({ project }) => {
 
 const ProjectDetailComponent = ({ project, related }) => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
       <h2 className="text-2xl font-semibold tracking-wide inline-block relative">
         Projekt Details
       </h2>

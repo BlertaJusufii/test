@@ -5,59 +5,28 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // mobile menu open/close
-  const [openDropdown, setOpenDropdown] = useState(null); // which submenu open in mobile
-  const [hoverDropdown, setHoverDropdown] = useState(null); // which submenu open on desktop hover
+  const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [hoverDropdown, setHoverDropdown] = useState(null);
 
-  // Toggle mobile submenu
   const toggleDropdown = (name) => {
     setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  // Close mobile menu completely
   const closeMobileMenu = () => {
     setIsOpen(false);
     setOpenDropdown(null);
   };
 
-  // Close submenu dropdown on desktop mouse leave
   const handleMouseLeave = () => {
     setHoverDropdown(null);
   };
 
-  // Close submenu dropdown on desktop mouse enter
   const handleMouseEnter = (name) => {
     setHoverDropdown(name);
   };
 
-  // Disable body scroll when mobile menu is open
- useEffect(() => {
-  if (isOpen) {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = `${scrollbarWidth}px`; // prevent layout shift
-  } else {
-    document.body.style.overflow = "";
-    document.body.style.paddingRight = "";
-  }
-}, [isOpen]);
-
-
-
-  // Close dropdown if clicked outside (for desktop hover submenu)
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (hoverDropdown && !event.target.closest(".relative.group")) {
-        setHoverDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [hoverDropdown]);
-
-  const navItems = [
+ const navItems = [
     {
       title: "Dienstleistungen",
       slug: "dienstleistungen",
@@ -201,70 +170,184 @@ const Navbar = () => {
     { title: "Kontakt", slug: "kontakt", link: "/kontakt" },
   ];
 
+  useEffect(() => {
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+  } else {
+    document.body.style.overflow = "";
+    document.body.style.overscrollBehavior = "";
+    document.body.style.paddingRight = "";
+  }
+}, [isOpen]);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (hoverDropdown && !event.target.closest(".nav-item")) {
+        setHoverDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [hoverDropdown]);
+
   return (
-    <header className="sticky top-0 w-full z-150 bg-white shadow-lg">
-      <nav className="w-full max-w-7xl mx-auto py-4">
-        <div className="px-4 flex justify-between items-center">
-          <Link
-            href="/"
-            className="flex items-center h-16 w-40 lg:w-50 relative"
-            onClick={closeMobileMenu}
-          >
+<header className="static  top-0 bg-white w-full z-150">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-5 px-4">
+        {/* Logo - kept exactly as in your original */}
+        <div className="w-[180px]">
+          <Link href="/" className="flex items-center h-16 relative" onClick={closeMobileMenu}>
             <Image
               src="/Images/Navbar/Logo.png"
               alt="Logo"
-              fill
-              priority
+              width={180}
+              height={64}
               className="object-contain object-left"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Link>
+        </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-5 cursor-pointer">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center justify-center">
+          <ul className="flex gap-8 list-none m-0 p-0 justify-center">
             {navItems.map((item) => (
-              <div
+              <li
                 key={item.title}
-                className="relative group"
+                className="nav-item relative flex items-center gap-1"
                 onMouseEnter={() => handleMouseEnter(item.title)}
                 onMouseLeave={handleMouseLeave}
               >
                 {item.items ? (
                   <>
-                    <button
-                      type="button"
-                      className="flex items-center hover:text-[#669933] transition uppercase text-[15px]"
-                      onClick={(e) => e.preventDefault()} // prevent toggling on click in desktop
+                    <Link
+                      href="#"
+                      className="text-gray text-[14px] uppercase hover:text-[#669933] transition-colors flex items-center gap-1"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleDropdown(item.title);
+                      }}
                     >
                       {item.title}
                       {hoverDropdown === item.title ? (
-                        <FiChevronUp className="ml-1" />
+                        <FiChevronUp size={14} />
                       ) : (
-                        <FiChevronDown className="ml-1" />
+                        <FiChevronDown size={14} />
+                      )}
+                    </Link>
+                    <div
+                      className={`absolute left-1/2 -translate-x-1/2 top-full w-[190px] bg-white rounded shadow-lg py-1 z-50 transition-all duration-300 ${
+                        hoverDropdown === item.title
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible translate-y-2"
+                      }`}
+                    >
+                      {item.items.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.link}
+                          className="block px-4 py-2 text-gray text-[14px]   border-b border-white/10 hover:text-[#669933] transition-colors"
+                          onClick={() => setHoverDropdown(null)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={item.link}
+                    className="text-gray text-[14px]  uppercase hover:text-[#669933] transition-colors"
+                  >
+                    {item.title}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden p-2 text-gray"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
+
+        {/* Mobile Menu Overlay */}
+        <div
+          className={`fixed inset-0 bg-white top-[-5] z-40 transition-transform duration-300 ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          } lg:hidden`}
+        >
+          <div className="flex justify-between items-center p-5 border-b border-white/10">
+            <div className="w-[180px]">
+              <Link href="/" className="flex items-center h-16 relative" onClick={closeMobileMenu}>
+                <Image
+                  src="/Images/Navbar/Logo.png"
+                  alt="Logo"
+                  width={180}
+                  height={64}
+                  className="object-contain object-left"
+                />
+              </Link>
+            </div>
+            <button
+              className="text-gray p-1"
+              onClick={closeMobileMenu}
+              aria-label="Close menu"
+            >
+              <FiX size={24} />
+            </button>
+          </div>
+
+          <div className="p-5 overflow-y-auto h-[calc(100vh-95px)] bg-white">
+            {navItems.map((item) => (
+              <div key={item.title} className="mb-2 border-b border-white/10">
+                {item.items ? (
+                  <>
+                    <button
+                      onClick={() => toggleDropdown(item.title)}
+                      className="flex justify-between items-center w-full py-3 text-gray uppercase text-[15px]"
+                    >
+                      {item.title}
+                      {openDropdown === item.title ? (
+                        <FiChevronUp size={16} />
+                      ) : (
+                        <FiChevronDown size={16} />
                       )}
                     </button>
-
-                    {/* Show submenu on hover */}
-                    {hoverDropdown === item.title && (
-                      <div className="absolute mt-0  w-45 bg-white rounded-md shadow-lg py-1 z-50">
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        openDropdown === item.title ? "max-h-[500px]" : "max-h-0"
+                      }`}
+                    >
+                      <div className="pb-2 pl-3">
                         {item.items.map((subItem) => (
                           <Link
                             key={subItem.name}
                             href={subItem.link}
-                            className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-[#669933] text-md"
-                            onClick={() => setHoverDropdown(null)} // close submenu on click
+                            className="block py-3 text-gray  text-[15px] hover:text-[#669933]"
+                            onClick={closeMobileMenu}
                           >
                             {subItem.name}
                           </Link>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </>
                 ) : (
                   <Link
                     href={item.link}
-                    className="hover:text-[#669933] transition uppercase text-[15px]"
-                    onClick={() => setHoverDropdown(null)}
+                    className="block py-3 text-gray uppercase  text-[15px]"
+                    onClick={closeMobileMenu}
                   >
                     {item.title}
                   </Link>
@@ -272,102 +355,8 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="xl:hidden p-2 rounded-md focus:outline-none transition bg-white"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <FiX size={24} className="text-gray-800" />
-            ) : (
-              <FiMenu size={24} className="text-gray-800" />
-            )}
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div
-            className="xl:hidden fixed inset-0 bg-black/30 z-40"
-            onClick={closeMobileMenu}
-          >
-            <div
-              className="absolute right-0 top-0 h-full w-full sm:w-96 bg-white shadow-lg overflow-y-auto z-50"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-center p-4 pt-2 bg-white sticky top-0 z-60">
-                <Link
-                  href="/"
-                  className="flex items-center h-20 w-40 relative"
-                  onClick={closeMobileMenu}
-                >
-                  <Image
-                    src="/Images/Navbar/Logo.png"
-                    alt="Company Logo"
-                    fill
-                    className="object-contain object-left"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </Link>
-
-                <button
-                  className="text-gray-800 rounded p-1 focus:outline-none"
-                  onClick={closeMobileMenu}
-                  aria-label="Close menu"
-                >
-                  <FiX size={24} />
-                </button>
-              </div>
-
-              <div className="px-6 py-4 bg-white">
-                {navItems.map((item) => (
-                  <div key={item.title} className="mb-4">
-                    {item.items ? (
-                      <>
-                        <button
-                          onClick={() => toggleDropdown(item.title)}
-                          className="flex items-center justify-between w-full text-gray-800 hover:text-[#669933] py-3 uppercase text-md font-medium"
-                        >
-                          {item.title}
-                          {openDropdown === item.title ? (
-                            <FiChevronUp className="ml-1" />
-                          ) : (
-                            <FiChevronDown className="ml-1" />
-                          )}
-                        </button>
-                        {openDropdown === item.title && (
-                          <div className="ml-4 space-y-3 mt-2">
-                            {item.items.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.link}
-                                className="block py-2 text-gray-700 hover:text-[#669933] uppercase text-sm"
-                                onClick={closeMobileMenu} // closes whole mobile menu on click
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <Link
-                        href={item.link}
-                        className="block py-3 text-gray-800 hover:text-[#669933] uppercase text-md font-medium"
-                        onClick={closeMobileMenu} // closes whole mobile menu on click
-                      >
-                        {item.title}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
+      </div>
     </header>
   );
 };

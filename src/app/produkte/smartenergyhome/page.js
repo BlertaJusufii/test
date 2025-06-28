@@ -71,7 +71,7 @@ export default async function SmartEnergyPage() {
   }
 
   return (
-    <div>
+    <div className="relative w-full">
       <SmartBanner data={data} />
       <HeroEnergy data={data} />
       <SmartEnergySection data={data} />

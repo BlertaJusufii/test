@@ -42,7 +42,7 @@ export default function WarmepumpeFinancingSection({ data }) {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl text-gray-800 mb-6">
+          <h3 className="text-2xl text-[#669933] mb-6">
             {data.warmepumpe_fourth_card_options_title}
           </h3>
 
@@ -69,7 +69,7 @@ export default function WarmepumpeFinancingSection({ data }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Icon className="text-green-600 text-xl mt-1" />
+                  <Icon className="text-[#669933] text-xl mt-1" />
                   <div>
                     <h4 className="text-lg font-medium text-gray-800">
                       {item.primary_text}

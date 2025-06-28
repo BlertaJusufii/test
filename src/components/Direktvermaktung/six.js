@@ -42,7 +42,7 @@ export default function SixCardSection({ data }) {
           </div>
 
           {/* Slider Container */}
-          <div className="relative h-120 md:h-80 lg:h-70 w-full overflow-hidden rounded-xl bg-white shadow-lg">
+          <div className="relative h-120 md:h-80 lg:h-70 w-full overflow-hidden  bg-white">
             <div 
               ref={sliderRef}
               className="absolute inset-0 flex"

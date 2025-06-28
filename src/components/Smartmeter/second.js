@@ -11,7 +11,7 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="cursor-pointer absolute z-10 left-[-20px] top-1/2 transform -translate-y-1/2 text-[#669933] bg-white rounded-full p-2 shadow hover:bg-[#669933] hover:text-white transition"
+    className="cursor-pointer absolute z-10 left-[-20px] top-20 transform -translate-y-1/2 text-[#669933] bg-white rounded-full p-2 shadow hover:bg-[#669933] hover:text-white transition"
   >
     <FiArrowLeft />
   </button>
@@ -20,7 +20,7 @@ const PrevArrow = ({ onClick }) => (
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="cursor-pointer absolute z-10 right-[-20px] top-1/2 transform -translate-y-1/2 text-[#669933] bg-white rounded-full p-2 shadow hover:bg-[#669933] hover:text-white transition"
+    className="cursor-pointer absolute z-10 right-[-20px] top-20 transform -translate-y-1/2 text-[#669933] bg-white rounded-full p-2 shadow hover:bg-[#669933] hover:text-white transition"
   >
     <FiArrowRight />
   </button>
@@ -49,7 +49,7 @@ const SmartMeterCardSection = ({ data }) => {
           transition={{ duration: 0.6 }}
           className=" overflow-hidden flex flex-col lg:flex-row lg:gap-15"
         >
-          {/* Right Side - Content (Stretched) */}
+          {/* left Side - Content (Stretched) */}
           <div className="w-full lg:w-1/2 lg:p-8  flex flex-col justify-between ">
             {/* Header */}
             <motion.div
@@ -97,7 +97,7 @@ const SmartMeterCardSection = ({ data }) => {
             </motion.div>
           </div>
 
-          {/* Left Side - Image (Stretched) */}
+          {/* right Side - Image (Stretched) */}
           <div className="w-full lg:w-1/2 relative h-64 sm:h-80 lg:h-[600px]">
             <Image
               src={`${API_IMG_URL}${data.smart_meter_first_card_image}`}

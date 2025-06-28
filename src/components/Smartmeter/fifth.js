@@ -188,7 +188,7 @@ const NextArrow = ({ onClick }) => (
         transition={{ type: "spring", stiffness: 300 }}
         className="group flex flex-col justify-between p-6 bg-white rounded-2xl transition-all h-full" // ✅ h-full and justify-between
       >
-        <div className="flex items-center justify-center w-12 h-12 mb-4 bg-blue-100 group-hover:bg-[#669933] transition-all rounded-full text-[#669933] group-hover:text-white text-xl">
+        <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gray-100 group-hover:bg-[#669933] transition-all rounded-full text-[#669933] group-hover:text-white text-xl">
           {getIcon(index)}
         </div>
         <span className="text-gray-800 text-base font-medium">

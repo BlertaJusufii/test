@@ -21,7 +21,7 @@ export default function JobsAnotherDesign({ data }) {
 
         {/* Right - Text */}
         <div className="w-full max-w-5xl text-center lg:text-left">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             {data.fifth_card_title}
           </h2>
           <p className="text-gray-600 mb-6">{data.fifth_card_description}</p>

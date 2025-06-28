@@ -81,7 +81,7 @@ export default function ProjectsSection({data}) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="mb-9 md:mb-17 max-w-7xl mx-auto px-6 md:px-12 "
+      className="mb-9 md:mb-17 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden"
     >
       <div className="text-center flex flex-col items-center justify-center">
         <h2 className="text-[#669933] uppercase font-semibold tracking-wide inline-block relative text-lg">
