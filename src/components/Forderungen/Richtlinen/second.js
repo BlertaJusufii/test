@@ -4,11 +4,11 @@ const RichtlinienPV = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 md:px-12 pt-9 md:pt-14 ">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Normen und Richtlinien für Photovoltaikanlagen in Österreich
+        Normen und Richtlinien für Photovoltaikanlagen in Deutschland
       </h1>
       
       <p className="text-gray-700 mb-6">
-        Die Planung, Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Österreich unterliegen einer Vielzahl von Normen und Richtlinien, die Sicherheit, Effizienz und Qualität gewährleisten sollen. Im Folgenden werden die wichtigsten Regelwerke detailliert erläutert:
+        Die Planung, Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Deutschland unterliegen einer Vielzahl von Normen und Richtlinien, die Sicherheit, Effizienz und Qualität gewährleisten sollen. Im Folgenden werden die wichtigsten Regelwerke detailliert erläutert:
       </p>
 
       <div className="mb-8">
@@ -97,7 +97,7 @@ const RichtlinienPV = () => {
         <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">OIB-Richtlinien 2023</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>
-            Das Österreichische Institut für Bautechnik (OIB) hat in den OIB-Richtlinien 2023 spezifische Anforderungen an den Brandschutz von PV-Anlagen festgelegt.
+            Das Deutschlandische Institut für Bautechnik (OIB) hat in den OIB-Richtlinien 2023 spezifische Anforderungen an den Brandschutz von PV-Anlagen festgelegt.
           </li>
           <li>
             Für an Fassaden installierte PV-Module gelten dieselben Anforderungen wie für andere Außenwandbekleidungen.

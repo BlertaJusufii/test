@@ -141,7 +141,7 @@ const ForderungenSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="pt-3 pl-3 pr-3 md:pt-8 md:pl-8 md:pr-8 space-y-8">
+                <div className="pt-3 pl-3 pb-3 pr-3 md:pt-8 md:pl-8 md:pr-8 space-y-8">
                   {/* Main Text Content */}
                   {selectedItem.forderungen_text && selectedItem.forderungen_text.map((text, idx) => (
                     <div key={idx} className="space-y-4">

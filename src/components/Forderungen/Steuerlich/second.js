@@ -4,11 +4,11 @@ const TaxTreatmentPV = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 md:px-12 pt-9 md:pt-14 bg-white ">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Die steuerliche Behandlung von Photovoltaikanlagen (PV-Anlagen) in Österreich
+        Die steuerliche Behandlung von Photovoltaikanlagen (PV-Anlagen) in Deutschland
       </h1>
       
       <p className="text-gray-700 mb-6">
-        Die steuerliche Behandlung von Photovoltaikanlagen (PV-Anlagen) in Österreich unterscheidet sich zwischen privaten Betreibern und Unternehmen. Im Folgenden werden die relevanten Aspekte für beide Gruppen detailliert erläutert.
+        Die steuerliche Behandlung von Photovoltaikanlagen (PV-Anlagen) in Deutschland unterscheidet sich zwischen privaten Betreibern und Unternehmen. Im Folgenden werden die relevanten Aspekte für beide Gruppen detailliert erläutert.
       </p>
 
       <div className="mb-8">

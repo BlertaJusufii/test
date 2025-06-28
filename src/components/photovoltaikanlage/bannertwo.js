@@ -121,7 +121,7 @@ const SolvixBanner = ({ data }) => {
           />
 
           <motion.div
-            className="absolute bottom-4 left-0 bg-white rounded-lg shadow-xl p-4 w-64 flex items-center gap-4 moving-box"
+            className="hidden md:flex absolute bottom-4 left-0 bg-white rounded-lg shadow-xl p-4 w-64  items-center gap-4 moving-box"
             initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

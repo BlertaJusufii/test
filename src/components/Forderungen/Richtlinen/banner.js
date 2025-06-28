@@ -46,7 +46,7 @@ const RichtlinenBannerSection = () => {
               Richtlinen
             </h2>
             <p className="text-base sm:text-lg lg:text-lg leading-relaxed text-gray-700 drop-shadow-lg">
-Diese Übersicht fasst die wesentlichen technischen Normen, Sicherheitsrichtlinien und Bauvorschriften für Photovoltaikanlagen in Österreich zusammen. Behandelt werden elektrotechnische Standards (OVE), brandschutztechnische Anforderungen (OIB), wiener Sonderbestimmungen sowie Arbeitsschutzvorschriften für Installation und Wartung – mit besonderem Fokus auf aktuelle Regelwerke ab 2022            </p>
+Diese Übersicht fasst die wesentlichen technischen Normen, Sicherheitsrichtlinien und Bauvorschriften für Photovoltaikanlagen in Deutschland zusammen. Behandelt werden elektrotechnische Standards (OVE), brandschutztechnische Anforderungen (OIB), wiener Sonderbestimmungen sowie Arbeitsschutzvorschriften für Installation und Wartung – mit besonderem Fokus auf aktuelle Regelwerke ab 2022            </p>
           </div>
         </div>
       </div>

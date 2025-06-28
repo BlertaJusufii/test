@@ -47,7 +47,7 @@ const SteuerlichBannerSection = () => {
             </h2>
             <p className="text-base sm:text-lg lg:text-lg leading-relaxed text-gray-700 drop-shadow-lg">
               Diese Übersicht erläutert die aktuellen steuerrechtlichen
-              Bestimmungen für Photovoltaikanlagen in Österreich, differenziert
+              Bestimmungen für Photovoltaikanlagen in Deutschland, differenziert
               nach privaten Betreibern und Unternehmen. Behandelt werden
               Einkommensteuer, Umsatzsteuer, Elektrizitätsabgabe sowie wichtige
               Meldepflichten – inklusive der Neuerungen durch das

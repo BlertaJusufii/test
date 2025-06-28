@@ -46,7 +46,7 @@ const BaurechtBannerSection = () => {
               Baurecht
             </h2>
             <p className="text-base sm:text-lg lg:text-lg leading-relaxed text-gray-700 drop-shadow-lg">
-              Dieser Bereich gibt einen Überblick über die baurechtlichen Vorschriften für Photovoltaikanlagen in Österreich. Behandelt werden Genehmigungspflichten, Bauvorschriften, Abstandsregelungen und Sonderbestimmungen für unterschiedliche Gebäudearten sowie die aktuellen Änderungen durch die Novellierung des Örtlichen Raumordnungsprogramms.
+              Dieser Bereich gibt einen Überblick über die baurechtlichen Vorschriften für Photovoltaikanlagen in Deutschland. Behandelt werden Genehmigungspflichten, Bauvorschriften, Abstandsregelungen und Sonderbestimmungen für unterschiedliche Gebäudearten sowie die aktuellen Änderungen durch die Novellierung des Örtlichen Raumordnungsprogramms.
             </p>
           </div>
         </div>

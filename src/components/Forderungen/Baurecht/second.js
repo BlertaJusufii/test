@@ -4,11 +4,11 @@ const BaurechtPV = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 md:px-12 pt-9 md:pt-14 ">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Die Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Österreich
+        Die Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Deutschland
       </h1>
       
       <p className="text-gray-700 mb-6">
-        Die Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Österreich unterliegen sowohl nationalen als auch landesspezifischen rechtlichen Regelungen. Während einige Vorschriften bundesweit gelten, variieren andere je nach Bundesland. Im Folgenden werden die nationalen Bestimmungen sowie die Unterschiede in den baurechtlichen Vorschriften der einzelnen Bundesländer erläutert.
+        Die Errichtung und der Betrieb von Photovoltaikanlagen (PV-Anlagen) in Deutschland unterliegen sowohl nationalen als auch landesspezifischen rechtlichen Regelungen. Während einige Vorschriften bundesweit gelten, variieren andere je nach Bundesland. Im Folgenden werden die nationalen Bestimmungen sowie die Unterschiede in den baurechtlichen Vorschriften der einzelnen Bundesländer erläutert.
       </p>
 
       <div className="mb-8">
@@ -64,7 +64,7 @@ const BaurechtPV = () => {
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Unterschiede in den baurechtlichen Vorschriften der Bundesländer</h2>
         <p className="text-gray-700 mb-4">
-          Die baurechtlichen Bestimmungen für die Errichtung von Photovoltaikanlagen (PV-Anlagen) variieren in Österreich je nach Bundesland. Im Folgenden sind die spezifischen Regelungen der neun Bundesländer zusammengefasst:
+          Die baurechtlichen Bestimmungen für die Errichtung von Photovoltaikanlagen (PV-Anlagen) variieren in Deutschland je nach Bundesland. Im Folgenden sind die spezifischen Regelungen der neun Bundesländer zusammengefasst:
         </p>
         
         <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Wien</h3>
@@ -91,10 +91,10 @@ const BaurechtPV = () => {
           </li>
         </ul>
 
-        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Niederösterreich</h3>
+        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">NiederDeutschland</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>
-            In Niederösterreich sind Photovoltaikanlagen unter bestimmten Voraussetzungen bewilligungsfrei.
+            In NiederDeutschland sind Photovoltaikanlagen unter bestimmten Voraussetzungen bewilligungsfrei.
           </li>
           <li>
             Beispielsweise sind freistehende Anlagen im Grünland mit einer Engpassleistung von mehr als 50 kW anzeigepflichtig.
@@ -111,10 +111,10 @@ const BaurechtPV = () => {
           </li>
         </ul>
 
-        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Oberösterreich</h3>
+        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">OberDeutschland</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>
-            In Oberösterreich sind Photovoltaikanlagen bis 400 kW installierter Engpassleistung, die freistehend sind und deren Höhe mehr als 2 m über dem Gelände beträgt, baurechtlich anzeigepflichtig bei der Baubehörde.
+            In OberDeutschland sind Photovoltaikanlagen bis 400 kW installierter Engpassleistung, die freistehend sind und deren Höhe mehr als 2 m über dem Gelände beträgt, baurechtlich anzeigepflichtig bei der Baubehörde.
           </li>
         </ul>
 

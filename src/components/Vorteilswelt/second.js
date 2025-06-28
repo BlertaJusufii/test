@@ -36,7 +36,7 @@ const RecommendationSection2 = ({ data }) => {
       {/* Second Row - Text Left / Image Right */}
       {data.first_card_table[1] && (
         <section className="bg-gray-100 py-10 md:py-16">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-6 md:px-12">
             {/* Image */}
             <div className="relative w-full aspect-video lg:aspect-auto lg:min-h-[400px] rounded-xl overflow-hidden">
               <Image

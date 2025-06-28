@@ -214,7 +214,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center justify-center">
+        <nav className="hidden xl:flex items-center justify-center">
           <ul className="flex gap-8 list-none m-0 p-0 justify-center">
             {navItems.map((item) => (
               <li
@@ -274,7 +274,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden p-2 text-gray"
+          className="xl:hidden p-2 text-gray"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -285,7 +285,7 @@ const Navbar = () => {
         <div
           className={`fixed inset-0 bg-white top-[-5] z-40 transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "translate-x-full"
-          } lg:hidden`}
+          } xl:hidden`}
         >
           <div className="flex justify-between items-center p-5 border-b border-white/10">
             <div className="w-[180px]">
