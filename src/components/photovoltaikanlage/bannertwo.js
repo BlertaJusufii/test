@@ -33,7 +33,7 @@ const SolvixBanner = ({ data }) => {
   if (!data) return null;
 
   return (
-    <section className="w-full px-6 md:px-12 py-10 md:py-16 bg-white relative overflow-hidden">
+    <section className="w-full px-4 md:px-12 py-10 md:py-16 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
         {/* LEFT CONTENT */}
         <div className="w-full lg:w-1/2 space-y-6">

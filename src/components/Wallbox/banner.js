@@ -11,7 +11,7 @@ const WallboxBanner = ({ data }) => {
           {/* Text Content - Left Side (50%) */}
           <div className="flex flex-col justify-end px-4 py-10 sm:px-6 sm:py-12 md:px-10 md:py-16 lg:pl-36 lg:pr-36 lg:pt-16 lg:pb-16">
             <div className="max-w-xl mx-auto text-center lg:text-left lg:mx-0">
-              <h1 className="text-2xl sm:text-3xl text-gray-900 font-semibold leading-snug sm:leading-tight">
+              <h1 className="text-2xl sm:text-3xl text-gray-900  leading-snug sm:leading-tight">
                 {data.wallbox_title}
               </h1>
 

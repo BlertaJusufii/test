@@ -12,7 +12,7 @@ export default function Tabs({ data }) {
       <main className="flex flex-col lg:flex-row max-w-7xl w-full py-10 md:py-16 pl-0 pr-0 md:pr-10 md:pl-10">
         {/* Sidebar */}
         <div className="w-full lg:w-84 bg-white">
-          <nav className="p-4 border border-gray-200">
+          <nav className="lg:p-4 border border-gray-200">
             <ul className="space-y-4">
               {data.first_card_table.map((tab) => {
                 const tabKey = tab.title.toLowerCase().replace(/\s+/g, '');

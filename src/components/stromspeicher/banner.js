@@ -29,7 +29,7 @@ const StromspeicherBanner = ({ data }) => {
       <div className="absolute inset-0 bg-gray-100/90 z-20 lg:hidden"></div>
 
       {/* Text Content */}
-      <div className="relative z-30 h-full flex items-center px-4 sm:px-8 md:px-[66px] lg:px-[186px]">
+      <div className="relative z-30 h-full flex items-center px-4   lg:px-[186px]">
         <div className="text-gray-800 max-w-2xl">
           <span className="uppercase text-sm tracking-widest text-[#669933] block mb-2">
             {data.strom_title}
