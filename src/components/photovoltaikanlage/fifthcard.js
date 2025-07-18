@@ -7,6 +7,25 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { API_IMG_URL } from "@/lib/apiImgUrl";
 
 const PhotovoltaikOverviewSlider = ({ data }) => {
+  
+  
+  const [index, setIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1); // Initialize with 1
+
+    useEffect(() => {
+    const updateVisibleCount = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) setVisibleCount(3);
+      else if (width >= 768) setVisibleCount(2);
+      else setVisibleCount(1);
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  
   if (
     !data ||
     !data.photovoltaik_title_fifth_card_first ||
@@ -19,22 +38,9 @@ const PhotovoltaikOverviewSlider = ({ data }) => {
   const subtitle = data.photovoltaik_subtitle_fifth_card_first;
   const items = data.photovoltaik_fifth_table;
 
-  const [index, setIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(1); // Initialize with 1
 
   // Calculate visible count on client side only
-  useEffect(() => {
-    const updateVisibleCount = () => {
-      const width = window.innerWidth;
-      if (width >= 1024) setVisibleCount(3);
-      else if (width >= 768) setVisibleCount(2);
-      else setVisibleCount(1);
-    };
 
-    updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
-  }, []);
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % items.length);

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPlug, FaWifi } from 'react-icons/fa';
 import { API_IMG_URL } from '@/lib/apiImgUrl';
 
-const icons = [<FaPlug />, <FaWifi />];
+const icons = [<FaPlug key="plug"/>, <FaWifi key="wifi"/>];
 
 const RequirementsSection = ({ data }) => {
   return (

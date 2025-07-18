@@ -15,12 +15,14 @@ import {
 import { useRef } from "react";
 
 const PhotovoltaikSliderSection = ({ data }) => {
+
+    const sliderRef = useRef();
+
   if (!data) return null;
 
   const title = data.photovoltaik_title_eighth_card_first;
   const subtitle = data.photovoltaik_subtitle_seventh_card_first;
   const items = data.photovoltaik_seventh_table_images || [];
-  const sliderRef = useRef();
 
   const settings = {
     dots: false,
