@@ -44,7 +44,7 @@ const BaurechtPV = () => {
           </li>
         </ul>
 
-        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Plug-in-Photovoltaikanlagen ("Balkonkraftwerke")</h3>
+        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-2">Plug-in-Photovoltaikanlagen (Balkonkraftwerke)</h3>
         <ul className="list-disc pl-6 space-y-2 text-gray-700">
           <li>
             Für kleine Plug-in-Photovoltaikanlagen mit einer Maximalleistung von 800 Watt gelten erleichterte Regelungen.
